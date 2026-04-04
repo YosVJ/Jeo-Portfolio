@@ -1578,9 +1578,9 @@
     }
 
     .utility-cluster {
-      top: 70px;
-      right: 14px;
-      transform: scale(.88);
+      top: 72px;
+      right: 52px;
+      transform: scale(.80);
       transform-origin: top right;
       gap: 8px;
     }
@@ -1614,10 +1614,10 @@
 
     .utility-cluster {
       position: fixed;
-      right: 8px;
-      top: 66px;
+      right: 56px;   /* ← push left so it won't hit edge */
+      top: 68px;
       gap: 6px;
-      transform: scale(.74);
+      transform: scale(.70);
       transform-origin: top right;
     }
 
@@ -1635,6 +1635,13 @@
     .clock-widget[data-state="ring"] {
       width: 74px;
       height: 74px;
+    }
+    .mobile-menu-toggle {
+      display: flex;
+      position: fixed;
+      top: 78px;
+      right: 10px;
+      z-index: 130;
     }
 
     .mobile-sidebar {
