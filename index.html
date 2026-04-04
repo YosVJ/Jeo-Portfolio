@@ -2143,8 +2143,9 @@ mobileNavLinks.forEach(link => link.addEventListener('click', closeMobileSidebar
     dragBtn.style.top = safeTop + 'px';
     dragBtn.style.right = 'auto';
 
-    localStorage.setItem('floatingMenuLeft', Math.round(safeLeft));
-    localStorage.setItem('floatingMenuTop', Math.round(safeTop));
+    localStorage.removeItem('floatingMenuLeft');
+    localStorage.removeItem('floatingMenuTop');
+    location.reload();
   });
 })();
 
