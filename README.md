@@ -8,7 +8,7 @@
 A **modern developer portfolio** showcasing my transition from IT operations into system development, with a focus on **real-world business systems**, **UI/UX design**, and **automation-driven thinking**.
 
 🌐 **Live Site**  
-https://jeo-portfolio.vercel.app/
+https://jeo-portfolio-08.vercel.app/
 
 ---
 
