@@ -1775,7 +1775,7 @@
   section {
     padding: 0 1.2rem;
   }
-  
+
   #about {
   scroll-margin-top: 68px;
 }
@@ -2028,6 +2028,19 @@
 <footer>Built by Jeo Vitao · IT Systems Builder → Developer</footer>
 </div>
 <script>
+  if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
+window.addEventListener('beforeunload', () => {
+  window.scrollTo(0, 0);
+});
+
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    window.scrollTo(0, 0);
+  }, 0);
+});
 const navLinks = document.querySelectorAll('.side-link');
 navLinks.forEach(link => link.addEventListener('click', () => {
   navLinks.forEach(l => l.classList.remove('active'));
