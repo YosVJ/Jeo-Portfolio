@@ -2053,11 +2053,16 @@ mobileNavLinks.forEach(link => link.addEventListener('click', closeMobileSidebar
   const savedX = localStorage.getItem('floatingMenuLeft');
   const savedY = localStorage.getItem('floatingMenuTop');
 
-  if (savedX !== null && savedY !== null) {
-    dragBtn.style.left = savedX + 'px';
-    dragBtn.style.top = savedY + 'px';
-    dragBtn.style.right = 'auto';
-  }
+if (savedX !== null && savedY !== null) {
+  dragBtn.style.left = savedX + 'px';
+  dragBtn.style.top = savedY + 'px';
+  dragBtn.style.right = 'auto';
+} else {
+  // 👉 DEFAULT POSITION (RIGHT SIDE NEAR TOGGLE)
+  dragBtn.style.left = 'auto';
+  dragBtn.style.top = '74px';
+  dragBtn.style.right = '14px';
+}
 
   function clamp(value, min, max) {
     return Math.min(Math.max(value, min), max);
@@ -2132,22 +2137,20 @@ mobileNavLinks.forEach(link => link.addEventListener('click', closeMobileSidebar
   }, true);
 
   window.addEventListener('resize', () => {
-    const rect = dragBtn.getBoundingClientRect();
-    const maxLeft = window.innerWidth - dragBtn.offsetWidth - 8;
-    const maxTop = window.innerHeight - dragBtn.offsetHeight - 8;
+  const rect = dragBtn.getBoundingClientRect();
+  const maxLeft = window.innerWidth - dragBtn.offsetWidth - 8;
+  const maxTop = window.innerHeight - dragBtn.offsetHeight - 8;
 
-    const safeLeft = clamp(rect.left, 8, maxLeft);
-    const safeTop = clamp(rect.top, 8, maxTop);
+  const safeLeft = clamp(rect.left, 8, maxLeft);
+  const safeTop = clamp(rect.top, 8, maxTop);
 
-    dragBtn.style.left = safeLeft + 'px';
-    dragBtn.style.top = safeTop + 'px';
-    dragBtn.style.right = 'auto';
+  dragBtn.style.left = safeLeft + 'px';
+  dragBtn.style.top = safeTop + 'px';
+  dragBtn.style.right = 'auto';
 
-    localStorage.removeItem('floatingMenuLeft');
-    localStorage.removeItem('floatingMenuTop');
-    location.reload();
-  });
-})();
+  localStorage.setItem('floatingMenuLeft', Math.round(safeLeft));
+  localStorage.setItem('floatingMenuTop', Math.round(safeTop));
+});
 
 const clockWidget = document.getElementById('clockWidget');
 const clockStates = ['digital','analog','ring'];
