@@ -757,22 +757,12 @@
   }
 
   .mobile-menu-toggle.floating {
-  position: fixed;
-  top: 132px;
-  right: 14px;
-  left: auto;
-  z-index: 140;
-  animation: appleFloat 5.4s ease-in-out infinite;
-  touch-action: none;
-  user-select: none;
-  -webkit-user-select: none;
-  cursor: grab;
-}
-
-.mobile-menu-toggle.floating.dragging {
-  animation: none;
-  cursor: grabbing;
-}
+    position: fixed;
+    right: 14px;
+    top: 132px;
+    z-index: 140;
+    animation: appleFloat 5.4s ease-in-out infinite;
+  }
 
   .mobile-menu-toggle.floating.menu-open {
     animation: none;
@@ -2038,121 +2028,6 @@ if (mobileSidebarOverlay) {
   mobileSidebarOverlay.addEventListener('click', closeMobileSidebar);
 }
 mobileNavLinks.forEach(link => link.addEventListener('click', closeMobileSidebar));
-
-(function () {
-  const dragBtn = document.getElementById('mobileMenuToggle');
-  if (!dragBtn) return;
-
-  let isDragging = false;
-  let hasMoved = false;
-  let startX = 0;
-  let startY = 0;
-  let offsetX = 0;
-  let offsetY = 0;
-
-  const savedX = localStorage.getItem('floatingMenuLeft');
-  const savedY = localStorage.getItem('floatingMenuTop');
-
-if (savedX !== null && savedY !== null) {
-  dragBtn.style.left = savedX + 'px';
-  dragBtn.style.top = savedY + 'px';
-  dragBtn.style.right = 'auto';
-} else {
-  // 👉 DEFAULT POSITION (RIGHT SIDE NEAR TOGGLE)
-  dragBtn.style.left = 'auto';
-  dragBtn.style.top = '74px';
-  dragBtn.style.right = '14px';
-}
-
-  function clamp(value, min, max) {
-    return Math.min(Math.max(value, min), max);
-  }
-
-  function startDrag(clientX, clientY) {
-    const rect = dragBtn.getBoundingClientRect();
-    isDragging = true;
-    hasMoved = false;
-    dragBtn.classList.add('dragging');
-
-    startX = clientX;
-    startY = clientY;
-    offsetX = clientX - rect.left;
-    offsetY = clientY - rect.top;
-  }
-
-  function moveDrag(clientX, clientY) {
-    if (!isDragging) return;
-
-    const deltaX = Math.abs(clientX - startX);
-    const deltaY = Math.abs(clientY - startY);
-
-    if (deltaX > 4 || deltaY > 4) {
-      hasMoved = true;
-    }
-
-    const maxLeft = window.innerWidth - dragBtn.offsetWidth - 8;
-    const maxTop = window.innerHeight - dragBtn.offsetHeight - 8;
-
-    const nextLeft = clamp(clientX - offsetX, 8, maxLeft);
-    const nextTop = clamp(clientY - offsetY, 8, maxTop);
-
-    dragBtn.style.left = nextLeft + 'px';
-    dragBtn.style.top = nextTop + 'px';
-    dragBtn.style.right = 'auto';
-  }
-
-  function endDrag() {
-    if (!isDragging) return;
-    isDragging = false;
-    dragBtn.classList.remove('dragging');
-
-    const rect = dragBtn.getBoundingClientRect();
-    localStorage.setItem('floatingMenuLeft', Math.round(rect.left));
-    localStorage.setItem('floatingMenuTop', Math.round(rect.top));
-  }
-
-  dragBtn.addEventListener('pointerdown', (e) => {
-    if (window.innerWidth > 980) return;
-    startDrag(e.clientX, e.clientY);
-  });
-
-  window.addEventListener('pointermove', (e) => {
-    moveDrag(e.clientX, e.clientY);
-  });
-
-  window.addEventListener('pointerup', () => {
-    endDrag();
-  });
-
-  window.addEventListener('pointercancel', () => {
-    endDrag();
-  });
-
-  dragBtn.addEventListener('click', (e) => {
-    if (hasMoved) {
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      hasMoved = false;
-    }
-  }, true);
-
-  window.addEventListener('resize', () => {
-    const rect = dragBtn.getBoundingClientRect();
-    const maxLeft = window.innerWidth - dragBtn.offsetWidth - 8;
-    const maxTop = window.innerHeight - dragBtn.offsetHeight - 8;
-
-    const safeLeft = clamp(rect.left, 8, maxLeft);
-    const safeTop = clamp(rect.top, 8, maxTop);
-
-    dragBtn.style.left = safeLeft + 'px';
-    dragBtn.style.top = safeTop + 'px';
-    dragBtn.style.right = 'auto';
-
-    localStorage.removeItem('floatingMenuLeft');
-    localStorage.removeItem('floatingMenuTop');
-    location.reload();
-  });
-})();
 
 const clockWidget = document.getElementById('clockWidget');
 const clockStates = ['digital','analog','ring'];
