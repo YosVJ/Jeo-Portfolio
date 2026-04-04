@@ -2050,14 +2050,19 @@ mobileNavLinks.forEach(link => link.addEventListener('click', closeMobileSidebar
   let offsetX = 0;
   let offsetY = 0;
 
-  const savedX = localStorage.getItem('floatingMenuLeft');
-  const savedY = localStorage.getItem('floatingMenuTop');
+ const savedX = localStorage.getItem('floatingMenuLeft');
+const savedY = localStorage.getItem('floatingMenuTop');
 
-  if (savedX !== null && savedY !== null) {
-    dragBtn.style.left = savedX + 'px';
-    dragBtn.style.top = savedY + 'px';
-    dragBtn.style.right = 'auto';
-  }
+if (savedX !== null && savedY !== null) {
+  dragBtn.style.left = savedX + 'px';
+  dragBtn.style.top = savedY + 'px';
+  dragBtn.style.right = 'auto';
+} else {
+  // 👉 DEFAULT POSITION (RIGHT SIDE NEAR TOGGLE)
+  dragBtn.style.left = 'auto';
+  dragBtn.style.top = '74px';
+  dragBtn.style.right = '14px';
+}
 
   function clamp(value, min, max) {
     return Math.min(Math.max(value, min), max);
@@ -2143,10 +2148,12 @@ mobileNavLinks.forEach(link => link.addEventListener('click', closeMobileSidebar
     dragBtn.style.top = safeTop + 'px';
     dragBtn.style.right = 'auto';
 
-    localStorage.setItem('floatingMenuLeft', Math.round(safeLeft));
-    localStorage.setItem('floatingMenuTop', Math.round(safeTop));
+    localStorage.removeItem('floatingMenuLeft');
+    localStorage.removeItem('floatingMenuTop');
+    location.reload();
   });
 })();
+
 const clockWidget = document.getElementById('clockWidget');
 const clockStates = ['digital','analog','ring'];
 let clockIndex = 0;
