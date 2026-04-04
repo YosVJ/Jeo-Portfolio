@@ -1986,326 +1986,415 @@
 <footer>Built by Jeo Vitao · IT Systems Builder → Developer</footer>
 </div>
 
-<script>
-const navLinks = document.querySelectorAll('.side-link');
-navLinks.forEach(link => link.addEventListener('click', () => {
-  navLinks.forEach(l => l.classList.remove('active'));
-  link.classList.add('active');
-}));
-
-const toggle = document.getElementById('dayNightToggle');
-const storedMode = localStorage.getItem('siteMode');
-if (storedMode === 'light') {
-  document.body.classList.add('light-mode');
-  toggle.checked = true;
-}
-toggle.addEventListener('change', () => {
-  document.body.classList.toggle('light-mode', toggle.checked);
-  localStorage.setItem('siteMode', toggle.checked ? 'light' : 'dark');
-});
-
-const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-const mobileSidebar = document.getElementById('mobileSidebar');
-const mobileSidebarOverlay = document.getElementById('mobileSidebarOverlay');
-const mobileSidebarClose = document.getElementById('mobileSidebarClose');
-const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-
-function openMobileSidebar() {
-  mobileSidebar.classList.add('open');
-  mobileSidebarOverlay.classList.add('open');
-  mobileMenuToggle.classList.add('menu-open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeMobileSidebar() {
-  mobileSidebar.classList.remove('open');
-  mobileSidebarOverlay.classList.remove('open');
-  mobileMenuToggle.classList.remove('menu-open');
-  document.body.style.overflow = '';
-}
-
-if (mobileMenuToggle) {
-  mobileMenuToggle.addEventListener('click', () => {
-    const isOpen = mobileSidebar.classList.contains('open');
-    if (isOpen) closeMobileSidebar();
-    else openMobileSidebar();
-  });
-}
-if (mobileSidebarClose) {
-  mobileSidebarClose.addEventListener('click', closeMobileSidebar);
-}
-if (mobileSidebarOverlay) {
-  mobileSidebarOverlay.addEventListener('click', closeMobileSidebar);
-}
-mobileNavLinks.forEach(link => link.addEventListener('click', closeMobileSidebar));
-
-(function () {
-  const dragBtn = document.getElementById('mobileMenuToggle');
-  if (!dragBtn) return;
-
-  let isDragging = false;
-  let hasMoved = false;
-  let startX = 0;
-  let startY = 0;
-  let offsetX = 0;
-  let offsetY = 0;
-
- const savedX = localStorage.getItem('floatingMenuLeft');
-const savedY = localStorage.getItem('floatingMenuTop');
-
-if (savedX !== null && savedY !== null) {
-  dragBtn.style.left = savedX + 'px';
-  dragBtn.style.top = savedY + 'px';
-  dragBtn.style.right = 'auto';
-} else {
-  // 👉 DEFAULT POSITION (RIGHT SIDE NEAR TOGGLE)
-  dragBtn.style.left = 'auto';
-  dragBtn.style.top = '74px';
-  dragBtn.style.right = '14px';
-}
-
-  function clamp(value, min, max) {
-    return Math.min(Math.max(value, min), max);
+<<script>
+  /* =========================
+     ELEMENT CACHE
+  ========================= */
+  const body = document.body;
+  
+  const navLinks = document.querySelectorAll('.side-link');
+  
+  const toggle = document.getElementById('dayNightToggle');
+  
+  const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+  const mobileSidebar = document.getElementById('mobileSidebar');
+  const mobileSidebarOverlay = document.getElementById('mobileSidebarOverlay');
+  const mobileSidebarClose = document.getElementById('mobileSidebarClose');
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+  
+  const clockWidget = document.getElementById('clockWidget');
+  const digitalTime = document.getElementById('digitalTime');
+  const digitalMeta = document.getElementById('digitalMeta');
+  const ringLabel = document.getElementById('ringLabel');
+  const hourHand = document.getElementById('hourHand');
+  const minHand = document.getElementById('minHand');
+  const secHand = document.getElementById('secHand');
+  
+  const ringSec = document.getElementById('ring-sec');
+  const ringMin = document.getElementById('ring-min');
+  const ringHour = document.getElementById('ring-hour');
+  
+  
+  /* =========================
+     HELPERS
+  ========================= */
+  const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+  const circ = (r) => 2 * Math.PI * r;
+  
+  
+  /* =========================
+     DESKTOP SIDEBAR ACTIVE LINK
+  ========================= */
+  if (navLinks.length) {
+    navLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        navLinks.forEach((item) => item.classList.remove('active'));
+        link.classList.add('active');
+      });
+    });
   }
-
-  function startDrag(clientX, clientY) {
-    const rect = dragBtn.getBoundingClientRect();
-    isDragging = true;
-    hasMoved = false;
-    dragBtn.classList.add('dragging');
-
-    startX = clientX;
-    startY = clientY;
-    offsetX = clientX - rect.left;
-    offsetY = clientY - rect.top;
-  }
-
-  function moveDrag(clientX, clientY) {
-    if (!isDragging) return;
-
-    const deltaX = Math.abs(clientX - startX);
-    const deltaY = Math.abs(clientY - startY);
-
-    if (deltaX > 4 || deltaY > 4) {
-      hasMoved = true;
+  
+  
+  /* =========================
+     THEME TOGGLE
+  ========================= */
+  if (toggle) {
+    const storedMode = localStorage.getItem('siteMode');
+  
+    if (storedMode === 'light') {
+      body.classList.add('light-mode');
+      toggle.checked = true;
     }
-
-    const maxLeft = window.innerWidth - dragBtn.offsetWidth - 8;
-    const maxTop = window.innerHeight - dragBtn.offsetHeight - 8;
-
-    const nextLeft = clamp(clientX - offsetX, 8, maxLeft);
-    const nextTop = clamp(clientY - offsetY, 8, maxTop);
-
-    dragBtn.style.left = nextLeft + 'px';
-    dragBtn.style.top = nextTop + 'px';
-    dragBtn.style.right = 'auto';
+  
+    toggle.addEventListener('change', () => {
+      const isLight = toggle.checked;
+      body.classList.toggle('light-mode', isLight);
+      localStorage.setItem('siteMode', isLight ? 'light' : 'dark');
+    });
   }
-
-  function endDrag() {
-    if (!isDragging) return;
-    isDragging = false;
-    dragBtn.classList.remove('dragging');
-
-    const rect = dragBtn.getBoundingClientRect();
-    localStorage.setItem('floatingMenuLeft', Math.round(rect.left));
-    localStorage.setItem('floatingMenuTop', Math.round(rect.top));
+  
+  
+  /* =========================
+     MOBILE SIDEBAR
+  ========================= */
+  function openMobileSidebar() {
+    if (!mobileSidebar || !mobileSidebarOverlay || !mobileMenuToggle) return;
+    mobileSidebar.classList.add('open');
+    mobileSidebarOverlay.classList.add('open');
+    mobileMenuToggle.classList.add('menu-open');
+    body.style.overflow = 'hidden';
   }
-
-  dragBtn.addEventListener('pointerdown', (e) => {
-    if (window.innerWidth > 980) return;
-    startDrag(e.clientX, e.clientY);
-  });
-
-  window.addEventListener('pointermove', (e) => {
-    moveDrag(e.clientX, e.clientY);
-  });
-
-  window.addEventListener('pointerup', () => {
-    endDrag();
-  });
-
-  window.addEventListener('pointercancel', () => {
-    endDrag();
-  });
-
-  dragBtn.addEventListener('click', (e) => {
-    if (hasMoved) {
+  
+  function closeMobileSidebar() {
+    if (!mobileSidebar || !mobileSidebarOverlay || !mobileMenuToggle) return;
+    mobileSidebar.classList.remove('open');
+    mobileSidebarOverlay.classList.remove('open');
+    mobileMenuToggle.classList.remove('menu-open');
+    body.style.overflow = '';
+  }
+  
+  if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener('click', () => {
+      const isOpen = mobileSidebar?.classList.contains('open');
+      if (isOpen) closeMobileSidebar();
+      else openMobileSidebar();
+    });
+  }
+  
+  if (mobileSidebarClose) {
+    mobileSidebarClose.addEventListener('click', closeMobileSidebar);
+  }
+  
+  if (mobileSidebarOverlay) {
+    mobileSidebarOverlay.addEventListener('click', closeMobileSidebar);
+  }
+  
+  if (mobileNavLinks.length) {
+    mobileNavLinks.forEach((link) => {
+      link.addEventListener('click', closeMobileSidebar);
+    });
+  }
+  
+  
+  /* =========================
+     DRAGGABLE FLOATING HAMBURGER
+  ========================= */
+  (function initFloatingMenuDrag() {
+    const dragBtn = mobileMenuToggle;
+    if (!dragBtn) return;
+  
+    let isDragging = false;
+    let hasMoved = false;
+    let startX = 0;
+    let startY = 0;
+    let offsetX = 0;
+    let offsetY = 0;
+  
+    const savedX = localStorage.getItem('floatingMenuLeft');
+    const savedY = localStorage.getItem('floatingMenuTop');
+  
+    if (savedX !== null && savedY !== null) {
+      dragBtn.style.left = `${savedX}px`;
+      dragBtn.style.top = `${savedY}px`;
+      dragBtn.style.right = 'auto';
+    } else {
+      dragBtn.style.left = 'auto';
+      dragBtn.style.top = '74px';
+      dragBtn.style.right = '14px';
+    }
+  
+    function startDrag(clientX, clientY) {
+      const rect = dragBtn.getBoundingClientRect();
+      isDragging = true;
+      hasMoved = false;
+      dragBtn.classList.add('dragging');
+  
+      startX = clientX;
+      startY = clientY;
+      offsetX = clientX - rect.left;
+      offsetY = clientY - rect.top;
+    }
+  
+    function moveDrag(clientX, clientY) {
+      if (!isDragging) return;
+  
+      const deltaX = Math.abs(clientX - startX);
+      const deltaY = Math.abs(clientY - startY);
+  
+      if (deltaX > 4 || deltaY > 4) {
+        hasMoved = true;
+      }
+  
+      const maxLeft = window.innerWidth - dragBtn.offsetWidth - 8;
+      const maxTop = window.innerHeight - dragBtn.offsetHeight - 8;
+  
+      const nextLeft = clamp(clientX - offsetX, 8, maxLeft);
+      const nextTop = clamp(clientY - offsetY, 8, maxTop);
+  
+      dragBtn.style.left = `${nextLeft}px`;
+      dragBtn.style.top = `${nextTop}px`;
+      dragBtn.style.right = 'auto';
+    }
+  
+    function endDrag() {
+      if (!isDragging) return;
+  
+      isDragging = false;
+      dragBtn.classList.remove('dragging');
+  
+      const rect = dragBtn.getBoundingClientRect();
+      localStorage.setItem('floatingMenuLeft', Math.round(rect.left));
+      localStorage.setItem('floatingMenuTop', Math.round(rect.top));
+    }
+  
+    dragBtn.addEventListener('pointerdown', (e) => {
+      if (window.innerWidth > 980) return;
+      startDrag(e.clientX, e.clientY);
+    });
+  
+    window.addEventListener('pointermove', (e) => {
+      moveDrag(e.clientX, e.clientY);
+    });
+  
+    window.addEventListener('pointerup', endDrag);
+    window.addEventListener('pointercancel', endDrag);
+  
+    dragBtn.addEventListener('click', (e) => {
+      if (!hasMoved) return;
       e.preventDefault();
       e.stopImmediatePropagation();
       hasMoved = false;
+    }, true);
+  
+    window.addEventListener('resize', () => {
+      const rect = dragBtn.getBoundingClientRect();
+      const maxLeft = window.innerWidth - dragBtn.offsetWidth - 8;
+      const maxTop = window.innerHeight - dragBtn.offsetHeight - 8;
+  
+      const safeLeft = clamp(rect.left, 8, maxLeft);
+      const safeTop = clamp(rect.top, 8, maxTop);
+  
+      dragBtn.style.left = `${safeLeft}px`;
+      dragBtn.style.top = `${safeTop}px`;
+      dragBtn.style.right = 'auto';
+  
+      localStorage.setItem('floatingMenuLeft', Math.round(safeLeft));
+      localStorage.setItem('floatingMenuTop', Math.round(safeTop));
+    });
+  })();
+  
+  
+  /* =========================
+     CLOCK
+  ========================= */
+  (function initClock() {
+    if (!clockWidget) return;
+  
+    const clockStates = ['digital', 'analog', 'ring'];
+    let clockIndex = 0;
+  
+    if (ringSec) {
+      ringSec.style.strokeDasharray = circ(24);
+      ringSec.style.strokeDashoffset = circ(24);
     }
-  }, true);
-
-  window.addEventListener('resize', () => {
-    const rect = dragBtn.getBoundingClientRect();
-    const maxLeft = window.innerWidth - dragBtn.offsetWidth - 8;
-    const maxTop = window.innerHeight - dragBtn.offsetHeight - 8;
-
-    const safeLeft = clamp(rect.left, 8, maxLeft);
-    const safeTop = clamp(rect.top, 8, maxTop);
-
-    dragBtn.style.left = safeLeft + 'px';
-    dragBtn.style.top = safeTop + 'px';
-    dragBtn.style.right = 'auto';
-
-    localStorage.removeItem('floatingMenuLeft');
-    localStorage.removeItem('floatingMenuTop');
-    location.reload();
-  });
-})();
-
-const clockWidget = document.getElementById('clockWidget');
-const clockStates = ['digital','analog','ring'];
-let clockIndex = 0;
-
-clockWidget.addEventListener('click', () => {
-  clockIndex = (clockIndex + 1) % clockStates.length;
-  clockWidget.dataset.state = clockStates[clockIndex];
-});
-
-clockWidget.addEventListener('mousemove', (e) => {
-  if (window.innerWidth <= 980) return;
-  const rect = clockWidget.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
-  const rx = ((y / rect.height) - .5) * -8;
-  const ry = ((x / rect.width) - .5) * 10;
-  clockWidget.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
-});
-
-clockWidget.addEventListener('mouseleave', () => {
-  clockWidget.style.transform = 'rotateX(0deg) rotateY(0deg)';
-});
-
-const digitalTime = document.getElementById('digitalTime');
-const digitalMeta = document.getElementById('digitalMeta');
-const ringLabel = document.getElementById('ringLabel');
-const hourHand = document.getElementById('hourHand');
-const minHand = document.getElementById('minHand');
-const secHand = document.getElementById('secHand');
-
-const circ = r => 2 * Math.PI * r;
-[['ring-sec',24],['ring-min',36],['ring-hour',48]].forEach(([id,r]) => {
-  const el = document.getElementById(id);
-  el.style.strokeDasharray = circ(r);
-  el.style.strokeDashoffset = circ(r);
-});
-
-function setRing(el, r, progress) {
-  const c = circ(r);
-  el.style.strokeDasharray = c;
-  el.style.strokeDashoffset = c - (progress * c);
-}
-
-function updateClock() {
-  const now = new Date();
-  const ms = now.getMilliseconds();
-  const s = now.getSeconds() + ms / 1000;
-  const m = now.getMinutes() + s / 60;
-  const h24 = now.getHours();
-  const h = (h24 % 12) + m / 60;
-
-  const hh = String(h24).padStart(2,'0');
-  const mm = String(now.getMinutes()).padStart(2,'0');
-
-  digitalTime.textContent = `${hh}:${mm}`;
-  digitalMeta.textContent = now.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
-  ringLabel.textContent = `${hh}:${mm}`;
-
-  hourHand.style.transform = `translateX(-50%) rotate(${h * 30}deg)`;
-  minHand.style.transform = `translateX(-50%) rotate(${m * 6}deg)`;
-  secHand.style.transform = `translateX(-50%) rotate(${s * 6}deg)`;
-
-  setRing(document.getElementById('ring-sec'), 24, s / 60);
-  setRing(document.getElementById('ring-min'), 36, m / 60);
-  setRing(document.getElementById('ring-hour'), 48, h / 12);
-}
-
-setInterval(updateClock, 1000 / 30);
-updateClock();
-
-const revealEls = document.querySelectorAll('.reveal');
-const revealObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      revealObs.unobserve(e.target);
+    if (ringMin) {
+      ringMin.style.strokeDasharray = circ(36);
+      ringMin.style.strokeDashoffset = circ(36);
     }
-  });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-
-revealEls.forEach(el => revealObs.observe(el));
-
-(function () {
-  const canvas = document.getElementById('bg-canvas');
-  const ctx = canvas.getContext('2d');
-  const COUNT = window.innerWidth < 700 ? 42 : 90;
-  let W, H, stars = [];
-
-  function resize() {
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = Math.max(document.documentElement.scrollHeight, window.innerHeight);
-  }
-
-  function mkStar() {
-    const palette = [
-      'rgba(96,165,250,',
-      'rgba(14,165,233,',
-      'rgba(59,130,246,',
-      'rgba(148,163,184,'
-    ];
-    return {
-      x: Math.random() * W,
-      y: Math.random() * H,
-      r: Math.random() * 1.2 + .3,
-      base: Math.random() * .65 + .1,
-      speed: Math.random() * .012 + .003,
-      phase: Math.random() * Math.PI * 2,
-      drift: (Math.random() - .5) * .09,
-      color: palette[Math.floor(Math.random() * palette.length)]
-    };
-  }
-
-  function init() {
-    resize();
-    stars = Array.from({length: COUNT}, mkStar);
-  }
-
-  let t = 0;
-  let rafId;
-
-  function draw() {
-    ctx.clearRect(0,0,W,H);
-    t += .016;
-
-    for (const s of stars) {
-      const alpha = s.base * (.5 + .5 * Math.sin(t * s.speed * 60 + s.phase));
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = s.color + alpha.toFixed(3) + ')';
-      ctx.fill();
-      s.x += s.drift;
-      if (s.x < -2) s.x = W + 2;
-      if (s.x > W + 2) s.x = -2;
+    if (ringHour) {
+      ringHour.style.strokeDasharray = circ(48);
+      ringHour.style.strokeDashoffset = circ(48);
     }
-
-    rafId = requestAnimationFrame(draw);
-  }
-
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) cancelAnimationFrame(rafId);
-    else draw();
-  });
-
-  let resizeTimer;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(init, 250);
-  }, { passive:true });
-
-  init();
-  draw();
-})();
-</script>
-</body>
-</html>
+  
+    function setRing(el, r, progress) {
+      if (!el) return;
+      const c = circ(r);
+      el.style.strokeDasharray = c;
+      el.style.strokeDashoffset = c - (progress * c);
+    }
+  
+    function updateClock() {
+      const now = new Date();
+      const ms = now.getMilliseconds();
+      const s = now.getSeconds() + ms / 1000;
+      const m = now.getMinutes() + s / 60;
+      const h24 = now.getHours();
+      const h = (h24 % 12) + m / 60;
+  
+      const hh = String(h24).padStart(2, '0');
+      const mm = String(now.getMinutes()).padStart(2, '0');
+  
+      if (digitalTime) digitalTime.textContent = `${hh}:${mm}`;
+      if (digitalMeta) {
+        digitalMeta.textContent = now.toLocaleDateString('en-US', {
+          weekday: 'short',
+          month: 'short',
+          day: 'numeric'
+        });
+      }
+      if (ringLabel) ringLabel.textContent = `${hh}:${mm}`;
+  
+      if (hourHand) hourHand.style.transform = `translateX(-50%) rotate(${h * 30}deg)`;
+      if (minHand) minHand.style.transform = `translateX(-50%) rotate(${m * 6}deg)`;
+      if (secHand) secHand.style.transform = `translateX(-50%) rotate(${s * 6}deg)`;
+  
+      setRing(ringSec, 24, s / 60);
+      setRing(ringMin, 36, m / 60);
+      setRing(ringHour, 48, h / 12);
+    }
+  
+    clockWidget.addEventListener('click', () => {
+      clockIndex = (clockIndex + 1) % clockStates.length;
+      clockWidget.dataset.state = clockStates[clockIndex];
+    });
+  
+    clockWidget.addEventListener('mousemove', (e) => {
+      if (window.innerWidth <= 980) return;
+      const rect = clockWidget.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const rx = ((y / rect.height) - 0.5) * -8;
+      const ry = ((x / rect.width) - 0.5) * 10;
+      clockWidget.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+    });
+  
+    clockWidget.addEventListener('mouseleave', () => {
+      clockWidget.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    });
+  
+    updateClock();
+    setInterval(updateClock, 1000 / 30);
+  })();
+  
+  
+  /* =========================
+     REVEAL ON SCROLL
+  ========================= */
+  (function initReveal() {
+    const revealEls = document.querySelectorAll('.reveal');
+    if (!revealEls.length) return;
+  
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        revealObs.unobserve(entry.target);
+      });
+    }, {
+      threshold: 0.08,
+      rootMargin: '0px 0px -40px 0px'
+    });
+  
+    revealEls.forEach((el) => revealObs.observe(el));
+  })();
+  
+  
+  /* =========================
+     BACKGROUND STARS
+  ========================= */
+  (function initBackgroundCanvas() {
+    const canvas = document.getElementById('bg-canvas');
+    if (!canvas) return;
+  
+    const ctx = canvas.getContext('2d');
+    let W = 0;
+    let H = 0;
+    let stars = [];
+    let t = 0;
+    let rafId = null;
+    let resizeTimer = null;
+  
+    function getStarCount() {
+      return window.innerWidth < 700 ? 42 : 90;
+    }
+  
+    function resizeCanvas() {
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = Math.max(document.documentElement.scrollHeight, window.innerHeight);
+    }
+  
+    function mkStar() {
+      const palette = [
+        'rgba(96,165,250,',
+        'rgba(14,165,233,',
+        'rgba(59,130,246,',
+        'rgba(148,163,184,'
+      ];
+  
+      return {
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: Math.random() * 1.2 + 0.3,
+        base: Math.random() * 0.65 + 0.1,
+        speed: Math.random() * 0.012 + 0.003,
+        phase: Math.random() * Math.PI * 2,
+        drift: (Math.random() - 0.5) * 0.09,
+        color: palette[Math.floor(Math.random() * palette.length)]
+      };
+    }
+  
+    function initStars() {
+      resizeCanvas();
+      stars = Array.from({ length: getStarCount() }, mkStar);
+    }
+  
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      t += 0.016;
+  
+      for (const star of stars) {
+        const alpha = star.base * (0.5 + 0.5 * Math.sin(t * star.speed * 60 + star.phase));
+  
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+        ctx.fillStyle = star.color + alpha.toFixed(3) + ')';
+        ctx.fill();
+  
+        star.x += star.drift;
+  
+        if (star.x < -2) star.x = W + 2;
+        if (star.x > W + 2) star.x = -2;
+      }
+  
+      rafId = requestAnimationFrame(draw);
+    }
+  
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        cancelAnimationFrame(rafId);
+      } else {
+        draw();
+      }
+    });
+  
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(initStars, 250);
+    }, { passive: true });
+  
+    initStars();
+    draw();
+  })();
+  </script>
+  </body>
+  </html>
