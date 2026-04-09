@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=0.9, viewport-fit=cover"/>
 <title>Jeo Vitao — Developer Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -26,6 +26,7 @@
     --glass: rgba(17, 24, 39, 0.42);
     --glass-strong: rgba(17, 24, 39, 0.58);
     --shadow: 0 20px 40px rgba(0,0,0,0.28);
+    --mobile-initial-zoom: .93;
   }
 
   body.light-mode {
@@ -1696,6 +1697,12 @@
   }
 
   @media (max-width: 700px) {
+  body.mobile-zoomed .content-shell {
+    transform: scale(var(--mobile-initial-zoom));
+    transform-origin: top center;
+    width: calc(100% / var(--mobile-initial-zoom));
+  }
+
   .hero-layout {
     flex-direction: column-reverse;
     align-items: flex-start;
@@ -2087,6 +2094,26 @@ if (mobileSidebarOverlay) {
 }
 mobileNavLinks.forEach(link => link.addEventListener('click', closeMobileSidebar));
 
+(function setupInitialMobileZoom() {
+  const isSmallViewport = window.matchMedia('(max-width: 700px)').matches;
+  if (!isSmallViewport) return;
+
+  document.body.classList.add('mobile-zoomed');
+
+  let zoomResetTimer = setTimeout(clearZoom, 2200);
+  const releaseEvents = ['touchstart', 'scroll', 'pointerdown'];
+
+  function clearZoom() {
+    document.body.classList.remove('mobile-zoomed');
+    clearTimeout(zoomResetTimer);
+    zoomResetTimer = null;
+    releaseEvents.forEach(evt => window.removeEventListener(evt, clearZoom, listenerOptions));
+  }
+
+  const listenerOptions = { passive: true, once: true };
+  releaseEvents.forEach(evt => window.addEventListener(evt, clearZoom, listenerOptions));
+})();
+
 const clockWidget = document.getElementById('clockWidget');
 const clockStates = ['digital','analog','ring'];
 let clockIndex = 0;
@@ -2116,10 +2143,12 @@ const ringLabel = document.getElementById('ringLabel');
 const hourHand = document.getElementById('hourHand');
 const minHand = document.getElementById('minHand');
 const secHand = document.getElementById('secHand');
+const ringSec = document.getElementById('ring-sec');
+const ringMin = document.getElementById('ring-min');
+const ringHour = document.getElementById('ring-hour');
 
 const circ = r => 2 * Math.PI * r;
-[['ring-sec',24],['ring-min',36],['ring-hour',48]].forEach(([id,r]) => {
-  const el = document.getElementById(id);
+[[ringSec,24],[ringMin,36],[ringHour,48]].forEach(([el,r]) => {
   el.style.strokeDasharray = circ(r);
   el.style.strokeDashoffset = circ(r);
 });
@@ -2149,12 +2178,12 @@ function updateClock() {
   minHand.style.transform = `translateX(-50%) rotate(${m * 6}deg)`;
   secHand.style.transform = `translateX(-50%) rotate(${s * 6}deg)`;
 
-  setRing(document.getElementById('ring-sec'), 24, s / 60);
-  setRing(document.getElementById('ring-min'), 36, m / 60);
-  setRing(document.getElementById('ring-hour'), 48, h / 12);
+  setRing(ringSec, 24, s / 60);
+  setRing(ringMin, 36, m / 60);
+  setRing(ringHour, 48, h / 12);
 }
 
-setInterval(updateClock, 1000 / 30);
+setInterval(updateClock, 1000);
 updateClock();
 
 const revealEls = document.querySelectorAll('.reveal');
@@ -2170,6 +2199,10 @@ const revealObs = new IntersectionObserver((entries) => {
 revealEls.forEach(el => revealObs.observe(el));
 
 (function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return;
+  }
+
   const canvas = document.getElementById('bg-canvas');
   const ctx = canvas.getContext('2d');
 
@@ -2181,10 +2214,13 @@ revealEls.forEach(el => revealObs.observe(el));
   let t = 0;
   let rafId;
   let resizeTimer;
+  let lastFrame = 0;
+  let fpsCap = window.innerWidth < 700 ? 18 : 30;
 
   function resize() {
     W = canvas.width = window.innerWidth;
     H = canvas.height = Math.max(document.documentElement.scrollHeight, window.innerHeight);
+    fpsCap = window.innerWidth < 700 ? 18 : 30;
   }
 
   function mkStar() {
@@ -2211,7 +2247,14 @@ revealEls.forEach(el => revealObs.observe(el));
     stars = Array.from({length: getCount()}, mkStar);
   }
 
-  function draw() {
+  function draw(ts = 0) {
+    const minFrameTime = 1000 / fpsCap;
+    if (ts - lastFrame < minFrameTime) {
+      rafId = requestAnimationFrame(draw);
+      return;
+    }
+
+    lastFrame = ts;
     ctx.clearRect(0,0,W,H);
     t += .016;
 
