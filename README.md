@@ -1,72 +1,44 @@
-# 🚀 Jeo Portfolio
+# Jeo Portfolio
 
-![HTML](https://img.shields.io/badge/Frontend-HTML%20%2F%20CSS-blue)
-![JavaScript](https://img.shields.io/badge/Logic-JavaScript-yellow)
-![Vercel](https://img.shields.io/badge/Deployment-Vercel-black)
-![Status](https://img.shields.io/badge/Status-Active-brightgreen)
+Single-page portfolio site built with plain **HTML, CSS, and JavaScript**.
 
-A **modern developer portfolio** showcasing my transition from IT operations into system development, with a focus on **real-world business systems**, **UI/UX design**, and **automation-driven thinking**.
+## Live site
 
-🌐 **Live Site**  
-https://jeo-portfolio-08.vercel.app/
+- https://jeo-portfolio-08.vercel.app/
 
----
+## Tech stack
 
-# 🧭 Overview
+- HTML5
+- CSS3 (custom properties, glassmorphism, responsive layouts)
+- Vanilla JavaScript (UI state, clock widget, reveal animations, canvas background)
 
-This portfolio represents my evolution from an **IT Support / Operations role** into a **System Builder and Developer**.
+## Local development
 
-It highlights:
-- real system thinking
-- UI/UX design capability
-- workflow-based application development
-- deployment and production readiness
+Because this project is static, you can run it directly or serve it locally:
 
-The design itself follows a **modern glass UI system** with interactive components such as:
-- glass sidebar navigation
-- morphing clock widget
-- dynamic background system
-- day/night theme toggle
+```bash
+# Option 1: open directly
+open index.html
 
----
+# Option 2: serve with Python
+python3 -m http.server 8000
+```
 
-# ✨ Key Features
+Then open `http://localhost:8000`.
 
-### 🎨 Modern UI/UX Design
-- glassmorphism-based layout
-- animated background system (aurora, particles, glow)
-- responsive and mobile-adaptive design
-- structured visual hierarchy
+## Current UX behavior highlights
 
----
+- Desktop floating sidebar + mobile drawer navigation.
+- Day/Night mode with localStorage persistence.
+- Morphing clock widget (digital, analog, ring).
+- Animated background layers with reduced-motion awareness.
+- Mobile first-view zoom-out effect for a better initial overview.
 
-### 🧭 Interactive Navigation
-- modern glass sidebar (desktop)
-- adaptive top navigation (mobile)
-- smooth scroll behavior
-- active section tracking
+## Repository structure
 
----
-
-### ⚙️ Dynamic UI Components
-- morphing glass clock (multi-state display)
-- day/night theme toggle
-- animated visual layers (grid, orbs, particles)
-
----
-
-### 🚀 Real Project Integration
-The portfolio features a working system:
-
-**Synercore ERP-Style Web System**
-
-- internal workflow dashboard
-- procurement and approval process logic
-- multi-company structure concept
-- currently deployed and accessible
-
-> Note: Core transactional features are still under development. The project demonstrates system architecture and UI design direction.
-
----
-
-# 🧱 System Architecture
+```text
+.
+├── index.html
+├── profile-photo.png
+└── README.md
+```
