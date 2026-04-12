@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=0.9, viewport-fit=cover"/>
+<meta name="viewport" content="width=device-width, initial-scale=0.7, minimum-scale=0.5, maximum-scale=5, user-scalable=yes, viewport-fit=cover"/>
 <title>Jeo Vitao — Developer Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -26,7 +26,7 @@
     --glass: rgba(17, 24, 39, 0.42);
     --glass-strong: rgba(17, 24, 39, 0.58);
     --shadow: 0 20px 40px rgba(0,0,0,0.28);
-    --mobile-initial-zoom: .93;
+    --mobile-fit-scale: .84;
   }
 
   body.light-mode {
@@ -1697,10 +1697,10 @@
   }
 
   @media (max-width: 700px) {
-  body.mobile-zoomed .content-shell {
-    transform: scale(var(--mobile-initial-zoom));
+  body.mobile-fit .content-shell {
+    transform: scale(var(--mobile-fit-scale));
     transform-origin: top center;
-    width: calc(100% / var(--mobile-initial-zoom));
+    width: calc(100% / var(--mobile-fit-scale));
   }
 
   .hero-layout {
@@ -2094,24 +2094,11 @@ if (mobileSidebarOverlay) {
 }
 mobileNavLinks.forEach(link => link.addEventListener('click', closeMobileSidebar));
 
-(function setupInitialMobileZoom() {
+(function setupMobileFitView() {
   const isSmallViewport = window.matchMedia('(max-width: 700px)').matches;
   if (!isSmallViewport) return;
 
-  document.body.classList.add('mobile-zoomed');
-
-  let zoomResetTimer = setTimeout(clearZoom, 2200);
-  const releaseEvents = ['touchstart', 'scroll', 'pointerdown'];
-
-  function clearZoom() {
-    document.body.classList.remove('mobile-zoomed');
-    clearTimeout(zoomResetTimer);
-    zoomResetTimer = null;
-    releaseEvents.forEach(evt => window.removeEventListener(evt, clearZoom, listenerOptions));
-  }
-
-  const listenerOptions = { passive: true, once: true };
-  releaseEvents.forEach(evt => window.addEventListener(evt, clearZoom, listenerOptions));
+  document.body.classList.add('mobile-fit');
 })();
 
 const clockWidget = document.getElementById('clockWidget');
