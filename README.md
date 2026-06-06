@@ -1,44 +1,89 @@
-# Jeo Portfolio
+# Jeo Vitao Portfolio
 
-Single-page portfolio site built with plain **HTML, CSS, and JavaScript**.
+Personal developer and automation portfolio of **Jeo Vitao**, an IT Support Specialist based in General Trias, Cavite, Philippines.
 
-## Live site
+## Live Portfolio
 
-- https://jeo-portfolio-08.vercel.app/
+https://jeo-portfolio-08.vercel.app
 
-## Tech stack
+## Current Positioning
 
-- HTML5
-- CSS3 (custom properties, glassmorphism, responsive layouts)
-- Vanilla JavaScript (UI state, clock widget, reveal animations, canvas background)
+**IT Support Specialist | Automation Support | Web Development**
 
-## Local development
+This portfolio presents my transition from IT operations into automation and web development. It highlights my hands-on background in IT support, Microsoft 365 administration, service desk workflows, asset management, ERP-style business processes, and my current learning path in web systems and workflow automation.
 
-Because this project is static, you can run it directly or serve it locally:
+## Featured Projects
 
-```bash
-# Option 1: open directly
-open index.html
+### Synercore ERP-Style Web System
 
-# Option 2: serve with Python
-python3 -m http.server 8000
-```
+A deployed internal web system concept designed around procurement, approvals, request tracking, company-based access, and business workflow visibility.
 
-Then open `http://localhost:8000`.
+**Live Site:** https://synercore.vercel.app
+**Source Code:** https://github.com/YosVJ/web-database-ui
 
-## Current UX behavior highlights
+### n8n Lead Validation & Workflow Automation Practice
 
-- Desktop floating sidebar + mobile drawer navigation.
-- Day/Night mode with localStorage persistence.
-- Morphing clock widget (digital, analog, ring).
-- Animated background layers with reduced-motion awareness.
-- Mobile first-view zoom-out effect for a better initial overview.
+A workflow automation practice project focused on lead validation, IF logic, branching, required-field checking, and automation testing.
 
-## Repository structure
+### AI-Assisted IT Support Automation Concept
 
-```text
-.
-├── index.html
-├── profile-photo.png
-└── README.md
-```
+A concept project connecting IT service desk experience with AI-assisted ticket classification, response drafting, summarization, and escalation support.
+
+## Tech Stack
+
+### Web Development
+
+* HTML
+* CSS
+* JavaScript
+* React JS
+* Vite
+* Responsive UI
+* GitHub
+* Vercel
+
+### Backend / Database
+
+* Supabase
+* PostgreSQL
+* Row Level Security concepts
+* REST API concepts
+* Node.js / Express basics
+* JSON
+
+### Automation / AI Workflow
+
+* n8n
+* Manual Trigger
+* Set/Edit Fields Node
+* IF Node
+* Webhooks
+* Workflow branching
+* Lead validation
+* OpenAI / Gemini integration concepts
+* AI Chat Model concepts
+
+### IT Operations
+
+* Microsoft 365 Administration
+* Entra ID / MFA basics
+* SharePoint / OneDrive support
+* Zoho ServiceDesk Plus
+* Ticket management
+* Troubleshooting
+* Asset management
+* User support
+* Documentation
+
+## Current Learning Focus
+
+* n8n workflow automation
+* AI-assisted IT operations
+* React and Supabase web systems
+* Node.js and REST API fundamentals
+* React Native and Expo for future mobile development
+
+## Contact
+
+Email: [jelonelvitao@gmail.com](mailto:jelonelvitao@gmail.com)
+GitHub: https://github.com/YosVJ
