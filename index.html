@@ -209,23 +209,23 @@
   }
 
   .scan-line {
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(14,165,233,0) 12%,
-    rgba(14,165,233,.34) 42%,
-    rgba(96,165,250,.42) 50%,
-    rgba(14,165,233,.34) 58%,
-    rgba(14,165,233,0) 88%,
-    transparent 100%
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(14,165,233,0) 12%,
+      rgba(14,165,233,.34) 42%,
+      rgba(96,165,250,.42) 50%,
+      rgba(14,165,233,.34) 58%,
+      rgba(14,165,233,0) 88%,
+      transparent 100%
     );
     animation: scanTravel 10s ease-in-out infinite;
     opacity: 0;
     box-shadow: 0 0 14px rgba(96,165,250,.24);
-  }   
+  }
 
   @keyframes scanTravel {
     0%   { top: -2px; opacity: 0; }
@@ -766,7 +766,6 @@
     transform: scale(.96);
   }
 
-  /* FIXED HAMBURGER POSITION */
   .mobile-menu-toggle.floating {
     position: fixed;
     top: 72px;
@@ -1334,10 +1333,29 @@
     font-weight:500;
   }
 
+  /* ─── Skills ─── */
   .skills-grid {
     display:grid;
     grid-template-columns: repeat(auto-fit,minmax(195px,1fr));
     gap:.875rem;
+  }
+
+  /* Category header spanning full grid width */
+  .skills-cat {
+    grid-column: 1 / -1;
+    font-family: 'DM Mono', monospace;
+    font-size: .64rem;
+    color: var(--accent);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 1rem 0 .45rem;
+    border-bottom: 1px solid rgba(14,165,233,.15);
+    margin-top: .5rem;
+  }
+
+  .skills-cat:first-child {
+    margin-top: 0;
+    padding-top: 0;
   }
 
   .skill-card {
@@ -1429,6 +1447,13 @@
   .badge-learning {
     background: rgba(14,165,233,.12);
     color:#38bdf8;
+  }
+
+  /* ─── Projects ─── */
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
   }
 
   .project-card {
@@ -1540,6 +1565,17 @@
     font-size:.82rem;
   }
 
+  .project-note {
+    font-family: 'DM Mono', monospace;
+    font-size: .72rem;
+    color: var(--muted);
+    letter-spacing: .03em;
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+  }
+
+  /* ─── Goal ─── */
   .goal-card {
     border-radius: 20px;
     padding:2rem 2.25rem;
@@ -1607,6 +1643,7 @@
     font-size:.85rem;
   }
 
+  /* ─── Contact ─── */
   .contact-wrap {
     text-align:center;
     padding:5.5rem 0 5rem;
@@ -1619,7 +1656,7 @@
   .contact-desc {
     color:var(--muted);
     margin:.5rem auto 2.25rem;
-    max-width:400px;
+    max-width:460px;
     font-size:.925rem;
     line-height:1.8;
   }
@@ -1636,6 +1673,7 @@
     letter-spacing:.02em;
   }
 
+  /* ─── Responsive ─── */
   @media (max-width: 980px) {
     .content-shell { padding-left: 0; }
     .desktop-sidebar { display: none; }
@@ -1697,108 +1735,97 @@
   }
 
   @media (max-width: 700px) {
-  body.mobile-fit .content-shell {
-    transform: scale(var(--mobile-fit-scale));
-    transform-origin: top center;
-    width: calc(100% / var(--mobile-fit-scale));
+    body.mobile-fit .content-shell {
+      transform: scale(var(--mobile-fit-scale));
+      transform-origin: top center;
+      width: calc(100% / var(--mobile-fit-scale));
+    }
+
+    .hero-layout {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      gap: 1.25rem;
+    }
+
+    .hero-image-wrap {
+      width: 104px;
+      height: 104px;
+      margin-top: 26px;
+      margin-bottom: 12px;
+    }
+
+    .about-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 1.9rem; line-height: 1.08; }
+    .hero-desc { font-size: .95rem; }
+    .project-card { padding: 1.4rem; }
+    .section-wrap { padding: 2rem 0 4rem; }
+
+    .aurora, .aurora-2, .orb-3, .orb-4 { display: none; }
+    .scan-line { display: block; opacity: .6; }
+    #bg-canvas { opacity: .32; }
+
+    .utility-cluster {
+      position: fixed;
+      top: 82px;
+      right: 10px;
+      z-index: 135;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 6px;
+      transform: scale(.72);
+      transform-origin: top right;
+    }
+
+    .mobile-menu-toggle.floating {
+      top: 82px;
+      right: 148px;
+      left: auto;
+      display: flex;
+      transform: scale(.72);
+      transform-origin: top right;
+    }
+
+    .clock-widget {
+      width: 96px;
+      height: 46px;
+      padding: 6px 10px;
+    }
+
+    .clock-widget[data-state="analog"] {
+      width: 68px;
+      height: 68px;
+    }
+
+    .clock-widget[data-state="ring"] {
+      width: 78px;
+      height: 78px;
+    }
+
+    .day-toggle {
+      width: 82px;
+      height: 40px;
+    }
+
+    .mobile-sidebar {
+      width: 82vw;
+      max-width: 290px;
+      padding: 16px 14px 18px;
+    }
+
+    .hero {
+      padding-top: 8.6rem;
+    }
+
+    section {
+      padding: 0 1.2rem;
+    }
+
+    #about  { scroll-margin-top: 68px; }
+    #skills { scroll-margin-top: 92px; }
+    #projects { scroll-margin-top: 78px; }
+    #contact  { scroll-margin-top: 92px; }
   }
-
-  .hero-layout {
-    flex-direction: column-reverse;
-    align-items: flex-start;
-    gap: 1.25rem;
-  }
-
-  .hero-image-wrap {
-    width: 104px;
-    height: 104px;
-    margin-top: 26px;
-    margin-bottom: 12px;
-  }
-
-  .about-grid { grid-template-columns: 1fr; }
-  .hero h1 { font-size: 1.9rem; line-height: 1.08; }
-  .hero-desc { font-size: .95rem; }
-  .project-card { padding: 1.4rem; }
-  .section-wrap { padding: 2rem 0 4rem; }
-
-  .aurora, .aurora-2, .orb-3, .orb-4 { display: none; }
-  .scan-line { display: block; opacity: .6; }
-  #bg-canvas { opacity: .32; }
-
-  .utility-cluster {
-    position: fixed;
-    top: 82px;
-    right: 10px;
-    z-index: 135;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 6px;
-    transform: scale(.72);
-    transform-origin: top right;
-  }
-
-  .mobile-menu-toggle.floating {
-    top: 82px;
-    right: 148px;
-    left: auto;
-    display: flex;
-    transform: scale(.72);
-    transform-origin: top right;
-  }
-
-  .clock-widget {
-    width: 96px;
-    height: 46px;
-    padding: 6px 10px;
-  }
-
-  .clock-widget[data-state="analog"] {
-    width: 68px;
-    height: 68px;
-  }
-
-  .clock-widget[data-state="ring"] {
-    width: 78px;
-    height: 78px;
-  }
-
-  .day-toggle {
-    width: 82px;
-    height: 40px;
-  }
-
-  .mobile-sidebar {
-    width: 82vw;
-    max-width: 290px;
-    padding: 16px 14px 18px;
-  }
-
-  .hero {
-    padding-top: 8.6rem;
-  }
-
-  section {
-    padding: 0 1.2rem;
-  }
-
-  #about {
-  scroll-margin-top: 68px;
-}
-
-#skills {
-  scroll-margin-top: 92px;
-}
-
-#projects {
-  scroll-margin-top: 78px;
-}
-
-#contact {
-  scroll-margin-top: 92px;
-}
- }
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
@@ -1830,10 +1857,10 @@
       <a href="#top" class="brand-text">jeo.dev</a>
     </div>
     <ul class="side-nav">
-      <li><a href="#about" class="side-link active"><div class="side-icon">⌘</div><span class="nav-label">About</span></a></li>
-      <li><a href="#skills" class="side-link"><div class="side-icon">✦</div><span class="nav-label">Skills</span></a></li>
+      <li><a href="#about"    class="side-link active"><div class="side-icon">⌘</div><span class="nav-label">About</span></a></li>
+      <li><a href="#skills"   class="side-link"><div class="side-icon">✦</div><span class="nav-label">Skills</span></a></li>
       <li><a href="#projects" class="side-link"><div class="side-icon">▣</div><span class="nav-label">Projects</span></a></li>
-      <li><a href="#contact" class="side-link"><div class="side-icon">✉</div><span class="nav-label">Contact</span></a></li>
+      <li><a href="#contact"  class="side-link"><div class="side-icon">✉</div><span class="nav-label">Contact</span></a></li>
     </ul>
   </div>
 </nav>
@@ -1848,13 +1875,12 @@
     </a>
     <button class="mobile-close" id="mobileSidebarClose" aria-label="Close menu">✕</button>
   </div>
-
   <ul class="mobile-side-nav">
-    <li><a href="#top" class="mobile-side-link mobile-nav-link"><div class="side-icon">⌂</div><span>Home</span></a></li>
-    <li><a href="#about" class="mobile-side-link mobile-nav-link"><div class="side-icon">⌘</div><span>About</span></a></li>
-    <li><a href="#skills" class="mobile-side-link mobile-nav-link"><div class="side-icon">✦</div><span>Skills</span></a></li>
+    <li><a href="#top"      class="mobile-side-link mobile-nav-link"><div class="side-icon">⌂</div><span>Home</span></a></li>
+    <li><a href="#about"    class="mobile-side-link mobile-nav-link"><div class="side-icon">⌘</div><span>About</span></a></li>
+    <li><a href="#skills"   class="mobile-side-link mobile-nav-link"><div class="side-icon">✦</div><span>Skills</span></a></li>
     <li><a href="#projects" class="mobile-side-link mobile-nav-link"><div class="side-icon">▣</div><span>Projects</span></a></li>
-    <li><a href="#contact" class="mobile-side-link mobile-nav-link"><div class="side-icon">✉</div><span>Contact</span></a></li>
+    <li><a href="#contact"  class="mobile-side-link mobile-nav-link"><div class="side-icon">✉</div><span>Contact</span></a></li>
   </ul>
 </aside>
 
@@ -1862,9 +1888,7 @@
   <a href="#top" class="nav-logo">jeo.dev</a>
   <button class="mobile-menu-toggle floating" id="mobileMenuToggle" aria-label="Open menu">
     <span class="burger-lines">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </span>
   </button>
 </nav>
@@ -1884,9 +1908,8 @@
   <div class="clock-widget glass" id="clockWidget" data-state="digital" title="Click to morph clock mode">
     <div class="clock-face face-digital">
       <div class="clock-time" id="digitalTime">00:00</div>
-      <div class="clock-sub" id="digitalMeta">Mon · 00</div>
+      <div class="clock-sub"  id="digitalMeta">Mon · 00</div>
     </div>
-
     <div class="clock-face face-analog">
       <div class="analog-stage">
         <div class="analog-marker twelve"></div>
@@ -1894,160 +1917,458 @@
         <div class="analog-marker six"></div>
         <div class="analog-marker nine"></div>
         <div class="hand hour" id="hourHand"></div>
-        <div class="hand min" id="minHand"></div>
-        <div class="hand sec" id="secHand"></div>
+        <div class="hand min"  id="minHand"></div>
+        <div class="hand sec"  id="secHand"></div>
         <div class="center-dot"></div>
       </div>
     </div>
-
     <div class="clock-face face-ring">
       <svg class="ring-svg" viewBox="0 0 120 120">
-        <circle class="ring-track" cx="60" cy="60" r="48"></circle>
+        <circle class="ring-track"    cx="60" cy="60" r="48"></circle>
         <circle class="ring-progress" id="ring-hour" cx="60" cy="60" r="48"></circle>
-        <circle class="ring-track" cx="60" cy="60" r="36"></circle>
-        <circle class="ring-progress" id="ring-min" cx="60" cy="60" r="36"></circle>
-        <circle class="ring-track" cx="60" cy="60" r="24"></circle>
-        <circle class="ring-progress" id="ring-sec" cx="60" cy="60" r="24"></circle>
+        <circle class="ring-track"    cx="60" cy="60" r="36"></circle>
+        <circle class="ring-progress" id="ring-min"  cx="60" cy="60" r="36"></circle>
+        <circle class="ring-track"    cx="60" cy="60" r="24"></circle>
+        <circle class="ring-progress" id="ring-sec"  cx="60" cy="60" r="24"></circle>
       </svg>
       <div class="ring-label" id="ringLabel">00:00</div>
     </div>
   </div>
 </div>
 
+<!-- ═══════════════════════════════════════════════ CONTENT ═══ -->
 <div class="content-shell">
+
+<!-- ── HERO ── -->
 <section class="hero" id="top">
   <div class="hero-layout">
     <div class="hero-left">
       <div class="hero-tag"><span class="tag-dot"></span>Open to opportunities</div>
-      <h1>Jeo Vitao<br/><span>IT Systems Builder → Developer</span></h1>
+      <h1>Jeo Vitao<br/><span>IT Support Specialist<br/>→ Automation &amp; Web Development</span></h1>
       <p class="hero-alias">Also known as Jelonel Vitao</p>
-      <p class="hero-sub">// Web Systems · Automation · Future Mobile Apps</p>
+      <p class="hero-sub">// IT Operations · Workflow Automation · Web Systems</p>
     </div>
-    <div class="hero-image-wrap"><img src="profile-photo.png" alt="Jeo Vitao" /></div>
+    <div class="hero-image-wrap">
+      <img src="profile-photo.png" alt="Jeo Vitao" />
+    </div>
   </div>
 
   <p class="hero-desc">
-    I come from an IT operations background, managing systems, users, and business workflows.
-    Now, I am transitioning into development, building web applications and learning how to create scalable systems.
-    My goal is to bridge IT operations and software development by creating tools that improve real business processes.
+    I come from an IT operations background, supporting users, managing systems, handling service tickets,
+    and improving internal workflows. I am now expanding into automation and web development, building
+    practical tools that connect business processes, support operations, and modern web systems.
   </p>
 
   <div class="hero-actions">
     <a href="#projects" class="btn-primary">View My Work</a>
-    <a href="#contact" class="btn-outline">Get in Touch</a>
+    <a href="#contact"  class="btn-outline">Get in Touch</a>
   </div>
 </section>
 
+<!-- ── ABOUT ── -->
 <section id="about">
   <div class="section-wrap reveal">
     <div class="section-label">01 — about me</div>
     <div class="section-title">Who I Am</div>
     <div class="section-divider"></div>
     <div class="about-grid">
+
       <div class="about-text">
         <div class="about-profile-wrap">
           <img src="profile-photo.png" alt="Jeo Vitao" class="about-profile-img" />
           <div class="about-profile-meta">
             <div class="about-profile-name">Jeo Vitao</div>
-            <div class="about-profile-role">IT Support → System Developer</div>
+            <div class="about-profile-role">IT Support Specialist → Automation &amp; Web Dev</div>
           </div>
         </div>
-        <p>I'm an <strong>IT Support Specialist transitioning into system development</strong>, based in General Trias, Cavite. My background focuses on managing IT infrastructure, supporting users, and improving internal workflows.</p>
-        <p>I have hands-on experience with <strong>Microsoft 365 administration, IT ticketing systems, ERP workflows, and asset management</strong>, giving me a strong understanding of how systems operate inside real businesses.</p>
-        <p>Now, I am applying that operational knowledge into development, building and deploying web systems using modern tools while continuously learning automation and AI assisted workflows.</p>
-        <p>I focus on <strong>learning by building</strong>, aiming to become a developer who understands both technical implementation and business processes.</p>
+        <p>I'm an <strong>IT Support Specialist actively transitioning into automation and web development</strong>, based in General Trias, Cavite. My background spans managing IT infrastructure, supporting end users, handling service desk workflows, and improving internal business processes.</p>
+        <p>I have hands-on experience with <strong>Microsoft 365 administration, Zoho ServiceDesk ticketing, asset management, and ERP-style workflow support</strong>, giving me a strong foundation in how real business systems operate and where automation can make the biggest difference.</p>
+        <p>I'm now applying that operational knowledge into practice — building and deploying web systems, exploring <strong>n8n workflow automation</strong>, and learning AI-assisted approaches to IT support. My current projects reflect real business challenges I've observed in IT operations.</p>
+        <p>I focus on <strong>learning by building</strong>, aiming to bridge IT operations and development by creating practical tools that solve real operational problems — from internal web apps to automation workflows.</p>
       </div>
 
       <div class="about-card">
         <div class="about-stat">
-          <div class="stat-item"><div class="stat-icon">💻</div><div class="stat-info"><label>focus</label><span>IT Systems & Web Development</span></div></div>
-          <div class="stat-item"><div class="stat-icon">⚙️</div><div class="stat-info"><label>currently learning</label><span>Automation & Mobile Development</span></div></div>
-          <div class="stat-item"><div class="stat-icon"><img src="https://cdn3.emoji.gg/emojis/81681-rocket-shwompy.png" alt="Rocket" class="icon-rocket"></div><div class="stat-info"><label>live system</label><span>Deployed Internal Web App</span></div></div>
-          <div class="stat-item"><div class="stat-icon">📍</div><div class="stat-info"><label>location</label><span>General Trias, Cavite PH</span></div></div>
+          <div class="stat-item">
+            <div class="stat-icon">💻</div>
+            <div class="stat-info">
+              <label>focus</label>
+              <span>IT Support, Automation &amp; Web Systems</span>
+            </div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-icon">⚙️</div>
+            <div class="stat-info">
+              <label>currently building</label>
+              <span>Web Apps &amp; n8n Workflows</span>
+            </div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-icon"><img src="https://cdn3.emoji.gg/emojis/81681-rocket-shwompy.png" alt="Rocket" class="icon-rocket"></div>
+            <div class="stat-info">
+              <label>live project</label>
+              <span>Deployed ERP-Style Web App</span>
+            </div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-icon">📍</div>
+            <div class="stat-info">
+              <label>location</label>
+              <span>General Trias, Cavite PH</span>
+            </div>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
+<!-- ── SKILLS ── -->
 <section id="skills">
   <div class="section-wrap reveal">
     <div class="section-label">02 — skills</div>
-    <div class="section-title">What I Know &amp; What I'm Learning</div>
+    <div class="section-title">Technical Stack &amp; Current Learning Path</div>
     <div class="section-divider"></div>
+
     <div class="skills-grid">
-      <div class="skill-card"><div class="skill-name">React JS</div><div class="skill-desc">Building UI, dashboards, and reusable system components</div><div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div><span class="skill-badge badge-solid">Hands-on</span></div>
-      <div class="skill-card"><div class="skill-name">JavaScript</div><div class="skill-desc">Application logic, async workflows, and API integration</div><div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div><span class="skill-badge badge-solid">Hands-on</span></div>
-      <div class="skill-card"><div class="skill-name">HTML &amp; CSS</div><div class="skill-desc">Responsive layout structuring and interface styling</div><div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div><span class="skill-badge badge-solid">Hands-on</span></div>
-      <div class="skill-card"><div class="skill-name">Java (Basic)</div><div class="skill-desc">OOP fundamentals, basic syntax</div><div class="skill-bar"><div class="skill-fill" style="width:35%"></div></div><span class="skill-badge badge-solid">Foundational</span></div>
-      <div class="skill-card learning"><div class="skill-name">React Native</div><div class="skill-desc">Views, navigation, mobile components</div><div class="skill-bar"><div class="skill-fill learning-bar" style="width:20%"></div></div><span class="skill-badge badge-learning">📱 In Progress</span></div>
-      <div class="skill-card learning"><div class="skill-name">TypeScript</div><div class="skill-desc">Type safety, interfaces, generics</div><div class="skill-bar"><div class="skill-fill learning-bar" style="width:15%"></div></div><span class="skill-badge badge-learning">📚 Learning</span></div>
-      <div class="skill-card"><div class="skill-name">Microsoft 365</div><div class="skill-desc">User admin, licensing, access control</div><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div><span class="skill-badge badge-solid">Hands-on</span></div>
-      <div class="skill-card"><div class="skill-name">Zoho ServiceDesk</div><div class="skill-desc">Ticketing workflows, IT operations</div><div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div><span class="skill-badge badge-solid">Hands-on</span></div>
-      <div class="skill-card learning"><div class="skill-name">N8N</div><div class="skill-desc">Workflow automation</div><div class="skill-bar"><div class="skill-fill learning-bar" style="width:20%"></div></div><span class="skill-badge badge-learning">Learning</span></div>
-      <div class="skill-card learning"><div class="skill-name">AI Automation</div><div class="skill-desc">Ticket response, system integration</div><div class="skill-bar"><div class="skill-fill learning-bar" style="width:20%"></div></div><span class="skill-badge badge-learning">Learning</span></div>
-    </div>
+
+      <!-- ▸ Core Web Development -->
+      <div class="skills-cat">⟡ Core Web Development</div>
+
+      <div class="skill-card">
+        <div class="skill-name">React JS</div>
+        <div class="skill-desc">Building UI, dashboards, and reusable system components</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
+        <span class="skill-badge badge-solid">Hands-on</span>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-name">JavaScript</div>
+        <div class="skill-desc">Application logic, async workflows, and API integration</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+        <span class="skill-badge badge-solid">Hands-on</span>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-name">HTML &amp; CSS</div>
+        <div class="skill-desc">Responsive layout structuring and interface styling</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div>
+        <span class="skill-badge badge-solid">Hands-on</span>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-name">Vite</div>
+        <div class="skill-desc">Build tooling and fast development environment setup</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:60%"></div></div>
+        <span class="skill-badge badge-solid">Hands-on</span>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-name">GitHub</div>
+        <div class="skill-desc">Version control, repositories, and project collaboration</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+        <span class="skill-badge badge-solid">Hands-on</span>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-name">Vercel</div>
+        <div class="skill-desc">Frontend deployment, hosting, and continuous delivery</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:62%"></div></div>
+        <span class="skill-badge badge-solid">Hands-on</span>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-name">Java (Basic)</div>
+        <div class="skill-desc">OOP fundamentals, basic syntax and class structures</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:35%"></div></div>
+        <span class="skill-badge badge-solid">Foundational</span>
+      </div>
+
+      <!-- ▸ Backend / Database -->
+      <div class="skills-cat">⟡ Backend / Database</div>
+
+      <div class="skill-card">
+        <div class="skill-name">Supabase</div>
+        <div class="skill-desc">Auth, database integration, and storage in web apps</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:35%"></div></div>
+        <span class="skill-badge badge-solid">Practicing</span>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-name">PostgreSQL &amp; RLS</div>
+        <div class="skill-desc">Relational database queries and Row Level Security concepts</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:30%"></div></div>
+        <span class="skill-badge badge-solid">Foundation</span>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-name">REST API Concepts</div>
+        <div class="skill-desc">HTTP methods, endpoints, and JSON data exchange</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:38%"></div></div>
+        <span class="skill-badge badge-solid">Practicing</span>
+      </div>
+
+      <div class="skill-card learning">
+        <div class="skill-name">Node.js / Express</div>
+        <div class="skill-desc">Basic server-side JavaScript and route handling</div>
+        <div class="skill-bar"><div class="skill-fill learning-bar" style="width:22%"></div></div>
+        <span class="skill-badge badge-learning">Learning</span>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-name">JSON &amp; Data Handling</div>
+        <div class="skill-desc">Structuring and processing data for APIs and automation</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:60%"></div></div>
+        <span class="skill-badge badge-solid">Hands-on</span>
+      </div>
+
+      <!-- ▸ Automation / AI Workflow -->
+      <div class="skills-cat">⟡ Automation / AI Workflow</div>
+
+      <div class="skill-card">
+        <div class="skill-name">n8n Workflow Automation</div>
+        <div class="skill-desc">Manual triggers, IF nodes, Set/Edit Fields, branching, and lead validation</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:32%"></div></div>
+        <span class="skill-badge badge-solid">Practicing</span>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-name">Webhooks &amp; IF Logic</div>
+        <div class="skill-desc">Data routing, conditional execution, and error handling basics</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:28%"></div></div>
+        <span class="skill-badge badge-solid">Practicing</span>
+      </div>
+
+      <div class="skill-card learning">
+        <div class="skill-name">AI Chat Model Concepts</div>
+        <div class="skill-desc">OpenAI / Gemini integration, prompt-based automation workflows</div>
+        <div class="skill-bar"><div class="skill-fill learning-bar" style="width:18%"></div></div>
+        <span class="skill-badge badge-learning">Learning</span>
+      </div>
+
+      <!-- ▸ IT Operations -->
+      <div class="skills-cat">⟡ IT Operations</div>
+
+      <div class="skill-card">
+        <div class="skill-name">Microsoft 365 Admin</div>
+        <div class="skill-desc">User admin, licensing, and access control management</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+        <span class="skill-badge badge-solid">Hands-on</span>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-name">Zoho ServiceDesk Plus</div>
+        <div class="skill-desc">Ticketing workflows and IT service management operations</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
+        <span class="skill-badge badge-solid">Hands-on</span>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-name">Entra ID &amp; MFA</div>
+        <div class="skill-desc">Identity management, access security, and MFA setup</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+        <span class="skill-badge badge-solid">Hands-on</span>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-name">SharePoint &amp; OneDrive</div>
+        <div class="skill-desc">Document collaboration and file management support</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+        <span class="skill-badge badge-solid">Hands-on</span>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-name">Asset &amp; Ticket Management</div>
+        <div class="skill-desc">Device tracking, user support, troubleshooting, and documentation</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div>
+        <span class="skill-badge badge-solid">Hands-on</span>
+      </div>
+
+      <!-- ▸ Mobile / Future Learning -->
+      <div class="skills-cat">⟡ Mobile / Future Learning</div>
+
+      <div class="skill-card learning">
+        <div class="skill-name">React Native</div>
+        <div class="skill-desc">Views, navigation, and mobile component development</div>
+        <div class="skill-bar"><div class="skill-fill learning-bar" style="width:20%"></div></div>
+        <span class="skill-badge badge-learning">📱 In Progress</span>
+      </div>
+
+      <div class="skill-card learning">
+        <div class="skill-name">TypeScript</div>
+        <div class="skill-desc">Type safety, interfaces, generics, and typed APIs</div>
+        <div class="skill-bar"><div class="skill-fill learning-bar" style="width:15%"></div></div>
+        <span class="skill-badge badge-learning">📚 Learning</span>
+      </div>
+
+      <div class="skill-card learning">
+        <div class="skill-name">Expo</div>
+        <div class="skill-desc">Mobile app scaffolding and cross-platform development</div>
+        <div class="skill-bar"><div class="skill-fill learning-bar" style="width:10%"></div></div>
+        <span class="skill-badge badge-learning">📚 Learning</span>
+      </div>
+
+    </div><!-- /skills-grid -->
   </div>
 </section>
 
+<!-- ── PROJECTS ── -->
 <section id="projects">
   <div class="section-wrap reveal">
     <div class="section-label">03 — projects</div>
     <div class="section-title">What I've Built</div>
     <div class="section-divider"></div>
-    <div class="project-card">
-      <div class="project-tag"><span style="width:6px;height:6px;border-radius:50%;background:#0ea5e9;display:inline-block;animation:tagPulse 2s ease infinite"></span>Live &amp; Deployed</div>
-      <div class="project-title">Synercore ERP-Style Web System</div>
-      <p class="project-desc">A multi-company internal web system designed to support business workflows such as procurement, approvals, and request tracking, with future potential for mobile platform expansion. This project represents my transition from IT operations to development, combining real-world system knowledge with frontend engineering and deployment. It focuses on structuring workflows, improving request visibility, and aligning system behavior with actual business processes. This system is currently deployed and accessible, showcasing the frontend structure and workflow design based on real business processes, with core functionalities still in development.</p>
-      <div class="project-stack"><span class="stack-pill">React JS</span><span class="stack-pill">JavaScript</span><span class="stack-pill">HTML &amp; CSS</span><span class="stack-pill">Vercel</span></div>
-      <div class="project-links"><a href="https://synercore.vercel.app" target="_blank" rel="noopener noreferrer" class="project-link">Visit Live Site →</a><a href="https://github.com/YosVJ/web-database-ui" target="_blank" rel="noopener noreferrer" class="project-link secondary">View Source Code →</a></div>
-    </div>
+
+    <div class="projects-list">
+
+      <!-- Project 1: Synercore -->
+      <div class="project-card">
+        <div class="project-tag">
+          <span style="width:6px;height:6px;border-radius:50%;background:#0ea5e9;display:inline-block;animation:tagPulse 2s ease infinite"></span>
+          Live &amp; Deployed
+        </div>
+        <div class="project-title">Synercore ERP-Style Web System</div>
+        <p class="project-desc">A multi-company ERP-style web system designed to support internal workflows such as procurement, approvals, request tracking, and company-based access control. This project reflects my transition from IT operations into web systems development, using my understanding of real business processes to design practical internal tools. Currently deployed and accessible, with the system structure, workflow design, and frontend engineering in place.</p>
+        <div class="project-stack">
+          <span class="stack-pill">React JS</span>
+          <span class="stack-pill">Vite</span>
+          <span class="stack-pill">JavaScript</span>
+          <span class="stack-pill">Supabase</span>
+          <span class="stack-pill">PostgreSQL</span>
+          <span class="stack-pill">Authentication</span>
+          <span class="stack-pill">RLS Concept</span>
+          <span class="stack-pill">HTML &amp; CSS</span>
+          <span class="stack-pill">Vercel</span>
+          <span class="stack-pill">Business Workflow Design</span>
+        </div>
+        <div class="project-links">
+          <a href="https://synercore.vercel.app" target="_blank" rel="noopener noreferrer" class="project-link">Visit Live Site →</a>
+          <a href="https://github.com/YosVJ/web-database-ui" target="_blank" rel="noopener noreferrer" class="project-link secondary">View Source Code →</a>
+        </div>
+      </div>
+
+      <!-- Project 2: n8n -->
+      <div class="project-card">
+        <div class="project-tag">
+          <span style="width:6px;height:6px;border-radius:50%;background:#f59e0b;display:inline-block"></span>
+          Automation Practice
+        </div>
+        <div class="project-title">n8n Lead Validation &amp; Workflow Automation Practice</div>
+        <p class="project-desc">A beginner-to-intermediate n8n workflow practice project focused on validating lead data, checking whether required fields such as email are present, routing records through IF conditions, and preparing workflow logic for future API or CRM integration. This helped me understand how automation tools process data, branch logic, and reduce manual checking in real business workflows.</p>
+        <div class="project-stack">
+          <span class="stack-pill">n8n</span>
+          <span class="stack-pill">Manual Trigger</span>
+          <span class="stack-pill">Set / Edit Fields</span>
+          <span class="stack-pill">IF Node</span>
+          <span class="stack-pill">Workflow Branching</span>
+          <span class="stack-pill">Lead Validation</span>
+          <span class="stack-pill">Test Execution</span>
+          <span class="stack-pill">JSON Data</span>
+          <span class="stack-pill">Error Handling Basics</span>
+        </div>
+        <div class="project-links">
+          <span class="project-note">⟡ Practice Project · Local &amp; Test Environment</span>
+        </div>
+      </div>
+
+      <!-- Project 3: AI IT Support -->
+      <div class="project-card">
+        <div class="project-tag">
+          <span style="width:6px;height:6px;border-radius:50%;background:#a78bfa;display:inline-block"></span>
+          AI Automation Concept
+        </div>
+        <div class="project-title">AI-Assisted IT Support Automation Concept</div>
+        <p class="project-desc">A concept project connecting IT service desk experience with AI-assisted workflows for ticket classification, draft response generation, issue summarization, and escalation routing. This bridges my hands-on service desk background with current learning in AI automation, API workflows, and intelligent system design. It explores how AI can reduce manual ticket handling and improve response consistency in IT support operations.</p>
+        <div class="project-stack">
+          <span class="stack-pill">AI Automation</span>
+          <span class="stack-pill">ITSM</span>
+          <span class="stack-pill">Ticket Classification</span>
+          <span class="stack-pill">OpenAI / Gemini Concepts</span>
+          <span class="stack-pill">API Workflow</span>
+          <span class="stack-pill">Service Desk Process</span>
+          <span class="stack-pill">Automation Support</span>
+          <span class="stack-pill">Draft Response Generation</span>
+        </div>
+        <div class="project-links">
+          <span class="project-note">⟡ Concept Project · Design &amp; Planning Stage</span>
+        </div>
+      </div>
+
+      <!-- Project 4: AI ITSM API -->
+      <div class="project-card">
+        <div class="project-tag">
+          <span style="width:6px;height:6px;border-radius:50%;background:#34d399;display:inline-block"></span>
+          Backend Concept
+        </div>
+        <div class="project-title">AI ITSM Automation API</div>
+        <p class="project-desc">A Node.js and TypeScript API concept for analyzing IT support tickets and supporting automation workflows through structured endpoints. Designed as a backend practice project connecting IT operations experience with automation and AI-assisted processes — exploring how structured APIs can power smarter ticket routing, summarization, and escalation workflows in a service desk environment.</p>
+        <div class="project-stack">
+          <span class="stack-pill">Node.js</span>
+          <span class="stack-pill">TypeScript</span>
+          <span class="stack-pill">Express</span>
+          <span class="stack-pill">REST API</span>
+          <span class="stack-pill">JSON</span>
+          <span class="stack-pill">IT Support Automation</span>
+          <span class="stack-pill">Ticket Workflow</span>
+        </div>
+        <div class="project-links">
+          <span class="project-note">⟡ In Progress · Backend Practice</span>
+        </div>
+      </div>
+
+    </div><!-- /projects-list -->
   </div>
 </section>
 
-<section>
+<!-- ── GOAL ── -->
+<section id="goal">
   <div class="section-wrap reveal" style="padding-top:0;">
     <div class="section-label">04 — my goal</div>
-    <div class="section-title">What I'm Building Next</div>
+    <div class="section-title">What I'm Building Toward</div>
     <div class="section-divider"></div>
     <div class="goal-card">
-      <div class="goal-title">From IT Operations to System Development</div>
-      <p class="goal-text">I am currently focused on strengthening my development skills while leveraging my IT background. My goal is to build systems that are not only functional, but aligned with real operational needs.</p>
+      <div class="goal-title">From IT Support to Automation Support &amp; Web Development</div>
+      <p class="goal-text">I am focused on strengthening my automation and web development skills while using my IT support background as a foundation. My goal is to build practical systems and workflows that reduce manual work, improve ticket handling, and support real business operations.</p>
       <ul class="goal-list">
-        <li>Building internal systems (ERP-style workflows)</li>
-        <li>Learning automation tools such as N8N</li>
-        <li>Exploring AI-assisted IT operations and ticketing systems</li>
-        <li>Transitioning from web systems to mobile app development</li>
+        <li>Build internal web systems based on real business workflows and IT process knowledge</li>
+        <li>Practice n8n automation for data validation, conditional routing, and API integrations</li>
+        <li>Learn AI-assisted ticket handling, classification, and workflow automation</li>
+        <li>Strengthen React, Supabase, Node.js, and REST API fundamentals through building</li>
+        <li>Prepare for Automation Support, Junior Web Developer, and AI Automation roles</li>
       </ul>
     </div>
   </div>
 </section>
 
+<!-- ── CONTACT ── -->
 <section id="contact">
   <div class="contact-wrap reveal">
     <div class="section-label">05 — contact</div>
     <div class="section-title">Let's Connect</div>
-    <p class="contact-desc">Interested in building internal systems, workflow tools, or business-focused applications together? Feel free to reach out.</p>
+    <p class="contact-desc">Interested in IT support, automation support, workflow automation, or internal web system projects? I'm open to junior and transition-friendly opportunities where I can contribute operational experience while growing in automation and development.</p>
     <a href="mailto:jelonelvitao@gmail.com" class="btn-primary" style="display:inline-block">Send Me a Message</a>
   </div>
 </section>
 
-<footer>Built by Jeo Vitao · IT Systems Builder → Developer</footer>
-</div>
+<footer>Built by Jeo Vitao &nbsp;·&nbsp; IT Support Specialist → Automation &amp; Web Development</footer>
+
+</div><!-- /content-shell -->
+
 <script>
 if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
+window.addEventListener('load', () => { window.scrollTo(0, 0); });
 
-window.addEventListener('load', () => {
-  window.scrollTo(0, 0);
-});
+// ── Sidebar active link ──
 const navLinks = document.querySelectorAll('.side-link');
 navLinks.forEach(link => link.addEventListener('click', () => {
   navLinks.forEach(l => l.classList.remove('active'));
   link.classList.add('active');
 }));
 
+// ── Day / Night Toggle ──
 const toggle = document.getElementById('dayNightToggle');
 const storedMode = localStorage.getItem('siteMode');
 if (storedMode === 'light') {
@@ -2059,11 +2380,12 @@ toggle.addEventListener('change', () => {
   localStorage.setItem('siteMode', toggle.checked ? 'light' : 'dark');
 });
 
-const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-const mobileSidebar = document.getElementById('mobileSidebar');
+// ── Mobile Sidebar ──
+const mobileMenuToggle    = document.getElementById('mobileMenuToggle');
+const mobileSidebar       = document.getElementById('mobileSidebar');
 const mobileSidebarOverlay = document.getElementById('mobileSidebarOverlay');
-const mobileSidebarClose = document.getElementById('mobileSidebarClose');
-const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+const mobileSidebarClose  = document.getElementById('mobileSidebarClose');
+const mobileNavLinks      = document.querySelectorAll('.mobile-nav-link');
 
 function openMobileSidebar() {
   mobileSidebar.classList.add('open');
@@ -2079,30 +2401,22 @@ function closeMobileSidebar() {
   document.body.style.overflow = '';
 }
 
-if (mobileMenuToggle) {
-  mobileMenuToggle.addEventListener('click', () => {
-    const isOpen = mobileSidebar.classList.contains('open');
-    if (isOpen) closeMobileSidebar();
-    else openMobileSidebar();
-  });
-}
-if (mobileSidebarClose) {
-  mobileSidebarClose.addEventListener('click', closeMobileSidebar);
-}
-if (mobileSidebarOverlay) {
-  mobileSidebarOverlay.addEventListener('click', closeMobileSidebar);
-}
+if (mobileMenuToggle)     mobileMenuToggle.addEventListener('click', () => {
+  mobileSidebar.classList.contains('open') ? closeMobileSidebar() : openMobileSidebar();
+});
+if (mobileSidebarClose)   mobileSidebarClose.addEventListener('click', closeMobileSidebar);
+if (mobileSidebarOverlay) mobileSidebarOverlay.addEventListener('click', closeMobileSidebar);
 mobileNavLinks.forEach(link => link.addEventListener('click', closeMobileSidebar));
 
+// ── Mobile Fit View ──
 (function setupMobileFitView() {
-  const isSmallViewport = window.matchMedia('(max-width: 700px)').matches;
-  if (!isSmallViewport) return;
-
+  if (!window.matchMedia('(max-width: 700px)').matches) return;
   document.body.classList.add('mobile-fit');
 })();
 
-const clockWidget = document.getElementById('clockWidget');
-const clockStates = ['digital','analog','ring'];
+// ── Clock Widget ──
+const clockWidget  = document.getElementById('clockWidget');
+const clockStates  = ['digital','analog','ring'];
 let clockIndex = 0;
 
 clockWidget.addEventListener('click', () => {
@@ -2116,7 +2430,7 @@ clockWidget.addEventListener('mousemove', (e) => {
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
   const rx = ((y / rect.height) - .5) * -8;
-  const ry = ((x / rect.width) - .5) * 10;
+  const ry = ((x / rect.width)  - .5) * 10;
   clockWidget.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
 });
 
@@ -2126,13 +2440,13 @@ clockWidget.addEventListener('mouseleave', () => {
 
 const digitalTime = document.getElementById('digitalTime');
 const digitalMeta = document.getElementById('digitalMeta');
-const ringLabel = document.getElementById('ringLabel');
-const hourHand = document.getElementById('hourHand');
-const minHand = document.getElementById('minHand');
-const secHand = document.getElementById('secHand');
-const ringSec = document.getElementById('ring-sec');
-const ringMin = document.getElementById('ring-min');
-const ringHour = document.getElementById('ring-hour');
+const ringLabel   = document.getElementById('ringLabel');
+const hourHand    = document.getElementById('hourHand');
+const minHand     = document.getElementById('minHand');
+const secHand     = document.getElementById('secHand');
+const ringSec     = document.getElementById('ring-sec');
+const ringMin     = document.getElementById('ring-min');
+const ringHour    = document.getElementById('ring-hour');
 
 const circ = r => 2 * Math.PI * r;
 [[ringSec,24],[ringMin,36],[ringHour,48]].forEach(([el,r]) => {
@@ -2148,31 +2462,32 @@ function setRing(el, r, progress) {
 
 function updateClock() {
   const now = new Date();
-  const ms = now.getMilliseconds();
-  const s = now.getSeconds() + ms / 1000;
-  const m = now.getMinutes() + s / 60;
+  const ms  = now.getMilliseconds();
+  const s   = now.getSeconds() + ms / 1000;
+  const m   = now.getMinutes() + s / 60;
   const h24 = now.getHours();
-  const h = (h24 % 12) + m / 60;
+  const h   = (h24 % 12) + m / 60;
 
   const hh = String(h24).padStart(2,'0');
   const mm = String(now.getMinutes()).padStart(2,'0');
 
   digitalTime.textContent = `${hh}:${mm}`;
-  digitalMeta.textContent = now.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
-  ringLabel.textContent = `${hh}:${mm}`;
+  digitalMeta.textContent  = now.toLocaleDateString('en-US',{ weekday:'short', month:'short', day:'numeric' });
+  ringLabel.textContent    = `${hh}:${mm}`;
 
   hourHand.style.transform = `translateX(-50%) rotate(${h * 30}deg)`;
-  minHand.style.transform = `translateX(-50%) rotate(${m * 6}deg)`;
-  secHand.style.transform = `translateX(-50%) rotate(${s * 6}deg)`;
+  minHand.style.transform  = `translateX(-50%) rotate(${m * 6}deg)`;
+  secHand.style.transform  = `translateX(-50%) rotate(${s * 6}deg)`;
 
-  setRing(ringSec, 24, s / 60);
-  setRing(ringMin, 36, m / 60);
+  setRing(ringSec,  24, s / 60);
+  setRing(ringMin,  36, m / 60);
   setRing(ringHour, 48, h / 12);
 }
 
 setInterval(updateClock, 1000);
 updateClock();
 
+// ── Reveal on Scroll ──
 const revealEls = document.querySelectorAll('.reveal');
 const revealObs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
@@ -2182,30 +2497,24 @@ const revealObs = new IntersectionObserver((entries) => {
     }
   });
 }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-
 revealEls.forEach(el => revealObs.observe(el));
 
+// ── Star / Particle Canvas ──
 (function () {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    return;
-  }
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const canvas = document.getElementById('bg-canvas');
-  const ctx = canvas.getContext('2d');
+  const ctx    = canvas.getContext('2d');
 
-  function getCount() {
-    return window.innerWidth < 700 ? 42 : 90;
-  }
+  function getCount() { return window.innerWidth < 700 ? 42 : 90; }
 
   let W, H, stars = [];
   let t = 0;
-  let rafId;
-  let resizeTimer;
-  let lastFrame = 0;
+  let rafId, resizeTimer, lastFrame = 0;
   let fpsCap = window.innerWidth < 700 ? 18 : 30;
 
   function resize() {
-    W = canvas.width = window.innerWidth;
+    W = canvas.width  = window.innerWidth;
     H = canvas.height = Math.max(document.documentElement.scrollHeight, window.innerHeight);
     fpsCap = window.innerWidth < 700 ? 18 : 30;
   }
@@ -2231,16 +2540,12 @@ revealEls.forEach(el => revealObs.observe(el));
 
   function init() {
     resize();
-    stars = Array.from({length: getCount()}, mkStar);
+    stars = Array.from({ length: getCount() }, mkStar);
   }
 
   function draw(ts = 0) {
     const minFrameTime = 1000 / fpsCap;
-    if (ts - lastFrame < minFrameTime) {
-      rafId = requestAnimationFrame(draw);
-      return;
-    }
-
+    if (ts - lastFrame < minFrameTime) { rafId = requestAnimationFrame(draw); return; }
     lastFrame = ts;
     ctx.clearRect(0,0,W,H);
     t += .016;
@@ -2252,10 +2557,9 @@ revealEls.forEach(el => revealObs.observe(el));
       ctx.fillStyle = s.color + alpha.toFixed(3) + ')';
       ctx.fill();
       s.x += s.drift;
-      if (s.x < -2) s.x = W + 2;
+      if (s.x < -2)    s.x = W + 2;
       if (s.x > W + 2) s.x = -2;
     }
-
     rafId = requestAnimationFrame(draw);
   }
 
@@ -2267,7 +2571,7 @@ revealEls.forEach(el => revealObs.observe(el));
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(init, 250);
-  }, { passive:true });
+  }, { passive: true });
 
   init();
   draw();
