@@ -964,7 +964,18 @@
     margin-bottom: 2.5rem;
   }
 
-  .hero-left { flex: 1; min-width: 0; }
+  .hero-left {
+    flex: 1;
+    min-width: 0;
+    /* required: container-type below switches off content-based inline sizing,
+       so the column needs an explicit width or it collapses to 0 once the
+       hero stacks (align-items:flex-start) at <=700px */
+    width: 100%;
+    /* FIX: the headline is sized against THIS column, not the viewport.
+       section{max-width:880px} - 4rem padding - 3rem gap - 160px photo = 608px,
+       so a viewport-based font-size (6.5vw) had no idea how little room it had. */
+    container-type: inline-size;
+  }
 
   .hero-image-wrap {
     flex-shrink: 0;
@@ -1044,12 +1055,21 @@
 
   .hero h1 {
     font-family:'Syne',sans-serif;
-    font-size: clamp(2.4rem, 6.5vw, 4.2rem);
+    /* fallback for engines without container query units */
+    font-size: clamp(2.1rem, 5.6vw, 3.5rem);
+    /* FIX: 9cqi = 9% of the column width. Syne 800's longest headline word
+       ("Programming") is 10.6em wide, so it always lands at ~95% of the
+       column at every viewport - it can no longer reach the photo. */
+    font-size: clamp(2.1rem, 9cqi, 3.5rem);
     font-weight:800;
     line-height:1.06;
     letter-spacing:-.035em;
     color:var(--text);
     margin-bottom:.5rem;
+    /* safety net: if the copy is ever edited to something longer, the word
+       breaks instead of colliding with the photo again */
+    overflow-wrap: break-word;
+    hyphens: auto;
     animation: fadeSlideUp .55s .08s ease both;
   }
 
@@ -1738,7 +1758,10 @@
   @media (max-width: 700px) {
     body.mobile-fit .content-shell {
       transform: scale(var(--mobile-fit-scale));
-      transform-origin: top center;
+      /* FIX: the layout box is 119% wide, so "top center" scaled about the
+         OVERSIZED box's midpoint and pushed the whole page 37px right
+         (37px of sideways scroll). "top left" pins it to the viewport edge. */
+      transform-origin: top left;
       width: calc(100% / var(--mobile-fit-scale));
     }
 
@@ -1756,7 +1779,9 @@
     }
 
     .about-grid { grid-template-columns: 1fr; }
-    .hero h1 { font-size: 1.9rem; line-height: 1.08; }
+    /* caps at 1.9rem, so 360px+ phones render exactly as before;
+       only sub-350px screens step down, where it was previously tight */
+    .hero h1 { font-size: clamp(1.45rem, 8.6cqi, 1.9rem); line-height: 1.08; }
     .hero-desc { font-size: .95rem; }
     .project-card { padding: 1.4rem; }
     .section-wrap { padding: 2rem 0 4rem; }
