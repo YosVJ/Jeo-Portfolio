@@ -1858,36 +1858,67 @@
     margin-bottom: .9rem;
   }
 
-  .ai-steps {
+  .ai-stepper {
     display:flex;
     flex-wrap:wrap;
     align-items:center;
-    gap:.5rem .55rem;
+    gap:.5rem .4rem;
     margin-bottom: 1rem;
   }
 
-  .ai-step {
+  .ai-step-btn {
     font-family:'DM Mono',monospace;
     font-size:.74rem;
     color: var(--text-dim);
     background: rgba(37,99,235,.08);
     border:1px solid rgba(59,130,246,.2);
     border-radius:100px;
-    padding:.28rem .8rem;
-    letter-spacing:.01em;
-    transition:.2s ease;
+    padding:.3rem .85rem;
+    letter-spacing:.08em;
+    cursor:pointer;
+    transition: color .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease, transform .15s ease;
   }
 
-  .ai-step:hover {
+  .ai-step-btn:hover {
     border-color: rgba(96,165,250,.5);
     color: var(--text);
+    transform: translateY(-1px);
   }
 
-  .ai-arrow {
-    color: var(--accent);
-    font-family:'DM Mono',monospace;
-    font-size:.78rem;
-    opacity:.7;
+  .ai-step-btn.active {
+    color:#fff;
+    background: linear-gradient(120deg, var(--blue), var(--accent));
+    border-color: rgba(96,165,250,.55);
+    box-shadow: 0 0 14px rgba(37,99,235,.3);
+  }
+
+  body.light-mode .ai-step-btn.active { color:#fff; }
+
+  .ai-connector {
+    width:14px;
+    height:1px;
+    background: linear-gradient(90deg, rgba(96,165,250,.5), rgba(14,165,233,.3));
+    flex-shrink:0;
+  }
+
+  .ai-step-panel {
+    border-left:2px solid var(--accent);
+    background: rgba(14,165,233,.05);
+    border-radius: 0 10px 10px 0;
+    padding:.75rem 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .ai-step-panel p {
+    font-size:.86rem;
+    color: color-mix(in srgb, var(--muted) 70%, var(--text));
+    line-height:1.7;
+    animation: stepFade .2s ease both;
+  }
+
+  @keyframes stepFade {
+    from { opacity:0; transform: translateX(-4px); }
+    to   { opacity:1; transform: translateX(0); }
   }
 
   .ai-process-note {
@@ -2660,18 +2691,19 @@
     <!-- How I build with AI -->
     <div class="ai-process">
       <div class="ai-process-label">// how I build with AI</div>
-      <div class="ai-steps">
-        <span class="ai-step">Requirements</span>
-        <span class="ai-arrow" aria-hidden="true">→</span>
-        <span class="ai-step">AI-assisted analysis</span>
-        <span class="ai-arrow" aria-hidden="true">→</span>
-        <span class="ai-step">Build</span>
-        <span class="ai-arrow" aria-hidden="true">→</span>
-        <span class="ai-step">Test</span>
-        <span class="ai-arrow" aria-hidden="true">→</span>
-        <span class="ai-step">Human review</span>
-        <span class="ai-arrow" aria-hidden="true">→</span>
-        <span class="ai-step">Deploy</span>
+      <div class="ai-stepper" role="tablist" aria-label="How I build with AI — stages">
+        <button type="button" class="ai-step-btn active" role="tab" id="aistep-0" aria-selected="true" aria-controls="aiStepPanel" tabindex="0">PLAN</button>
+        <span class="ai-connector" aria-hidden="true"></span>
+        <button type="button" class="ai-step-btn" role="tab" id="aistep-1" aria-selected="false" aria-controls="aiStepPanel" tabindex="-1">BUILD</button>
+        <span class="ai-connector" aria-hidden="true"></span>
+        <button type="button" class="ai-step-btn" role="tab" id="aistep-2" aria-selected="false" aria-controls="aiStepPanel" tabindex="-1">REVIEW</button>
+        <span class="ai-connector" aria-hidden="true"></span>
+        <button type="button" class="ai-step-btn" role="tab" id="aistep-3" aria-selected="false" aria-controls="aiStepPanel" tabindex="-1">TEST</button>
+        <span class="ai-connector" aria-hidden="true"></span>
+        <button type="button" class="ai-step-btn" role="tab" id="aistep-4" aria-selected="false" aria-controls="aiStepPanel" tabindex="-1">SHIP</button>
+      </div>
+      <div class="ai-step-panel" id="aiStepPanel" role="tabpanel" aria-labelledby="aistep-0" aria-live="polite">
+        <p id="aiStepDesc">Requirements first. I map the problem to data, workflows, and access rules, and use AI to pressure-test the architecture before writing code.</p>
       </div>
       <p class="ai-process-note">Example: <strong>AI-Assisted IT Ticket Automation</strong> <span class="ai-process-status">in development</span> — each change moves through this loop, with human review before anything ships.</p>
     </div>
@@ -2854,6 +2886,53 @@ if (copyEmailBtn) {
     }, 1800);
   });
 }
+
+// ── How I Build with AI stepper ──
+(function setupStepper() {
+  const stepBtns = [...document.querySelectorAll('.ai-step-btn')];
+  const stepPanel = document.getElementById('aiStepPanel');
+  const stepDesc = document.getElementById('aiStepDesc');
+  if (!stepBtns.length || !stepDesc) return;
+
+  const STEP_COPY = [
+    'Requirements first. I map the problem to data, workflows, and access rules, and use AI to pressure-test the architecture before writing code.',
+    'AI-assisted implementation in Cursor and Claude Code — the tools accelerate, I stay at the wheel.',
+    'Human review on everything AI touches: logic, data paths, and access control get read before they\u2019re trusted.',
+    'Behavior, edge cases, and permissions are tested against the requirements before release.',
+    'Controlled deployment to Render or Vercel, with documentation so the next change is easier than this one.'
+  ];
+
+  function selectStep(i, focus) {
+    stepBtns.forEach((b, j) => {
+      const on = i === j;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-selected', String(on));
+      b.tabIndex = on ? 0 : -1;
+    });
+    stepPanel.setAttribute('aria-labelledby', stepBtns[i].id);
+    stepDesc.textContent = STEP_COPY[i];
+    // retrigger the fade-in
+    stepDesc.style.animation = 'none';
+    void stepDesc.offsetWidth;
+    stepDesc.style.animation = '';
+    if (focus) stepBtns[i].focus();
+  }
+
+  stepBtns.forEach((btn, i) => {
+    btn.addEventListener('click', () => selectStep(i, false));
+    btn.addEventListener('keydown', (e) => {
+      let next = null;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (i + 1) % stepBtns.length;
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = (i - 1 + stepBtns.length) % stepBtns.length;
+      else if (e.key === 'Home') next = 0;
+      else if (e.key === 'End') next = stepBtns.length - 1;
+      if (next !== null) {
+        e.preventDefault();
+        selectStep(next, true);
+      }
+    });
+  });
+})();
 
 // ── Day / Night Toggle ──
 const toggle = document.getElementById('dayNightToggle');
