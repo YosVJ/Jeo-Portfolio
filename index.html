@@ -1664,6 +1664,157 @@
     gap: .4rem;
   }
 
+  /* ─── Case files ─── */
+  .case-head {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:.75rem;
+    flex-wrap:wrap;
+    margin-bottom:1.1rem;
+  }
+
+  .case-id {
+    font-family:'DM Mono',monospace;
+    font-size:.72rem;
+    letter-spacing:.14em;
+    color: var(--accent);
+    background: rgba(14,165,233,.08);
+    border:1px solid rgba(14,165,233,.22);
+    border-radius:6px;
+    padding:.2rem .6rem;
+  }
+
+  .case-status {
+    display:inline-flex;
+    align-items:center;
+    gap:.45rem;
+    font-family:'DM Mono',monospace;
+    font-size:.68rem;
+    letter-spacing:.04em;
+    border-radius:100px;
+    padding:.2rem .75rem;
+    border:1px solid transparent;
+  }
+
+  .case-dot {
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background: currentColor;
+    flex-shrink:0;
+  }
+
+  .case-dot.pulse { animation: tagPulse 2.2s ease infinite; }
+
+  .case-status.status-deployed {
+    color:#34d399;
+    background: rgba(52,211,153,.08);
+    border-color: rgba(52,211,153,.3);
+  }
+
+  .case-status.status-prototype {
+    color:#60a5fa;
+    background: rgba(96,165,250,.08);
+    border-color: rgba(96,165,250,.3);
+  }
+
+  .case-status.status-dev {
+    color:#a78bfa;
+    background: rgba(167,139,250,.08);
+    border-color: rgba(167,139,250,.3);
+  }
+
+  body.light-mode .case-status.status-deployed { color:#059669; }
+  body.light-mode .case-status.status-prototype { color:#2563eb; }
+  body.light-mode .case-status.status-dev { color:#7c3aed; }
+
+  .case-drawer {
+    margin-bottom:1.25rem;
+    border:1px solid var(--border);
+    border-radius:12px;
+    background: rgba(37,99,235,.04);
+    transition: border-color .2s ease;
+  }
+
+  .case-drawer[open] {
+    border-color: var(--border-hover);
+  }
+
+  .case-drawer summary {
+    list-style:none;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:.6rem;
+    padding:.7rem 1rem;
+    font-family:'DM Mono',monospace;
+    font-size:.72rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color: var(--blue-glow);
+    border-radius:12px;
+    transition: background .18s ease, color .18s ease;
+    user-select:none;
+    -webkit-user-select:none;
+  }
+
+  .case-drawer summary::-webkit-details-marker { display:none; }
+
+  .case-drawer summary:hover {
+    background: rgba(37,99,235,.08);
+  }
+
+  .drawer-icon {
+    display:inline-block;
+    transition: transform .2s ease;
+    font-size:.8rem;
+  }
+
+  .case-drawer[open] .drawer-icon {
+    transform: rotate(90deg);
+  }
+
+  .case-drawer[open] summary {
+    border-bottom:1px solid var(--border);
+    border-bottom-left-radius:0;
+    border-bottom-right-radius:0;
+  }
+
+  .case-body {
+    padding: 1.1rem 1.1rem 1.2rem;
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+    animation: drawerIn .22s ease both;
+  }
+
+  @keyframes drawerIn {
+    from { opacity:0; transform: translateY(-5px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
+
+  .case-field-label {
+    font-family:'DM Mono',monospace;
+    font-size:.64rem;
+    color: var(--accent);
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    margin-bottom:.3rem;
+  }
+
+  .case-field p {
+    font-size:.875rem;
+    color: color-mix(in srgb, var(--muted) 70%, var(--text));
+    line-height:1.75;
+  }
+
+  .case-field .project-stack {
+    margin-bottom:0;
+    margin-top:.15rem;
+  }
+
   /* ─── How I build with AI ─── */
   .ai-process {
     margin-top: 1.75rem;
@@ -2367,94 +2518,142 @@
 
     <div class="projects-list">
 
-      <!-- Project 1: Spark Team Operations Tracker -->
-      <div class="project-card">
-        <div class="project-tag">
-          <span style="width:6px;height:6px;border-radius:50%;background:#0ea5e9;display:inline-block;animation:tagPulse 2s ease infinite"></span>
-          Internal System · Active Development
+      <!-- CASE_001: Spark Team Operations Tracker -->
+      <article class="project-card case-card">
+        <div class="case-head">
+          <span class="case-id">CASE_001</span>
+          <span class="case-status status-deployed"><span class="case-dot"></span>Deployed · Render</span>
         </div>
         <div class="project-title">Spark Team Operations Tracker</div>
-        <p class="project-desc">A responsive workforce operations platform supporting attendance, work logs, task monitoring, duration tracking, team visibility, and end-of-day reporting. My work includes phased planning, full-stack implementation, Supabase synchronization, role-aware access controls, mobile UX refinement, testing, and technical documentation.</p>
-        <div class="project-stack">
-          <span class="stack-pill">Next.js</span>
-          <span class="stack-pill">React</span>
-          <span class="stack-pill">TypeScript</span>
-          <span class="stack-pill">Tailwind CSS</span>
-          <span class="stack-pill">Supabase</span>
-          <span class="stack-pill">PostgreSQL</span>
-          <span class="stack-pill">Row Level Security</span>
-          <span class="stack-pill">Render</span>
-        </div>
+        <p class="project-desc">Workforce operations platform for Spark Logistics — attendance, work logs, tasks, duration tracking, and end-of-day reporting in one responsive system.</p>
+        <details class="case-drawer">
+          <summary>
+            <span class="drawer-label">open case file</span>
+            <span class="drawer-icon" aria-hidden="true">▸</span>
+          </summary>
+          <div class="case-body">
+            <div class="case-field">
+              <div class="case-field-label">problem</div>
+              <p>A distributed team needed one place for attendance, work logs, task monitoring, duration tracking, team visibility, and end-of-day reporting.</p>
+            </div>
+            <div class="case-field">
+              <div class="case-field-label">what I built</div>
+              <p>A responsive full-stack platform with Supabase-synced data, role-aware access controls, and mobile-refined UX — taken from phased planning through testing and technical documentation.</p>
+            </div>
+            <div class="case-field">
+              <div class="case-field-label">stack</div>
+              <div class="project-stack">
+                <span class="stack-pill">Next.js</span>
+                <span class="stack-pill">React</span>
+                <span class="stack-pill">TypeScript</span>
+                <span class="stack-pill">Tailwind CSS</span>
+                <span class="stack-pill">Supabase</span>
+                <span class="stack-pill">PostgreSQL</span>
+                <span class="stack-pill">Row Level Security</span>
+                <span class="stack-pill">Render</span>
+              </div>
+            </div>
+            <div class="case-field">
+              <div class="case-field-label">my role</div>
+              <p>Phased planning, full-stack implementation, Supabase synchronization, role-aware access controls, mobile UX refinement, testing, and technical documentation.</p>
+            </div>
+          </div>
+        </details>
         <div class="project-links">
           <span class="project-note">⟡ Internal Business System · Private Repository</span>
         </div>
-      </div>
+      </article>
 
-      <!-- Project 2: Spark Space -->
-      <div class="project-card">
-        <div class="project-tag">
-          <span style="width:6px;height:6px;border-radius:50%;background:#60a5fa;display:inline-block"></span>
-          Internal Portal · In Development
+      <!-- CASE_002: Synercore ERP Dashboard -->
+      <article class="project-card case-card">
+        <div class="case-head">
+          <span class="case-id">CASE_002</span>
+          <span class="case-status status-prototype"><span class="case-dot"></span>Prototype</span>
         </div>
-        <div class="project-title">Spark Space</div>
-        <p class="project-desc">A centralized business portal concept for internal applications, workflow tools, CRM and tracking systems, prototypes, and future reusable business modules. The project uses a modular structure intended to support an expanding application ecosystem.</p>
-        <div class="project-stack">
-          <span class="stack-pill">Next.js</span>
-          <span class="stack-pill">React</span>
-          <span class="stack-pill">Tailwind CSS</span>
-          <span class="stack-pill">Responsive UI</span>
-          <span class="stack-pill">Portal Architecture</span>
-          <span class="stack-pill">GitHub</span>
-        </div>
-        <div class="project-links">
-          <span class="project-note">⟡ Internal Portal · Private Repository</span>
-        </div>
-      </div>
-
-      <!-- Project 3: Synercore -->
-      <div class="project-card">
-        <div class="project-tag">
-          <span style="width:6px;height:6px;border-radius:50%;background:#34d399;display:inline-block;animation:tagPulse 2s ease infinite"></span>
-          Live &amp; Deployed
-        </div>
-        <div class="project-title">Synercore ERP-Style Web System</div>
-        <p class="project-desc">A multi-company internal dashboard designed for workflow tracking, requests, approvals, operational visibility, and company-based access. The system applies my IT operations experience to practical business workflow design and web application development.</p>
-        <div class="project-stack">
-          <span class="stack-pill">React</span>
-          <span class="stack-pill">Vite</span>
-          <span class="stack-pill">JavaScript</span>
-          <span class="stack-pill">Supabase</span>
-          <span class="stack-pill">PostgreSQL</span>
-          <span class="stack-pill">Authentication</span>
-          <span class="stack-pill">Vercel</span>
-        </div>
+        <div class="project-title">Synercore ERP Dashboard</div>
+        <p class="project-desc">Multi-company internal dashboard for workflow tracking, requests, approvals, and operational visibility — ERP thinking applied to the web.</p>
+        <details class="case-drawer">
+          <summary>
+            <span class="drawer-label">open case file</span>
+            <span class="drawer-icon" aria-hidden="true">▸</span>
+          </summary>
+          <div class="case-body">
+            <div class="case-field">
+              <div class="case-field-label">problem</div>
+              <p>Multiple companies needed shared visibility over workflows, requests, and approvals — with access scoped per company.</p>
+            </div>
+            <div class="case-field">
+              <div class="case-field-label">what I built</div>
+              <p>An ERP-style web dashboard prototype with authentication and company-based access, applying hands-on IT operations experience to practical business workflow design.</p>
+            </div>
+            <div class="case-field">
+              <div class="case-field-label">stack</div>
+              <div class="project-stack">
+                <span class="stack-pill">React</span>
+                <span class="stack-pill">Vite</span>
+                <span class="stack-pill">JavaScript</span>
+                <span class="stack-pill">Supabase</span>
+                <span class="stack-pill">PostgreSQL</span>
+                <span class="stack-pill">Authentication</span>
+                <span class="stack-pill">Vercel</span>
+              </div>
+            </div>
+            <div class="case-field">
+              <div class="case-field-label">my role</div>
+              <p>End-to-end: requirements from IT operations experience, system design, implementation, and deployment of the prototype.</p>
+            </div>
+          </div>
+        </details>
         <div class="project-links">
           <a href="https://synercore.vercel.app" target="_blank" rel="noopener noreferrer" class="project-link">Visit Live Site →</a>
           <a href="https://github.com/YosVJ/web-database-ui" target="_blank" rel="noopener noreferrer" class="project-link secondary">View Source Code →</a>
         </div>
-      </div>
+      </article>
 
-      <!-- Project 4: AI-Assisted IT Ticket Automation -->
-      <div class="project-card">
-        <div class="project-tag">
-          <span style="width:6px;height:6px;border-radius:50%;background:#a78bfa;display:inline-block"></span>
-          AI Automation · Active Development
+      <!-- CASE_003: AI-Assisted IT Ticket Automation -->
+      <article class="project-card case-card">
+        <div class="case-head">
+          <span class="case-id">CASE_003</span>
+          <span class="case-status status-dev"><span class="case-dot pulse"></span>In development</span>
         </div>
         <div class="project-title">AI-Assisted IT Ticket Automation</div>
-        <p class="project-desc">A Node.js and TypeScript service that analyzes IT requests and produces structured summaries, sentiment, urgency, category, missing-information checks, reply drafts, and internal notes. It applies AI-assisted processing to practical service desk workflows while retaining review and escalation controls.</p>
-        <div class="project-stack">
-          <span class="stack-pill">Node.js</span>
-          <span class="stack-pill">TypeScript</span>
-          <span class="stack-pill">Express</span>
-          <span class="stack-pill">REST API</span>
-          <span class="stack-pill">JSON</span>
-          <span class="stack-pill">AI Classification</span>
-          <span class="stack-pill">ITSM</span>
-        </div>
+        <p class="project-desc">Node.js + TypeScript service that reads IT requests and drafts the tedious parts — summaries, urgency, category, and reply drafts — with humans keeping the final say.</p>
+        <details class="case-drawer">
+          <summary>
+            <span class="drawer-label">open case file</span>
+            <span class="drawer-icon" aria-hidden="true">▸</span>
+          </summary>
+          <div class="case-body">
+            <div class="case-field">
+              <div class="case-field-label">problem</div>
+              <p>Service-desk requests take manual triage: summarizing, judging urgency, categorizing, and spotting missing information before anyone can act.</p>
+            </div>
+            <div class="case-field">
+              <div class="case-field-label">what I built</div>
+              <p>An API service that analyzes IT requests and produces structured summaries, sentiment, urgency, category, missing-information checks, reply drafts, and internal notes — with review and escalation controls retained.</p>
+            </div>
+            <div class="case-field">
+              <div class="case-field-label">stack</div>
+              <div class="project-stack">
+                <span class="stack-pill">Node.js</span>
+                <span class="stack-pill">TypeScript</span>
+                <span class="stack-pill">Express</span>
+                <span class="stack-pill">REST API</span>
+                <span class="stack-pill">JSON</span>
+                <span class="stack-pill">AI Classification</span>
+                <span class="stack-pill">ITSM</span>
+              </div>
+            </div>
+            <div class="case-field">
+              <div class="case-field-label">my role</div>
+              <p>Design and implementation of the service and its AI-assisted processing pipeline, including the review and escalation flow.</p>
+            </div>
+          </div>
+        </details>
         <div class="project-links">
           <span class="project-note">⟡ In Active Development · Not Production-Complete</span>
         </div>
-      </div>
+      </article>
 
     </div><!-- /projects-list -->
 
