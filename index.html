@@ -1130,6 +1130,16 @@
 
   body.light-mode .hero-sub { color: var(--blue); }
 
+  .hero-lede {
+    font-family:'Syne',sans-serif;
+    font-size:1.08rem;
+    font-weight:700;
+    letter-spacing:-.01em;
+    color: var(--text);
+    margin-bottom:.6rem;
+    animation: fadeSlideUp .55s .24s ease both;
+  }
+
   .hero-desc {
     max-width:540px;
     color: color-mix(in srgb, var(--muted) 70%, var(--text));
@@ -1837,6 +1847,13 @@
     line-height:1.8;
   }
 
+  .contact-hook {
+    display:block;
+    color: var(--text);
+    font-weight:500;
+    margin-bottom:.5rem;
+  }
+
   .contact-actions {
     display:flex;
     justify-content:center;
@@ -2202,10 +2219,11 @@
     </div>
   </div>
 
+  <p class="hero-lede">Building practical software with AI-powered workflows.</p>
   <p class="hero-desc">
-    I build practical business systems at the intersection of full-stack development, AI-assisted engineering,
-    workflow automation, and IT operations. In my current contract role with Spark Logistics, I contribute to
-    responsive tools for workforce tracking, operational reporting, team visibility, and process improvement.
+    I pair full-stack engineering with AI tooling to build business systems that do real work.
+    Right now that's workforce tracking, operational reporting, and team-visibility tools for
+    Spark Logistics — AI in the loop, a human at the wheel.
   </p>
 
   <div class="hero-actions">
@@ -2237,10 +2255,10 @@
             <div class="about-profile-role">AI &amp; Programming Specialist · Full-Stack Developer</div>
           </div>
         </div>
-        <p>I am an <strong>AI &amp; Programming Specialist</strong> based in General Trias, Cavite, working remotely on business applications and operational systems. My current contract work with <strong>Spark Logistics</strong> combines product planning, full-stack development, testing, technical documentation, and deployment support.</p>
-        <p>I build responsive systems using <strong>Next.js, React, TypeScript, Tailwind CSS, Supabase, and PostgreSQL</strong>. My applied work includes authentication, role-aware access, Row Level Security, database synchronization, mobile-responsive interfaces, and structured operational workflows.</p>
-        <p>My background in <strong>Microsoft 365 administration, NOAH ERP support, Zoho ServiceDesk, SharePoint</strong>, user-access management, troubleshooting, and documentation helps me design software around actual business processes and operational requirements.</p>
-        <p>I use <strong>ChatGPT, Claude Code, Cursor, Gemini, Graphify, and n8n</strong> to support planning, implementation, debugging, architecture analysis, documentation, and workflow automation while retaining human review and controlled deployment.</p>
+        <p>I like building the systems behind the business — the trackers, portals, and internal tools that keep an operation running. I'm an <strong>AI &amp; Programming Specialist</strong> based in General Trias, Cavite, working remotely with <strong>Spark Logistics</strong> across product planning, full-stack development, testing, technical documentation, and deployment support.</p>
+        <p>My daily stack is <strong>Next.js, React, TypeScript, Tailwind CSS, Supabase, and PostgreSQL</strong> — applied to authentication, role-aware access, Row Level Security, database synchronization, mobile-responsive interfaces, and structured operational workflows.</p>
+        <p>I've also run the systems my software has to live with: <strong>Microsoft 365 administration, NOAH ERP support, Zoho ServiceDesk, SharePoint</strong>, user-access management, troubleshooting, and documentation. That's why I design around actual business processes, not idealized ones.</p>
+        <p><strong>ChatGPT, Claude Code, Cursor, Gemini, Graphify, and n8n</strong> are in my toolbox for planning, implementation, debugging, architecture analysis, documentation, and workflow automation — always with human review before anything ships.</p>
       </div>
 
       <div class="about-card">
@@ -2344,7 +2362,7 @@
 <section id="projects">
   <div class="section-wrap reveal">
     <div class="section-label">03 — projects</div>
-    <div class="section-title">What I've Built</div>
+    <div class="section-title">Case Files</div>
     <div class="section-divider"></div>
 
     <div class="projects-list">
@@ -2553,7 +2571,7 @@
     <div class="section-divider"></div>
     <div class="goal-card">
       <div class="goal-title">Deepening AI-Assisted Development &amp; Business Systems Engineering</div>
-      <p class="goal-text">I am focused on strengthening full-stack architecture, AI-assisted workflow design, secure data access, system integration, and maintainable operational applications. My goal is to build reliable tools that reduce manual work, improve visibility, and support real business processes.</p>
+      <p class="goal-text">I'm deepening full-stack architecture, AI-assisted workflow design, secure data access, and system integration — aiming at reliable tools that cut manual work, improve visibility, and support real business processes.</p>
       <ul class="goal-list">
         <li>Strengthen full-stack architecture using Next.js, TypeScript, Supabase, and PostgreSQL</li>
         <li>Improve authentication, role-based access control, Row Level Security, and auditability</li>
@@ -2570,7 +2588,7 @@
   <div class="contact-wrap reveal">
     <div class="section-label">06 — contact</div>
     <div class="section-title">Let's Connect</div>
-    <p class="contact-desc">Open to AI-assisted development, full-stack web development, IT systems, workflow automation, and internal business application opportunities. Available for remote contract, project-based, and long-term roles.</p>
+    <p class="contact-desc"><strong class="contact-hook">Have something worth building? Let's turn a useful idea into working software.</strong> I'm open to AI-assisted development, full-stack web development, IT systems, and workflow automation work — remote contract, project-based, or long-term.</p>
     <div class="contact-actions">
       <a href="mailto:jelonelvitao@gmail.com?subject=R%C3%A9sum%C3%A9%20Request%20%E2%80%93%20Jeo%20Vitao&amp;body=Hi%20Jeo%2C%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20request%20a%20copy%20of%20your%20r%C3%A9sum%C3%A9.%0D%0A%0D%0AName%3A%0D%0ACompany%3A%0D%0ARole%3A%0D%0A%0D%0AThank%20you%21" class="btn-resume">⬡ Request Résumé</a>
       <a href="mailto:jelonelvitao@gmail.com" class="btn-primary" style="display:inline-block">Send Me a Message</a>
@@ -2582,7 +2600,7 @@
   </div>
 </section>
 
-<footer>Built by Jeo Vitao &nbsp;·&nbsp; AI &amp; Programming Specialist &nbsp;·&nbsp; Full-Stack Developer</footer>
+<footer>// built by Jeo Vitao &nbsp;·&nbsp; AI-assisted, human-reviewed &nbsp;·&nbsp; AI &amp; Programming Specialist · Full-Stack Developer</footer>
 
 </div><!-- /content-shell -->
 
