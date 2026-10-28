@@ -2468,11 +2468,57 @@
     #contact  { scroll-margin-top: 92px; }
   }
 
+  /* ─── Micro-interactions (150–250ms) ─── */
+  a, button, summary, input[type="checkbox"] + .toggle-track {
+    transition-duration: .2s;
+  }
+
+  :is(a, button, summary, input):focus-visible {
+    outline: 2px solid var(--blue-glow);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  .btn-primary:active,
+  .btn-outline:active,
+  .btn-resume:active,
+  .cmdk-hint:active,
+  .ai-step-btn:active,
+  .copy-email-btn:active {
+    transform: translateY(0) scale(.97);
+    transition-duration: .15s;
+  }
+
+  .skill-pill {
+    transition: color .2s ease, border-color .2s ease, background .2s ease, transform .15s ease;
+  }
+
+  .skill-pill:hover {
+    transform: translateY(-1px);
+  }
+
+  .side-icon {
+    transition: transform .18s ease, color .18s ease;
+  }
+
+  .side-link:hover .side-icon {
+    transform: translateX(2px);
+  }
+
+  .stack-pill {
+    transition: color .2s ease, border-color .2s ease, transform .15s ease;
+  }
+
+  .stack-pill:hover {
+    transform: translateY(-1px);
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration:.01ms !important;
       transition-duration:.01ms !important;
     }
+    html { scroll-behavior: auto; }
   }
 </style>
 </head>
