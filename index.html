@@ -1212,11 +1212,19 @@
     border-color: rgba(147,197,253,.7);
   }
 
+  .hero-chips {
+    display:flex;
+    align-items:center;
+    gap:.65rem;
+    flex-wrap:wrap;
+    margin-top:1.5rem;
+    animation: fadeSlideUp .55s .44s ease both;
+  }
+
   .status-chip {
     display:inline-flex;
     align-items:center;
     gap:.55rem;
-    margin-top:1.5rem;
     padding:.32rem .9rem;
     border-radius:100px;
     border:1px solid rgba(14,165,233,.26);
@@ -1226,8 +1234,197 @@
     color: var(--text-dim);
     letter-spacing:.02em;
     width: fit-content;
-    animation: fadeSlideUp .55s .44s ease both;
   }
+
+  .cmdk-hint {
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+    padding:.32rem .9rem;
+    border-radius:100px;
+    border:1px solid var(--border);
+    background: rgba(37,99,235,.05);
+    font-family:'DM Mono',monospace;
+    font-size:.72rem;
+    color: var(--muted);
+    letter-spacing:.02em;
+    cursor:pointer;
+    transition: color .2s ease, border-color .2s ease, background .2s ease, transform .15s ease;
+  }
+
+  .cmdk-hint kbd {
+    font-family:'DM Mono',monospace;
+    font-size:.66rem;
+    color: var(--blue-glow);
+    background: rgba(96,165,250,.12);
+    border:1px solid rgba(96,165,250,.25);
+    border-radius:5px;
+    padding:.08rem .4rem;
+  }
+
+  .cmdk-hint:hover {
+    color: var(--text);
+    border-color: var(--border-hover);
+    background: rgba(37,99,235,.1);
+    transform: translateY(-1px);
+  }
+
+  .cmdk-backdrop {
+    position:fixed;
+    inset:0;
+    z-index:190;
+    background: rgba(5,7,13,.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    animation: cmdkFade .18s ease both;
+  }
+
+  body.light-mode .cmdk-backdrop { background: rgba(15,23,42,.3); }
+
+  .cmdk {
+    position:fixed;
+    left:50%;
+    top:16vh;
+    transform: translateX(-50%);
+    width:min(540px, 92vw);
+    z-index:200;
+    border-radius:16px;
+    background: var(--card);
+    border:1px solid var(--border-hover);
+    box-shadow:
+      0 0 0 1px rgba(96,165,250,.12),
+      0 0 40px rgba(37,99,235,.22),
+      0 24px 60px rgba(0,0,0,.4);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    overflow:hidden;
+    animation: cmdkPop .18s ease both;
+  }
+
+  @keyframes cmdkFade {
+    from { opacity:0; }
+    to   { opacity:1; }
+  }
+
+  @keyframes cmdkPop {
+    from { opacity:0; transform: translateX(-50%) translateY(-8px) scale(.98); }
+    to   { opacity:1; transform: translateX(-50%) translateY(0) scale(1); }
+  }
+
+  .cmdk-input-row {
+    display:flex;
+    align-items:center;
+    gap:.7rem;
+    padding:.9rem 1rem;
+    border-bottom:1px solid var(--border);
+  }
+
+  .cmdk-prompt {
+    font-family:'DM Mono',monospace;
+    font-size:.82rem;
+    color: var(--accent);
+    flex-shrink:0;
+  }
+
+  .cmdk input {
+    flex:1;
+    min-width:0;
+    background:transparent;
+    border:none;
+    outline:none;
+    color: var(--text);
+    font-family:'DM Mono',monospace;
+    font-size:.9rem;
+    letter-spacing:.01em;
+  }
+
+  .cmdk input::placeholder { color: var(--muted); opacity:.8; }
+
+  .cmdk-kbd,
+  .cmdk-foot kbd {
+    font-family:'DM Mono',monospace;
+    font-size:.62rem;
+    color: var(--muted);
+    background: rgba(255,255,255,.04);
+    border:1px solid var(--border);
+    border-radius:5px;
+    padding:.1rem .4rem;
+    flex-shrink:0;
+  }
+
+  body.light-mode .cmdk-kbd,
+  body.light-mode .cmdk-foot kbd { background: rgba(15,23,42,.05); }
+
+  .cmdk-list {
+    list-style:none;
+    max-height:300px;
+    overflow-y:auto;
+    padding:.45rem;
+  }
+
+  .cmdk-item {
+    display:flex;
+    align-items:center;
+    gap:.75rem;
+    padding:.6rem .75rem;
+    border-radius:10px;
+    cursor:pointer;
+    color: var(--text-dim);
+    border-left:2px solid transparent;
+    transition: background .15s ease, color .15s ease, border-color .15s ease;
+  }
+
+  .cmdk-item .cmdk-icon {
+    width:22px;
+    display:grid;
+    place-items:center;
+    font-size:.85rem;
+    color: var(--muted);
+    flex-shrink:0;
+  }
+
+  .cmdk-item .cmdk-label {
+    flex:1;
+    font-size:.875rem;
+  }
+
+  .cmdk-item .cmdk-tag {
+    font-family:'DM Mono',monospace;
+    font-size:.6rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color: var(--muted);
+  }
+
+  .cmdk-item.selected {
+    background: rgba(37,99,235,.14);
+    color: var(--text);
+    border-left-color: var(--accent);
+  }
+
+  .cmdk-item.selected .cmdk-icon { color: var(--blue-glow); }
+
+  .cmdk-empty {
+    padding:1rem .75rem;
+    font-family:'DM Mono',monospace;
+    font-size:.78rem;
+    color: var(--muted);
+    text-align:center;
+  }
+
+  .cmdk-foot {
+    display:flex;
+    justify-content:center;
+    gap:1.25rem;
+    padding:.55rem .9rem;
+    border-top:1px solid var(--border);
+    font-family:'DM Mono',monospace;
+    font-size:.64rem;
+    color: var(--muted);
+    letter-spacing:.03em;
+  }
+
+  .cmdk-foot span { display:inline-flex; align-items:center; gap:.3rem; }
 
   .status-chip-label {
     color: var(--accent);
@@ -2414,10 +2611,15 @@
     <a href="#contact"  class="btn-outline">Get in Touch</a>
   </div>
 
-  <div class="status-chip" title="Current side project">
-    <span class="status-dot"></span>
-    <span class="status-chip-label">currently building</span>
-    AI-Assisted IT Ticket Automation
+  <div class="hero-chips">
+    <div class="status-chip" title="Current side project">
+      <span class="status-dot"></span>
+      <span class="status-chip-label">currently building</span>
+      AI-Assisted IT Ticket Automation
+    </div>
+    <button type="button" class="cmdk-hint" id="cmdkHint" aria-label="Open command palette">
+      <kbd id="cmdkHintKey">⌘K</kbd> command palette
+    </button>
   </div>
 </section>
 
@@ -2835,6 +3037,24 @@
 
 </div><!-- /content-shell -->
 
+<!-- ── Command Palette ── -->
+<div class="cmdk-backdrop" id="cmdkBackdrop" hidden></div>
+<div class="cmdk" id="cmdk" role="dialog" aria-modal="true" aria-label="Command palette" hidden>
+  <div class="cmdk-input-row">
+    <span class="cmdk-prompt" aria-hidden="true">&gt;_</span>
+    <input id="cmdkInput" type="text" placeholder="Jump to a section or run a command…"
+           role="combobox" aria-expanded="true" aria-controls="cmdkList" aria-activedescendant=""
+           autocomplete="off" autocapitalize="off" spellcheck="false"/>
+    <kbd class="cmdk-kbd">esc</kbd>
+  </div>
+  <ul class="cmdk-list" id="cmdkList" role="listbox" aria-label="Commands"></ul>
+  <div class="cmdk-foot">
+    <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+    <span><kbd>↵</kbd> run</span>
+    <span><kbd>esc</kbd> close</span>
+  </div>
+</div>
+
 <script>
 if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
@@ -2859,24 +3079,29 @@ const spyObs = new IntersectionObserver((entries) => {
 spySections.forEach(s => spyObs.observe(s));
 
 // ── Copy email to clipboard ──
+const CONTACT_EMAIL = 'jelonelvitao@gmail.com';
+
+async function copyEmailToClipboard() {
+  try {
+    await navigator.clipboard.writeText(CONTACT_EMAIL);
+  } catch (err) {
+    const ta = document.createElement('textarea');
+    ta.value = CONTACT_EMAIL;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    ta.remove();
+  }
+}
+
 const copyEmailBtn = document.getElementById('copyEmailBtn');
 if (copyEmailBtn) {
-  const EMAIL = 'jelonelvitao@gmail.com';
   let copyResetTimer;
   copyEmailBtn.addEventListener('click', async () => {
-    try {
-      await navigator.clipboard.writeText(EMAIL);
-    } catch (err) {
-      const ta = document.createElement('textarea');
-      ta.value = EMAIL;
-      ta.setAttribute('readonly', '');
-      ta.style.position = 'fixed';
-      ta.style.opacity = '0';
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      ta.remove();
-    }
+    await copyEmailToClipboard();
     copyEmailBtn.classList.add('copied');
     copyEmailBtn.textContent = '✓ copied';
     clearTimeout(copyResetTimer);
@@ -2886,6 +3111,142 @@ if (copyEmailBtn) {
     }, 1800);
   });
 }
+
+// ── Command palette (Ctrl/Cmd+K) ──
+(function setupCmdk() {
+  const backdrop = document.getElementById('cmdkBackdrop');
+  const dialog = document.getElementById('cmdk');
+  const input = document.getElementById('cmdkInput');
+  const list = document.getElementById('cmdkList');
+  const hint = document.getElementById('cmdkHint');
+  const hintKey = document.getElementById('cmdkHintKey');
+  if (!dialog || !input || !list) return;
+
+  const isMac = /Mac|iPhone|iPad|iPod/.test(navigator.platform);
+  if (hintKey && !isMac) hintKey.textContent = 'Ctrl K';
+
+  const resumeLink = document.querySelector('.btn-resume');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  const COMMANDS = [
+    { icon: '⌂', label: 'Home',                tag: 'section', hash: '#top',        keywords: 'home top hero start' },
+    { icon: '⌘', label: 'About',               tag: 'section', hash: '#about',      keywords: 'about who bio' },
+    { icon: '◈', label: 'Experience',          tag: 'section', hash: '#experience', keywords: 'experience work roles jobs' },
+    { icon: '▣', label: 'Case Files',          tag: 'section', hash: '#projects',   keywords: 'projects case files built work' },
+    { icon: '✦', label: 'Skills',              tag: 'section', hash: '#skills',     keywords: 'skills stack tech' },
+    { icon: '◎', label: 'Goal',                tag: 'section', hash: '#goal',       keywords: 'goal building toward' },
+    { icon: '✉', label: 'Contact',             tag: 'section', hash: '#contact',    keywords: 'contact connect reach' },
+    { icon: '⬡', label: 'Request Résumé',      tag: 'action',  action: 'resume',    keywords: 'resume cv request email hire' },
+    { icon: '⧉', label: 'Copy email address',  tag: 'action',  action: 'copy',      keywords: 'copy email clipboard address' }
+  ];
+
+  let visible = [];
+  let selected = 0;
+  let lastFocus = null;
+  let open = false;
+
+  function render(query) {
+    const q = query.trim().toLowerCase();
+    visible = COMMANDS.filter(c => !q || c.label.toLowerCase().includes(q) || c.keywords.includes(q));
+    selected = 0;
+    list.innerHTML = '';
+    if (!visible.length) {
+      const li = document.createElement('li');
+      li.className = 'cmdk-empty';
+      li.textContent = 'no matches — try "skills" or "résumé"';
+      list.appendChild(li);
+      input.setAttribute('aria-activedescendant', '');
+      return;
+    }
+    visible.forEach((c, i) => {
+      const li = document.createElement('li');
+      li.className = 'cmdk-item' + (i === selected ? ' selected' : '');
+      li.id = 'cmdk-item-' + i;
+      li.setAttribute('role', 'option');
+      li.setAttribute('aria-selected', String(i === selected));
+      li.innerHTML = `<span class="cmdk-icon" aria-hidden="true">${c.icon}</span><span class="cmdk-label">${c.label}</span><span class="cmdk-tag">${c.tag}</span>`;
+      li.addEventListener('mouseenter', () => select(i));
+      li.addEventListener('click', () => run(i));
+      list.appendChild(li);
+    });
+    select(0);
+  }
+
+  function select(i) {
+    selected = i;
+    [...list.children].forEach((li, j) => {
+      if (!li.classList.contains('cmdk-item')) return;
+      li.classList.toggle('selected', j === i);
+      li.setAttribute('aria-selected', String(j === i));
+    });
+    const el = list.children[i];
+    if (el) {
+      input.setAttribute('aria-activedescendant', el.id);
+      el.scrollIntoView({ block: 'nearest' });
+    }
+  }
+
+  function openPalette() {
+    lastFocus = document.activeElement;
+    backdrop.hidden = false;
+    dialog.hidden = false;
+    open = true;
+    input.value = '';
+    render('');
+    input.focus();
+  }
+
+  function closePalette() {
+    backdrop.hidden = true;
+    dialog.hidden = true;
+    open = false;
+    if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+  }
+
+  function run(i) {
+    const cmd = visible[i];
+    if (!cmd) return;
+    if (cmd.hash) {
+      closePalette();
+      const target = document.querySelector(cmd.hash);
+      if (target) {
+        target.scrollIntoView({ behavior: prefersReduced.matches ? 'auto' : 'smooth', block: 'start' });
+        if (typeof setActiveLink === 'function') setActiveLink(cmd.hash);
+      }
+    } else if (cmd.action === 'resume') {
+      closePalette();
+      if (resumeLink) window.location.href = resumeLink.getAttribute('href');
+    } else if (cmd.action === 'copy') {
+      copyEmailToClipboard().then(() => {
+        const li = list.children[i];
+        if (li) li.querySelector('.cmdk-tag').textContent = '✓ copied';
+        setTimeout(closePalette, 700);
+      });
+    }
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      open ? closePalette() : openPalette();
+      return;
+    }
+    if (!open) return;
+    if (e.key === 'Escape') { e.preventDefault(); closePalette(); }
+  });
+
+  input.addEventListener('input', () => render(input.value));
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Tab') { e.preventDefault(); return; }
+    if (!visible.length) return;
+    if (e.key === 'ArrowDown') { e.preventDefault(); select((selected + 1) % visible.length); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); select((selected - 1 + visible.length) % visible.length); }
+    else if (e.key === 'Enter') { e.preventDefault(); run(selected); }
+  });
+
+  backdrop.addEventListener('click', closePalette);
+  if (hint) hint.addEventListener('click', openPalette);
+})();
 
 // ── How I Build with AI stepper ──
 (function setupStepper() {
