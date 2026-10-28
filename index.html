@@ -5,6 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=0.7, minimum-scale=0.5, maximum-scale=5, user-scalable=yes, viewport-fit=cover"/>
 <title>Jeo Vitao — AI &amp; Programming Specialist | Full-Stack Developer</title>
 <meta name="description" content="Portfolio of Jeo Vitao, an AI & Programming Specialist with experience in full-stack development, IT systems, business applications, workflow automation, and AI-assisted software development."/>
+<link rel="canonical" href="https://jeo-portfolio-08.vercel.app/"/>
+<meta name="theme-color" content="#05070d"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://jeo-portfolio-08.vercel.app/"/>
+<meta property="og:site_name" content="Jeo Vitao — Portfolio"/>
+<meta property="og:title" content="Jeo Vitao — AI &amp; Programming Specialist | Full-Stack Developer"/>
+<meta property="og:description" content="Portfolio of Jeo Vitao, an AI & Programming Specialist with experience in full-stack development, IT systems, business applications, workflow automation, and AI-assisted software development."/>
+<meta property="og:image" content="https://jeo-portfolio-08.vercel.app/profile-photo.png"/>
+<meta property="og:image:alt" content="Portrait of Jeo Vitao"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Jeo Vitao — AI &amp; Programming Specialist | Full-Stack Developer"/>
+<meta name="twitter:description" content="Portfolio of Jeo Vitao, an AI & Programming Specialist focused on full-stack development, workflow automation, and AI-assisted software development."/>
+<meta name="twitter:image" content="https://jeo-portfolio-08.vercel.app/profile-photo.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
@@ -20,7 +33,8 @@
     --blue-glow: #60a5fa;
     --accent: #0ea5e9;
     --text: #eef2ff;
-    --muted: #7c8faf;
+    --muted: #8da2c7;
+    --text-dim: #b9c5e0;
     --border: rgba(59,130,246,0.13);
     --border-hover: rgba(59,130,246,0.35);
     --card: rgba(11,15,28,0.88);
@@ -39,7 +53,8 @@
     --blue-glow: #1d4ed8;
     --accent: #0284c7;
     --text: #0f172a;
-    --muted: #475569;
+    --muted: #42526b;
+    --text-dim: #2f3e56;
     --border: rgba(37,99,235,0.15);
     --border-hover: rgba(37,99,235,0.28);
     --card: rgba(255,255,255,0.62);
@@ -369,6 +384,17 @@
   .side-link.active {
     background: rgba(37,99,235,.10);
     color: var(--text);
+  }
+
+  .side-link.active {
+    background: rgba(37,99,235,.15);
+    box-shadow:
+      inset 0 0 0 1px rgba(96,165,250,.25),
+      0 0 14px rgba(37,99,235,.14);
+  }
+
+  .side-link.active .side-icon {
+    color: var(--blue-glow);
   }
 
   .side-icon {
@@ -1056,20 +1082,21 @@
   .hero h1 {
     font-family:'Syne',sans-serif;
     /* fallback for engines without container query units */
-    font-size: clamp(2.1rem, 5.6vw, 3.5rem);
-    /* FIX: 9cqi = 9% of the column width. Syne 800's longest headline word
-       ("Programming") is 10.6em wide, so it always lands at ~95% of the
-       column at every viewport - it can no longer reach the photo. */
-    font-size: clamp(2.1rem, 9cqi, 3.5rem);
+    font-size: clamp(2.05rem, 3.5vw, 2.35rem);
+    /* sized against the hero column (cqi): measured so "AI & Programming"
+       and "Full-Stack Developer" each fit on one line (max ~38px at the
+       608px column), so "AI &" can never be orphaned on its own line */
+    font-size: clamp(2.05rem, 6.1cqi, 2.35rem);
     font-weight:800;
-    line-height:1.06;
+    line-height:1.08;
     letter-spacing:-.035em;
     color:var(--text);
     margin-bottom:.5rem;
+    /* balance wrapped lines so no short fragment is left alone */
+    text-wrap: balance;
     /* safety net: if the copy is ever edited to something longer, the word
        breaks instead of colliding with the photo again */
     overflow-wrap: break-word;
-    hyphens: auto;
     animation: fadeSlideUp .55s .08s ease both;
   }
 
@@ -1083,13 +1110,13 @@
   .hero-alias,
   .hero-sub {
     font-family:'DM Mono', monospace;
-    color: var(--muted);
+    color: var(--text-dim);
     letter-spacing:.01em;
   }
 
   .hero-alias {
-    font-size:.78rem;
-    margin-top:5px;
+    font-size:.82rem;
+    margin-top:6px;
     animation: fadeSlideUp .55s .14s ease both;
   }
 
@@ -1097,12 +1124,15 @@
     font-size:.9rem;
     margin-top:1.1rem;
     margin-bottom:1.4rem;
+    color: var(--blue-glow);
     animation: fadeSlideUp .55s .2s ease both;
   }
 
+  body.light-mode .hero-sub { color: var(--blue); }
+
   .hero-desc {
     max-width:540px;
-    color: color-mix(in srgb, var(--muted) 82%, var(--text));
+    color: color-mix(in srgb, var(--muted) 70%, var(--text));
     font-size:1rem;
     line-height:1.8;
     margin-bottom:2.5rem;
@@ -1150,6 +1180,60 @@
     background: rgba(96,165,250,.07);
     transform: translateY(-2px);
     box-shadow:0 8px 20px rgba(96,165,250,.12);
+  }
+
+  .btn-resume {
+    padding:.72rem 1.65rem;
+    border-radius: 12px;
+    text-decoration:none;
+    font-weight:500;
+    font-size:.875rem;
+    letter-spacing:.01em;
+    transition:.2s ease;
+    color:#fff;
+    background: linear-gradient(120deg, var(--blue) 0%, var(--accent) 100%);
+    border:1px solid rgba(96,165,250,.45);
+    box-shadow: 0 0 18px rgba(37,99,235,.25);
+  }
+
+  .btn-resume:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 26px rgba(14,165,233,.45), 0 8px 24px rgba(37,99,235,.35);
+    border-color: rgba(147,197,253,.7);
+  }
+
+  .status-chip {
+    display:inline-flex;
+    align-items:center;
+    gap:.55rem;
+    margin-top:1.5rem;
+    padding:.32rem .9rem;
+    border-radius:100px;
+    border:1px solid rgba(14,165,233,.26);
+    background: rgba(14,165,233,.07);
+    font-family:'DM Mono',monospace;
+    font-size:.72rem;
+    color: var(--text-dim);
+    letter-spacing:.02em;
+    width: fit-content;
+    animation: fadeSlideUp .55s .44s ease both;
+  }
+
+  .status-chip-label {
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size:.62rem;
+    letter-spacing:.1em;
+  }
+
+  .status-dot {
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#34d399;
+    flex-shrink:0;
+    animation: tagPulse 2.4s ease infinite;
+    box-shadow:0 0 0 0 rgba(52,211,153,.5);
   }
 
   @keyframes fadeSlideUp {
@@ -1257,7 +1341,7 @@
   }
 
   .about-text {
-    color: color-mix(in srgb, var(--muted) 82%, var(--text));
+    color: color-mix(in srgb, var(--muted) 70%, var(--text));
     font-size:.975rem;
   }
 
@@ -1272,7 +1356,7 @@
   }
 
   .about-card,
-  .skill-card,
+  .skill-group,
   .project-card,
   .goal-card {
     background: var(--card);
@@ -1280,6 +1364,18 @@
     box-shadow: var(--shadow);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
+  }
+
+  /* subtle glowing border on hover, shared by all cards */
+  .about-card:hover,
+  .skill-group:hover,
+  .project-card:hover,
+  .goal-card:hover {
+    border-color: var(--border-hover);
+    box-shadow:
+      0 0 0 1px rgba(96,165,250,.16),
+      0 0 26px rgba(37,99,235,.18),
+      var(--shadow);
   }
 
   .about-card {
@@ -1355,39 +1451,21 @@
   }
 
   /* ─── Skills ─── */
-  .skills-grid {
+  .skill-groups {
     display:grid;
-    grid-template-columns: repeat(auto-fit,minmax(195px,1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap:.875rem;
   }
 
-  /* Category header spanning full grid width */
-  .skills-cat {
-    grid-column: 1 / -1;
-    font-family: 'DM Mono', monospace;
-    font-size: .64rem;
-    color: var(--accent);
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    padding: 1rem 0 .45rem;
-    border-bottom: 1px solid rgba(14,165,233,.15);
-    margin-top: .5rem;
-  }
-
-  .skills-cat:first-child {
-    margin-top: 0;
-    padding-top: 0;
-  }
-
-  .skill-card {
+  .skill-group {
     border-radius:16px;
-    padding:1.25rem 1.25rem 1.1rem;
+    padding:1.35rem 1.4rem 1.3rem;
     transition:.22s ease;
     position:relative;
     overflow:hidden;
   }
 
-  .skill-card::before {
+  .skill-group::before {
     content:'';
     position:absolute;
     left:0;
@@ -1399,75 +1477,55 @@
     transition:opacity .2s;
   }
 
-  .skill-card:hover {
-    border-color: var(--border-hover);
+  .skill-group:hover {
     transform: translateY(-3px);
   }
 
-  .skill-card:hover::before {
+  .skill-group:hover::before {
     opacity:1;
   }
 
-  .skill-card.learning {
-    border-color: rgba(14,165,233,.2);
-    background: color-mix(in srgb, var(--card) 92%, rgba(14,165,233,.08));
-  }
-
-  .skill-name {
-    font-family:'Syne',sans-serif;
-    font-size:.975rem;
-    font-weight:700;
-    color:var(--text);
-    margin-bottom:.3rem;
-  }
-
-  .skill-desc {
-    font-size:.775rem;
-    color: var(--muted);
-    margin-bottom:.875rem;
-    line-height:1.5;
-  }
-
-  .skill-bar {
-    height:3px;
-    background: rgba(255,255,255,.05);
-    border-radius:3px;
-    overflow:hidden;
-  }
-
-  .skill-fill {
-    height:100%;
-    border-radius:3px;
-    background: linear-gradient(90deg,var(--blue),var(--accent));
-    animation: growBar 1.1s cubic-bezier(.4,0,.2,1) both;
-  }
-
-  .skill-fill.learning-bar {
-    background: linear-gradient(90deg,var(--accent), #22d3ee);
-  }
-
-  @keyframes growBar {
-    from { width:0% !important; }
-  }
-
-  .skill-badge {
-    display:inline-block;
+  .skill-group-label {
     font-family:'DM Mono',monospace;
-    font-size:.62rem;
-    padding:.18rem .55rem;
-    border-radius:4px;
-    margin-top:.6rem;
-    letter-spacing:.02em;
+    font-size:.66rem;
+    color: var(--accent);
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    margin-bottom:.9rem;
+    display:flex;
+    align-items:center;
+    gap:.5rem;
   }
 
-  .badge-solid {
+  .skill-badges {
+    display:flex;
+    flex-wrap:wrap;
+    gap:.5rem;
+  }
+
+  .skill-pill {
+    font-family:'DM Mono',monospace;
+    font-size:.74rem;
+    background: rgba(37,99,235,.08);
+    border:1px solid rgba(59,130,246,.2);
+    border-radius:8px;
+    padding:.28rem .72rem;
+    color: var(--text-dim);
+    letter-spacing:.01em;
+    transition:.2s ease;
+  }
+
+  .skill-pill:hover {
+    border-color: rgba(96,165,250,.5);
     background: rgba(37,99,235,.15);
-    color:#93c5fd;
+    color: var(--text);
   }
 
-  .badge-learning {
-    background: rgba(14,165,233,.12);
-    color:#38bdf8;
+  .skill-pill.practicing {
+    border-style: dashed;
+    border-color: rgba(14,165,233,.4);
+    background: rgba(14,165,233,.06);
+    color: var(--accent);
   }
 
   /* ─── Projects ─── */
@@ -1527,7 +1585,7 @@
   }
 
   .project-desc {
-    color: color-mix(in srgb, var(--muted) 82%, var(--text));
+    color: color-mix(in srgb, var(--muted) 70%, var(--text));
     font-size:.925rem;
     line-height:1.8;
     margin-bottom:1.5rem;
@@ -1596,6 +1654,103 @@
     gap: .4rem;
   }
 
+  /* ─── How I build with AI ─── */
+  .ai-process {
+    margin-top: 1.75rem;
+    border-radius: 20px;
+    padding: 1.5rem 2rem 1.4rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    position: relative;
+    overflow: hidden;
+    transition:.25s ease;
+  }
+
+  .ai-process::before {
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:1.5px;
+    background: linear-gradient(90deg,var(--accent) 0%, var(--blue) 50%, transparent 100%);
+    opacity:.8;
+  }
+
+  .ai-process:hover {
+    border-color: var(--border-hover);
+    box-shadow:
+      0 0 0 1px rgba(96,165,250,.16),
+      0 0 26px rgba(37,99,235,.18),
+      var(--shadow);
+  }
+
+  .ai-process-label {
+    font-family:'DM Mono',monospace;
+    font-size:.7rem;
+    color: var(--accent);
+    letter-spacing:.12em;
+    text-transform: uppercase;
+    margin-bottom: .9rem;
+  }
+
+  .ai-steps {
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:.5rem .55rem;
+    margin-bottom: 1rem;
+  }
+
+  .ai-step {
+    font-family:'DM Mono',monospace;
+    font-size:.74rem;
+    color: var(--text-dim);
+    background: rgba(37,99,235,.08);
+    border:1px solid rgba(59,130,246,.2);
+    border-radius:100px;
+    padding:.28rem .8rem;
+    letter-spacing:.01em;
+    transition:.2s ease;
+  }
+
+  .ai-step:hover {
+    border-color: rgba(96,165,250,.5);
+    color: var(--text);
+  }
+
+  .ai-arrow {
+    color: var(--accent);
+    font-family:'DM Mono',monospace;
+    font-size:.78rem;
+    opacity:.7;
+  }
+
+  .ai-process-note {
+    font-size:.85rem;
+    color: color-mix(in srgb, var(--muted) 70%, var(--text));
+    line-height:1.7;
+  }
+
+  .ai-process-note strong {
+    color: var(--text);
+    font-weight:500;
+  }
+
+  .ai-process-status {
+    font-family:'DM Mono',monospace;
+    font-size:.66rem;
+    color: var(--accent);
+    border:1px dashed rgba(14,165,233,.4);
+    border-radius:100px;
+    padding:.1rem .55rem;
+    margin:0 .15rem;
+    white-space:nowrap;
+  }
+
   /* ─── Goal ─── */
   .goal-card {
     border-radius: 20px;
@@ -1626,7 +1781,7 @@
   }
 
   .goal-text {
-    color: color-mix(in srgb, var(--muted) 82%, var(--text));
+    color: color-mix(in srgb, var(--muted) 70%, var(--text));
     font-size:.925rem;
     margin-bottom:1.4rem;
     line-height:1.8;
@@ -1644,7 +1799,7 @@
     align-items:flex-start;
     gap:.65rem;
     font-size:.9rem;
-    color: color-mix(in srgb, var(--muted) 82%, var(--text));
+    color: color-mix(in srgb, var(--muted) 70%, var(--text));
     padding:.45rem .65rem;
     border-radius:7px;
     border:1px solid transparent;
@@ -1675,11 +1830,71 @@
   }
 
   .contact-desc {
-    color:var(--muted);
+    color: var(--text-dim);
     margin:.5rem auto 2.25rem;
     max-width:460px;
     font-size:.925rem;
     line-height:1.8;
+  }
+
+  .contact-actions {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:.875rem;
+    flex-wrap:wrap;
+  }
+
+  .email-row {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:.65rem;
+    margin-top:1.6rem;
+    flex-wrap:wrap;
+  }
+
+  .email-link {
+    font-family:'DM Mono',monospace;
+    font-size:.875rem;
+    color: var(--blue-glow);
+    text-decoration:none;
+    letter-spacing:.01em;
+    border-bottom:1px dashed rgba(96,165,250,.4);
+    padding-bottom:1px;
+    transition:.2s ease;
+  }
+
+  .email-link:hover {
+    color:#93c5fd;
+    border-bottom-color:#93c5fd;
+  }
+
+  body.light-mode .email-link { color: var(--blue); }
+
+  .copy-email-btn {
+    font-family:'DM Mono',monospace;
+    font-size:.72rem;
+    color: var(--text-dim);
+    background: rgba(37,99,235,.08);
+    border:1px solid rgba(59,130,246,.25);
+    border-radius:8px;
+    padding:.3rem .7rem;
+    cursor:pointer;
+    letter-spacing:.02em;
+    transition:.2s ease;
+  }
+
+  .copy-email-btn:hover {
+    border-color: rgba(96,165,250,.5);
+    color: var(--text);
+    background: rgba(37,99,235,.14);
+  }
+
+  .copy-email-btn.copied {
+    color:#34d399;
+    border-color: rgba(52,211,153,.45);
+    background: rgba(52,211,153,.08);
   }
 
   footer {
@@ -1779,11 +1994,13 @@
     }
 
     .about-grid { grid-template-columns: 1fr; }
+    .skill-groups { grid-template-columns: 1fr; }
     /* caps at 1.9rem, so 360px+ phones render exactly as before;
        only sub-350px screens step down, where it was previously tight */
     .hero h1 { font-size: clamp(1.45rem, 8.6cqi, 1.9rem); line-height: 1.08; }
     .hero-desc { font-size: .95rem; }
     .project-card { padding: 1.4rem; }
+    .ai-process { padding: 1.3rem 1.4rem 1.2rem; }
     .section-wrap { padding: 2rem 0 4rem; }
 
     .aurora, .aurora-2, .orb-3, .orb-4 { display: none; }
@@ -1976,7 +2193,7 @@
   <div class="hero-layout">
     <div class="hero-left">
       <div class="hero-tag"><span class="tag-dot"></span>Open to opportunities · Currently with Spark Logistics</div>
-      <h1>Jeo Vitao<br/><span>AI &amp; Programming Specialist<br/>Full-Stack Developer</span></h1>
+      <h1>Jeo Vitao<br/><span>AI&nbsp;&amp;&nbsp;Programming Specialist<br/>Full-Stack Developer</span></h1>
       <p class="hero-alias">Also known as Jelonel Vitao</p>
       <p class="hero-sub">// AI Automation · IT Systems &amp; Operations</p>
     </div>
@@ -1993,7 +2210,14 @@
 
   <div class="hero-actions">
     <a href="#projects" class="btn-primary">View My Work</a>
+    <a href="mailto:jelonelvitao@gmail.com?subject=R%C3%A9sum%C3%A9%20Request%20%E2%80%93%20Jeo%20Vitao&amp;body=Hi%20Jeo%2C%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20request%20a%20copy%20of%20your%20r%C3%A9sum%C3%A9.%0D%0A%0D%0AName%3A%0D%0ACompany%3A%0D%0ARole%3A%0D%0A%0D%0AThank%20you%21" class="btn-resume">⬡ Request Résumé</a>
     <a href="#contact"  class="btn-outline">Get in Touch</a>
+  </div>
+
+  <div class="status-chip" title="Current side project">
+    <span class="status-dot"></span>
+    <span class="status-chip-label">currently building</span>
+    AI-Assisted IT Ticket Automation
   </div>
 </section>
 
@@ -2215,6 +2439,25 @@
       </div>
 
     </div><!-- /projects-list -->
+
+    <!-- How I build with AI -->
+    <div class="ai-process">
+      <div class="ai-process-label">// how I build with AI</div>
+      <div class="ai-steps">
+        <span class="ai-step">Requirements</span>
+        <span class="ai-arrow" aria-hidden="true">→</span>
+        <span class="ai-step">AI-assisted analysis</span>
+        <span class="ai-arrow" aria-hidden="true">→</span>
+        <span class="ai-step">Build</span>
+        <span class="ai-arrow" aria-hidden="true">→</span>
+        <span class="ai-step">Test</span>
+        <span class="ai-arrow" aria-hidden="true">→</span>
+        <span class="ai-step">Human review</span>
+        <span class="ai-arrow" aria-hidden="true">→</span>
+        <span class="ai-step">Deploy</span>
+      </div>
+      <p class="ai-process-note">Example: <strong>AI-Assisted IT Ticket Automation</strong> <span class="ai-process-status">in development</span> — each change moves through this loop, with human review before anything ships.</p>
+    </div>
   </div>
 </section>
 
@@ -2225,203 +2468,80 @@
     <div class="section-title">Technical Stack</div>
     <div class="section-divider"></div>
 
-    <div class="skills-grid">
-      <div class="skills-cat">⟡ Full-Stack Development</div>
+    <div class="skill-groups">
 
-      <div class="skill-card">
-        <div class="skill-name">Next.js</div>
-        <div class="skill-desc">App routing, server components, and full-stack application structure</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:68%"></div></div>
-        <span class="skill-badge badge-solid">Applied Project Experience</span>
-      </div>
-      <div class="skill-card">
-        <div class="skill-name">React</div>
-        <div class="skill-desc">UI composition, state management, and reusable components</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:68%"></div></div>
-        <span class="skill-badge badge-solid">Applied Project Experience</span>
-      </div>
-      <div class="skill-card">
-        <div class="skill-name">TypeScript</div>
-        <div class="skill-desc">Typed application logic, interfaces, and safer refactoring</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:68%"></div></div>
-        <span class="skill-badge badge-solid">Applied Project Experience</span>
-      </div>
-      <div class="skill-card">
-        <div class="skill-name">JavaScript</div>
-        <div class="skill-desc">Application logic, async workflows, and API integration</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:68%"></div></div>
-        <span class="skill-badge badge-solid">Applied Project Experience</span>
-      </div>
-      <div class="skill-card">
-        <div class="skill-name">HTML &amp; CSS</div>
-        <div class="skill-desc">Semantic structure and interface styling</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:68%"></div></div>
-        <span class="skill-badge badge-solid">Applied Project Experience</span>
-      </div>
-      <div class="skill-card">
-        <div class="skill-name">Tailwind CSS</div>
-        <div class="skill-desc">Utility-first styling for consistent, responsive UI</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:68%"></div></div>
-        <span class="skill-badge badge-solid">Applied Project Experience</span>
-      </div>
-      <div class="skill-card">
-        <div class="skill-name">Responsive UI Development</div>
-        <div class="skill-desc">Mobile-first layouts and cross-device UX refinement</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:68%"></div></div>
-        <span class="skill-badge badge-solid">Applied Project Experience</span>
-      </div>
-      <div class="skills-cat">⟡ Backend, Data &amp; Security</div>
-
-      <div class="skill-card">
-        <div class="skill-name">Supabase</div>
-        <div class="skill-desc">Auth, database, storage, and realtime sync in business apps</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:68%"></div></div>
-        <span class="skill-badge badge-solid">Applied Project Experience</span>
-      </div>
-      <div class="skill-card">
-        <div class="skill-name">PostgreSQL</div>
-        <div class="skill-desc">Relational schema design and query work for app data</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:68%"></div></div>
-        <span class="skill-badge badge-solid">Applied Project Experience</span>
-      </div>
-      <div class="skill-card">
-        <div class="skill-name">Authentication &amp; Role-Aware Access</div>
-        <div class="skill-desc">Login flows, sessions, and permission-aware features</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:68%"></div></div>
-        <span class="skill-badge badge-solid">Applied Project Experience</span>
-      </div>
-      <div class="skill-card">
-        <div class="skill-name">Row Level Security</div>
-        <div class="skill-desc">Policy-based data access control in PostgreSQL</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:68%"></div></div>
-        <span class="skill-badge badge-solid">Applied Project Experience</span>
-      </div>
-      <div class="skill-card">
-        <div class="skill-name">REST API Integration</div>
-        <div class="skill-desc">Endpoints, HTTP methods, and JSON data exchange</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:62%"></div></div>
-        <span class="skill-badge badge-solid">Current Hands-On Use</span>
-      </div>
-      <div class="skill-card">
-        <div class="skill-name">Data Synchronization</div>
-        <div class="skill-desc">Keeping app state and database records consistent</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:68%"></div></div>
-        <span class="skill-badge badge-solid">Applied Project Experience</span>
-      </div>
-      <div class="skill-card">
-        <div class="skill-name">Node.js &amp; Express</div>
-        <div class="skill-desc">Server-side services and route handling for automation APIs</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:62%"></div></div>
-        <span class="skill-badge badge-solid">Current Hands-On Use</span>
-      </div>
-      <div class="skills-cat">⟡ AI &amp; Automation</div>
-
-      <div class="skill-card">
-        <div class="skill-name">AI-Assisted Software Development</div>
-        <div class="skill-desc">Planning, implementation, and debugging with AI tooling plus human review</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:62%"></div></div>
-        <span class="skill-badge badge-solid">Current Hands-On Use</span>
-      </div>
-      <div class="skill-card">
-        <div class="skill-name">ChatGPT</div>
-        <div class="skill-desc">Analysis, drafting, and problem-solving support in development work</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:62%"></div></div>
-        <span class="skill-badge badge-solid">Current Hands-On Use</span>
-      </div>
-      <div class="skill-card">
-        <div class="skill-name">Claude Code</div>
-        <div class="skill-desc">AI-assisted coding, refactoring, and documentation workflows</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:62%"></div></div>
-        <span class="skill-badge badge-solid">Current Hands-On Use</span>
-      </div>
-      <div class="skill-card">
-        <div class="skill-name">Cursor</div>
-        <div class="skill-desc">AI-integrated editor workflows for implementation and review</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:62%"></div></div>
-        <span class="skill-badge badge-solid">Current Hands-On Use</span>
-      </div>
-      <div class="skill-card">
-        <div class="skill-name">Gemini</div>
-        <div class="skill-desc">Research, review, and multi-model development support</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:62%"></div></div>
-        <span class="skill-badge badge-solid">Current Hands-On Use</span>
-      </div>
-      <div class="skill-card">
-        <div class="skill-name">Prompt Engineering</div>
-        <div class="skill-desc">Structured prompting for reliable, reviewable outputs</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:62%"></div></div>
-        <span class="skill-badge badge-solid">Current Hands-On Use</span>
-      </div>
-      <div class="skill-card learning">
-        <div class="skill-name">n8n Workflow Automation</div>
-        <div class="skill-desc">Triggers, conditional routing, and workflow branching</div>
-        <div class="skill-bar"><div class="skill-fill learning-bar" style="width:40%"></div></div>
-        <span class="skill-badge badge-learning">Practicing</span>
-      </div>
-      <div class="skill-card">
-        <div class="skill-name">Graphify Architecture Analysis</div>
-        <div class="skill-desc">Visualizing and reviewing system and code structure</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:62%"></div></div>
-        <span class="skill-badge badge-solid">Current Hands-On Use</span>
-      </div>
-      <div class="skills-cat">⟡ IT Systems &amp; Deployment</div>
-
-      <div class="skill-card">
-        <div class="skill-name">Microsoft 365</div>
-        <div class="skill-desc">User administration, licensing, and access control</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div>
-        <span class="skill-badge badge-solid">Operational Experience</span>
-      </div>
-      <div class="skill-card">
-        <div class="skill-name">SharePoint</div>
-        <div class="skill-desc">Document collaboration and file access management</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div>
-        <span class="skill-badge badge-solid">Operational Experience</span>
-      </div>
-      <div class="skill-card">
-        <div class="skill-name">NOAH ERP</div>
-        <div class="skill-desc">ERP support, data accuracy, and departmental workflows</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div>
-        <span class="skill-badge badge-solid">Operational Experience</span>
-      </div>
-      <div class="skill-card">
-        <div class="skill-name">Zoho ServiceDesk</div>
-        <div class="skill-desc">Ticketing workflows and IT service management</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div>
-        <span class="skill-badge badge-solid">Operational Experience</span>
-      </div>
-      <div class="skill-card">
-        <div class="skill-name">Hardware &amp; Software Troubleshooting</div>
-        <div class="skill-desc">Diagnosing and resolving user and system issues</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div>
-        <span class="skill-badge badge-solid">Operational Experience</span>
-      </div>
-      <div class="skill-card">
-        <div class="skill-name">User Access Management</div>
-        <div class="skill-desc">Accounts, permissions, and identity/MFA support</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div>
-        <span class="skill-badge badge-solid">Operational Experience</span>
-      </div>
-      <div class="skill-card">
-        <div class="skill-name">Git &amp; GitHub</div>
-        <div class="skill-desc">Version control, branching, and collaboration workflows</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:62%"></div></div>
-        <span class="skill-badge badge-solid">Current Hands-On Use</span>
-      </div>
-      <div class="skill-card">
-        <div class="skill-name">Render &amp; Vercel</div>
-        <div class="skill-desc">Application deployment, hosting, and delivery</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:62%"></div></div>
-        <span class="skill-badge badge-solid">Current Hands-On Use</span>
-      </div>
-      <div class="skill-card">
-        <div class="skill-name">Technical Documentation</div>
-        <div class="skill-desc">SOPs, system notes, and maintainable project docs</div>
-        <div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div>
-        <span class="skill-badge badge-solid">Operational Experience</span>
+      <div class="skill-group">
+        <div class="skill-group-label">⟡ Frontend</div>
+        <div class="skill-badges">
+          <span class="skill-pill">Next.js</span>
+          <span class="skill-pill">React</span>
+          <span class="skill-pill">TypeScript</span>
+          <span class="skill-pill">JavaScript</span>
+          <span class="skill-pill">HTML &amp; CSS</span>
+          <span class="skill-pill">Tailwind CSS</span>
+          <span class="skill-pill">Responsive &amp; Mobile-First UI</span>
+        </div>
       </div>
 
-    </div><!-- /skills-grid -->
+      <div class="skill-group">
+        <div class="skill-group-label">⟡ Backend &amp; APIs</div>
+        <div class="skill-badges">
+          <span class="skill-pill">Node.js</span>
+          <span class="skill-pill">Express</span>
+          <span class="skill-pill">REST API Integration</span>
+          <span class="skill-pill">Supabase</span>
+          <span class="skill-pill">Data Synchronization</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-label">⟡ Data &amp; Security</div>
+        <div class="skill-badges">
+          <span class="skill-pill">PostgreSQL</span>
+          <span class="skill-pill">Row Level Security</span>
+          <span class="skill-pill">Authentication</span>
+          <span class="skill-pill">Role-Aware Access</span>
+          <span class="skill-pill">User Access &amp; MFA Support</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-label">⟡ AI &amp; Automation</div>
+        <div class="skill-badges">
+          <span class="skill-pill">AI-Assisted Development</span>
+          <span class="skill-pill">ChatGPT</span>
+          <span class="skill-pill">Claude Code</span>
+          <span class="skill-pill">Cursor</span>
+          <span class="skill-pill">Gemini</span>
+          <span class="skill-pill">Prompt Engineering</span>
+          <span class="skill-pill">Graphify Architecture Analysis</span>
+          <span class="skill-pill practicing">n8n Workflow Automation · practicing</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-label">⟡ Cloud, Web &amp; Domains</div>
+        <div class="skill-badges">
+          <span class="skill-pill">Vercel</span>
+          <span class="skill-pill">Render</span>
+          <span class="skill-pill">Git &amp; GitHub</span>
+          <span class="skill-pill">Website &amp; Domain Creation and Management</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-label">⟡ Enterprise IT</div>
+        <div class="skill-badges">
+          <span class="skill-pill">Microsoft 365</span>
+          <span class="skill-pill">SharePoint</span>
+          <span class="skill-pill">NOAH ERP</span>
+          <span class="skill-pill">Zoho ServiceDesk</span>
+          <span class="skill-pill">Hardware &amp; Software Troubleshooting</span>
+          <span class="skill-pill">Technical Documentation</span>
+        </div>
+      </div>
+
+    </div><!-- /skill-groups -->
   </div>
 </section>
 
@@ -2451,7 +2571,14 @@
     <div class="section-label">06 — contact</div>
     <div class="section-title">Let's Connect</div>
     <p class="contact-desc">Open to AI-assisted development, full-stack web development, IT systems, workflow automation, and internal business application opportunities. Available for remote contract, project-based, and long-term roles.</p>
-    <a href="mailto:jelonelvitao@gmail.com" class="btn-primary" style="display:inline-block">Send Me a Message</a>
+    <div class="contact-actions">
+      <a href="mailto:jelonelvitao@gmail.com?subject=R%C3%A9sum%C3%A9%20Request%20%E2%80%93%20Jeo%20Vitao&amp;body=Hi%20Jeo%2C%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20request%20a%20copy%20of%20your%20r%C3%A9sum%C3%A9.%0D%0A%0D%0AName%3A%0D%0ACompany%3A%0D%0ARole%3A%0D%0A%0D%0AThank%20you%21" class="btn-resume">⬡ Request Résumé</a>
+      <a href="mailto:jelonelvitao@gmail.com" class="btn-primary" style="display:inline-block">Send Me a Message</a>
+    </div>
+    <div class="email-row">
+      <a href="mailto:jelonelvitao@gmail.com" class="email-link">jelonelvitao@gmail.com</a>
+      <button type="button" class="copy-email-btn" id="copyEmailBtn" aria-label="Copy email address to clipboard">⧉ copy</button>
+    </div>
   </div>
 </section>
 
@@ -2465,12 +2592,51 @@ if ('scrollRestoration' in history) {
 }
 window.addEventListener('load', () => { window.scrollTo(0, 0); });
 
-// ── Sidebar active link ──
+// ── Sidebar active link (click + scroll spy) ──
 const navLinks = document.querySelectorAll('.side-link');
-navLinks.forEach(link => link.addEventListener('click', () => {
-  navLinks.forEach(l => l.classList.remove('active'));
-  link.classList.add('active');
-}));
+function setActiveLink(hash) {
+  navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === hash));
+}
+navLinks.forEach(link => link.addEventListener('click', () => setActiveLink(link.getAttribute('href'))));
+
+const spySections = ['about','experience','projects','skills','goal','contact']
+  .map(id => document.getElementById(id))
+  .filter(Boolean);
+const spyObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) setActiveLink('#' + e.target.id);
+  });
+}, { rootMargin: '-35% 0px -55% 0px', threshold: 0 });
+spySections.forEach(s => spyObs.observe(s));
+
+// ── Copy email to clipboard ──
+const copyEmailBtn = document.getElementById('copyEmailBtn');
+if (copyEmailBtn) {
+  const EMAIL = 'jelonelvitao@gmail.com';
+  let copyResetTimer;
+  copyEmailBtn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+    } catch (err) {
+      const ta = document.createElement('textarea');
+      ta.value = EMAIL;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+    }
+    copyEmailBtn.classList.add('copied');
+    copyEmailBtn.textContent = '✓ copied';
+    clearTimeout(copyResetTimer);
+    copyResetTimer = setTimeout(() => {
+      copyEmailBtn.classList.remove('copied');
+      copyEmailBtn.textContent = '⧉ copy';
+    }, 1800);
+  });
+}
 
 // ── Day / Night Toggle ──
 const toggle = document.getElementById('dayNightToggle');
