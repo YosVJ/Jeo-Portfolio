@@ -42,6 +42,14 @@
     --glass-strong: rgba(17, 24, 39, 0.58);
     --shadow: 0 20px 40px rgba(0,0,0,0.28);
     --mobile-fit-scale: .84;
+    --space-2xs: 0.25rem;
+    --space-xs: 0.5rem;
+    --space-sm: 0.75rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --nav-h: 4.25rem;
   }
 
   body.light-mode {
@@ -63,15 +71,23 @@
     --shadow: 0 18px 36px rgba(37,99,235,0.08);
   }
 
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+    overflow-x: clip;
+    max-width: 100%;
+    scrollbar-width: none;
+  }
+
+  html::-webkit-scrollbar { width: 0; height: 0; }
 
   body {
     background: var(--bg);
     color: var(--text);
     font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
+    font-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
     line-height: 1.75;
-    overflow-x: hidden;
+    overflow-x: clip;
+    max-width: 100%;
     transition: background .5s ease, color .35s ease;
   }
 
@@ -1082,21 +1098,16 @@
   .hero h1 {
     font-family:'Syne',sans-serif;
     /* fallback for engines without container query units */
-    font-size: clamp(2.05rem, 3.5vw, 2.35rem);
-    /* sized against the hero column (cqi): measured so "AI & Programming"
-       and "Full-Stack Developer" each fit on one line (max ~38px at the
-       608px column), so "AI &" can never be orphaned on its own line */
-    font-size: clamp(2.05rem, 6.1cqi, 2.35rem);
+    font-size: clamp(1.55rem, 0.85rem + 2.2vw, 2.35rem);
     font-weight:800;
     line-height:1.08;
     letter-spacing:-.035em;
     color:var(--text);
     margin-bottom:.5rem;
-    /* balance wrapped lines so no short fragment is left alone */
-    text-wrap: balance;
-    /* safety net: if the copy is ever edited to something longer, the word
-       breaks instead of colliding with the photo again */
-    overflow-wrap: break-word;
+    text-wrap: wrap;
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
     animation: fadeSlideUp .55s .08s ease both;
   }
 
@@ -1495,7 +1506,10 @@
 
   .section-title {
     font-family:'Syne',sans-serif;
-    font-size: clamp(1.5rem,4vw,2.1rem);
+    font-size: clamp(1.45rem, 1.05rem + 1.5vw, 2.1rem);
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
     font-weight:700;
     letter-spacing:-.025em;
     color: var(--text);
@@ -2722,6 +2736,275 @@
     }
     html { scroll-behavior: auto; }
   }
+
+  /* ─── Responsive system ─── */
+  h1, h2, h3, p, li, .project-title, .section-title, .hero-tag, .status-chip, .hero-lede, .hero-desc {
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
+  }
+
+  img, svg { max-width: 100%; }
+  .hero-image-wrap img { width: 100%; height: 100%; max-width: none; object-fit: cover; }
+  #bg-canvas { max-width: 100%; }
+
+  .hero-layout > *,
+  .about-grid > *,
+  .skill-groups > *,
+  .projects-list > *,
+  .skill-group,
+  .project-card,
+  .case-card,
+  .contact-wrap,
+  .ai-process,
+  .ai-stepper,
+  .nav-tools,
+  .hero-left {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .cmdk {
+    width: min(540px, 92vw);
+    max-width: 92vw;
+    max-height: calc(100dvh - var(--space-xl) - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    display: flex;
+    flex-direction: column;
+    top: max(12vh, env(safe-area-inset-top));
+    overflow: hidden;
+  }
+
+  .cmdk-list {
+    overflow-y: auto;
+    min-height: 0;
+    flex: 1 1 auto;
+    max-height: none;
+  }
+
+  .cmdk-foot { flex-wrap: wrap; }
+
+  .touch-progress {
+    top: env(safe-area-inset-top, 0px);
+    z-index: 400;
+  }
+
+  .nav-tools {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-left: auto;
+  }
+
+  @media (min-width: 981px) {
+    nav.top-nav {
+      display: block;
+      position: static;
+      height: 0;
+      padding: 0;
+      margin: 0;
+      border: 0;
+      background: none;
+      pointer-events: none;
+      overflow: visible;
+    }
+    nav.top-nav .nav-logo,
+    nav.top-nav .mobile-menu-toggle { display: none; }
+    nav.top-nav .nav-tools { display: contents; }
+    nav.top-nav .utility-cluster {
+      position: fixed;
+      top: 22px;
+      right: 22px;
+      z-index: 120;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transform: none;
+      pointer-events: auto;
+    }
+  }
+
+  @media (max-width: 980px) {
+    nav.top-nav {
+      top: env(safe-area-inset-top, 0px);
+      padding: var(--space-sm) calc(var(--space-md) + env(safe-area-inset-right)) var(--space-sm) calc(var(--space-md) + env(safe-area-inset-left));
+      gap: var(--space-sm);
+      min-height: var(--nav-h);
+    }
+    body.light-mode nav.top-nav { background: rgba(248,251,255,.92); }
+    .top-nav .nav-logo {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .top-nav .utility-cluster {
+      position: static;
+      top: auto;
+      right: auto;
+      transform: none;
+      gap: var(--space-sm);
+      z-index: auto;
+    }
+    .top-nav .mobile-menu-toggle,
+    .top-nav .mobile-menu-toggle.floating {
+      position: static;
+      top: auto;
+      right: auto;
+      left: auto;
+      transform: none;
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      display: flex;
+    }
+    .top-nav .day-toggle {
+      width: 64px;
+      height: 44px;
+      min-width: 64px;
+      min-height: 44px;
+      flex-shrink: 0;
+      padding: 6px 0;
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+    }
+    .top-nav .toggle-track {
+      width: 64px;
+      height: 32px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .top-nav .toggle-knob {
+      width: 26px;
+      height: 26px;
+      top: 3px;
+      left: 3px;
+    }
+    body.light-mode .top-nav .toggle-knob { transform: translateX(32px); }
+    .top-nav .toggle-sun,
+    .top-nav .toggle-moon {
+      top: 8px;
+      font-size: 11px;
+      line-height: 1;
+    }
+    .top-nav .toggle-sun { left: 8px; }
+    .top-nav .toggle-moon { right: 8px; }
+    .top-nav .toggle-clouds::before { width: 14px; height: 6px; top: 18px; right: 8px; }
+    .top-nav .toggle-clouds::after { width: 10px; height: 5px; top: 13px; right: 14px; }
+    .top-nav .toggle-stars::before,
+    .top-nav .toggle-stars::after { box-shadow: 8px 5px #fff, 18px 2px #fff, 26px 8px #fff; }
+    .top-nav .clock-widget {
+      flex-shrink: 0;
+      width: 108px;
+      height: 44px;
+      min-width: 108px;
+      min-height: 44px;
+      padding: 4px 8px;
+      border-radius: 14px;
+    }
+    .top-nav .clock-widget[data-state="analog"],
+    .top-nav .clock-widget[data-state="ring"] {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      border-radius: 50%;
+    }
+    .hero {
+      padding-top: calc(var(--nav-h) + var(--space-xl) + env(safe-area-inset-top));
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+    }
+    section { padding-left: max(var(--space-md), env(safe-area-inset-left)); padding-right: max(var(--space-md), env(safe-area-inset-right)); }
+    body.mobile-fit .content-shell { width: 100%; max-width: 100%; transform: none; }
+  }
+
+  @media (pointer: coarse) {
+    nav.top-nav { top: calc(env(safe-area-inset-top, 0px) + 2px); }
+    .cmdk-hint { display: none; }
+  }
+
+  @media (max-width: 768px) {
+    .hero-layout {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: var(--space-lg);
+    }
+    .hero-left { text-align: center; }
+    .hero-image-wrap {
+      order: -1;
+      width: 120px;
+      height: 120px;
+      margin: 0 auto;
+    }
+    .hero-tag, .hero-chips, .hero-actions, .hero-desc { margin-left: auto; margin-right: auto; }
+    .hero-actions, .hero-chips { justify-content: center; }
+    .hero-tag, .status-chip, .cmdk-hint {
+      max-width: 100%;
+      white-space: normal;
+      flex-wrap: wrap;
+      height: auto;
+    }
+    .about-grid, .skill-groups { grid-template-columns: 1fr; }
+    #experience .projects-list,
+    #projects .projects-list { display: flex; flex-direction: column; }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .about-grid, .skill-groups { grid-template-columns: 1fr 1fr; }
+    #experience .projects-list,
+    #projects .projects-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .contact-actions { display: grid; grid-template-columns: 1fr 1fr; justify-items: center; }
+  }
+
+  @media (max-width: 767px) {
+    .ai-stepper {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+    }
+    .ai-step-btn { min-height: 44px; }
+    .ai-connector {
+      width: 2px;
+      height: 22px;
+      margin-left: 1.35rem;
+      background: linear-gradient(180deg, rgba(96,165,250,.55), rgba(14,165,233,.35));
+    }
+    .ai-connector .packet { width: 2px; height: 8px; }
+    .contact-actions { flex-direction: column; align-items: stretch; }
+  }
+
+  @media (max-width: 480px) {
+    .top-nav .clock-widget { display: none; }
+    .hero-actions, .contact-actions {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+      gap: var(--space-sm);
+    }
+    .hero-actions a, .contact-actions a {
+      width: 100%;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+    .email-row { width: 100%; }
+    .email-link { max-width: 100%; }
+  }
+
+  .hero h1 {
+    font-size: clamp(1.55rem, 0.85rem + 2.2vw, 2.35rem);
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
+  }
 </style>
 </head>
 <body>
@@ -2779,14 +3062,8 @@
 
 <nav class="top-nav">
   <a href="#top" class="nav-logo">jeo.dev</a>
-  <button class="mobile-menu-toggle floating" id="mobileMenuToggle" aria-label="Open menu">
-    <span class="burger-lines">
-      <span></span><span></span><span></span>
-    </span>
-  </button>
-</nav>
-
-<div class="utility-cluster">
+  <div class="nav-tools">
+    <div class="utility-cluster">
   <label class="day-toggle glass" title="Day / Night mode">
     <input type="checkbox" id="dayNightToggle" />
     <div class="toggle-track">
@@ -2827,7 +3104,14 @@
       <div class="ring-label" id="ringLabel">00:00</div>
     </div>
   </div>
-</div>
+    </div>
+    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open menu">
+      <span class="burger-lines">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+  </div>
+</nav>
 
 <!-- ═══════════════════════════════════════════════ CONTENT ═══ -->
 <div class="content-shell">
@@ -2837,7 +3121,7 @@
   <div class="hero-layout">
     <div class="hero-left">
       <div class="hero-tag"><span class="tag-dot"></span>Open to opportunities · Currently with Spark Logistics</div>
-      <h1>Jeo Vitao<br/><span>AI&nbsp;&amp;&nbsp;Programming Specialist<br/>Full-Stack Developer</span></h1>
+      <h1>Jeo Vitao<br/><span>AI &amp; Programming Specialist<br/>Full-Stack Developer</span></h1>
       <p class="hero-alias">Also known as Jelonel Vitao</p>
       <p class="hero-sub">// AI Automation · IT Systems &amp; Operations</p>
     </div>
@@ -4097,9 +4381,12 @@ revealEls.forEach(el => revealObs.observe(el));
 
     if (!touch || processOn) {
       packets.forEach(packet => {
-        const width = packet.el.clientWidth || 28;
+        const vertical = packet.el.clientHeight > packet.el.clientWidth;
+        const span = vertical ? (packet.el.clientHeight || 22) : (packet.el.clientWidth || 28);
         const u = ((ts / 1100) + packet.phase) % 1;
-        packet.dot.style.transform = 'translate3d(' + (u * width).toFixed(1) + 'px,0,0)';
+        const x = vertical ? 0 : u * span;
+        const y = vertical ? u * span : 0;
+        packet.dot.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0)';
         packet.dot.style.opacity = '1';
       });
       const pulse = (ts % 1400) / 1400;
