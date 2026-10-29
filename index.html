@@ -366,6 +366,21 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+    position: relative;
+  }
+
+  .nav-glide {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 44px;
+    border-radius: 3px;
+    background: linear-gradient(180deg, var(--blue-glow), var(--accent));
+    box-shadow: 0 0 10px rgba(14,165,233,.45);
+    transform: translateY(0);
+    transition: transform .22s ease, height .22s ease;
+    pointer-events: none;
   }
 
   .side-link {
@@ -1102,9 +1117,16 @@
 
   .hero h1 span {
     color:transparent;
-    background: linear-gradient(125deg,var(--blue-light) 20%, var(--accent) 80%);
+    background: linear-gradient(125deg,var(--blue-light) 20%, var(--accent) 50%, var(--blue-light) 80%);
+    background-size: 200% 100%;
     -webkit-background-clip:text;
     background-clip:text;
+    animation: roleShimmer 7s ease-in-out infinite;
+  }
+
+  @keyframes roleShimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
   }
 
   .hero-alias,
@@ -1193,13 +1215,14 @@
   }
 
   .btn-resume {
+    translate: var(--mx, 0px) var(--my, 0px);
+    transition: translate .18s ease, background .2s ease, border-color .2s ease, color .2s ease, box-shadow .2s ease;
     padding:.72rem 1.65rem;
     border-radius: 12px;
     text-decoration:none;
     font-weight:500;
     font-size:.875rem;
     letter-spacing:.01em;
-    transition:.2s ease;
     color:#fff;
     background: linear-gradient(120deg, var(--blue) 0%, var(--accent) 100%);
     border:1px solid rgba(96,165,250,.45);
@@ -1475,11 +1498,16 @@
 
   .section-label::before {
     content:'';
-    width:16px;
+    width:0;
     height:1px;
     background: var(--accent);
     display:inline-block;
     opacity:.6;
+    transition: width .4s ease;
+  }
+
+  .reveal.visible .section-label::before {
+    width:16px;
   }
 
   .section-title {
@@ -1690,6 +1718,20 @@
 
   .skill-group:hover::before {
     opacity:1;
+  }
+
+  .skill-group::after {
+    content:'';
+    position:absolute;
+    inset:0;
+    background: linear-gradient(110deg, transparent 34%, rgba(255,255,255,.16) 50%, transparent 66%);
+    transform: translateX(-130%);
+    pointer-events:none;
+  }
+
+  .skill-group:hover::after {
+    transform: translateX(130%);
+    transition: transform .55s ease;
   }
 
   .skill-group-label {
@@ -1936,6 +1978,7 @@
 
   .case-drawer[open] {
     border-color: var(--border-hover);
+    box-shadow: 0 0 0 1px rgba(56,189,248,.28), 0 10px 28px rgba(14,165,233,.08);
   }
 
   .case-drawer summary {
@@ -1988,8 +2031,8 @@
   }
 
   @keyframes drawerIn {
-    from { opacity:0; transform: translateY(-5px); }
-    to   { opacity:1; transform: translateY(0); }
+    from { opacity:0; clip-path: inset(0 0 100% 0); }
+    to   { opacity:1; clip-path: inset(0 0 0 0); }
   }
 
   .case-field-label {
@@ -2513,6 +2556,64 @@
     transform: translateY(-1px);
   }
 
+  .scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    z-index: 180;
+    pointer-events: none;
+    background: linear-gradient(90deg, var(--blue), var(--accent));
+  }
+
+  .hero-spot {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(380px circle at var(--sx, 70%) var(--sy, 30%), rgba(14,165,233,.2), transparent 62%);
+    opacity: 0;
+    transition: opacity .25s ease;
+  }
+
+  .hero.is-spot .hero-spot { opacity: 1; }
+
+  .hero-layout,
+  .hero-lede,
+  .hero-desc,
+  .hero-actions,
+  .hero-chips {
+    position: relative;
+    z-index: 1;
+  }
+
+  .reveal.visible .project-card,
+  .reveal.visible .skill-group,
+  .reveal.visible .goal-card {
+    animation: riseIn .48s ease backwards;
+  }
+
+  .reveal.visible :is(.project-card, .skill-group):nth-child(2) { animation-delay: .07s; }
+  .reveal.visible :is(.project-card, .skill-group):nth-child(3) { animation-delay: .14s; }
+  .reveal.visible :is(.project-card, .skill-group):nth-child(4) { animation-delay: .21s; }
+  .reveal.visible :is(.project-card, .skill-group):nth-child(5) { animation-delay: .28s; }
+  .reveal.visible :is(.project-card, .skill-group):nth-child(6) { animation-delay: .35s; }
+
+  @keyframes riseIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .resume-line {
+    margin-top: 1rem;
+    max-width: 640px;
+    font-family: 'DM Mono', monospace;
+    font-size: .74rem;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration:.01ms !important;
@@ -2523,6 +2624,7 @@
 </style>
 </head>
 <body>
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 <div id="bg-gradient"></div>
 <canvas id="bg-canvas"></canvas>
 <div class="grid-bg"></div>
@@ -2544,6 +2646,7 @@
       <a href="#top" class="brand-text">jeo.dev</a>
     </div>
     <ul class="side-nav">
+      <li class="nav-glide" id="navGlide" aria-hidden="true"></li>
       <li><a href="#about"      class="side-link active"><div class="side-icon">⌘</div><span class="nav-label">About</span></a></li>
       <li><a href="#experience" class="side-link"><div class="side-icon">◈</div><span class="nav-label">Experience</span></a></li>
       <li><a href="#projects"   class="side-link"><div class="side-icon">▣</div><span class="nav-label">Projects</span></a></li>
@@ -2632,6 +2735,7 @@
 
 <!-- ── HERO ── -->
 <section class="hero" id="top">
+  <div class="hero-spot" aria-hidden="true"></div>
   <div class="hero-layout">
     <div class="hero-left">
       <div class="hero-tag"><span class="tag-dot"></span>Open to opportunities · Currently with Spark Logistics</div>
@@ -3072,6 +3176,7 @@
       <a href="mailto:jelonelvitao@gmail.com?subject=R%C3%A9sum%C3%A9%20Request%20%E2%80%93%20Jeo%20Vitao&amp;body=Hi%20Jeo%2C%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20request%20a%20copy%20of%20your%20r%C3%A9sum%C3%A9.%0D%0A%0D%0AName%3A%0D%0ACompany%3A%0D%0ARole%3A%0D%0A%0D%0AThank%20you%21" class="btn-resume">⬡ Request Résumé</a>
       <a href="mailto:jelonelvitao@gmail.com" class="btn-primary" style="display:inline-block">Send Me a Message</a>
     </div>
+    <p class="resume-line">The résumé matches this page: AI &amp; Programming Specialist at Spark Logistics (June 2026–present), IT Support Specialist at SY3 Energy (July 2024–present), and Sales Development Representative at Synergies Empowerment (December 2022–March 2024). The request goes to jelonelvitao@gmail.com.</p>
     <div class="email-row">
       <a href="mailto:jelonelvitao@gmail.com" class="email-link">jelonelvitao@gmail.com</a>
       <button type="button" class="copy-email-btn" id="copyEmailBtn" aria-label="Copy email address to clipboard">⧉ copy</button>
@@ -3109,7 +3214,7 @@ window.addEventListener('load', () => { window.scrollTo(0, 0); });
 
 // ── Sidebar active link (click + scroll spy) ──
 const navLinks = document.querySelectorAll('.side-link');
-function setActiveLink(hash) {
+let setActiveLink = function (hash) {
   navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === hash));
 }
 navLinks.forEach(link => link.addEventListener('click', () => setActiveLink(link.getAttribute('href'))));
@@ -3126,6 +3231,8 @@ spySections.forEach(s => spyObs.observe(s));
 
 // ── Copy email to clipboard ──
 const CONTACT_EMAIL = 'jelonelvitao@gmail.com';
+const RESUME_MAILTO = 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent('Résumé Request – Jeo Vitao') + '&body=' + encodeURIComponent('Hi Jeo,\n\nI came across your portfolio and would like to request a copy of your résumé.\n\nName:\nCompany:\nRole:\n\nThank you!');
+document.querySelectorAll('.btn-resume').forEach(a => a.setAttribute('href', RESUME_MAILTO));
 
 async function copyEmailToClipboard() {
   try {
@@ -3261,7 +3368,7 @@ if (copyEmailBtn) {
       }
     } else if (cmd.action === 'resume') {
       closePalette();
-      if (resumeLink) window.location.href = resumeLink.getAttribute('href');
+      window.location.href = RESUME_MAILTO;
     } else if (cmd.action === 'copy') {
       copyEmailToClipboard().then(() => {
         const li = list.children[i];
@@ -3459,6 +3566,78 @@ function updateClock() {
 
 setInterval(updateClock, 1000);
 updateClock();
+
+// ── Phase 2 effects ──
+(function setupPhase2() {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const fine = window.matchMedia('(pointer: fine)');
+  const progress = document.getElementById('scrollProgress');
+  const hero = document.querySelector('.hero');
+  const glide = document.getElementById('navGlide');
+  const sideNav = document.querySelector('.desktop-sidebar .side-nav');
+
+  function moveGlide() {
+    if (!glide || !sideNav) return;
+    const active = sideNav.querySelector('.side-link.active');
+    if (!active) return;
+    const top = active.offsetTop;
+    glide.style.height = active.offsetHeight + 'px';
+    glide.style.transform = 'translateY(' + top + 'px)';
+  }
+  const originalSetActive = setActiveLink;
+  setActiveLink = function (hash) {
+    originalSetActive(hash);
+    moveGlide();
+  };
+  moveGlide();
+  window.addEventListener('resize', moveGlide);
+
+  function onScroll() {
+    if (!progress) return;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = max > 0 ? Math.min(100, (window.scrollY / max) * 100) : 0;
+    progress.style.width = pct + '%';
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  if (reduce.matches || !fine.matches) return;
+
+  if (hero) {
+    hero.addEventListener('mousemove', (e) => {
+      const rect = hero.getBoundingClientRect();
+      hero.style.setProperty('--sx', (e.clientX - rect.left) + 'px');
+      hero.style.setProperty('--sy', (e.clientY - rect.top) + 'px');
+      hero.classList.add('is-spot');
+    });
+    hero.addEventListener('mouseleave', () => hero.classList.remove('is-spot'));
+  }
+
+  document.querySelectorAll('.btn-resume').forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - (rect.left + rect.width / 2);
+      const y = e.clientY - (rect.top + rect.height / 2);
+      btn.style.setProperty('--mx', (x * 0.18) + 'px');
+      btn.style.setProperty('--my', (y * 0.22) + 'px');
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.setProperty('--mx', '0px');
+      btn.style.setProperty('--my', '0px');
+    });
+  });
+
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      if (window.innerWidth <= 980) return;
+      const rect = card.getBoundingClientRect();
+      const px = (e.clientX - rect.left) / rect.width - 0.5;
+      const py = (e.clientY - rect.top) / rect.height - 0.5;
+      card.style.transform = 'translateY(-3px) rotateX(' + (-py * 4).toFixed(2) + 'deg) rotateY(' + (px * 5).toFixed(2) + 'deg)';
+    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+  });
+})();
 
 // ── Reveal on Scroll ──
 const revealEls = document.querySelectorAll('.reveal');
