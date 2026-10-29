@@ -3846,8 +3846,8 @@ revealEls.forEach(el => revealObs.observe(el));
     label: sec.querySelector('.section-label'),
     seen: false,
     t0: 0
-  })).filter(t => t.divider);
-  titles.forEach(t => { t.divider.style.transform = 'scaleX(0)'; });
+  })).filter(t => t.label);
+  titles.forEach(t => { if (t.divider) t.divider.style.transform = 'scaleX(0)'; });
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -4023,7 +4023,7 @@ revealEls.forEach(el => revealObs.observe(el));
       if (!t.seen) return;
       const elapsed = ts - t.t0;
       const draw = Math.min(1, elapsed / 520);
-      t.divider.style.transform = 'scaleX(' + draw.toFixed(3) + ')';
+      if (t.divider) t.divider.style.transform = 'scaleX(' + draw.toFixed(3) + ')';
       if (t.label) {
         t.label.style.opacity = elapsed < 460 ? (Math.sin(elapsed / 42) > 0 ? '1' : '0.3') : '1';
       }
