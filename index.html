@@ -255,6 +255,7 @@
   }
 
   .scan-line {
+    top: 0;
     left: 0;
     right: 0;
     height: 2px;
@@ -274,10 +275,10 @@
   }
 
   @keyframes scanTravel {
-    0%   { top: -2px; opacity: 0; }
+    0%   { transform: translateY(-2px); opacity: 0; }
     5%   { opacity: 1; }
     92%  { opacity: .7; }
-    100% { top: 102vh; opacity: 0; }
+    100% { transform: translateY(102vh); opacity: 0; }
   }
 
   .rhythm-pulse {
@@ -373,6 +374,9 @@
   }
 
   .brand-text {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
     font-family: 'Syne',sans-serif;
     font-size: 1rem;
     font-weight: 700;
@@ -935,6 +939,7 @@
   .mobile-sidebar-brand {
     display: flex;
     align-items: center;
+    min-height: 44px;
     gap: 12px;
     color: var(--text);
     text-decoration: none;
@@ -943,8 +948,10 @@
   }
 
   .mobile-close {
-    width: 38px;
-    height: 38px;
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
     border-radius: 12px;
     border: 1px solid var(--border);
     background: rgba(255,255,255,0.04);
@@ -2990,7 +2997,7 @@ body.light-mode .fx-console{background:linear-gradient(180deg,#0b1224,#080d1b)}
 .fx-console-title{margin-left:.4rem;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .fx-console-replay{font:inherit;color:#60a5fa;background:none;border:1px solid rgba(59,130,246,.3);border-radius:8px;padding:.15rem .6rem;cursor:pointer}
 .fx-console-replay:hover,.fx-console-replay:focus-visible{background:rgba(37,99,235,.18);outline:none}
-.fx-console-body{padding:.4rem 1rem .45rem;font:.82rem/1.5 'DM Mono',monospace;color:#cfe0ff;min-height:11.6rem;white-space:pre-wrap;word-break:break-word}
+.fx-console-body{padding:.4rem 1rem .45rem;font:.82rem/1.5 'DM Mono',monospace;color:#cfe0ff;min-height:209px;white-space:pre-wrap;word-break:break-word}
 .fx-line{display:block;opacity:0;transform:translateY(3px);transition:opacity .25s,transform .25s}
 .fx-line.show{opacity:1;transform:none}
 .fx-k{display:inline-block;min-width:5.4em;color:#60a5fa}
@@ -3034,7 +3041,7 @@ body.light-mode .fx-console{background:linear-gradient(180deg,#0b1224,#080d1b)}
 .fx-flow.in .fx-node{opacity:1;transform:none}
 .fx-flow.in .fx-node::before{transform:scaleX(1)}
 .fx-flow.in .fx-node:not(:first-child)::after{animation:fxPacket 2.6s ease-in-out infinite;animation-delay:calc(var(--i)*.45s + 1.4s)}
-.fx-flow-cap{font:.66rem 'DM Mono',monospace;color:var(--muted);margin-top:.5rem}
+.fx-flow-cap{font:.75rem 'DM Mono',monospace;color:#d5e2f7;margin-top:1.15rem}
 /* ---- cinematic layer ---- */
 .fx-grain-wrap{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:60}
 .fx-grain{position:absolute;left:-50%;top:-50%;width:200%;height:200%;pointer-events:none;opacity:.055;will-change:transform;
@@ -3094,7 +3101,7 @@ body.fx-static .fx-reveal,body.fx-static .fx-node{opacity:1;transform:none}
   .fx-flow.in .fx-node::before{transform:scaleY(1)}
   .fx-node::after{left:calc(1.4rem - 2px);top:-1.3rem}
   .fx-flow.in .fx-node:not(:first-child)::after{animation-name:fxPacketV}
-  .fx-console-body{font-size:.74rem;min-height:17.5rem;padding:.9rem .9rem 1rem}
+  .fx-console-body{font-size:.74rem;min-height:280px;padding:.9rem .9rem 1rem}
   .fx-k{min-width:4.8em}
   .fx-badge{font-size:.7rem;max-width:100%}
   .fx-badge-item{white-space:normal;overflow:visible}
@@ -3131,20 +3138,24 @@ body.fx-static .fx-reveal,body.fx-static .fx-node{opacity:1;transform:none}
   .hero-tag .tag-dot{flex:none}
 }
 @media (max-height:800px){
+  .hero{padding-top:6.4rem}
   .fx-console{margin-top:0}
   .fx-console-bar{padding:.12rem .65rem}
-  .fx-console-body{padding:.05rem .75rem 0;min-height:0;font-size:.68rem;line-height:1.08}
+  .fx-console-body{padding:.05rem .75rem 0;min-height:114px;font-size:.68rem;line-height:1.08}
   .fx-console-foot{padding:.1rem .65rem .14rem}
   .fx-name{margin-top:.05rem;font-size:.95rem;line-height:1.15}
   .fx-name small{margin-top:0;font-size:.64rem}
 }
+@media (max-width:480px) and (max-height:800px){
+  .fx-console-body{min-height:139px}
+}
 @media (min-width:900px) and (min-height:801px) and (max-height:940px){
   .fx-console{margin-top:.15rem}
-  .fx-console-body{padding:.22rem 1rem .25rem;line-height:1.32;min-height:0}
+  .fx-console-body{padding:.22rem 1rem .25rem;line-height:1.32;min-height:182px}
   .fx-hero-rest{margin-top:1.05rem}
   .fx-name{margin-top:.2rem}
 }
-#fx-pointer{position:fixed;inset:0;z-index:3;pointer-events:none;width:100%;height:100%}
+#fx-pointer{position:fixed;inset:0;z-index:0;pointer-events:none;width:100%;height:100%}
 .fx-shell{position:relative;border-radius:16px;border:1px solid rgba(148,180,230,.22);
   background-color:rgba(11,15,28,.6);
   background-image:linear-gradient(180deg,rgba(255,255,255,.08),transparent 30%),radial-gradient(380px circle at var(--mx,50%) var(--my,30%),var(--spot,transparent),transparent 58%);
@@ -3197,11 +3208,45 @@ body.light-mode .fx-node,body.light-mode .fx-node[data-kind=agent],body.light-mo
 .fx-sound-btn[aria-pressed="true"] .fx-sound-x{display:none}
 .fx-sound-pop{display:none;position:absolute;top:calc(100% + 8px);right:0;width:148px;padding:.55rem .7rem .65rem;border-radius:12px;background:rgba(11,15,28,.94);border:1px solid rgba(125,180,255,.28);box-shadow:0 16px 40px rgba(0,0,0,.35);z-index:30}
 body.light-mode .fx-sound-btn,body.light-mode .fx-sound-pop{background:rgba(255,255,255,.92);color:#1e3a8a;border-color:rgba(37,99,235,.28)}
-.fx-sound-label{display:block;font:.66rem 'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem}
+.fx-sound-label{display:block;font:12px 'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#93c5fd;margin-bottom:.35rem}
+body.light-mode .fx-sound-label{color:#075985}
 .fx-sound-pop input{width:100%;accent-color:#2563eb}
 .fx-sound-pop.open{display:block}
 @media (max-width:390px){
-  .fx-sound-btn{width:36px;height:36px;border-radius:12px}
+  .fx-sound-btn{width:44px;height:44px;border-radius:12px}
+}
+.side-icon svg,.cmdk-icon svg,.fx-ico{display:block}
+.fx-console-replay,.copy-email-btn,.cmdk-hint,.ai-step-btn{min-height:44px}
+.fx-console-replay{display:inline-flex;align-items:center;gap:.35rem}
+.about-text p,.hero-desc,.project-desc,.goal-text,.contact-desc,.case-field p,.ai-step-panel p{max-width:68ch;line-height:1.6}
+.section-label,.skill-group-label,.project-tag,.case-field-label,.fx-node small,.ai-process-label,.stat-info label,.case-id,.case-status,.ai-process-status,.status-chip,.cmdk-hint,.cmdk-kbd,.cmdk-foot,.about-profile-role,footer{font-size:12px}
+.section-label,.skill-group-label,.project-tag,.case-field-label,.fx-node small,.ai-process-label,.stat-info label,.case-id,.case-status,.ai-process-status{color:#93c5fd}
+body.light-mode .section-label,body.light-mode .skill-group-label,body.light-mode .project-tag,body.light-mode .case-field-label,body.light-mode .fx-node small,body.light-mode .ai-process-label{color:#075985}
+.fx-flow-cap,.project-note,.fx-console-foot{font-size:12px}
+@media (max-width:768px){
+  body,.about-text,.about-text p,.hero-desc,.project-desc,.goal-text,.contact-desc,.case-field p,.ai-step-panel p,.hero-lede{font-size:16px;line-height:1.6}
+}
+body.light-mode .about-text,body.light-mode .hero-desc,body.light-mode .project-desc,body.light-mode .goal-text,body.light-mode .contact-desc,body.light-mode .case-field p,body.light-mode .ai-step-panel p{color:#1e293b}
+body.light-mode .section-label,body.light-mode .skill-group-label,body.light-mode .project-tag,body.light-mode .case-field-label,body.light-mode .ai-process-label,body.light-mode .stat-info label,body.light-mode .case-id,body.light-mode .case-status,body.light-mode .ai-process-status,body.light-mode .fx-node small,body.light-mode .about-profile-role{color:#075985}
+html.fx-motion .fx-boot-item{opacity:0;filter:blur(5px);translate:0 8px}
+html.fx-motion .fx-boot.fx-booted .fx-boot-item{opacity:1;filter:none;translate:0 0;transition:opacity .4s ease,filter .4s ease,translate .4s ease;transition-delay:calc(var(--i, 0) * 45ms)}
+html.fx-lite .fx-boot-item{opacity:0;translate:0 6px}
+html.fx-lite .fx-boot.fx-booted .fx-boot-item{opacity:1;translate:0 0;transition:opacity .28s ease,translate .28s ease;transition-delay:calc(var(--i, 0) * 28ms)}
+.fx-boot-line{position:absolute;left:0;right:0;top:0;height:2px;pointer-events:none;background:linear-gradient(90deg,transparent,#7dd3fc,transparent);opacity:0}
+html.fx-motion .fx-booted>.fx-boot-line,html.fx-lite .fx-booted>.fx-boot-line{animation:fxBootScan .4s ease 1}
+@keyframes fxBootScan{from{transform:translateY(0);opacity:1}to{transform:translateY(42px);opacity:0}}
+.fx-away{opacity:.72;transition:opacity .35s ease}
+html.fx-motion .fx-shell.fx-appeared::after,html.fx-lite .fx-shell.fx-appeared::after,html.fx-motion .goal-card.fx-shell.fx-appeared::before,html.fx-lite .goal-card.fx-shell.fx-appeared::before{opacity:.85;animation:fxEdgeSpin .8s linear 1}
+html.fx-motion .fx-booted .skill-pill,html.fx-motion .fx-booted .stack-pill{animation:fxChip .32s ease both;animation-delay:calc(var(--i, 0) * 35ms)}
+html.fx-lite .fx-booted .skill-pill,html.fx-lite .fx-booted .stack-pill{animation:fxChip .22s ease both;animation-delay:calc(var(--i, 0) * 24ms)}
+@keyframes fxChip{0%{opacity:0;translate:0 4px}35%{opacity:.35}100%{opacity:1;translate:0 0}}
+html.fx-motion img{animation:fxSharp .45s ease both}
+html.fx-lite img{animation:fxSharpLite .28s ease both}
+@keyframes fxSharp{from{filter:blur(6px);opacity:.35}to{filter:none;opacity:1}}
+@keyframes fxSharpLite{from{opacity:.4}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){
+  .fx-boot-item,.fx-away{opacity:1!important;filter:none!important;translate:none!important;animation:none!important}
+  img{animation:none!important}
 }
 .fx-scroll{position:fixed;left:0;right:0;top:0;height:2px;z-index:400;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,#2563eb,#38bdf8);pointer-events:none}
 .side-nav{position:relative}
@@ -3271,17 +3316,17 @@ section:focus-visible{outline:2px solid #38bdf8;outline-offset:6px}
 <nav class="desktop-sidebar glass" aria-label="Section navigation">
   <div>
     <div class="sidebar-brand">
-      <div class="brand-cube">◆</div>
+      <div class="brand-cube"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M8 1.5 14.2 8 8 14.5 1.8 8Z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></div>
       <a href="#top" class="brand-text">jeo.dev</a>
     </div>
     <ul class="side-nav">
       <span class="fx-nav-glide" aria-hidden="true"></span>
-      <li><a href="#about"      class="side-link active"><div class="side-icon">⌘</div><span class="nav-label">About</span></a></li>
-      <li><a href="#experience" class="side-link"><div class="side-icon">◈</div><span class="nav-label">Experience</span></a></li>
-      <li><a href="#projects"   class="side-link"><div class="side-icon">▣</div><span class="nav-label">Projects</span></a></li>
-      <li><a href="#skills"     class="side-link"><div class="side-icon">✦</div><span class="nav-label">Skills</span></a></li>
-      <li><a href="#goal"       class="side-link"><div class="side-icon">◎</div><span class="nav-label">Goal</span></a></li>
-      <li><a href="#contact"    class="side-link"><div class="side-icon">✉</div><span class="nav-label">Contact</span></a></li>
+      <li><a href="#about"      class="side-link active"><div class="side-icon"><svg viewBox="0 0 16 16" width="16" height="16"><path d="M6 3.2H4.4A1.6 1.6 0 1 1 6 4.8V6m0 0h4m-4 0v4m4-4V4.8a1.6 1.6 0 1 1 1.6-1.6H10M6 10h4m0 0v1.2A1.6 1.6 0 1 1 11.6 12.8H10M6 10v1.2A1.6 1.6 0 1 1 4.4 12.8H6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div><span class="nav-label">About</span></a></li>
+      <li><a href="#experience" class="side-link"><div class="side-icon"><svg viewBox="0 0 16 16" width="16" height="16"><path d="M8 1.8 14 8 8 14.2 2 8Z" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></div><span class="nav-label">Experience</span></a></li>
+      <li><a href="#projects"   class="side-link"><div class="side-icon"><svg viewBox="0 0 16 16" width="16" height="16"><rect x="2.2" y="2.2" width="4.6" height="4.6" rx=".6" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="9.2" y="2.2" width="4.6" height="4.6" rx=".6" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="2.2" y="9.2" width="4.6" height="4.6" rx=".6" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="9.2" y="9.2" width="4.6" height="4.6" rx=".6" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></div><span class="nav-label">Projects</span></a></li>
+      <li><a href="#skills"     class="side-link"><div class="side-icon"><svg viewBox="0 0 16 16" width="16" height="16"><path d="M8 1.6 9.2 6.2 13.8 8 9.2 9.8 8 14.4 6.8 9.8 2.2 8 6.8 6.2Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg></div><span class="nav-label">Skills</span></a></li>
+      <li><a href="#goal"       class="side-link"><div class="side-icon"><svg viewBox="0 0 16 16" width="16" height="16"><circle cx="8" cy="8" r="5.2" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="1.4" fill="currentColor"/></svg></div><span class="nav-label">Goal</span></a></li>
+      <li><a href="#contact"    class="side-link"><div class="side-icon"><svg viewBox="0 0 16 16" width="16" height="16"><rect x="2" y="3.4" width="12" height="9.2" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M2.6 4.2 8 8.4l5.4-4.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></div><span class="nav-label">Contact</span></a></li>
     </ul>
   </div>
 </nav>
@@ -3291,19 +3336,19 @@ section:focus-visible{outline:2px solid #38bdf8;outline-offset:6px}
 <aside class="mobile-sidebar" id="mobileSidebar" aria-label="Mobile navigation">
   <div class="mobile-sidebar-header">
     <a href="#top" class="mobile-sidebar-brand" id="mobileHomeLink">
-      <div class="brand-cube">◆</div>
+      <div class="brand-cube"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M8 1.5 14.2 8 8 14.5 1.8 8Z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></div>
       <span>jeo.dev</span>
     </a>
-    <button class="mobile-close" id="mobileSidebarClose" aria-label="Close menu">✕</button>
+    <button class="mobile-close" id="mobileSidebarClose" aria-label="Close menu"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3.5 3.5 12.5 12.5M12.5 3.5 3.5 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
   </div>
   <ul class="mobile-side-nav">
-    <li><a href="#top"        class="mobile-side-link mobile-nav-link"><div class="side-icon">⌂</div><span>Home</span></a></li>
-    <li><a href="#about"      class="mobile-side-link mobile-nav-link"><div class="side-icon">⌘</div><span>About</span></a></li>
-    <li><a href="#experience" class="mobile-side-link mobile-nav-link"><div class="side-icon">◈</div><span>Experience</span></a></li>
-    <li><a href="#projects"   class="mobile-side-link mobile-nav-link"><div class="side-icon">▣</div><span>Projects</span></a></li>
-    <li><a href="#skills"     class="mobile-side-link mobile-nav-link"><div class="side-icon">✦</div><span>Skills</span></a></li>
-    <li><a href="#goal"       class="mobile-side-link mobile-nav-link"><div class="side-icon">◎</div><span>Goal</span></a></li>
-    <li><a href="#contact"    class="mobile-side-link mobile-nav-link"><div class="side-icon">✉</div><span>Contact</span></a></li>
+    <li><a href="#top"        class="mobile-side-link mobile-nav-link"><div class="side-icon"><svg viewBox="0 0 16 16" width="16" height="16"><path d="M2.6 7.2 8 2.7l5.4 4.5V13.4H10V9.5H6v3.9H2.6Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></div><span>Home</span></a></li>
+    <li><a href="#about"      class="mobile-side-link mobile-nav-link"><div class="side-icon"><svg viewBox="0 0 16 16" width="16" height="16"><path d="M6 3.2H4.4A1.6 1.6 0 1 1 6 4.8V6m0 0h4m-4 0v4m4-4V4.8a1.6 1.6 0 1 1 1.6-1.6H10M6 10h4m0 0v1.2A1.6 1.6 0 1 1 11.6 12.8H10M6 10v1.2A1.6 1.6 0 1 1 4.4 12.8H6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div><span>About</span></a></li>
+    <li><a href="#experience" class="mobile-side-link mobile-nav-link"><div class="side-icon"><svg viewBox="0 0 16 16" width="16" height="16"><path d="M8 1.8 14 8 8 14.2 2 8Z" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></div><span>Experience</span></a></li>
+    <li><a href="#projects"   class="mobile-side-link mobile-nav-link"><div class="side-icon"><svg viewBox="0 0 16 16" width="16" height="16"><rect x="2.2" y="2.2" width="4.6" height="4.6" rx=".6" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="9.2" y="2.2" width="4.6" height="4.6" rx=".6" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="2.2" y="9.2" width="4.6" height="4.6" rx=".6" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="9.2" y="9.2" width="4.6" height="4.6" rx=".6" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></div><span>Projects</span></a></li>
+    <li><a href="#skills"     class="mobile-side-link mobile-nav-link"><div class="side-icon"><svg viewBox="0 0 16 16" width="16" height="16"><path d="M8 1.6 9.2 6.2 13.8 8 9.2 9.8 8 14.4 6.8 9.8 2.2 8 6.8 6.2Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg></div><span>Skills</span></a></li>
+    <li><a href="#goal"       class="mobile-side-link mobile-nav-link"><div class="side-icon"><svg viewBox="0 0 16 16" width="16" height="16"><circle cx="8" cy="8" r="5.2" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="1.4" fill="currentColor"/></svg></div><span>Goal</span></a></li>
+    <li><a href="#contact"    class="mobile-side-link mobile-nav-link"><div class="side-icon"><svg viewBox="0 0 16 16" width="16" height="16"><rect x="2" y="3.4" width="12" height="9.2" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M2.6 4.2 8 8.4l5.4-4.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></div><span>Contact</span></a></li>
   </ul>
 </aside>
 
@@ -3325,8 +3370,8 @@ section:focus-visible{outline:2px solid #38bdf8;outline-offset:6px}
     <div class="toggle-track">
       <div class="toggle-stars"></div>
       <div class="toggle-clouds"></div>
-      <div class="toggle-sun">☀</div>
-      <div class="toggle-moon">☾</div>
+      <div class="toggle-sun"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><circle cx="8" cy="8" r="2.4" fill="currentColor"/><path d="M8 1.4v1.8M8 12.8v1.8M1.4 8h1.8M12.8 8h1.8M3.2 3.2l1.3 1.3M11.5 11.5l1.3 1.3M12.8 3.2l-1.3 1.3M4.5 11.5l-1.3 1.3" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+      <div class="toggle-moon"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M9.2 2.2a5.2 5.2 0 1 0 4.6 7.6 4.2 4.2 0 0 1-4.6-7.6Z" fill="currentColor"/></svg></div>
       <div class="toggle-knob"></div>
     </div>
   </label>
@@ -3393,10 +3438,10 @@ section:focus-visible{outline:2px solid #38bdf8;outline-offset:6px}
   </div>
 
   <div class="fx-console" id="fxConsole" role="region" aria-label="Sample agent run">
-    <div class="fx-console-bar"><i></i><i></i><i></i><span class="fx-console-title">agent://jeo · sample run</span><button type="button" class="fx-console-replay" id="fxReplay" aria-label="Replay the sample agent run">↻ replay</button></div>
+    <div class="fx-console-bar"><i></i><i></i><i></i><span class="fx-console-title">agent://jeo · sample run</span><button type="button" class="fx-console-replay" id="fxReplay" aria-label="Replay the sample agent run"><svg class="fx-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M13.2 8A5.2 5.2 0 1 1 8 2.8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M8 1.2v2.4H5.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg> replay</button></div>
     <div class="fx-console-body" id="fxConsoleBody" aria-hidden="true"></div>
     <p class="sr-only">Sample agent run. The agent plans a task, calls three tools, waits for human review, then ships. Built by Jeo Vitao, AI and Programming Specialist.</p>
-    <div class="fx-console-foot">An example of how I work, not a live system. Hover or tap to replay.</div>
+    <div class="fx-console-foot">An example of how I work, not a live system. Press replay to run it again. On a phone, tap the console.</div>
   </div>
 
   <div class="fx-hero-rest">
@@ -3404,7 +3449,7 @@ section:focus-visible{outline:2px solid #38bdf8;outline-offset:6px}
     <p class="hero-desc">I write full-stack code and put AI to work inside it. At Spark Logistics I'm building workforce tracking, daily reporting and team visibility tools. AI helps me move fast. I review every change before it ships.</p>
     <div class="hero-actions">
       <a href="#projects" class="btn-primary">View My Work</a>
-      <a href="mailto:jelonelvitao@gmail.com?subject=R%C3%A9sum%C3%A9%20Request%20for%20Jeo%20Vitao&amp;body=Hi%20Jeo%2C%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20request%20a%20copy%20of%20your%20r%C3%A9sum%C3%A9.%0D%0A%0D%0AName%3A%0D%0ACompany%3A%0D%0ARole%3A%0D%0A%0D%0AThank%20you%21" class="btn-resume">⬡ Request Résumé</a>
+      <a href="mailto:jelonelvitao@gmail.com?subject=R%C3%A9sum%C3%A9%20Request%20for%20Jeo%20Vitao&amp;body=Hi%20Jeo%2C%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20request%20a%20copy%20of%20your%20r%C3%A9sum%C3%A9.%0D%0A%0D%0AName%3A%0D%0ACompany%3A%0D%0ARole%3A%0D%0A%0D%0AThank%20you%21" class="btn-resume"><svg class="fx-ico" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 1.8 13.2 4.8v6.4L8 14.2 2.8 11.2V4.8Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg> Request Résumé</a>
       <a href="#contact" class="btn-outline">Get in Touch</a>
     </div>
     <div class="hero-chips">
@@ -3442,9 +3487,9 @@ section:focus-visible{outline:2px solid #38bdf8;outline-offset:6px}
         </div>
         <p>I build the systems behind the business: trackers, portals and internal tools that keep an operation running. I'm an <strong>AI &amp; Programming Specialist</strong> in General Trias, Cavite / Quezon City, PH, working remotely with <strong>Spark Logistics</strong>. I plan the product, write the code, test it, document it and help deploy it.</p>
         <p>Diploma in Computer Science, Asian Institute of Computer Studies, 2010.</p>
-        <p>My daily stack is <strong>Next.js, React, TypeScript, Tailwind CSS, Supabase and PostgreSQL</strong>. I use it for sign in, role-aware access, Row Level Security, data sync and mobile-friendly screens.</p>
-        <p>I've also run the systems my software has to live with: <strong>Microsoft 365 admin, NOAH ERP support, Zoho ServiceDesk and SharePoint</strong>, plus user access, troubleshooting and documentation. So I design for how the business actually works.</p>
-        <p>My AI toolbox is <strong>ChatGPT</strong>, <strong>Codex</strong> and the <strong>OpenAI platform</strong>, <strong>Claude</strong> and <strong>Claude Code</strong>, <strong>Google AI Studio</strong>, <strong>Google Gemini</strong>, <strong>Cursor</strong>, <strong>Grok</strong>, <strong>n8n</strong> and <strong>Obsidian</strong>, and it keeps growing as better tools come out. They help me plan, build, debug, map architecture, write docs and automate workflows. I review everything before it ships.</p>
+        <p>My daily tools are <strong>Next.js, React, TypeScript, Tailwind CSS, Supabase and PostgreSQL</strong>. I use them for sign in, who can see what, Row Level Security, data sync and screens that work on a phone.</p>
+        <p>I've also run the systems my software has to live with: <strong>Microsoft 365 admin, NOAH ERP support, Zoho ServiceDesk and SharePoint</strong>. That includes user access, troubleshooting and documentation. So I design for how the business actually works.</p>
+        <p>My AI toolbox is <strong>ChatGPT</strong>, <strong>Codex</strong> and the <strong>OpenAI platform</strong>, <strong>Claude</strong> and <strong>Claude Code</strong>, <strong>Google AI Studio</strong>, <strong>Google Gemini</strong>, <strong>Cursor</strong>, <strong>Grok</strong>, <strong>n8n</strong> and <strong>Obsidian</strong>. It keeps growing as better tools come out. They help me plan, build, debug and map architecture. They also help me write docs and automate workflows. I review everything before it ships.</p>
       </div>
 
       <div class="about-card">
@@ -3578,7 +3623,7 @@ section:focus-visible{outline:2px solid #38bdf8;outline-offset:6px}
         <details class="case-drawer">
           <summary>
             <span class="drawer-label">open case file</span>
-            <span class="drawer-icon" aria-hidden="true">▸</span>
+            <span class="drawer-icon" aria-hidden="true"><svg class="fx-ico" viewBox="0 0 16 16" width="12" height="12"><path d="M6 3.5 11 8 6 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </summary>
           <div class="case-body">
             <div class="case-field">
@@ -3631,7 +3676,7 @@ section:focus-visible{outline:2px solid #38bdf8;outline-offset:6px}
         <details class="case-drawer">
           <summary>
             <span class="drawer-label">open case file</span>
-            <span class="drawer-icon" aria-hidden="true">▸</span>
+            <span class="drawer-icon" aria-hidden="true"><svg class="fx-ico" viewBox="0 0 16 16" width="12" height="12"><path d="M6 3.5 11 8 6 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </summary>
           <div class="case-body">
             <div class="case-field">
@@ -3684,7 +3729,7 @@ section:focus-visible{outline:2px solid #38bdf8;outline-offset:6px}
         <details class="case-drawer">
           <summary>
             <span class="drawer-label">open case file</span>
-            <span class="drawer-icon" aria-hidden="true">▸</span>
+            <span class="drawer-icon" aria-hidden="true"><svg class="fx-ico" viewBox="0 0 16 16" width="12" height="12"><path d="M6 3.5 11 8 6 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </summary>
           <div class="case-body">
             <div class="case-field">
@@ -3737,7 +3782,7 @@ section:focus-visible{outline:2px solid #38bdf8;outline-offset:6px}
         <button type="button" class="ai-step-btn" role="tab" id="aistep-4" aria-selected="false" aria-controls="aiStepPanel" tabindex="-1">SHIP</button>
       </div>
       <div class="ai-step-panel" id="aiStepPanel" role="tabpanel" aria-labelledby="aistep-0" aria-live="polite">
-        <p id="aiStepDesc">Requirements first. I map the problem to data, workflows and access rules, then use AI to stress test the plan before I write code.</p>
+        <p id="aiStepDesc">I start with the requirements. I map the data, the workflow and who can access what. Then I use AI to pressure test the plan before I write code.</p>
       </div>
       <p class="ai-process-note">Example: <strong>AI-Assisted IT Ticket Automation</strong> (in development). Every change goes through this loop, and I review it before it ships.</p>
     </div>
@@ -3756,7 +3801,7 @@ section:focus-visible{outline:2px solid #38bdf8;outline-offset:6px}
     <div class="skill-groups">
 
       <div class="skill-group">
-        <div class="skill-group-label">⟡ Frontend</div>
+        <div class="skill-group-label"><svg class="fx-ico" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 1.6 14.4 8 8 14.4 1.6 8Z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg> Frontend</div>
         <div class="skill-badges">
           <span class="skill-pill">Next.js</span>
           <span class="skill-pill">React</span>
@@ -3769,7 +3814,7 @@ section:focus-visible{outline:2px solid #38bdf8;outline-offset:6px}
       </div>
 
       <div class="skill-group">
-        <div class="skill-group-label">⟡ Backend &amp; APIs</div>
+        <div class="skill-group-label"><svg class="fx-ico" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 1.6 14.4 8 8 14.4 1.6 8Z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg> Backend &amp; APIs</div>
         <div class="skill-badges">
           <span class="skill-pill">Node.js</span>
           <span class="skill-pill">Express</span>
@@ -3780,7 +3825,7 @@ section:focus-visible{outline:2px solid #38bdf8;outline-offset:6px}
       </div>
 
       <div class="skill-group">
-        <div class="skill-group-label">⟡ Data &amp; Security</div>
+        <div class="skill-group-label"><svg class="fx-ico" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 1.6 14.4 8 8 14.4 1.6 8Z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg> Data &amp; Security</div>
         <div class="skill-badges">
           <span class="skill-pill">PostgreSQL</span>
           <span class="skill-pill">Row Level Security</span>
@@ -3793,7 +3838,7 @@ section:focus-visible{outline:2px solid #38bdf8;outline-offset:6px}
       </div>
 
       <div class="skill-group">
-        <div class="skill-group-label">⟡ AI &amp; Automation</div>
+        <div class="skill-group-label"><svg class="fx-ico" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 1.6 14.4 8 8 14.4 1.6 8Z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg> AI &amp; Automation</div>
         <div class="skill-badges">
           <span class="skill-pill">AI-Assisted Development</span>
           <span class="skill-pill">ChatGPT</span>
@@ -3813,7 +3858,7 @@ section:focus-visible{outline:2px solid #38bdf8;outline-offset:6px}
       </div>
 
       <div class="skill-group">
-        <div class="skill-group-label">⟡ Cloud, Web &amp; Domains</div>
+        <div class="skill-group-label"><svg class="fx-ico" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 1.6 14.4 8 8 14.4 1.6 8Z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg> Cloud, Web &amp; Domains</div>
         <div class="skill-badges">
           <span class="skill-pill">Vercel</span>
           <span class="skill-pill">Render</span>
@@ -3825,7 +3870,7 @@ section:focus-visible{outline:2px solid #38bdf8;outline-offset:6px}
       </div>
 
       <div class="skill-group">
-        <div class="skill-group-label">⟡ Enterprise IT</div>
+        <div class="skill-group-label"><svg class="fx-ico" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 1.6 14.4 8 8 14.4 1.6 8Z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg> Enterprise IT</div>
         <div class="skill-badges">
           <span class="skill-pill">Microsoft 365</span>
           <span class="skill-pill">SharePoint</span>
@@ -3839,7 +3884,7 @@ section:focus-visible{outline:2px solid #38bdf8;outline-offset:6px}
       </div>
 
       <div class="skill-group">
-        <div class="skill-group-label">⟡ CRM &amp; Business Systems</div>
+        <div class="skill-group-label"><svg class="fx-ico" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 1.6 14.4 8 8 14.4 1.6 8Z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg> CRM &amp; Business Systems</div>
         <div class="skill-badges">
           <span class="skill-pill">Brightly CRM Configuration</span>
           <span class="skill-pill">CRM Workflow Design</span>
@@ -3861,7 +3906,7 @@ section:focus-visible{outline:2px solid #38bdf8;outline-offset:6px}
     <div class="section-divider"></div>
     <div class="goal-card">
       <div class="goal-title">Getting better at AI-assisted development and business systems</div>
-      <p class="goal-text">I'm going deeper on full-stack architecture, AI workflow design, secure data access and integrations. The aim is reliable tools that cut manual work and give teams clear visibility.</p>
+      <p class="goal-text">I'm going deeper on full stack architecture, AI workflow design, secure data access and integrations. I want reliable tools. They should cut manual work and give teams a clear view of what is happening.</p>
       <ul class="goal-list">
         <li>Sharpen full-stack architecture with Next.js, TypeScript, Supabase and PostgreSQL</li>
         <li>Improve sign in, role-based access, Row Level Security and audit trails</li>
@@ -3880,9 +3925,9 @@ section:focus-visible{outline:2px solid #38bdf8;outline-offset:6px}
   <div class="contact-wrap reveal fx-reveal">
     <div class="section-label"><span class="section-slash">//</span>contact</div>
     <div class="section-title">Let's Connect</div>
-    <p class="contact-desc"><strong class="contact-hook">Have something worth building? Let's turn a useful idea into working software.</strong> I'm open to AI-assisted development, full-stack web work, IT systems and workflow automation. Remote contract, project-based or long-term.</p>
+    <p class="contact-desc"><strong class="contact-hook">Have something worth building? Let's turn a useful idea into working software.</strong> I'm open to AI assisted development, full stack web work, IT systems and workflow automation. I can work remote, on a contract, a project, or a longer engagement.</p>
     <div class="contact-actions">
-      <a href="mailto:jelonelvitao@gmail.com?subject=R%C3%A9sum%C3%A9%20Request%20for%20Jeo%20Vitao&amp;body=Hi%20Jeo%2C%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20request%20a%20copy%20of%20your%20r%C3%A9sum%C3%A9.%0D%0A%0D%0AName%3A%0D%0ACompany%3A%0D%0ARole%3A%0D%0A%0D%0AThank%20you%21" class="btn-resume">⬡ Request Résumé</a>
+      <a href="mailto:jelonelvitao@gmail.com?subject=R%C3%A9sum%C3%A9%20Request%20for%20Jeo%20Vitao&amp;body=Hi%20Jeo%2C%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20request%20a%20copy%20of%20your%20r%C3%A9sum%C3%A9.%0D%0A%0D%0AName%3A%0D%0ACompany%3A%0D%0ARole%3A%0D%0A%0D%0AThank%20you%21" class="btn-resume"><svg class="fx-ico" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 1.8 13.2 4.8v6.4L8 14.2 2.8 11.2V4.8Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg> Request Résumé</a>
       <a href="mailto:jelonelvitao@gmail.com" class="btn-primary" style="display:inline-block">Send Me a Message</a>
     </div>
     <div class="email-row">
@@ -4016,18 +4061,31 @@ if (copyEmailBtn) {
   const resumeLink = document.querySelector('.btn-resume');
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 
+  const ICONS = {
+    home: '<svg viewBox="0 0 16 16" width="16" height="16"><path d="M2.6 7.2 8 2.7l5.4 4.5V13.4H10V9.5H6v3.9H2.6Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>',
+    about: '<svg viewBox="0 0 16 16" width="16" height="16"><path d="M6 3.2H4.4A1.6 1.6 0 1 1 6 4.8V6m0 0h4m-4 0v4m4-4V4.8a1.6 1.6 0 1 1 1.6-1.6H10M6 10h4m0 0v1.2A1.6 1.6 0 1 1 11.6 12.8H10M6 10v1.2A1.6 1.6 0 1 1 4.4 12.8H6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>',
+    work: '<svg viewBox="0 0 16 16" width="16" height="16"><path d="M8 1.8 14 8 8 14.2 2 8Z" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>',
+    files: '<svg viewBox="0 0 16 16" width="16" height="16"><rect x="2.2" y="2.2" width="4.6" height="4.6" rx=".6" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="9.2" y="2.2" width="4.6" height="4.6" rx=".6" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="2.2" y="9.2" width="4.6" height="4.6" rx=".6" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="9.2" y="9.2" width="4.6" height="4.6" rx=".6" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>',
+    skills: '<svg viewBox="0 0 16 16" width="16" height="16"><path d="M8 1.6 9.2 6.2 13.8 8 9.2 9.8 8 14.4 6.8 9.8 2.2 8 6.8 6.2Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>',
+    goal: '<svg viewBox="0 0 16 16" width="16" height="16"><circle cx="8" cy="8" r="5.2" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="1.4" fill="currentColor"/></svg>',
+    contact: '<svg viewBox="0 0 16 16" width="16" height="16"><rect x="2" y="3.4" width="12" height="9.2" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M2.6 4.2 8 8.4l5.4-4.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>',
+    resume: '<svg viewBox="0 0 16 16" width="16" height="16"><path d="M8 1.8 13.2 4.8v6.4L8 14.2 2.8 11.2V4.8Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>',
+    copy: '<svg viewBox="0 0 16 16" width="16" height="16"><rect x="4" y="3.2" width="8" height="10.4" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M6.2 3.2V2.2h3.6v1" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>',
+    replay: '<svg viewBox="0 0 16 16" width="16" height="16"><path d="M13.2 8A5.2 5.2 0 1 1 8 2.8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M8 1.2v2.4H5.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    sound: '<svg viewBox="0 0 16 16" width="16" height="16"><path d="M3 6.2h2.2L8.2 3.6v8.8L5.2 9.8H3Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M10.2 6.2a2.4 2.4 0 0 1 0 3.6M11.8 4.6a4.4 4.4 0 0 1 0 6.8" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>'
+  };
   const COMMANDS = [
-    { icon: '⌂', label: 'Home',                tag: 'section', hash: '#top',        keywords: 'home top hero start' },
-    { icon: '⌘', label: 'About',               tag: 'section', hash: '#about',      keywords: 'about who bio' },
-    { icon: '◈', label: 'Experience',          tag: 'section', hash: '#experience', keywords: 'experience work roles jobs' },
-    { icon: '▣', label: 'Case Files',          tag: 'section', hash: '#projects',   keywords: 'projects case files built work' },
-    { icon: '✦', label: 'Skills',              tag: 'section', hash: '#skills',     keywords: 'skills stack tech' },
-    { icon: '◎', label: 'Goal',                tag: 'section', hash: '#goal',       keywords: 'goal building toward' },
-    { icon: '✉', label: 'Contact',             tag: 'section', hash: '#contact',    keywords: 'contact connect reach' },
-    { icon: '⬡', label: 'Request Résumé',      tag: 'action',  action: 'resume',    keywords: 'resume cv request email hire' },
-    { icon: '⧉', label: 'Copy email address',  tag: 'action',  action: 'copy',      keywords: 'copy email clipboard address' },
-    { icon: '↻', label: 'Replay agent run',    tag: 'action',  action: 'replay',    keywords: 'replay agent run console sample' },
-    { icon: '♪', label: 'Toggle sound',        tag: 'action',  action: 'sound',     keywords: 'sound audio volume mute speaker' }
+    { icon: 'home', label: 'Home',                tag: 'section', hash: '#top',        keywords: 'home top hero start' },
+    { icon: 'about', label: 'About',              tag: 'section', hash: '#about',      keywords: 'about who bio' },
+    { icon: 'work', label: 'Experience',          tag: 'section', hash: '#experience', keywords: 'experience work roles jobs' },
+    { icon: 'files', label: 'Case Files',         tag: 'section', hash: '#projects',   keywords: 'projects case files built work' },
+    { icon: 'skills', label: 'Skills',            tag: 'section', hash: '#skills',     keywords: 'skills stack tech' },
+    { icon: 'goal', label: 'Goal',                tag: 'section', hash: '#goal',       keywords: 'goal building toward' },
+    { icon: 'contact', label: 'Contact',          tag: 'section', hash: '#contact',    keywords: 'contact connect reach' },
+    { icon: 'resume', label: 'Request Résumé',    tag: 'action',  action: 'resume',    keywords: 'resume cv request email hire' },
+    { icon: 'copy', label: 'Copy email address',  tag: 'action',  action: 'copy',      keywords: 'copy email clipboard address' },
+    { icon: 'replay', label: 'Replay agent run',  tag: 'action',  action: 'replay',    keywords: 'replay agent run console sample' },
+    { icon: 'sound', label: 'Toggle sound',       tag: 'action',  action: 'sound',     keywords: 'sound audio volume mute speaker' }
   ];
 
   let visible = [];
@@ -4092,7 +4150,7 @@ if (copyEmailBtn) {
       li.id = 'cmdk-item-' + i;
       li.setAttribute('role', 'option');
       li.setAttribute('aria-selected', String(i === selected));
-      li.innerHTML = '<span class="cmdk-icon" aria-hidden="true">' + escapeHtml(c.icon) + '</span><span class="cmdk-label">' + highlight(c.label, row.idxs) + '</span><span class="cmdk-tag">' + escapeHtml(c.tag) + '</span>';
+      li.innerHTML = '<span class="cmdk-icon" aria-hidden="true">' + (ICONS[c.icon] || escapeHtml(c.icon)) + '</span><span class="cmdk-label">' + highlight(c.label, row.idxs) + '</span><span class="cmdk-tag">' + escapeHtml(c.tag) + '</span>';
       li.addEventListener('mouseenter', () => select(i));
       li.addEventListener('click', () => run(i));
       list.appendChild(li);
@@ -4207,11 +4265,11 @@ if (copyEmailBtn) {
   if (!stepBtns.length || !stepDesc) return;
 
   const STEP_COPY = [
-    'Requirements first. I map the problem to data, workflows and access rules, then use AI to stress test the plan before I write code.',
+    'I start with the requirements. I map the data, the workflow and who can access what. Then I use AI to pressure test the plan before I write code.',
     'I build in Cursor and Claude Code. The tools speed me up. I make the calls.',
-    'I read everything AI touches: logic, data paths and access control, before I trust it.',
-    'I test behavior, edge cases and permissions against the requirements before release.',
-    'I deploy in a controlled way to Render or Vercel and leave docs so the next change is easier.'
+    'I read everything AI touches. That means the logic, the data paths and the access control. I do this before I trust it.',
+    'I test behavior, edge cases and permissions. I check them against the requirements before release.',
+    'I deploy in a controlled way to Render or Vercel. I leave docs so the next change is easier.'
   ];
 
   function selectStep(i, focus) {
@@ -4416,9 +4474,10 @@ revealEls.forEach(el => revealObs.observe(el));
   }
 
   function seedNodes() {
+    const smallScreen = Math.min(W, H) < 760;
     const count = touch
-      ? 25
-      : Math.max(1, Math.min(90, Math.round(60 * (W * H) / (1440 * 900))));
+      ? (smallScreen ? 16 : 25)
+      : Math.max(1, Math.min(smallScreen ? 36 : 90, Math.round(60 * (W * H) / (1440 * 900))));
     const drift = touch ? 0.05 : 0.14;
     nodes = Array.from({ length: count }, () => ({
       x: Math.random() * W,
@@ -4970,7 +5029,7 @@ revealEls.forEach(el => revealObs.observe(el));
     const cv = portrait && portrait.querySelector('.fx-particles');
     if (!cv || reduce || !fine) return;
     const ctx = cv.getContext('2d');
-    const N = 54, PAD = 70;
+    const N = window.innerWidth < 800 ? 22 : 54, PAD = 70;
     let W = 0, R = 0, dpr = 1, pts = [], mx = null, my = null, running = false, last = 0, visible = true;
     function size(){
       const s = portrait.offsetWidth; W = s + PAD*2; R = s/2 + 4;
@@ -5086,8 +5145,7 @@ revealEls.forEach(el => revealObs.observe(el));
     if (box) {
       const io2 = new IntersectionObserver(es => { if (es[0].isIntersecting){ begin(); } }, { threshold: .25 });
       io2.observe(box);
-      if (fine && !reduce){ let t = 0; box.addEventListener('pointerenter', () => { if (performance.now() - t > 6000 && started){ t = performance.now(); replay(); } }); }
-      else if (!reduce){ box.addEventListener('click', e => { if (btn && e.target !== btn) replay(); }); }
+      if (!fine && !reduce){ box.addEventListener('pointerup', e => { if (btn && e.target !== btn && !btn.contains(e.target)) replay(); }); }
     }
     if (btn) btn.addEventListener('click', replay);
   })();
@@ -5496,8 +5554,11 @@ revealEls.forEach(el => revealObs.observe(el));
   }
   paint();
   function gestureArm() { arm(); }
-  ['pointerdown', 'keydown', 'touchstart'].forEach(type => {
+  ['pointerdown', 'touchend', 'keydown', 'touchstart'].forEach(type => {
     document.addEventListener(type, gestureArm, { once: true, passive: true });
+  });
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && ctx && ctx.state === 'suspended') ctx.resume().then(() => { btn.dataset.audio = ctx.state; });
   });
   const soundBox = btn.closest('.fx-sound');
   function openPop() {
@@ -5511,7 +5572,10 @@ revealEls.forEach(el => revealObs.observe(el));
     btn.setAttribute('aria-expanded', 'false');
   }
   btn.addEventListener('click', () => {
+    const turningOff = !muted;
+    if (turningOff) blip(520, 0.045, 'sine', 0.03, 180);
     setMuted(!muted);
+    if (!turningOff) blip(180, 0.045, 'sine', 0.028, 520);
     if (!fine && pop) {
       const open = pop.classList.toggle('open');
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
@@ -5551,26 +5615,59 @@ revealEls.forEach(el => revealObs.observe(el));
     lastTick = now;
     blip(880, 0.028, 'sine', peak);
   }
+  function kept(el) { return !!(el && el.closest && el.closest('#top, #contact, #projects')); }
+  function confirmClick() {
+    blip(660, 0.06, 'square', 0.045);
+    setTimeout(() => blip(990, 0.045, 'square', 0.035), 32);
+  }
+  function sendTone() { blip(420, 0.11, 'sine', 0.04, 980); }
+  function airyTick() { blip(2480, 0.03, 'sine', 0.011); }
+  function thock() { blip(128, 0.045, 'triangle', 0.028); }
+  function uiBlip() { blip(540, 0.04, 'sine', 0.02); }
   document.addEventListener('pointerover', e => {
-    if (!e.target.closest) return;
-    const btn = e.target.closest(BTN);
-    const card = btn ? null : e.target.closest(CARD);
-    hoverTick(btn || card, btn ? 0.032 : 0.026);
+    if (!fine || !e.target.closest) return;
+    const hit = e.target.closest(BTN) || e.target.closest(CARD);
+    if (!hit || hit === lastHover) return;
+    lastHover = hit;
+    const now = performance.now();
+    if (now - lastTick < 90) return;
+    lastTick = now;
+    const isBtn = hit.matches(BTN);
+    if (kept(hit)) blip(880, 0.028, 'sine', isBtn ? 0.032 : 0.026);
+    else if (isBtn && hit.closest('.side-nav, .mobile-side-nav, nav')) uiBlip();
+    else if (!isBtn) airyTick();
   });
   document.addEventListener('pointerout', e => {
     if (!lastHover) return;
-    const next = e.relatedTarget && e.relatedTarget.closest ? e.relatedTarget.closest(BTN) || e.relatedTarget.closest(CARD) : null;
+    const next = e.relatedTarget && e.relatedTarget.closest ? (e.relatedTarget.closest(BTN) || e.relatedTarget.closest(CARD)) : null;
     if (next !== lastHover) lastHover = null;
   });
   document.addEventListener('pointerdown', e => {
     if (!e.target.closest) return;
-    const btn = e.target.closest(BTN);
-    if (btn) {
-      blip(240, 0.05, 'triangle', 0.06);
-      document.dispatchEvent(new CustomEvent('fx-ripple'));
+    const hitBtn = e.target.closest(BTN);
+    if (hitBtn) {
+      if (hitBtn.id === 'fxSoundBtn' || hitBtn.closest('label.day-toggle') || hitBtn.classList.contains('day-toggle')) return;
+      const label = (hitBtn.textContent || '').toLowerCase();
+      const sendCta = hitBtn.classList.contains('btn-resume') || label.indexOf('send me a message') !== -1;
+      if (sendCta) { confirmClick(); sendTone(); return; }
+      if (kept(hitBtn)) {
+        blip(240, 0.05, 'triangle', 0.06);
+        document.dispatchEvent(new CustomEvent('fx-ripple'));
+        return;
+      }
+      if (hitBtn.closest('.side-nav, .mobile-side-nav, nav')) return;
+      confirmClick();
       return;
     }
-    if (e.target.closest(CARD)) blip(210, 0.04, 'triangle', 0.045);
+    const card = e.target.closest(CARD);
+    if (!card) return;
+    if (kept(card)) blip(210, 0.04, 'triangle', 0.045);
+    else thock();
+  });
+  const theme = document.getElementById('dayNightToggle');
+  if (theme) theme.addEventListener('change', () => {
+    if (theme.checked) { blip(280, 0.05, 'square', 0.035); setTimeout(() => blip(620, 0.045, 'square', 0.03), 42); }
+    else { blip(620, 0.05, 'square', 0.035); setTimeout(() => blip(240, 0.045, 'square', 0.028), 42); }
   });
   document.addEventListener('click', e => {
     const link = e.target.closest && e.target.closest('a[href^="mailto:"]');
@@ -5581,7 +5678,7 @@ revealEls.forEach(el => revealObs.observe(el));
   });
   document.addEventListener('fx-crackle', () => blip(180, 0.04, 'sawtooth', 0.02, 90));
   document.addEventListener('fx-zap', () => blip(640, 0.05, 'square', 0.045, 1800));
-  document.addEventListener('fx-nav', () => blip(520, 0.06, 'sine', 0.05));
+  document.addEventListener('fx-nav', () => uiBlip());
   document.addEventListener('fx-ripple', () => blip(300, 0.07, 'triangle', 0.055));
   document.addEventListener('fx-decode', () => {
     blip(480, 0.045, 'square', 0.03, 920);
@@ -5607,13 +5704,12 @@ revealEls.forEach(el => revealObs.observe(el));
   }
   const body = document.getElementById('fxConsoleBody');
   if (body && 'MutationObserver' in window) {
-    let lastKey = 0;
+    let typed = 0;
     new MutationObserver(() => {
       if (muted) return;
-      const now = performance.now();
-      if (now - lastKey < 42) return;
-      lastKey = now;
-      blip(1480, 0.018, 'square', 0.018);
+      typed += 1;
+      if (typed % 3 !== 0) return;
+      blip(1320, 0.012, 'square', 0.01);
     }).observe(body, { childList: true, subtree: true, characterData: true });
   }
 })();
@@ -5731,7 +5827,7 @@ revealEls.forEach(el => revealObs.observe(el));
         else wctx.lineTo(x, y);
       }
       wctx.strokeStyle = 'rgba(56,189,248,.85)';
-      wctx.lineWidth = 1.25;
+      wctx.lineWidth = 2;
       wctx.stroke();
     }
     function glitch() {
@@ -5853,6 +5949,51 @@ revealEls.forEach(el => revealObs.observe(el));
       setTimeout(() => bit.remove(), 650);
     });
   });
+
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const lite = matchMedia('(pointer: coarse)').matches;
+  if (!reduceMotion) {
+    document.documentElement.classList.add(lite ? 'fx-lite' : 'fx-motion');
+    const secs = [...document.querySelectorAll('section')];
+    secs.forEach(sec => {
+      if (sec.id === 'top') return;
+      const bits = [...sec.querySelectorAll('.section-label, .section-title, .section-divider, p, li, .project-card, .skill-group, .about-card, .goal-card, .ai-process')].slice(0, 14);
+      bits.forEach((el, i) => {
+        if (el.closest('#top')) return;
+        el.classList.add('fx-boot-item');
+        el.style.setProperty('--i', String(i));
+      });
+      sec.classList.add('fx-boot');
+      const line = document.createElement('span');
+      line.className = 'fx-boot-line';
+      line.setAttribute('aria-hidden', 'true');
+      sec.appendChild(line);
+    });
+    document.querySelectorAll('.skill-pill, .stack-pill').forEach((pill, i) => {
+      const group = pill.parentElement;
+      const index = group ? [...group.children].indexOf(pill) : i;
+      pill.style.setProperty('--i', String(Math.max(0, index)));
+    });
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(entries => entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fx-booted');
+          entry.target.classList.remove('fx-away');
+        } else if (entry.target.classList.contains('fx-booted')) {
+          entry.target.classList.add('fx-away');
+        }
+      }), { threshold: 0.18 });
+      secs.forEach(sec => { if (sec.id !== 'top') io.observe(sec); });
+      const cards = new IntersectionObserver(entries => entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('fx-appeared');
+        cards.unobserve(entry.target);
+      }), { threshold: 0.35 });
+      document.querySelectorAll('.fx-shell').forEach(card => {
+        if (!card.closest('#top')) cards.observe(card);
+      });
+    } else secs.forEach(sec => sec.classList.add('fx-booted'));
+  }
 })();
 </script>
 </body>
