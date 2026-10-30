@@ -2997,7 +2997,7 @@ body.light-mode .fx-console{background:linear-gradient(180deg,#0b1224,#080d1b)}
 .fx-console-title{margin-left:.4rem;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .fx-console-replay{font:inherit;color:#60a5fa;background:none;border:1px solid rgba(59,130,246,.3);border-radius:8px;padding:.15rem .6rem;cursor:pointer}
 .fx-console-replay:hover,.fx-console-replay:focus-visible{background:rgba(37,99,235,.18);outline:none}
-.fx-console-body{padding:.4rem 1rem .45rem;font:.82rem/1.5 'DM Mono',monospace;color:#cfe0ff;min-height:209px;white-space:pre-wrap;word-break:break-word}
+.fx-console-body{padding:.4rem 1rem .45rem;font:.82rem/1.5 'DM Mono',monospace;color:#cfe0ff;min-height:240px;white-space:pre-wrap;word-break:break-word}
 .fx-line{display:block;opacity:0;transform:translateY(3px);transition:opacity .25s,transform .25s}
 .fx-line.show{opacity:1;transform:none}
 .fx-k{display:inline-block;min-width:5.4em;color:#60a5fa}
@@ -3141,17 +3141,17 @@ body.fx-static .fx-reveal,body.fx-static .fx-node{opacity:1;transform:none}
   .hero{padding-top:6.4rem}
   .fx-console{margin-top:0}
   .fx-console-bar{padding:.12rem .65rem}
-  .fx-console-body{padding:.05rem .75rem 0;min-height:114px;font-size:.68rem;line-height:1.08}
+  .fx-console-body{padding:.05rem .75rem 0;min-height:132px;font-size:.68rem;line-height:1.08}
   .fx-console-foot{padding:.1rem .65rem .14rem}
   .fx-name{margin-top:.05rem;font-size:.95rem;line-height:1.15}
   .fx-name small{margin-top:0;font-size:.64rem}
 }
 @media (max-width:480px) and (max-height:800px){
-  .fx-console-body{min-height:139px}
+  .fx-console-body{min-height:156px}
 }
 @media (min-width:900px) and (min-height:801px) and (max-height:940px){
   .fx-console{margin-top:.15rem}
-  .fx-console-body{padding:.22rem 1rem .25rem;line-height:1.32;min-height:182px}
+  .fx-console-body{padding:.22rem 1rem .25rem;line-height:1.32;min-height:212px}
   .fx-hero-rest{margin-top:1.05rem}
   .fx-name{margin-top:.2rem}
 }
@@ -3217,6 +3217,11 @@ body.light-mode .fx-sound-label{color:#075985}
 }
 .side-icon svg,.cmdk-icon svg,.fx-ico{display:block}
 .fx-console-replay,.copy-email-btn,.cmdk-hint,.ai-step-btn{min-height:44px}
+@media (pointer:coarse), (max-width:768px){
+  .project-link,.email-link,.case-drawer summary{display:inline-flex;align-items:center;min-height:44px;box-sizing:border-box}
+  .project-link,.email-link{padding:.5rem .2rem}
+  .case-drawer summary{width:100%;justify-content:space-between;padding:.55rem 1rem}
+}
 .fx-console-replay{display:inline-flex;align-items:center;gap:.35rem}
 .about-text p,.hero-desc,.project-desc,.goal-text,.contact-desc,.case-field p,.ai-step-panel p{max-width:68ch;line-height:1.6}
 .section-label,.skill-group-label,.project-tag,.case-field-label,.fx-node small,.ai-process-label,.stat-info label,.case-id,.case-status,.ai-process-status,.status-chip,.cmdk-hint,.cmdk-kbd,.cmdk-foot,.about-profile-role,footer{font-size:12px}
@@ -3229,16 +3234,16 @@ body.light-mode .section-label,body.light-mode .skill-group-label,body.light-mod
 body.light-mode .about-text,body.light-mode .hero-desc,body.light-mode .project-desc,body.light-mode .goal-text,body.light-mode .contact-desc,body.light-mode .case-field p,body.light-mode .ai-step-panel p{color:#1e293b}
 body.light-mode .section-label,body.light-mode .skill-group-label,body.light-mode .project-tag,body.light-mode .case-field-label,body.light-mode .ai-process-label,body.light-mode .stat-info label,body.light-mode .case-id,body.light-mode .case-status,body.light-mode .ai-process-status,body.light-mode .fx-node small,body.light-mode .about-profile-role{color:#075985}
 html.fx-motion .fx-boot-item{opacity:0;filter:blur(5px);translate:0 8px}
-html.fx-motion .fx-boot.fx-booted .fx-boot-item{opacity:1;filter:none;translate:0 0;transition:opacity .4s ease,filter .4s ease,translate .4s ease;transition-delay:calc(var(--i, 0) * 45ms)}
+html.fx-motion .fx-boot.fx-seen .fx-boot-item,html.fx-motion .fx-boot.fx-booted .fx-boot-item{opacity:1;filter:none;translate:0 0;transition:opacity .4s ease,filter .4s ease,translate .4s ease;transition-delay:calc(var(--i, 0) * 45ms)}
 html.fx-lite .fx-boot-item{opacity:0;translate:0 6px}
-html.fx-lite .fx-boot.fx-booted .fx-boot-item{opacity:1;translate:0 0;transition:opacity .28s ease,translate .28s ease;transition-delay:calc(var(--i, 0) * 28ms)}
+html.fx-lite .fx-boot.fx-seen .fx-boot-item,html.fx-lite .fx-boot.fx-booted .fx-boot-item{opacity:1;translate:0 0;transition:opacity .28s ease,translate .28s ease;transition-delay:calc(var(--i, 0) * 28ms)}
 .fx-boot-line{position:absolute;left:0;right:0;top:0;height:2px;pointer-events:none;background:linear-gradient(90deg,transparent,#7dd3fc,transparent);opacity:0}
-html.fx-motion .fx-booted>.fx-boot-line,html.fx-lite .fx-booted>.fx-boot-line{animation:fxBootScan .4s ease 1}
+html.fx-motion .fx-seen>.fx-boot-line,html.fx-lite .fx-seen>.fx-boot-line,html.fx-motion .fx-booted>.fx-boot-line,html.fx-lite .fx-booted>.fx-boot-line{animation:fxBootScan .4s ease 1}
 @keyframes fxBootScan{from{transform:translateY(0);opacity:1}to{transform:translateY(42px);opacity:0}}
 .fx-away{opacity:.72;transition:opacity .35s ease}
 html.fx-motion .fx-shell.fx-appeared::after,html.fx-lite .fx-shell.fx-appeared::after,html.fx-motion .goal-card.fx-shell.fx-appeared::before,html.fx-lite .goal-card.fx-shell.fx-appeared::before{opacity:.85;animation:fxEdgeSpin .8s linear 1}
-html.fx-motion .fx-booted .skill-pill,html.fx-motion .fx-booted .stack-pill{animation:fxChip .32s ease both;animation-delay:calc(var(--i, 0) * 35ms)}
-html.fx-lite .fx-booted .skill-pill,html.fx-lite .fx-booted .stack-pill{animation:fxChip .22s ease both;animation-delay:calc(var(--i, 0) * 24ms)}
+html.fx-motion .fx-seen .skill-pill,html.fx-motion .fx-seen .stack-pill,html.fx-motion .fx-booted .skill-pill,html.fx-motion .fx-booted .stack-pill{animation:fxChip .32s ease both;animation-delay:calc(var(--i, 0) * 35ms)}
+html.fx-lite .fx-seen .skill-pill,html.fx-lite .fx-seen .stack-pill,html.fx-lite .fx-booted .skill-pill,html.fx-lite .fx-booted .stack-pill{animation:fxChip .22s ease both;animation-delay:calc(var(--i, 0) * 24ms)}
 @keyframes fxChip{0%{opacity:0;translate:0 4px}35%{opacity:.35}100%{opacity:1;translate:0 0}}
 html.fx-motion img{animation:fxSharp .45s ease both}
 html.fx-lite img{animation:fxSharpLite .28s ease both}
@@ -3906,7 +3911,7 @@ section:focus-visible{outline:2px solid #38bdf8;outline-offset:6px}
     <div class="section-divider"></div>
     <div class="goal-card">
       <div class="goal-title">Getting better at AI-assisted development and business systems</div>
-      <p class="goal-text">I'm going deeper on full stack architecture, AI workflow design, secure data access and integrations. I want reliable tools. They should cut manual work and give teams a clear view of what is happening.</p>
+      <p class="goal-text">I'm going deeper on full-stack architecture, AI workflow design, secure data access and integrations. I want reliable tools. They should cut manual work and give teams a clear view of what is happening.</p>
       <ul class="goal-list">
         <li>Sharpen full-stack architecture with Next.js, TypeScript, Supabase and PostgreSQL</li>
         <li>Improve sign in, role-based access, Row Level Security and audit trails</li>
@@ -3925,7 +3930,7 @@ section:focus-visible{outline:2px solid #38bdf8;outline-offset:6px}
   <div class="contact-wrap reveal fx-reveal">
     <div class="section-label"><span class="section-slash">//</span>contact</div>
     <div class="section-title">Let's Connect</div>
-    <p class="contact-desc"><strong class="contact-hook">Have something worth building? Let's turn a useful idea into working software.</strong> I'm open to AI assisted development, full stack web work, IT systems and workflow automation. I can work remote, on a contract, a project, or a longer engagement.</p>
+    <p class="contact-desc"><strong class="contact-hook">Have something worth building? Let's turn a useful idea into working software.</strong> I'm open to AI assisted development, full-stack web work, IT systems and workflow automation. I can work remote, on a contract, a project, or a longer engagement.</p>
     <div class="contact-actions">
       <a href="mailto:jelonelvitao@gmail.com?subject=R%C3%A9sum%C3%A9%20Request%20for%20Jeo%20Vitao&amp;body=Hi%20Jeo%2C%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20request%20a%20copy%20of%20your%20r%C3%A9sum%C3%A9.%0D%0A%0D%0AName%3A%0D%0ACompany%3A%0D%0ARole%3A%0D%0A%0D%0AThank%20you%21" class="btn-resume"><svg class="fx-ico" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 1.8 13.2 4.8v6.4L8 14.2 2.8 11.2V4.8Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg> Request Résumé</a>
       <a href="mailto:jelonelvitao@gmail.com" class="btn-primary" style="display:inline-block">Send Me a Message</a>
@@ -5975,15 +5980,32 @@ revealEls.forEach(el => revealObs.observe(el));
       pill.style.setProperty('--i', String(Math.max(0, index)));
     });
     if ('IntersectionObserver' in window) {
+      const arm = new WeakMap();
+      const sectionOf = el => (el.matches && el.matches('section') ? el : el.closest && el.closest('section'));
+      const reveal = sec => {
+        if (!sec) return;
+        sec.classList.add('fx-seen');
+        sec.classList.remove('fx-away');
+        if (sec.classList.contains('fx-booted') || arm.has(sec)) return;
+        arm.set(sec, setTimeout(() => {
+          arm.delete(sec);
+          sec.classList.add('fx-booted');
+          sec.classList.remove('fx-away');
+        }, 1000));
+      };
       const io = new IntersectionObserver(entries => entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('fx-booted');
-          entry.target.classList.remove('fx-away');
-        } else if (entry.target.classList.contains('fx-booted')) {
-          entry.target.classList.add('fx-away');
+        const sec = sectionOf(entry.target);
+        if (!sec) return;
+        const isSection = entry.target === sec;
+        if (entry.isIntersecting) reveal(sec);
+        else if (isSection && sec.classList.contains('fx-booted')) sec.classList.add('fx-away');
+        else if (isSection && arm.has(sec)) {
+          clearTimeout(arm.get(sec));
+          arm.delete(sec);
         }
-      }), { threshold: 0.18 });
+      }), { threshold: 0, rootMargin: '0px 0px -12% 0px' });
       secs.forEach(sec => { if (sec.id !== 'top') io.observe(sec); });
+      document.querySelectorAll('.fx-boot-item').forEach(item => io.observe(item));
       const cards = new IntersectionObserver(entries => entries.forEach(entry => {
         if (!entry.isIntersecting) return;
         entry.target.classList.add('fx-appeared');
