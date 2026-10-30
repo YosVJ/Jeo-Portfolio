@@ -2988,6 +2988,7 @@
 /* ---- hero layout ---- */
 .fx-hero-top{display:flex;align-items:center;justify-content:space-between;gap:3rem}
 .fx-hero-copy{flex:1;min-width:0}
+.fx-hero-rest{margin-top:1.8rem}
 /* ---- portrait: existing photo, new effects around it ---- */
 .fx-portrait{--s:236px;position:relative;flex:none;width:var(--s);height:var(--s);
   transform:perspective(800px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .35s cubic-bezier(.2,.7,.2,1);will-change:transform}
@@ -3017,7 +3018,7 @@
 .fx-scan.run{animation:fxScan 1.7s cubic-bezier(.55,.05,.3,1) 1 both}
 html.fx-intro .fx-scan.run{animation-delay:1.5s}
 /* ---- agent console ---- */
-.fx-console{margin-top:2.2rem;border:1px solid var(--border-hover);border-radius:16px;overflow:hidden;
+.fx-console{margin-top:.7rem;border:1px solid var(--border-hover);border-radius:16px;overflow:hidden;
   background:linear-gradient(180deg,rgba(8,12,24,.92),rgba(5,8,17,.96));box-shadow:0 24px 60px rgba(0,0,0,.4),inset 0 0 0 1px rgba(255,255,255,.02);position:relative}
 body.light-mode .fx-console{background:linear-gradient(180deg,#0b1224,#080d1b)}
 .fx-console-bar{display:flex;align-items:center;gap:.5rem;padding:.55rem .9rem;border-bottom:1px solid var(--border);font:.72rem 'DM Mono',monospace;color:#8da2c7}
@@ -3026,7 +3027,7 @@ body.light-mode .fx-console{background:linear-gradient(180deg,#0b1224,#080d1b)}
 .fx-console-title{margin-left:.4rem;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .fx-console-replay{font:inherit;color:#60a5fa;background:none;border:1px solid rgba(59,130,246,.3);border-radius:8px;padding:.15rem .6rem;cursor:pointer}
 .fx-console-replay:hover,.fx-console-replay:focus-visible{background:rgba(37,99,235,.18);outline:none}
-.fx-console-body{padding:1rem 1.1rem 1.2rem;font:.82rem/1.75 'DM Mono',monospace;color:#cfe0ff;min-height:13.6rem;white-space:pre-wrap;word-break:break-word}
+.fx-console-body{padding:.4rem 1rem .45rem;font:.82rem/1.5 'DM Mono',monospace;color:#cfe0ff;min-height:11.6rem;white-space:pre-wrap;word-break:break-word}
 .fx-line{display:block;opacity:0;transform:translateY(3px);transition:opacity .25s,transform .25s}
 .fx-line.show{opacity:1;transform:none}
 .fx-k{display:inline-block;min-width:5.4em;color:#60a5fa}
@@ -3115,6 +3116,9 @@ body.fx-static .fx-reveal,body.fx-static .fx-node{opacity:1;transform:none}
 @media (max-width:900px){
   .side{display:none}
   .fx-portrait{--s:200px}
+}
+@media (max-width:768px){
+  .hero{padding-inline:1rem}
 }
 @media (max-width:700px){
   .shell{padding:0 1.15rem}
