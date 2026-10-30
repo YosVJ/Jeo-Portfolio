@@ -3123,6 +3123,18 @@ body.fx-static .fx-reveal,body.fx-static .fx-node{opacity:1;transform:none}
   .fx-portrait{transform:none!important}
   html.fx-intro .fx-hero-top,html.fx-intro .fx-console,html.fx-intro .fx-hero-rest{animation:none!important}
 }
+@media (max-width:390px){
+  .hero-tag{display:flex;align-items:center;flex-wrap:nowrap;white-space:nowrap}
+  .hero-tag .tag-dot{flex:none}
+}
+@media (max-height:800px){
+  .fx-console{margin-top:0}
+  .fx-console-bar{padding:.12rem .65rem}
+  .fx-console-body{padding:.05rem .75rem 0;min-height:0;font-size:.68rem;line-height:1.08}
+  .fx-console-foot{padding:.1rem .65rem .14rem}
+  .fx-name{margin-top:.05rem;font-size:.95rem;line-height:1.15}
+  .fx-name small{margin-top:0;font-size:.64rem}
+}
 </style>
 </head>
 <body>
@@ -4226,7 +4238,7 @@ revealEls.forEach(el => revealObs.observe(el));
   let H = 0;
   let canvasDpr = 0;
   const LINK = 120;
-  const POINTER_R = 180;
+  const POINTER_R = 200;
 
   function fieldColors() {
     const light = document.body.classList.contains('light-mode');
@@ -4288,8 +4300,17 @@ revealEls.forEach(el => revealObs.observe(el));
     fitCanvas();
     const pal = fieldColors();
     ctx.clearRect(0, 0, W, H);
+    let nearSet = null;
+    if (animate && !touch && pointer.on && nodes.length) {
+      nearSet = new Set(nodes
+        .map((n, i) => ({ i: i, d: Math.hypot(pointer.x - n.x, pointer.y - n.y) }))
+        .sort((a, b) => a.d - b.d)
+        .slice(0, 3)
+        .map(item => item.i));
+    }
     const pts = [];
-    for (const n of nodes) {
+    for (let i = 0; i < nodes.length; i++) {
+      const n = nodes[i];
       if (animate) {
         n.x += n.vx;
         n.y += n.vy;
@@ -4297,12 +4318,13 @@ revealEls.forEach(el => revealObs.observe(el));
         if (n.y < 0 || n.y > H) n.vy *= -1;
         let pullX = 0;
         let pullY = 0;
-        if (!touch && pointer.on) {
+        if (nearSet) {
           const dx = pointer.x - n.x;
           const dy = pointer.y - n.y;
           const dist = Math.hypot(dx, dy);
-          if (dist < POINTER_R && dist > 0.01) {
-            const reach = (1 - dist / POINTER_R) * 14;
+          if (dist > 0.01 && (dist < POINTER_R || nearSet.has(i))) {
+            const span = dist < POINTER_R ? (1 - dist / POINTER_R) : 0.35;
+            const reach = span * 22;
             pullX = (dx / dist) * reach;
             pullY = (dy / dist) * reach;
           }
@@ -4339,18 +4361,26 @@ revealEls.forEach(el => revealObs.observe(el));
       }
     }
     if (animate && !touch && pointer.on) {
+      const linkAlpha = pal.gain === 1 ? 0.9 : 0.55;
       for (let i = 0; i < pts.length; i++) {
         const dx = pts[i].x - pointer.x;
         const dy = pts[i].y - pointer.y;
         const dist = Math.hypot(dx, dy);
-        if (dist > POINTER_R) continue;
-        const alpha = (1 - dist / POINTER_R) * (pal.gain === 1 ? 0.72 : 0.4);
-        ctx.strokeStyle = 'rgba(' + pal.link + ',' + alpha.toFixed(3) + ')';
+        if (dist > POINTER_R && !(nearSet && nearSet.has(i))) continue;
+        ctx.strokeStyle = 'rgba(' + pal.link + ',' + linkAlpha + ')';
         ctx.beginPath();
         ctx.moveTo(pts[i].x, pts[i].y);
         ctx.lineTo(pointer.x, pointer.y);
         ctx.stroke();
       }
+      ctx.fillStyle = pal.gain === 1 ? 'rgba(96,165,250,0.2)' : 'rgba(37,99,235,0.16)';
+      ctx.beginPath();
+      ctx.arc(pointer.x, pointer.y, 8, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = pal.gain === 1 ? 'rgba(96,165,250,0.55)' : 'rgba(29,78,216,0.4)';
+      ctx.beginPath();
+      ctx.arc(pointer.x, pointer.y, 2, 0, Math.PI * 2);
+      ctx.fill();
     }
     for (let i = 0; i < pts.length; i++) {
       const n = pts[i].n;
@@ -4559,13 +4589,16 @@ revealEls.forEach(el => revealObs.observe(el));
       pointer.on = true;
     }, { passive: true });
     window.addEventListener('pointerleave', () => { pointer.on = false; });
+    document.documentElement.addEventListener('mouseleave', () => { pointer.on = false; });
+    window.addEventListener('blur', () => { pointer.on = false; });
   }
 
   let raf = 0;
   let running = true;
 
   function drawPlexus(ts) {
-    if (document.hidden || !heroOn) return;
+    if (document.hidden) return;
+    if (touch && !heroOn) return;
     if (ripples.length) {
       ripples = ripples.filter(rip => ts - rip.t < 600);
     }
