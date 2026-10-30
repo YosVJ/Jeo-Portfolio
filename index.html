@@ -4,22 +4,24 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>Jelonel (Jeo) Vitao | AI &amp; Programming Specialist · Full-Stack Developer</title>
-<meta name="description" content="Jelonel (Jeo) Vitao, AI &amp; Programming Specialist and Full-Stack Developer in General Trias, Cavite / Quezon City, PH. Building practical software with AI-powered workflows."/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32"/>
+<meta name="description" content="Jelonel (Jeo) Vitao, AI &amp; Programming Specialist and Full-Stack Developer in General Trias, Cavite / Quezon City, PH. I build software and AI workflows that do real business work."/>
 <link rel="canonical" href="https://jeo-portfolio-08.vercel.app/"/>
 <meta name="robots" content="index, follow"/>
 <meta name="theme-color" content="#05070d"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://jeo-portfolio-08.vercel.app/"/>
-<meta property="og:site_name" content="Jeo Vitao — Portfolio"/>
+<meta property="og:site_name" content="Jeo Vitao Portfolio"/>
 <meta property="og:title" content="Jelonel (Jeo) Vitao | AI &amp; Programming Specialist · Full-Stack Developer"/>
-<meta property="og:description" content="Jelonel (Jeo) Vitao, AI &amp; Programming Specialist and Full-Stack Developer in General Trias, Cavite / Quezon City, PH. Building practical software with AI-powered workflows."/>
+<meta property="og:description" content="Jelonel (Jeo) Vitao, AI &amp; Programming Specialist and Full-Stack Developer in General Trias, Cavite / Quezon City, PH. I build software and AI workflows that do real business work."/>
 <meta property="og:image" content="https://jeo-portfolio-08.vercel.app/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
 <meta property="og:image:alt" content="Jelonel (Jeo) Vitao, AI &amp; Programming Specialist and Full-Stack Developer"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Jelonel (Jeo) Vitao | AI &amp; Programming Specialist · Full-Stack Developer"/>
-<meta name="twitter:description" content="Jelonel (Jeo) Vitao, AI &amp; Programming Specialist and Full-Stack Developer in General Trias, Cavite / Quezon City, PH. Building practical software with AI-powered workflows."/>
+<meta name="twitter:description" content="Jelonel (Jeo) Vitao, AI &amp; Programming Specialist and Full-Stack Developer in General Trias, Cavite / Quezon City, PH. I build software and AI workflows that do real business work."/>
 <meta name="twitter:url" content="https://jeo-portfolio-08.vercel.app/"/>
 <meta name="twitter:image" content="https://jeo-portfolio-08.vercel.app/og-image.png"/>
 <script type="application/ld+json">
@@ -42,6 +44,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+<script>
+(function(){
+  var d=document.documentElement;
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var touch=window.matchMedia&&matchMedia('(pointer: coarse)').matches;
+  var seen=false; try{seen=sessionStorage.getItem('fxIntro')==='1';}catch(e){}
+  var forceShot=/[?&]shot/.test(location.search);
+  if(!reduce&&!touch&&!seen&&!forceShot){ d.classList.add('fx-intro'); try{sessionStorage.setItem('fxIntro','1');}catch(e){} }
+  if(/[?&]replayintro/.test(location.search)){ d.classList.add('fx-intro'); }
+})();
+</script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -144,27 +157,7 @@
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    opacity: .6;
-  }
-
-  .grid-bg {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background-image:
-      linear-gradient(rgba(37,99,235,.085) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(37,99,235,.085) 1px, transparent 1px);
-    background-size: 50px 50px;
-    mask-image:
-      radial-gradient(ellipse 90% 70% at 50% 0%, black 24%, transparent 78%),
-      radial-gradient(ellipse 60% 40% at 50% 100%, black 0%, transparent 60%);
-    animation: gridPulse 9s ease-in-out infinite;
-  }
-
-  @keyframes gridPulse {
-    0%,100% { opacity: .7; }
-    50%     { opacity: 1; }
+    opacity: 1;
   }
 
   .aurora, .aurora-2, .glow-orb, .scan-line, .rhythm-pulse {
@@ -262,6 +255,7 @@
   }
 
   .scan-line {
+    top: 0;
     left: 0;
     right: 0;
     height: 2px;
@@ -281,10 +275,10 @@
   }
 
   @keyframes scanTravel {
-    0%   { top: -2px; opacity: 0; }
+    0%   { transform: translateY(-2px); opacity: 0; }
     5%   { opacity: 1; }
     92%  { opacity: .7; }
-    100% { top: 102vh; opacity: 0; }
+    100% { transform: translateY(102vh); opacity: 0; }
   }
 
   .rhythm-pulse {
@@ -380,6 +374,9 @@
   }
 
   .brand-text {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
     font-family: 'Syne',sans-serif;
     font-size: 1rem;
     font-weight: 700;
@@ -942,6 +939,7 @@
   .mobile-sidebar-brand {
     display: flex;
     align-items: center;
+    min-height: 44px;
     gap: 12px;
     color: var(--text);
     text-decoration: none;
@@ -950,8 +948,10 @@
   }
 
   .mobile-close {
-    width: 38px;
-    height: 38px;
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
     border-radius: 12px;
     border: 1px solid var(--border);
     background: rgba(255,255,255,0.04);
@@ -1036,53 +1036,9 @@
        hero stacks (align-items:flex-start) at <=700px */
     width: 100%;
     /* FIX: the headline is sized against THIS column, not the viewport.
-       section{max-width:880px} - 4rem padding - 3rem gap - 160px photo = 608px,
+       section{max-width:880px}, 4rem padding, 3rem gap, 160px photo = 608px,
        so a viewport-based font-size (6.5vw) had no idea how little room it had. */
     container-type: inline-size;
-  }
-
-  .hero-image-wrap {
-    flex-shrink: 0;
-    width: 160px;
-    height: 160px;
-    position: relative;
-  }
-
-  .hero-image-wrap::before {
-    content:'';
-    position:absolute;
-    inset:-3px;
-    border-radius:50%;
-    background:linear-gradient(135deg,var(--blue),var(--accent),transparent 60%);
-    z-index:0;
-    opacity:.7;
-  }
-
-  .hero-image-wrap::after {
-    content:'';
-    position:absolute;
-    inset:-8px;
-    border-radius:50%;
-    background:radial-gradient(circle, rgba(37,99,235,.18), transparent 70%);
-    z-index:-1;
-    animation:orbFloat1 6s ease-in-out infinite;
-  }
-
-  .hero-image-wrap img {
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    border-radius:50%;
-    position:relative;
-    z-index:1;
-    border:2px solid rgba(37,99,235,.25);
-    display:block;
-    filter:grayscale(15%) contrast(1.05);
-    transition: filter .3s;
-  }
-
-  .hero-image-wrap:hover img {
-    filter:grayscale(0%) contrast(1.1);
   }
 
   .hero-tag {
@@ -1607,7 +1563,7 @@
 
   .about-text strong {
     color: var(--blue-glow);
-    font-weight:500;
+    font-weight:700;
   }
 
   .about-card,
@@ -2439,13 +2395,6 @@
       gap: 1.25rem;
     }
 
-    .hero-image-wrap {
-      width: 104px;
-      height: 104px;
-      margin-top: 26px;
-      margin-bottom: 12px;
-    }
-
     .about-grid { grid-template-columns: 1fr; }
     .skill-groups { grid-template-columns: 1fr; }
     /* caps at 1.9rem, so 360px+ phones render exactly as before;
@@ -2458,7 +2407,7 @@
 
     .aurora, .aurora-2, .orb-3, .orb-4 { display: none; }
     .scan-line { display: block; opacity: .6; }
-    #bg-canvas { opacity: .32; }
+    #bg-canvas { opacity: 1; }
 
     .utility-cluster {
       position: fixed;
@@ -2525,7 +2474,7 @@
     #contact  { scroll-margin-top: 92px; }
   }
 
-  /* ─── Micro-interactions (150–250ms) ─── */
+  /* ─── Micro-interactions (150 to 250ms) ─── */
   a, button, summary, input[type="checkbox"] + .toggle-track {
     transition-duration: .2s;
   }
@@ -2573,25 +2522,6 @@
   .cmdk-hit {
     color: var(--accent);
     background: transparent;
-  }
-
-  .grid-spot {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 520px;
-    height: 520px;
-    margin: -260px 0 0 -260px;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0;
-    background-image:
-      linear-gradient(rgba(125,211,252,.55) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(125,211,252,.55) 1px, transparent 1px);
-    background-size: 50px 50px;
-    -webkit-mask-image: radial-gradient(circle, #000 0%, transparent 70%);
-    mask-image: radial-gradient(circle, #000 0%, transparent 70%);
   }
 
   .case-card { transform-style: preserve-3d; }
@@ -2715,7 +2645,7 @@
 
   @media (pointer: coarse) {
     .touch-progress { display: block; }
-    #bg-canvas { opacity: .24; }
+    #bg-canvas { opacity: 1; }
   }
 
   @media (max-width: 768px) {
@@ -2737,8 +2667,7 @@
   }
 
   @media (prefers-reduced-motion: reduce), (pointer: coarse) {
-    .scroll-rail,
-    .grid-spot { display: none !important; }
+    .scroll-rail { display: none !important; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -2767,7 +2696,7 @@
   }
 
   img, svg { max-width: 100%; }
-  .hero-image-wrap img { width: 100%; height: 100%; max-width: none; object-fit: cover; }
+  .fx-photo img { width: 100%; height: 100%; max-width: none; object-fit: cover; }
   #bg-canvas { max-width: 100%; }
 
   .hero-layout > *,
@@ -2956,12 +2885,6 @@
       gap: var(--space-lg);
     }
     .hero-left { text-align: center; }
-    .hero-image-wrap {
-      order: -1;
-      width: 120px;
-      height: 120px;
-      margin: 0 auto;
-    }
     .hero-tag, .hero-chips, .hero-actions, .hero-desc { margin-left: auto; margin-right: auto; }
     .hero-actions, .hero-chips { justify-content: center; }
     .hero-tag, .status-chip, .cmdk-hint {
@@ -3030,12 +2953,356 @@
     word-break: normal;
     hyphens: none;
   }
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.hero h1 span{display:block;font-size:.62em;line-height:1.22;text-wrap:balance}
+/* ---- hero layout ---- */
+.fx-hero-top{display:flex;align-items:center;justify-content:space-between;gap:3rem}
+.fx-hero-copy{flex:1;min-width:0}
+.fx-hero-rest{margin-top:1.8rem}
+/* ---- portrait: existing photo, new effects around it ---- */
+.fx-portrait{--s:236px;position:relative;flex:none;width:var(--s);height:var(--s);
+  transform:perspective(800px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .35s cubic-bezier(.2,.7,.2,1);will-change:transform}
+.fx-particles{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:3}
+.fx-ring{position:absolute;inset:-5px;border-radius:50%;z-index:1;
+  background:conic-gradient(from 0deg,#2563eb,#0ea5e9,rgba(14,165,233,0) 38%,rgba(37,99,235,0) 60%,#2563eb);
+  -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2px));
+          mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2px));
+  animation:fxSpin 9s linear infinite;will-change:transform}
+.fx-glow{position:absolute;inset:-14px;border-radius:50%;z-index:0;
+  background:radial-gradient(circle,rgba(37,99,235,0) 58%,rgba(37,99,235,.38) 70%,rgba(14,165,233,.12) 80%,transparent 90%);
+  animation:fxBreathe 5.5s ease-in-out infinite}
+.fx-photo{position:absolute;inset:0;border-radius:50%;overflow:hidden;z-index:2;background:var(--bg2);
+  border:2px solid rgba(37,99,235,.28);isolation:isolate}
+.fx-photo img{width:100%;height:100%;object-fit:cover;display:block;filter:contrast(1.06) saturate(1.04);
+  transform-origin:50% 40%;animation:fxPush 22s ease-in-out infinite alternate;will-change:transform}
+/* depth of field: edge softens, centre stays sharp */
+.fx-photo img.fx-dof{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%;pointer-events:none;
+  filter:blur(3px) contrast(1.06) saturate(1.04);transform-origin:50% 40%;animation:fxPush 22s ease-in-out infinite alternate;
+  -webkit-mask-image:radial-gradient(circle,transparent 62%,#000 100%);mask-image:radial-gradient(circle,transparent 62%,#000 100%);
+  transition:opacity .6s}
+.fx-portrait:hover .fx-photo img.fx-dof{opacity:.35}
+.fx-vignette{position:absolute;inset:0;border-radius:50%;pointer-events:none;background:radial-gradient(circle,transparent 52%,rgba(5,7,13,.5) 100%)}
+/* scanline sweeps once on load (and again when the console replays) */
+.fx-scan{position:absolute;left:0;right:0;top:-45%;height:45%;pointer-events:none;opacity:0;mix-blend-mode:screen;
+  background:linear-gradient(to bottom,rgba(96,165,250,0),rgba(96,165,250,.22) 70%,rgba(180,230,255,.85) 98%,rgba(255,255,255,.9) 100%)}
+.fx-scan.run{animation:fxScan 1.7s cubic-bezier(.55,.05,.3,1) 1 both}
+html.fx-intro .fx-scan.run{animation-delay:1.5s}
+/* ---- agent console ---- */
+.fx-console{margin-top:.7rem;border:1px solid var(--border-hover);border-radius:16px;overflow:hidden;
+  background:linear-gradient(180deg,rgba(8,12,24,.92),rgba(5,8,17,.96));box-shadow:0 24px 60px rgba(0,0,0,.4),inset 0 0 0 1px rgba(255,255,255,.02);position:relative}
+body.light-mode .fx-console{background:linear-gradient(180deg,#0b1224,#080d1b)}
+.fx-console-bar{display:flex;align-items:center;gap:.5rem;padding:.55rem .9rem;border-bottom:1px solid var(--border);font:.72rem 'DM Mono',monospace;color:#8da2c7}
+.fx-console-bar i{width:9px;height:9px;border-radius:50%;background:#1f2a44}
+.fx-console-bar i:nth-child(1){background:#ef4444aa}.fx-console-bar i:nth-child(2){background:#f59e0baa}.fx-console-bar i:nth-child(3){background:#10b981aa}
+.fx-console-title{margin-left:.4rem;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fx-console-replay{font:inherit;color:#60a5fa;background:none;border:1px solid rgba(59,130,246,.3);border-radius:8px;padding:.15rem .6rem;cursor:pointer}
+.fx-console-replay:hover,.fx-console-replay:focus-visible{background:rgba(37,99,235,.18);outline:none}
+.fx-console-body{padding:.4rem 1rem .45rem;font:.82rem/1.5 'DM Mono',monospace;color:#cfe0ff;min-height:240px;white-space:pre-wrap;word-break:break-word}
+.fx-line{display:block;opacity:0;transform:translateY(3px);transition:opacity .25s,transform .25s}
+.fx-line.show{opacity:1;transform:none}
+.fx-k{display:inline-block;min-width:5.4em;color:#60a5fa}
+.fx-k.tool{color:#38bdf8}.fx-k.review{color:#fbbf24}.fx-k.done{color:#34d399}
+.fx-ok{color:#34d399}
+.fx-dim{color:#6f83a8}
+.fx-name{display:block;font:800 clamp(1.15rem,3.6vw,1.6rem)/1.2 'Syne',sans-serif;color:#fff;margin-top:.5rem;letter-spacing:.01em}
+.fx-name small{display:block;font:.74rem 'DM Mono',monospace;color:#60a5fa;letter-spacing:.04em;margin-top:.2rem}
+.fx-caret{display:inline-block;width:.55em;height:1em;background:#0ea5e9;vertical-align:text-bottom;margin-left:2px;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.fx-console-foot{padding:.4rem .9rem .6rem;font:.68rem 'DM Mono',monospace;color:#5d7092;border-top:1px solid rgba(59,130,246,.08)}
+.fx-console::after{content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:linear-gradient(180deg,rgba(96,165,250,.06),transparent 30%)}
+/* ---- live badge ---- */
+.fx-badge{display:inline-flex;align-items:center;gap:.65rem;border:1px solid rgba(16,185,129,.35);background:rgba(16,185,129,.07);
+  border-radius:100px;padding:.38rem .95rem .38rem .8rem;font:.76rem 'DM Mono',monospace;color:var(--text);max-width:100%}
+.fx-pulse{position:relative;width:8px;height:8px;border-radius:50%;background:#10b981;flex:none}
+.fx-pulse::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:1px solid #10b981;animation:fxPing 1.8s ease-out infinite}
+.fx-badge-items{display:grid;min-width:0}
+.fx-badge-item{grid-area:1/1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:0;animation:fxCycle 9s infinite}
+.fx-badge-item:nth-child(2){animation-delay:4.5s}
+.fx-badge-item:nth-child(1){opacity:1}
+.fx-badge-item b{color:#34d399;font-weight:500;letter-spacing:.06em;margin-right:.35rem}
+.fx-badge-item span{color:var(--text-dim)}
+/* ---- workflow maps ---- */
+.fx-flow{--c:var(--blue-light);list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:1.1rem 0 .2rem;padding:0;position:relative}
+.fx-node{position:relative;padding:.7rem .75rem;border:1px solid var(--border);border-radius:12px;background:rgba(37,99,235,.05);
+  opacity:0;transform:translateY(8px);transition:opacity .5s ease,transform .5s ease,border-color .3s;transition-delay:calc(var(--i)*.28s);min-width:0}
+.fx-node + .fx-node{margin-left:44px}
+.fx-node::before{content:'';position:absolute;left:-1.6rem;top:50%;width:1.6rem;height:2px;background:linear-gradient(90deg,var(--c),var(--accent));
+  transform:scaleX(0);transform-origin:left;transition:transform .4s ease;transition-delay:calc(var(--i)*.28s + .15s)}
+.fx-node:first-child::before{display:none}
+.fx-node::after{content:'';position:absolute;left:-1.6rem;top:calc(50% - 3px);width:6px;height:6px;border-radius:50%;background:#7dd3fc;box-shadow:0 0 8px #38bdf8;opacity:0}
+.fx-node:first-child::after{display:none}
+.fx-node small{display:block;font:.62rem 'DM Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:.15rem}
+.fx-node span{display:block;font-size:.8rem;line-height:1.35;color:var(--text);overflow-wrap:anywhere}
+.fx-node[data-kind=agent]{border-color:rgba(167,139,250,.4);background:rgba(167,139,250,.07)}
+.fx-node[data-kind=agent] small{color:#a78bfa}
+.fx-node[data-kind=result]{border-color:rgba(16,185,129,.4);background:rgba(16,185,129,.06)}
+.fx-node[data-kind=result] small{color:#34d399}
+.fx-flow.in .fx-node{opacity:1;transform:none}
+.fx-flow.in .fx-node::before{transform:scaleX(1)}
+.fx-flow.in .fx-node:not(:first-child)::after{animation:fxPacket 2.6s ease-in-out infinite;animation-delay:calc(var(--i)*.45s + 1.4s)}
+.fx-flow-cap{font:.75rem 'DM Mono',monospace;color:#d5e2f7;margin-top:1.15rem}
+/* ---- cinematic layer ---- */
+.fx-grain-wrap{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:60}
+.fx-grain{position:absolute;left:-50%;top:-50%;width:200%;height:200%;pointer-events:none;opacity:.055;will-change:transform;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  animation:fxGrain .9s steps(6) infinite}
+body.light-mode .fx-grain{filter:invert(1);opacity:.04}
+.fx-lb{display:none}
+html.fx-intro .fx-lb{display:block;position:fixed;left:0;right:0;z-index:9999;background:#000;height:50vh;pointer-events:none}
+html.fx-intro .fx-lb.top{top:0;animation:fxLbTop 1.5s cubic-bezier(.77,0,.18,1) .9s both}
+html.fx-intro .fx-lb.bot{bottom:0;animation:fxLbBot 1.5s cubic-bezier(.77,0,.18,1) .9s both}
+.fx-lb-card{display:none}
+html.fx-intro .fx-lb-card{display:block;position:fixed;inset:0;z-index:10000;pointer-events:none;display:grid;place-items:center;text-align:center;animation:fxCard 2.2s ease .1s both}
+.fx-lb-card b{display:block;font:800 clamp(1.4rem,5vw,2.2rem) 'Syne',sans-serif;letter-spacing:.18em;color:#fff}
+.fx-lb-card small{font:.7rem 'DM Mono',monospace;letter-spacing:.3em;color:#60a5fa}
+html.fx-intro .fx-hero-top,html.fx-intro .fx-console,html.fx-intro .fx-hero-rest{animation:fxRise 1.1s cubic-bezier(.2,.7,.2,1) 1.5s both}
+.fx-sweep{position:relative;height:1px;margin:3.2rem 0 0;overflow:visible;clip-path:inset(-100px 0 -100px 0);background:linear-gradient(90deg,transparent,rgba(59,130,246,.22),transparent)}
+.fx-sweep::before{content:'';position:absolute;left:-30%;top:-70px;width:40%;height:140px;opacity:0;pointer-events:none;
+  background:radial-gradient(ellipse at center,rgba(96,165,250,.20),transparent 70%)}
+.fx-sweep::after{content:'';position:absolute;left:-20%;top:-1px;width:20%;height:3px;border-radius:3px;opacity:0;
+  background:linear-gradient(90deg,transparent,#7dd3fc,transparent);box-shadow:0 0 14px #38bdf8}
+.fx-sweep.in::before{animation:fxWash 2.2s ease-out 1 both}
+.fx-sweep.in::after{animation:fxBeam 1.6s cubic-bezier(.5,.1,.3,1) 1 both}
+.fx-reveal{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.fx-reveal.in{opacity:1;transform:none}
+body.fx-static .fx-reveal,body.fx-static .fx-node{opacity:1;transform:none}
+/* ---- keyframes ---- */
+@keyframes fxSpin{to{transform:rotate(360deg)}}
+@keyframes fxBreathe{50%{opacity:.55;transform:scale(1.04)}}
+@keyframes fxPush{from{transform:scale(1) translateY(0)}to{transform:scale(1.075) translateY(-1.5%)}}
+@keyframes fxScan{0%{opacity:0;top:-45%}12%{opacity:1}88%{opacity:1}100%{opacity:0;top:100%}}
+@keyframes fxPing{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2.4);opacity:0}}
+@keyframes fxCycle{0%{opacity:0;transform:translateY(5px)}6%,44%{opacity:1;transform:none}50%,100%{opacity:0;transform:translateY(-5px)}}
+@keyframes fxPacket{0%{transform:translateX(0);opacity:0}15%{opacity:1}70%{opacity:1}100%{transform:translateX(1.6rem);opacity:0}}
+@keyframes fxGrain{0%{transform:translate(0,0)}17%{transform:translate(-4%,3%)}33%{transform:translate(3%,-5%)}50%{transform:translate(-6%,-2%)}67%{transform:translate(5%,4%)}83%{transform:translate(-2%,6%)}100%{transform:translate(0,0)}}
+@keyframes fxLbTop{to{transform:translateY(-100%)}}
+@keyframes fxLbBot{to{transform:translateY(100%)}}
+@keyframes fxCard{0%{opacity:0;transform:scale(.96)}25%,60%{opacity:1;transform:none}100%{opacity:0;transform:scale(1.03)}}
+@keyframes fxRise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes fxWash{0%{opacity:0;left:-30%}20%{opacity:1}100%{opacity:0;left:100%}}
+@keyframes fxBeam{0%{opacity:0;left:-20%}15%{opacity:1}100%{opacity:0;left:100%}}
+/* ---- responsive ---- */
+@media (max-width:900px){
+  .side{display:none}
+  .fx-portrait{--s:200px}
+}
+@media (max-width:768px){
+  .hero{padding-inline:1rem}
+}
+@media (max-width:700px){
+  .shell{padding:0 1.15rem}
+  .fx-hero-top{flex-direction:column-reverse;align-items:flex-start;gap:1.6rem}
+  .fx-portrait{--s:184px;align-self:center}
+  .about-grid{grid-template-columns:1fr}
+  .fx-flow{grid-template-columns:1fr;gap:0}
+  .fx-node + .fx-node{margin-left:0;margin-top:44px}
+  .fx-node::before{left:1.4rem;top:-44px;width:2px;height:44px;transform:scaleY(0);transform-origin:top;background:linear-gradient(180deg,var(--c),var(--accent))}
+  .fx-flow.in .fx-node::before{transform:scaleY(1)}
+  .fx-node::after{left:calc(1.4rem - 2px);top:-1.3rem}
+  .fx-flow.in .fx-node:not(:first-child)::after{animation-name:fxPacketV}
+  .fx-console-body{font-size:.74rem;min-height:280px;padding:.9rem .9rem 1rem}
+  .fx-k{min-width:4.8em}
+  .fx-badge{font-size:.7rem;max-width:100%}
+  .fx-badge-item{white-space:normal;overflow:visible}
+  .fx-badge-item b{display:block;margin:0}
+}
+@keyframes fxPacketV{0%{transform:translateY(0);opacity:0}15%{opacity:1}70%{opacity:1}100%{transform:translateY(1.3rem);opacity:0}}
+@media (min-width:701px) and (max-width:768px){
+  .hero-left{text-align:left}
+  .hero-tag,.hero-chips,.hero-actions,.hero-desc{margin-left:0;margin-right:0}
+  .hero-actions,.hero-chips{justify-content:flex-start}
+}
+@media (min-width:768px) and (max-width:1023px){
+  #projects .projects-list{grid-template-columns:1fr}
+}
+/* touch devices: no cursor effects, gentle glow + tilt instead */
+@media (pointer:coarse){
+  .fx-particles{display:none}
+  .fx-glow{animation-duration:3.6s}
+  .fx-portrait{transition-duration:.6s}
+}
+/* reduced motion: everything lands in its final state, nothing loops */
+@media (prefers-reduced-motion:reduce){
+  .fx-grain-wrap,.fx-lb,.fx-lb-card,.fx-particles,.fx-scan{display:none!important}
+  .fx-ring,.fx-glow,.fx-photo img,.fx-dof,.fx-pulse::after,.fx-badge-item,.fx-lede-caret,.fx-caret{animation:none!important}
+  .fx-badge-item:nth-child(2){display:none}
+  .fx-reveal,.fx-node,.fx-line{opacity:1!important;transform:none!important;transition:none!important}
+  .fx-node::before{transform:none!important}
+  .fx-node::after,.fx-sweep::before,.fx-sweep::after{display:none}
+  .fx-portrait{transform:none!important}
+  html.fx-intro .fx-hero-top,html.fx-intro .fx-console,html.fx-intro .fx-hero-rest{animation:none!important}
+}
+@media (max-width:390px){
+  .hero-tag{display:flex;align-items:center;flex-wrap:nowrap;white-space:nowrap}
+  .hero-tag .tag-dot{flex:none}
+}
+@media (max-height:800px){
+  .hero{padding-top:6.4rem}
+  .fx-console{margin-top:0}
+  .fx-console-bar{padding:.12rem .65rem}
+  .fx-console-body{padding:.05rem .75rem 0;min-height:132px;font-size:.68rem;line-height:1.08}
+  .fx-console-foot{padding:.1rem .65rem .14rem}
+  .fx-name{margin-top:.05rem;font-size:.95rem;line-height:1.15}
+  .fx-name small{margin-top:0;font-size:.64rem}
+}
+@media (max-width:480px) and (max-height:800px){
+  .fx-console-body{min-height:156px}
+}
+@media (min-width:900px) and (min-height:801px) and (max-height:940px){
+  .fx-console{margin-top:.15rem}
+  .fx-console-body{padding:.22rem 1rem .25rem;line-height:1.32;min-height:212px}
+  .fx-hero-rest{margin-top:1.05rem}
+  .fx-name{margin-top:.2rem}
+}
+#fx-pointer{position:fixed;inset:0;z-index:0;pointer-events:none;width:100%;height:100%}
+.fx-shell{position:relative;border-radius:16px;border:1px solid rgba(148,180,230,.22);
+  background-color:rgba(11,15,28,.6);
+  background-image:linear-gradient(180deg,rgba(255,255,255,.08),transparent 30%),radial-gradient(380px circle at var(--mx,50%) var(--my,30%),var(--spot,transparent),transparent 58%);
+  backdrop-filter:blur(6px) saturate(140%);-webkit-backdrop-filter:blur(6px) saturate(140%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 16px 40px rgba(0,0,0,.22);
+  --mx:50%;--my:30%;--rx:0deg;--ry:0deg;--spot:transparent}
+body.light-mode .fx-shell{background-color:rgba(255,255,255,.78);border-color:rgba(37,99,235,.2);
+  background-image:linear-gradient(180deg,rgba(255,255,255,.7),transparent 34%),radial-gradient(380px circle at var(--mx,50%) var(--my,30%),var(--spot,transparent),transparent 58%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 16px 36px rgba(37,99,235,.08)}
+.fx-shell:not(.case-card):not(.fx-reveal):not(.reveal){transition:transform .3s ease,translate .3s ease,box-shadow .3s ease}
+.case-card.fx-shell{transition:translate .3s ease,box-shadow .3s ease}
+.fx-shell:not(.goal-card)::after,.goal-card.fx-shell::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;z-index:2;opacity:.38;
+  background:conic-gradient(from var(--fx-edge,0deg),rgba(37,99,235,.55),rgba(34,211,238,.5),rgba(139,92,246,.55),rgba(37,99,235,.55));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude}
+@property --fx-edge{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes fxEdgeSpin{to{--fx-edge:360deg}}
+.fx-shell-reveal{opacity:0;translate:0 16px}
+.fx-shell-reveal.fx-shell-on{opacity:1;translate:0 0;transition:opacity .7s ease,translate .7s cubic-bezier(.2,.7,.2,1)}
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .fx-shell{--spot:rgba(56,189,248,.18)}
+  body.light-mode .fx-shell{--spot:rgba(37,99,235,.16)}
+  .fx-shell:not(.case-card):not(.fx-reveal):not(.reveal){transform:perspective(900px) rotateX(var(--rx)) rotateY(var(--ry))}
+  .fx-shell:hover{translate:0 -3px;box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 28px 54px rgba(0,0,0,.4);will-change:transform}
+  body.light-mode .fx-shell:hover{box-shadow:inset 0 1px 0 #fff,0 22px 44px rgba(37,99,235,.16)}
+  .fx-shell:hover::after,.goal-card.fx-shell:hover::before{opacity:1;animation:fxEdgeSpin 9s linear infinite}
+}
+@media (pointer:coarse){
+  .fx-shell:active{box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 0 0 1px rgba(96,165,250,.4),0 10px 28px rgba(37,99,235,.28)}
+}
+@media (prefers-reduced-motion:reduce){
+  .fx-shell,.fx-shell:hover{transform:none!important;translate:none!important;animation:none!important}
+  .fx-shell::after,.fx-shell::before{animation:none!important}
+  .fx-shell-reveal{opacity:1;translate:none;transition:none}
+  .fx-node::before{box-shadow:0 0 8px rgba(56,189,248,.55)}
+}
+.fx-flow.in .fx-node:not(:first-child)::after{animation:none;opacity:0}
+.fx-current{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.fx-current ~ .fx-node::before{visibility:hidden}
+.fx-node{z-index:1;background-color:rgba(8,14,28,.94)}
+.fx-node[data-kind=agent]{background-color:rgba(16,12,32,.94)}
+.fx-node[data-kind=result]{background-color:rgba(8,22,20,.94)}
+body.light-mode .fx-node,body.light-mode .fx-node[data-kind=agent],body.light-mode .fx-node[data-kind=result]{background-color:rgba(255,255,255,.94)}
+.fx-node.fx-spark{box-shadow:0 0 0 1px rgba(125,211,252,.95),0 0 18px rgba(56,189,248,.75)}
+.fx-sound{position:relative;flex:none}
+.fx-sound-btn{width:44px;height:44px;display:grid;place-items:center;border-radius:14px;border:1px solid rgba(125,180,255,.28);background:rgba(11,15,28,.55);color:#9ec5ff;cursor:pointer}
+.fx-sound-btn:focus-visible{outline:2px solid #38bdf8;outline-offset:2px}
+.fx-sound-btn[aria-pressed="true"]{color:#e8f4ff;border-color:rgba(56,189,248,.7);box-shadow:0 0 14px rgba(56,189,248,.28)}
+.fx-sound-btn[aria-pressed="false"] .fx-sound-wave{display:none}
+.fx-sound-btn[aria-pressed="true"] .fx-sound-x{display:none}
+.fx-sound-pop{display:none;position:absolute;top:calc(100% + 8px);right:0;width:148px;padding:.55rem .7rem .65rem;border-radius:12px;background:rgba(11,15,28,.94);border:1px solid rgba(125,180,255,.28);box-shadow:0 16px 40px rgba(0,0,0,.35);z-index:30}
+body.light-mode .fx-sound-btn,body.light-mode .fx-sound-pop{background:rgba(255,255,255,.92);color:#1e3a8a;border-color:rgba(37,99,235,.28)}
+.fx-sound-label{display:block;font:12px 'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#93c5fd;margin-bottom:.35rem}
+body.light-mode .fx-sound-label{color:#075985}
+.fx-sound-pop input{width:100%;accent-color:#2563eb}
+.fx-sound-pop.open{display:block}
+@media (max-width:390px){
+  .fx-sound-btn{width:44px;height:44px;border-radius:12px}
+}
+.side-icon svg,.cmdk-icon svg,.fx-ico{display:block}
+.fx-console-replay,.copy-email-btn,.cmdk-hint,.ai-step-btn{min-height:44px}
+@media (pointer:coarse), (max-width:768px){
+  .project-link,.email-link,.case-drawer summary{display:inline-flex;align-items:center;min-height:44px;box-sizing:border-box}
+  .project-link,.email-link{padding:.5rem .2rem}
+  .case-drawer summary{width:100%;justify-content:space-between;padding:.55rem 1rem}
+}
+.fx-console-replay{display:inline-flex;align-items:center;gap:.35rem}
+.about-text p,.hero-desc,.project-desc,.goal-text,.contact-desc,.case-field p,.ai-step-panel p{max-width:68ch;line-height:1.6}
+.section-label,.skill-group-label,.project-tag,.case-field-label,.fx-node small,.ai-process-label,.stat-info label,.case-id,.case-status,.ai-process-status,.status-chip,.cmdk-hint,.cmdk-kbd,.cmdk-foot,.about-profile-role,footer{font-size:12px}
+.section-label,.skill-group-label,.project-tag,.case-field-label,.fx-node small,.ai-process-label,.stat-info label,.case-id,.case-status,.ai-process-status{color:#93c5fd}
+body.light-mode .section-label,body.light-mode .skill-group-label,body.light-mode .project-tag,body.light-mode .case-field-label,body.light-mode .fx-node small,body.light-mode .ai-process-label{color:#075985}
+.fx-flow-cap,.project-note,.fx-console-foot{font-size:12px}
+@media (max-width:768px){
+  body,.about-text,.about-text p,.hero-desc,.project-desc,.goal-text,.contact-desc,.case-field p,.ai-step-panel p,.hero-lede{font-size:16px;line-height:1.6}
+}
+body.light-mode .about-text,body.light-mode .hero-desc,body.light-mode .project-desc,body.light-mode .goal-text,body.light-mode .contact-desc,body.light-mode .case-field p,body.light-mode .ai-step-panel p{color:#1e293b}
+body.light-mode .section-label,body.light-mode .skill-group-label,body.light-mode .project-tag,body.light-mode .case-field-label,body.light-mode .ai-process-label,body.light-mode .stat-info label,body.light-mode .case-id,body.light-mode .case-status,body.light-mode .ai-process-status,body.light-mode .fx-node small,body.light-mode .about-profile-role{color:#075985}
+html.fx-motion .fx-boot-item{opacity:0;filter:blur(5px);translate:0 8px}
+html.fx-motion .fx-boot.fx-seen .fx-boot-item,html.fx-motion .fx-boot.fx-booted .fx-boot-item{opacity:1;filter:none;translate:0 0;transition:opacity .4s ease,filter .4s ease,translate .4s ease;transition-delay:calc(var(--i, 0) * 45ms)}
+html.fx-lite .fx-boot-item{opacity:0;translate:0 6px}
+html.fx-lite .fx-boot.fx-seen .fx-boot-item,html.fx-lite .fx-boot.fx-booted .fx-boot-item{opacity:1;translate:0 0;transition:opacity .28s ease,translate .28s ease;transition-delay:calc(var(--i, 0) * 28ms)}
+.fx-boot-line{position:absolute;left:0;right:0;top:0;height:2px;pointer-events:none;background:linear-gradient(90deg,transparent,#7dd3fc,transparent);opacity:0}
+html.fx-motion .fx-seen>.fx-boot-line,html.fx-lite .fx-seen>.fx-boot-line,html.fx-motion .fx-booted>.fx-boot-line,html.fx-lite .fx-booted>.fx-boot-line{animation:fxBootScan .4s ease 1}
+@keyframes fxBootScan{from{transform:translateY(0);opacity:1}to{transform:translateY(42px);opacity:0}}
+.fx-away{opacity:.72;transition:opacity .35s ease}
+html.fx-motion .fx-shell.fx-appeared::after,html.fx-lite .fx-shell.fx-appeared::after,html.fx-motion .goal-card.fx-shell.fx-appeared::before,html.fx-lite .goal-card.fx-shell.fx-appeared::before{opacity:.85;animation:fxEdgeSpin .8s linear 1}
+html.fx-motion .fx-seen .skill-pill,html.fx-motion .fx-seen .stack-pill,html.fx-motion .fx-booted .skill-pill,html.fx-motion .fx-booted .stack-pill{animation:fxChip .32s ease both;animation-delay:calc(var(--i, 0) * 35ms)}
+html.fx-lite .fx-seen .skill-pill,html.fx-lite .fx-seen .stack-pill,html.fx-lite .fx-booted .skill-pill,html.fx-lite .fx-booted .stack-pill{animation:fxChip .22s ease both;animation-delay:calc(var(--i, 0) * 24ms)}
+@keyframes fxChip{0%{opacity:0;translate:0 4px}35%{opacity:.35}100%{opacity:1;translate:0 0}}
+html.fx-motion img{animation:fxSharp .45s ease both}
+html.fx-lite img{animation:fxSharpLite .28s ease both}
+@keyframes fxSharp{from{filter:blur(6px);opacity:.35}to{filter:none;opacity:1}}
+@keyframes fxSharpLite{from{opacity:.4}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){
+  .fx-boot-item,.fx-away{opacity:1!important;filter:none!important;translate:none!important;animation:none!important}
+  img{animation:none!important}
+}
+.fx-scroll{position:fixed;left:0;right:0;top:0;height:2px;z-index:400;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,#2563eb,#38bdf8);pointer-events:none}
+.side-nav{position:relative}
+.fx-nav-glide{position:absolute;left:4px;top:0;width:3px;height:22px;border-radius:3px;background:#38bdf8;box-shadow:0 0 10px rgba(56,189,248,.8);transform:translateY(12px);transition:transform .35s ease;pointer-events:none;z-index:2}
+#experience .fx-bit{opacity:0;translate:0 10px}
+#experience .fx-shell-on .fx-bit{opacity:1;translate:0 0;transition:opacity .5s ease,translate .5s ease;transition-delay:calc(var(--d) * 55ms)}
+#experience .project-card.fx-shell:hover{transform:none}
+.contact-wrap{background:none;border:none;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+#contact .section-title{position:relative;display:inline-block}
+#contact .fx-title-text{display:inline-block;position:relative}
+#contact .fx-scanline{position:absolute;left:-4%;right:-4%;height:2px;top:0;opacity:0;pointer-events:none;background:linear-gradient(90deg,transparent,#7dd3fc,transparent);box-shadow:0 0 8px #38bdf8}
+#contact .section-title.fx-scanning .fx-scanline{animation:fxTitleScan .28s linear 1}
+@keyframes fxTitleScan{from{top:0;opacity:1}to{top:78%;opacity:0}}
+#contact .section-title.fx-glitch .fx-title-text{animation:fxRgb .2s linear 1}
+@keyframes fxRgb{
+  0%{text-shadow:-3px 0 #22d3ee,3px 0 #2563eb}
+  45%{text-shadow:3px 0 #67e8f9,-3px 0 #2563eb}
+  100%{text-shadow:none}
+}
+#contact .fx-wave{display:block;width:100%;height:16px;margin-top:2px}
+.fx-ico{flex:none;display:inline-block;vertical-align:-2px;color:var(--accent)}
+.copy-email-btn{display:inline-flex;align-items:center;gap:.35rem}
+.rail-beacon span{display:none}
+.email-row{position:relative}
+.contact-actions a{position:relative;overflow:hidden}
+.fx-ripple{position:absolute;width:14px;height:14px;margin:0;border-radius:50%;border:1px solid rgba(186,230,253,.85);pointer-events:none;transform:translate(-50%,-50%);animation:fxEnergy .6s ease-out forwards}
+@keyframes fxEnergy{to{transform:translate(-50%,-50%) scale(16);opacity:0}}
+.fx-sparkbit{position:absolute;width:4px;height:4px;border-radius:50%;background:#7dd3fc;pointer-events:none;animation:fxSparkbit .6s ease-out forwards}
+@keyframes fxSparkbit{to{transform:translate(var(--x),var(--y));opacity:0}}
+section:focus-visible{outline:2px solid #38bdf8;outline-offset:6px}
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .fx-shell{animation:fxBreatheEdge 5.5s ease-in-out infinite}
+  .fx-shell:hover,.fx-shell:focus-within{animation:none}
+}
+@keyframes fxBreatheEdge{
+  0%,100%{box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 0 0 1px rgba(56,189,248,.05),0 16px 40px rgba(0,0,0,.22)}
+  50%{box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 0 0 1px rgba(56,189,248,.28),0 0 16px rgba(56,189,248,.14),0 16px 40px rgba(0,0,0,.22)}
+}
+@media (prefers-reduced-motion:reduce){
+  .fx-nav-glide{transition:none}
+  #contact .section-title.fx-glitch .fx-title-text,#contact .section-title.fx-scanning .fx-scanline{animation:none!important}
+  #experience .fx-bit{opacity:1;translate:none;transition:none}
+  .fx-shell{animation:none!important}
+}
 </style>
 </head>
 <body>
+<div class="fx-scroll" aria-hidden="true"></div>
 <div id="bg-gradient"></div>
 <canvas id="bg-canvas"></canvas>
-<div class="grid-bg"></div>
+<canvas id="fx-pointer" aria-hidden="true"></canvas>
 <div class="aurora"></div>
 <div class="aurora-2"></div>
 <div class="glow-orb orb-1"></div>
@@ -3047,19 +3314,24 @@
 <div class="rhythm-pulse rp-2"></div>
 <div class="rhythm-pulse rp-3"></div>
 
+<div class="fx-grain-wrap" aria-hidden="true"><div class="fx-grain"></div></div>
+<div class="fx-lb top" aria-hidden="true"></div><div class="fx-lb bot" aria-hidden="true"></div>
+<div class="fx-lb-card" aria-hidden="true"><div><b>JEO VITAO</b><small>AI &amp; PROGRAMMING SPECIALIST</small></div></div>
+
 <nav class="desktop-sidebar glass" aria-label="Section navigation">
   <div>
     <div class="sidebar-brand">
-      <div class="brand-cube">◆</div>
+      <div class="brand-cube"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M8 1.5 14.2 8 8 14.5 1.8 8Z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></div>
       <a href="#top" class="brand-text">jeo.dev</a>
     </div>
     <ul class="side-nav">
-      <li><a href="#about"      class="side-link active"><div class="side-icon">⌘</div><span class="nav-label">About</span></a></li>
-      <li><a href="#experience" class="side-link"><div class="side-icon">◈</div><span class="nav-label">Experience</span></a></li>
-      <li><a href="#projects"   class="side-link"><div class="side-icon">▣</div><span class="nav-label">Projects</span></a></li>
-      <li><a href="#skills"     class="side-link"><div class="side-icon">✦</div><span class="nav-label">Skills</span></a></li>
-      <li><a href="#goal"       class="side-link"><div class="side-icon">◎</div><span class="nav-label">Goal</span></a></li>
-      <li><a href="#contact"    class="side-link"><div class="side-icon">✉</div><span class="nav-label">Contact</span></a></li>
+      <span class="fx-nav-glide" aria-hidden="true"></span>
+      <li><a href="#about"      class="side-link active"><div class="side-icon"><svg viewBox="0 0 16 16" width="16" height="16"><path d="M6 3.2H4.4A1.6 1.6 0 1 1 6 4.8V6m0 0h4m-4 0v4m4-4V4.8a1.6 1.6 0 1 1 1.6-1.6H10M6 10h4m0 0v1.2A1.6 1.6 0 1 1 11.6 12.8H10M6 10v1.2A1.6 1.6 0 1 1 4.4 12.8H6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div><span class="nav-label">About</span></a></li>
+      <li><a href="#experience" class="side-link"><div class="side-icon"><svg viewBox="0 0 16 16" width="16" height="16"><path d="M8 1.8 14 8 8 14.2 2 8Z" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></div><span class="nav-label">Experience</span></a></li>
+      <li><a href="#projects"   class="side-link"><div class="side-icon"><svg viewBox="0 0 16 16" width="16" height="16"><rect x="2.2" y="2.2" width="4.6" height="4.6" rx=".6" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="9.2" y="2.2" width="4.6" height="4.6" rx=".6" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="2.2" y="9.2" width="4.6" height="4.6" rx=".6" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="9.2" y="9.2" width="4.6" height="4.6" rx=".6" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></div><span class="nav-label">Projects</span></a></li>
+      <li><a href="#skills"     class="side-link"><div class="side-icon"><svg viewBox="0 0 16 16" width="16" height="16"><path d="M8 1.6 9.2 6.2 13.8 8 9.2 9.8 8 14.4 6.8 9.8 2.2 8 6.8 6.2Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg></div><span class="nav-label">Skills</span></a></li>
+      <li><a href="#goal"       class="side-link"><div class="side-icon"><svg viewBox="0 0 16 16" width="16" height="16"><circle cx="8" cy="8" r="5.2" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="1.4" fill="currentColor"/></svg></div><span class="nav-label">Goal</span></a></li>
+      <li><a href="#contact"    class="side-link"><div class="side-icon"><svg viewBox="0 0 16 16" width="16" height="16"><rect x="2" y="3.4" width="12" height="9.2" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M2.6 4.2 8 8.4l5.4-4.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></div><span class="nav-label">Contact</span></a></li>
     </ul>
   </div>
 </nav>
@@ -3069,19 +3341,19 @@
 <aside class="mobile-sidebar" id="mobileSidebar" aria-label="Mobile navigation">
   <div class="mobile-sidebar-header">
     <a href="#top" class="mobile-sidebar-brand" id="mobileHomeLink">
-      <div class="brand-cube">◆</div>
+      <div class="brand-cube"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M8 1.5 14.2 8 8 14.5 1.8 8Z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></div>
       <span>jeo.dev</span>
     </a>
-    <button class="mobile-close" id="mobileSidebarClose" aria-label="Close menu">✕</button>
+    <button class="mobile-close" id="mobileSidebarClose" aria-label="Close menu"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3.5 3.5 12.5 12.5M12.5 3.5 3.5 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
   </div>
   <ul class="mobile-side-nav">
-    <li><a href="#top"        class="mobile-side-link mobile-nav-link"><div class="side-icon">⌂</div><span>Home</span></a></li>
-    <li><a href="#about"      class="mobile-side-link mobile-nav-link"><div class="side-icon">⌘</div><span>About</span></a></li>
-    <li><a href="#experience" class="mobile-side-link mobile-nav-link"><div class="side-icon">◈</div><span>Experience</span></a></li>
-    <li><a href="#projects"   class="mobile-side-link mobile-nav-link"><div class="side-icon">▣</div><span>Projects</span></a></li>
-    <li><a href="#skills"     class="mobile-side-link mobile-nav-link"><div class="side-icon">✦</div><span>Skills</span></a></li>
-    <li><a href="#goal"       class="mobile-side-link mobile-nav-link"><div class="side-icon">◎</div><span>Goal</span></a></li>
-    <li><a href="#contact"    class="mobile-side-link mobile-nav-link"><div class="side-icon">✉</div><span>Contact</span></a></li>
+    <li><a href="#top"        class="mobile-side-link mobile-nav-link"><div class="side-icon"><svg viewBox="0 0 16 16" width="16" height="16"><path d="M2.6 7.2 8 2.7l5.4 4.5V13.4H10V9.5H6v3.9H2.6Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></div><span>Home</span></a></li>
+    <li><a href="#about"      class="mobile-side-link mobile-nav-link"><div class="side-icon"><svg viewBox="0 0 16 16" width="16" height="16"><path d="M6 3.2H4.4A1.6 1.6 0 1 1 6 4.8V6m0 0h4m-4 0v4m4-4V4.8a1.6 1.6 0 1 1 1.6-1.6H10M6 10h4m0 0v1.2A1.6 1.6 0 1 1 11.6 12.8H10M6 10v1.2A1.6 1.6 0 1 1 4.4 12.8H6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div><span>About</span></a></li>
+    <li><a href="#experience" class="mobile-side-link mobile-nav-link"><div class="side-icon"><svg viewBox="0 0 16 16" width="16" height="16"><path d="M8 1.8 14 8 8 14.2 2 8Z" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></div><span>Experience</span></a></li>
+    <li><a href="#projects"   class="mobile-side-link mobile-nav-link"><div class="side-icon"><svg viewBox="0 0 16 16" width="16" height="16"><rect x="2.2" y="2.2" width="4.6" height="4.6" rx=".6" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="9.2" y="2.2" width="4.6" height="4.6" rx=".6" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="2.2" y="9.2" width="4.6" height="4.6" rx=".6" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="9.2" y="9.2" width="4.6" height="4.6" rx=".6" fill="none" stroke="currentColor" stroke-width="1.2"/></svg></div><span>Projects</span></a></li>
+    <li><a href="#skills"     class="mobile-side-link mobile-nav-link"><div class="side-icon"><svg viewBox="0 0 16 16" width="16" height="16"><path d="M8 1.6 9.2 6.2 13.8 8 9.2 9.8 8 14.4 6.8 9.8 2.2 8 6.8 6.2Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg></div><span>Skills</span></a></li>
+    <li><a href="#goal"       class="mobile-side-link mobile-nav-link"><div class="side-icon"><svg viewBox="0 0 16 16" width="16" height="16"><circle cx="8" cy="8" r="5.2" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="1.4" fill="currentColor"/></svg></div><span>Goal</span></a></li>
+    <li><a href="#contact"    class="mobile-side-link mobile-nav-link"><div class="side-icon"><svg viewBox="0 0 16 16" width="16" height="16"><rect x="2" y="3.4" width="12" height="9.2" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M2.6 4.2 8 8.4l5.4-4.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></div><span>Contact</span></a></li>
   </ul>
 </aside>
 
@@ -3089,13 +3361,22 @@
   <a href="#top" class="nav-logo">jeo.dev</a>
   <div class="nav-tools">
     <div class="utility-cluster">
+  <div class="fx-sound">
+    <button type="button" class="fx-sound-btn" id="fxSoundBtn" aria-label="Sound on/off" aria-pressed="true" aria-expanded="false" aria-controls="fxSoundPop">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 9h3l4-3v12l-4-3H4z" fill="currentColor"/><path class="fx-sound-wave" d="M15 9.5a3.5 3.5 0 0 1 0 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path class="fx-sound-x" d="M16 10l4 4m0-4l-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+    <div class="fx-sound-pop" id="fxSoundPop">
+      <label class="fx-sound-label" for="fxVolume">Volume</label>
+      <input id="fxVolume" type="range" min="0" max="100" value="80" aria-label="Volume"/>
+    </div>
+  </div>
   <label class="day-toggle glass" title="Day / Night mode">
     <input type="checkbox" id="dayNightToggle" />
     <div class="toggle-track">
       <div class="toggle-stars"></div>
       <div class="toggle-clouds"></div>
-      <div class="toggle-sun">☀</div>
-      <div class="toggle-moon">☾</div>
+      <div class="toggle-sun"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><circle cx="8" cy="8" r="2.4" fill="currentColor"/><path d="M8 1.4v1.8M8 12.8v1.8M1.4 8h1.8M12.8 8h1.8M3.2 3.2l1.3 1.3M11.5 11.5l1.3 1.3M12.8 3.2l-1.3 1.3M4.5 11.5l-1.3 1.3" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+      <div class="toggle-moon"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M9.2 2.2a5.2 5.2 0 1 0 4.6 7.6 4.2 4.2 0 0 1-4.6-7.6Z" fill="currentColor"/></svg></div>
       <div class="toggle-knob"></div>
     </div>
   </label>
@@ -3143,46 +3424,59 @@
 
 <!-- ── HERO ── -->
 <section class="hero" id="top">
-  <div class="hero-layout">
-    <div class="hero-left">
-      <div class="hero-tag"><span class="tag-dot"></span>Open to opportunities · Currently with Spark Logistics</div>
-      <h1>Jeo Vitao<br/><span>AI &amp; Programming Specialist<br/>Full-Stack Developer</span></h1>
+  <div class="fx-hero-top">
+    <div class="hero-left fx-hero-copy">
+      <div class="hero-tag"><span class="tag-dot"></span>Open to work · Building at Spark Logistics</div>
+      <h1>Jeo Vitao<span>AI &amp; Programming Specialist<br/>Full-Stack Developer</span></h1>
       <p class="hero-alias">Also known as Jelonel Vitao</p>
-      <p class="hero-sub">// AI Automation · IT Systems &amp; Operations</p>
+      <p class="hero-sub">// AI automation · full-stack apps · IT systems</p>
     </div>
-    <div class="hero-image-wrap">
-      <img src="profile-photo.png" alt="Jelonel (Jeo) Vitao" />
+    <div class="fx-portrait" id="fxPortrait">
+      <canvas class="fx-particles" aria-hidden="true"></canvas>
+      <div class="fx-glow" aria-hidden="true"></div>
+      <div class="fx-ring" aria-hidden="true"></div>
+      <div class="fx-photo">
+        <img src="profile-photo.png" alt="Jelonel (Jeo) Vitao"/>
+        <img class="fx-dof" src="profile-photo.png" alt="" aria-hidden="true"/><span class="fx-vignette" aria-hidden="true"></span><span class="fx-scan" aria-hidden="true"></span>
+      </div>
     </div>
   </div>
 
-  <p class="hero-lede"><span id="heroDecode">Building practical software with AI-powered workflows.</span><span class="lede-caret" aria-hidden="true"></span></p>
-  <p class="hero-desc">
-    I pair full-stack engineering with AI tooling to build business systems that do real work.
-    Right now that's workforce tracking, operational reporting, and team-visibility tools for
-    Spark Logistics — AI in the loop, a human at the wheel.
-  </p>
-
-  <div class="hero-actions">
-    <a href="#projects" class="btn-primary">View My Work</a>
-    <a href="mailto:jelonelvitao@gmail.com?subject=R%C3%A9sum%C3%A9%20Request%20%E2%80%93%20Jeo%20Vitao&amp;body=Hi%20Jeo%2C%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20request%20a%20copy%20of%20your%20r%C3%A9sum%C3%A9.%0D%0A%0D%0AName%3A%0D%0ACompany%3A%0D%0ARole%3A%0D%0A%0D%0AThank%20you%21" class="btn-resume">⬡ Request Résumé</a>
-    <a href="#contact"  class="btn-outline">Get in Touch</a>
+  <div class="fx-console" id="fxConsole" role="region" aria-label="Sample agent run">
+    <div class="fx-console-bar"><i></i><i></i><i></i><span class="fx-console-title">agent://jeo · sample run</span><button type="button" class="fx-console-replay" id="fxReplay" aria-label="Replay the sample agent run"><svg class="fx-ico" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M13.2 8A5.2 5.2 0 1 1 8 2.8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M8 1.2v2.4H5.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg> replay</button></div>
+    <div class="fx-console-body" id="fxConsoleBody" aria-hidden="true"></div>
+    <p class="sr-only">Sample agent run. The agent plans a task, calls three tools, waits for human review, then ships. Built by Jeo Vitao, AI and Programming Specialist.</p>
+    <div class="fx-console-foot">An example of how I work, not a live system. Press replay to run it again. On a phone, tap the console.</div>
   </div>
 
-  <div class="hero-chips">
-    <div class="status-chip" title="Current side project">
-      <span class="status-dot"></span>
-      <span class="status-chip-label">currently building</span>
-      — Spark CRM &amp; Spark Space
+  <div class="fx-hero-rest">
+    <p class="hero-lede"><span id="heroDecode">I build software and AI workflows that do real work.</span><span class="lede-caret" aria-hidden="true"></span></p>
+    <p class="hero-desc">I write full-stack code and put AI to work inside it. At Spark Logistics I'm building workforce tracking, daily reporting and team visibility tools. AI helps me move fast. I review every change before it ships.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">View My Work</a>
+      <a href="mailto:jelonelvitao@gmail.com?subject=R%C3%A9sum%C3%A9%20Request%20for%20Jeo%20Vitao&amp;body=Hi%20Jeo%2C%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20request%20a%20copy%20of%20your%20r%C3%A9sum%C3%A9.%0D%0A%0D%0AName%3A%0D%0ACompany%3A%0D%0ARole%3A%0D%0A%0D%0AThank%20you%21" class="btn-resume"><svg class="fx-ico" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 1.8 13.2 4.8v6.4L8 14.2 2.8 11.2V4.8Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg> Request Résumé</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
     </div>
-    <button type="button" class="cmdk-hint" id="cmdkHint" aria-label="Open command palette">
-      <kbd id="cmdkHintKey">⌘K</kbd> command palette
-    </button>
+    <div class="hero-chips">
+      <div class="fx-badge" role="status">
+        <span class="fx-pulse" aria-hidden="true"></span>
+        <span class="fx-badge-items">
+          <span class="fx-badge-item"><b>SHIPPING</b><span>ai.sparklogisticsllc.com · launching soon</span></span>
+          <span class="fx-badge-item"><b>BUILDING</b><span>Spark CRM &amp; Spark Space</span></span>
+        </span>
+      </div>
+      <button type="button" class="cmdk-hint" id="cmdkHint" aria-label="Open command palette">
+        <kbd id="cmdkHintKey">⌘K</kbd> command palette
+      </button>
+    </div>
   </div>
 </section>
 
+<div class="fx-sweep" aria-hidden="true"></div>
+
 <!-- ── ABOUT ── -->
 <section id="about">
-  <div class="section-wrap reveal">
+  <div class="section-wrap reveal fx-reveal">
     <div class="section-label"><span class="section-slash">//</span>about me</div>
     <div class="section-title">Who I Am</div>
     <div class="section-divider"></div>
@@ -3196,11 +3490,11 @@
             <div class="about-profile-role">AI &amp; Programming Specialist · Full-Stack Developer</div>
           </div>
         </div>
-        <p>I like building the systems behind the business — the trackers, portals, and internal tools that keep an operation running. I'm an <strong>AI &amp; Programming Specialist</strong> based in General Trias, Cavite / Quezon City, PH, working remotely with <strong>Spark Logistics</strong> across product planning, full-stack development, testing, technical documentation, and deployment support.</p>
-        <p>Diploma in Computer Science — Asian Institute of Computer Studies, 2010.</p>
-        <p>My daily stack is <strong>Next.js, React, TypeScript, Tailwind CSS, Supabase, and PostgreSQL</strong> — applied to authentication, role-aware access, Row Level Security, database synchronization, mobile-responsive interfaces, and structured operational workflows.</p>
-        <p>I've also run the systems my software has to live with: <strong>Microsoft 365 administration, NOAH ERP support, Zoho ServiceDesk, SharePoint</strong>, user-access management, troubleshooting, and documentation. That's why I design around actual business processes, not idealized ones.</p>
-        <p><strong>ChatGPT, Claude Code, Cursor, Gemini, Graphify, and n8n</strong> are in my toolbox for planning, implementation, debugging, architecture analysis, documentation, and workflow automation — always with human review before anything ships.</p>
+        <p>I build the systems behind the business: trackers, portals and internal tools that keep an operation running. I'm an <strong>AI &amp; Programming Specialist</strong> in General Trias, Cavite / Quezon City, PH, working remotely with <strong>Spark Logistics</strong>. I plan the product, write the code, test it, document it and help deploy it.</p>
+        <p>Diploma in Computer Science, Asian Institute of Computer Studies, 2010.</p>
+        <p>My daily tools are <strong>Next.js, React, TypeScript, Tailwind CSS, Supabase and PostgreSQL</strong>. I use them for sign in, who can see what, Row Level Security, data sync and screens that work on a phone.</p>
+        <p>I've also run the systems my software has to live with: <strong>Microsoft 365 admin, NOAH ERP support, Zoho ServiceDesk and SharePoint</strong>. That includes user access, troubleshooting and documentation. So I design for how the business actually works.</p>
+        <p>My AI toolbox is <strong>ChatGPT</strong>, <strong>Codex</strong> and the <strong>OpenAI platform</strong>, <strong>Claude</strong> and <strong>Claude Code</strong>, <strong>Google AI Studio</strong>, <strong>Google Gemini</strong>, <strong>Cursor</strong>, <strong>Grok</strong>, <strong>n8n</strong> and <strong>Obsidian</strong>. It keeps growing as better tools come out. They help me plan, build, debug and map architecture. They also help me write docs and automate workflows. I review everything before it ships.</p>
       </div>
 
       <div class="about-card">
@@ -3240,9 +3534,11 @@
   </div>
 </section>
 
+<div class="fx-sweep" aria-hidden="true"></div>
+
 <!-- ── EXPERIENCE ── -->
 <section id="experience">
-  <div class="section-wrap reveal">
+  <div class="section-wrap reveal fx-reveal">
     <div class="section-label"><span class="section-slash">//</span>experience</div>
     <div class="section-title">Where I've Worked</div>
     <div class="section-divider"></div>
@@ -3250,47 +3546,47 @@
     <div class="projects-list">
 
       <!-- Role 1: Spark Logistics -->
-      <div class="project-card">
+      <div class="project-card skill-group">
         <div class="project-tag">
           <span style="width:6px;height:6px;border-radius:50%;background:#0ea5e9;display:inline-block;animation:tagPulse 2s ease infinite"></span>
-          June 2026 — Present · Current Role
+          June 2026 to Present · Current Role
         </div>
-        <div class="project-title">AI &amp; Programming Specialist — Contract / Remote</div>
+        <div class="project-title">AI &amp; Programming Specialist, Contract / Remote</div>
         <p class="project-desc" style="margin-bottom:1rem;">Spark Logistics LLC · Utah, USA</p>
         <ul class="goal-list" style="margin-bottom:.5rem;">
-          <li>Develop full-stack business applications for workforce tracking, task management, team visibility, and operational reporting.</li>
-          <li>Build responsive systems using Next.js, React, TypeScript, Tailwind CSS, Supabase, and PostgreSQL.</li>
-          <li>Contribute to authentication, role-aware access, Row Level Security, database synchronization, testing, and mobile UX improvements.</li>
-          <li>Use AI-assisted development tools and GitHub workflows for implementation, architecture review, debugging, documentation, and deployment support.</li>
+          <li>Build full-stack apps for workforce tracking, tasks, team visibility and operational reporting.</li>
+          <li>Ship responsive systems with Next.js, React, TypeScript, Tailwind CSS, Supabase and PostgreSQL.</li>
+          <li>Work on sign in, role-aware access, Row Level Security, data sync, testing and mobile UX.</li>
+          <li>Use AI coding tools and GitHub workflows to build, review architecture, debug, document and deploy.</li>
           <li>Developed and deployed the Spark Team Operations Tracker on Render.</li>
-          <li>Configured and validated Brightly CRM workflows, intake forms, and SMS opt-in.</li>
+          <li>Configured and validated Brightly CRM workflows, intake forms and SMS opt-in.</li>
           <li>Preparing WordPress/Bluehost migrations and DNS cutover for two client domains.</li>
         </ul>
       </div>
 
       <!-- Role 2: SY3 Energy -->
-      <div class="project-card">
+      <div class="project-card skill-group">
         <div class="project-tag">
-          July 2024 — July 2026
+          July 2024 to July 2026
         </div>
         <div class="project-title">IT Support Specialist</div>
         <p class="project-desc" style="margin-bottom:1rem;">SY3 Energy Maintenance Services Corp.</p>
         <ul class="goal-list" style="margin-bottom:.5rem;">
-          <li>Supported NOAH ERP, Microsoft 365 accounts, SharePoint access, and departmental system workflows.</li>
-          <li>Managed Zoho ServiceDesk requests and provided hardware, software, connectivity, and user-access support.</li>
-          <li>Maintained ERP data accuracy, technical documentation, and timely resolution of IT concerns.</li>
-          <li>Coordinated technical requirements and system issues with departments and internal stakeholders.</li>
+          <li>Supported NOAH ERP, Microsoft 365 accounts, SharePoint access and department workflows.</li>
+          <li>Managed Zoho ServiceDesk requests and provided hardware, software, connectivity and user access support.</li>
+          <li>Maintained ERP data accuracy, technical documentation and timely resolution of IT concerns.</li>
+          <li>Coordinated technical requirements and system issues with departments and stakeholders.</li>
         </ul>
       </div>
 
       <!-- Role 3: Synergies Empowerment -->
-      <div class="project-card">
+      <div class="project-card skill-group">
         <div class="project-tag">
           <span style="width:6px;height:6px;border-radius:50%;background:#a78bfa;display:inline-block"></span>
-          December 2022 — March 2024
+          December 2022 to March 2024
         </div>
         <div class="project-title">Sales Development Representative</div>
-        <p class="project-desc" style="margin-bottom:1rem;">Synergies Empowerment · Remote Team — Learnexus</p>
+        <p class="project-desc" style="margin-bottom:1rem;">Synergies Empowerment · Remote Team (Learnexus)</p>
         <ul class="goal-list" style="margin-bottom:.5rem;">
           <li>Conducted lead generation and outreach through email and LinkedIn.</li>
           <li>Managed prospect records, follow-ups, CRM data, and pipeline updates.</li>
@@ -3302,9 +3598,12 @@
   </div>
 </section>
 
+<div class="fx-sweep" aria-hidden="true"></div>
+
 <!-- ── PROJECTS ── -->
 <section id="projects">
-  <div class="section-wrap reveal">
+  <div class="section-wrap">
+    <div class="reveal fx-reveal">
     <div class="section-label"><span class="section-slash">//</span>projects</div>
     <div class="section-title">Case Files</div>
     <div class="section-divider"></div>
@@ -3318,20 +3617,27 @@
           <span class="case-status status-deployed"><span class="case-dot"></span>Deployed · Render</span>
         </div>
         <div class="project-title">Spark Team Operations Tracker</div>
-        <p class="project-desc">Workforce operations platform for Spark Logistics — attendance, work logs, tasks, duration tracking, and end-of-day reporting in one responsive system.</p>
+        <p class="project-desc">Workforce operations platform for Spark Logistics. Attendance, work logs, tasks, time tracking and end-of-day reports in one responsive app.</p>
+        <ol class="fx-flow" aria-label="Workflow map: team logs work, app applies role checks, Supabase stores it, end of day report">
+          <li class="fx-node" style="--i:0" data-kind="trigger"><small>trigger</small><span>Team logs attendance and work</span></li>
+          <li class="fx-node" style="--i:1" data-kind="app"><small>app</small><span>Next.js app with role-aware access</span></li>
+          <li class="fx-node" style="--i:2" data-kind="tools"><small>tools</small><span>Supabase and PostgreSQL</span></li>
+          <li class="fx-node" style="--i:3" data-kind="result"><small>result</small><span>End-of-day report</span></li>
+        </ol>
+        <div class="fx-flow-cap">How the pieces connect.</div>
         <details class="case-drawer">
           <summary>
             <span class="drawer-label">open case file</span>
-            <span class="drawer-icon" aria-hidden="true">▸</span>
+            <span class="drawer-icon" aria-hidden="true"><svg class="fx-ico" viewBox="0 0 16 16" width="12" height="12"><path d="M6 3.5 11 8 6 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </summary>
           <div class="case-body">
             <div class="case-field">
               <div class="case-field-label">problem</div>
-              <p>A distributed team needed one place for attendance, work logs, task monitoring, duration tracking, team visibility, and end-of-day reporting.</p>
+              <p>A remote team needed one place for attendance, work logs, tasks, time tracking, team visibility and end-of-day reports.</p>
             </div>
             <div class="case-field">
               <div class="case-field-label">what I built</div>
-              <p>A responsive full-stack platform with Supabase-synced data, role-aware access controls, and mobile-refined UX — taken from phased planning through testing and technical documentation.</p>
+              <p>A responsive full-stack app with Supabase synced data, role-aware access and a mobile friendly UI. I took it from phased planning through testing and documentation.</p>
             </div>
             <div class="case-field">
               <div class="case-field-label">stack</div>
@@ -3348,12 +3654,12 @@
             </div>
             <div class="case-field">
               <div class="case-field-label">my role</div>
-              <p>Phased planning, full-stack implementation, Supabase synchronization, role-aware access controls, mobile UX refinement, testing, and technical documentation.</p>
+              <p>Planning, full-stack build, Supabase sync, access controls, mobile UX, testing and documentation.</p>
             </div>
           </div>
         </details>
         <div class="project-links">
-          <span class="project-note">⟡ Internal Business System · Private Repository</span>
+          <span class="project-note"><svg class="fx-ico" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 1.6 14.4 8 8 14.4 1.6 8Z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg> Internal Business System · Private Repository</span>
         </div>
       </article>
 
@@ -3364,20 +3670,27 @@
           <span class="case-status status-prototype"><span class="case-dot"></span>Internal prototype</span>
         </div>
         <div class="project-title">Synercore ERP Dashboard</div>
-        <p class="project-desc">Multi-company internal dashboard for workflow tracking, requests, approvals, and operational visibility — ERP thinking applied to the web.</p>
+        <p class="project-desc">Multi-company internal dashboard for workflows, requests and approvals. ERP thinking, built for the web.</p>
+        <ol class="fx-flow" aria-label="Workflow map: user signs in, company scoped access, Supabase, requests and approvals dashboard">
+          <li class="fx-node" style="--i:0" data-kind="trigger"><small>trigger</small><span>User signs in</span></li>
+          <li class="fx-node" style="--i:1" data-kind="app"><small>app</small><span>Access scoped per company</span></li>
+          <li class="fx-node" style="--i:2" data-kind="tools"><small>tools</small><span>Supabase and PostgreSQL</span></li>
+          <li class="fx-node" style="--i:3" data-kind="result"><small>result</small><span>Requests and approvals view</span></li>
+        </ol>
+        <div class="fx-flow-cap">How the pieces connect.</div>
         <details class="case-drawer">
           <summary>
             <span class="drawer-label">open case file</span>
-            <span class="drawer-icon" aria-hidden="true">▸</span>
+            <span class="drawer-icon" aria-hidden="true"><svg class="fx-ico" viewBox="0 0 16 16" width="12" height="12"><path d="M6 3.5 11 8 6 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </summary>
           <div class="case-body">
             <div class="case-field">
               <div class="case-field-label">problem</div>
-              <p>Multiple companies needed shared visibility over workflows, requests, and approvals — with access scoped per company.</p>
+              <p>Several companies needed shared visibility over workflows, requests and approvals, with access scoped per company.</p>
             </div>
             <div class="case-field">
               <div class="case-field-label">what I built</div>
-              <p>An ERP-style web dashboard prototype with authentication and company-based access, applying hands-on IT operations experience to practical business workflow design.</p>
+              <p>An ERP-style dashboard prototype with sign in and company-based access. I drew on my hands-on IT operations experience to design practical workflows.</p>
             </div>
             <div class="case-field">
               <div class="case-field-label">stack</div>
@@ -3393,7 +3706,7 @@
             </div>
             <div class="case-field">
               <div class="case-field-label">my role</div>
-              <p>End-to-end: requirements from IT operations experience, system design, implementation, and deployment of the prototype.</p>
+              <p>End to end: requirements, system design, build and deployment of the prototype.</p>
             </div>
           </div>
         </details>
@@ -3410,20 +3723,27 @@
           <span class="case-status status-dev"><span class="case-dot pulse"></span>In development</span>
         </div>
         <div class="project-title">AI-Assisted IT Ticket Automation</div>
-        <p class="project-desc">AI-assisted triage for IT service requests — summaries, missing-info checks, and draft replies, with review and escalation controls.</p>
+        <p class="project-desc">AI triage for IT service requests. It summarizes, flags missing info and drafts replies, with review and escalation built in.</p>
+        <ol class="fx-flow" aria-label="Workflow map: new IT request, AI triage agent, draft reply and escalation rules, human review">
+          <li class="fx-node" style="--i:0" data-kind="trigger"><small>trigger</small><span>New IT request arrives</span></li>
+          <li class="fx-node" style="--i:1" data-kind="agent"><small>agent</small><span>AI triage: summary, urgency, missing info</span></li>
+          <li class="fx-node" style="--i:2" data-kind="tools"><small>tools</small><span>Draft reply and escalation rules</span></li>
+          <li class="fx-node" style="--i:3" data-kind="result"><small>result</small><span>Human review before anything is sent</span></li>
+        </ol>
+        <div class="fx-flow-cap">How the pieces connect.</div>
         <details class="case-drawer">
           <summary>
             <span class="drawer-label">open case file</span>
-            <span class="drawer-icon" aria-hidden="true">▸</span>
+            <span class="drawer-icon" aria-hidden="true"><svg class="fx-ico" viewBox="0 0 16 16" width="12" height="12"><path d="M6 3.5 11 8 6 12.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </summary>
           <div class="case-body">
             <div class="case-field">
               <div class="case-field-label">problem</div>
-              <p>Service-desk requests take manual triage: summarizing, judging urgency, categorizing, and spotting missing information before anyone can act.</p>
+              <p>Service desk requests need manual triage: summarize, judge urgency, categorize and spot missing info before anyone can act.</p>
             </div>
             <div class="case-field">
               <div class="case-field-label">what I built</div>
-              <p>AI-assisted triage for IT service requests — summaries, missing-info checks, and draft replies, with review and escalation controls.</p>
+              <p>I'm building an AI triage service that summarizes IT requests, flags missing info and drafts replies. Humans review and can escalate.</p>
             </div>
             <div class="case-field">
               <div class="case-field-label">stack</div>
@@ -3439,21 +3759,23 @@
             </div>
             <div class="case-field">
               <div class="case-field-label">my role</div>
-              <p>Design and implementation of the service and its AI-assisted processing pipeline, including the review and escalation flow.</p>
+              <p>I design and build the service, its AI processing pipeline and the review and escalation flow.</p>
             </div>
           </div>
         </details>
         <div class="project-links">
-          <span class="project-note">⟡ In Active Development · Not Production-Complete</span>
+          <span class="project-note"><svg class="fx-ico" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 1.6 14.4 8 8 14.4 1.6 8Z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg> In active development · Not production ready</span>
         </div>
       </article>
 
     </div><!-- /projects-list -->
 
+    </div>
+    <div class="fx-sweep" aria-hidden="true"></div>
     <!-- How I build with AI -->
-    <div class="ai-process">
+    <div class="ai-process reveal fx-reveal">
       <div class="ai-process-label">// how I build with AI</div>
-      <div class="ai-stepper" role="tablist" aria-label="How I build with AI — stages">
+      <div class="ai-stepper" role="tablist" aria-label="How I build with AI, in stages">
         <button type="button" class="ai-step-btn active" role="tab" id="aistep-0" aria-selected="true" aria-controls="aiStepPanel" tabindex="0">PLAN</button>
         <span class="ai-connector" aria-hidden="true"></span>
         <button type="button" class="ai-step-btn" role="tab" id="aistep-1" aria-selected="false" aria-controls="aiStepPanel" tabindex="-1">BUILD</button>
@@ -3465,16 +3787,18 @@
         <button type="button" class="ai-step-btn" role="tab" id="aistep-4" aria-selected="false" aria-controls="aiStepPanel" tabindex="-1">SHIP</button>
       </div>
       <div class="ai-step-panel" id="aiStepPanel" role="tabpanel" aria-labelledby="aistep-0" aria-live="polite">
-        <p id="aiStepDesc">Requirements first. I map the problem to data, workflows, and access rules, and use AI to pressure-test the architecture before writing code.</p>
+        <p id="aiStepDesc">I start with the requirements. I map the data, the workflow and who can access what. Then I use AI to pressure test the plan before I write code.</p>
       </div>
-      <p class="ai-process-note">Example: <strong>AI-Assisted IT Ticket Automation</strong> <span class="ai-process-status">in development</span> — each change moves through this loop, with human review before anything ships.</p>
+      <p class="ai-process-note">Example: <strong>AI-Assisted IT Ticket Automation</strong> (in development). Every change goes through this loop, and I review it before it ships.</p>
     </div>
   </div>
 </section>
 
+<div class="fx-sweep" aria-hidden="true"></div>
+
 <!-- ── SKILLS ── -->
 <section id="skills">
-  <div class="section-wrap reveal">
+  <div class="section-wrap reveal fx-reveal">
     <div class="section-label"><span class="section-slash">//</span>skills</div>
     <div class="section-title">Technical Stack</div>
     <div class="section-divider"></div>
@@ -3482,7 +3806,7 @@
     <div class="skill-groups">
 
       <div class="skill-group">
-        <div class="skill-group-label">⟡ Frontend</div>
+        <div class="skill-group-label"><svg class="fx-ico" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 1.6 14.4 8 8 14.4 1.6 8Z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg> Frontend</div>
         <div class="skill-badges">
           <span class="skill-pill">Next.js</span>
           <span class="skill-pill">React</span>
@@ -3495,7 +3819,7 @@
       </div>
 
       <div class="skill-group">
-        <div class="skill-group-label">⟡ Backend &amp; APIs</div>
+        <div class="skill-group-label"><svg class="fx-ico" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 1.6 14.4 8 8 14.4 1.6 8Z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg> Backend &amp; APIs</div>
         <div class="skill-badges">
           <span class="skill-pill">Node.js</span>
           <span class="skill-pill">Express</span>
@@ -3506,7 +3830,7 @@
       </div>
 
       <div class="skill-group">
-        <div class="skill-group-label">⟡ Data &amp; Security</div>
+        <div class="skill-group-label"><svg class="fx-ico" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 1.6 14.4 8 8 14.4 1.6 8Z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg> Data &amp; Security</div>
         <div class="skill-badges">
           <span class="skill-pill">PostgreSQL</span>
           <span class="skill-pill">Row Level Security</span>
@@ -3519,34 +3843,39 @@
       </div>
 
       <div class="skill-group">
-        <div class="skill-group-label">⟡ AI &amp; Automation</div>
+        <div class="skill-group-label"><svg class="fx-ico" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 1.6 14.4 8 8 14.4 1.6 8Z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg> AI &amp; Automation</div>
         <div class="skill-badges">
           <span class="skill-pill">AI-Assisted Development</span>
           <span class="skill-pill">ChatGPT</span>
+          <span class="skill-pill">Codex</span>
+          <span class="skill-pill">OpenAI platform</span>
+          <span class="skill-pill">Claude</span>
           <span class="skill-pill">Claude Code</span>
+          <span class="skill-pill">Google AI Studio</span>
+          <span class="skill-pill">Google Gemini</span>
           <span class="skill-pill">Cursor</span>
-          <span class="skill-pill">Gemini</span>
+          <span class="skill-pill">Grok</span>
+          <span class="skill-pill">n8n</span>
+          <span class="skill-pill">Obsidian</span>
           <span class="skill-pill">Prompt Engineering</span>
-          <span class="skill-pill">Graphify Architecture Analysis</span>
           <span class="skill-pill">Structured AI Code Reviews</span>
-          <span class="skill-pill practicing">n8n Workflow Automation · practicing</span>
         </div>
       </div>
 
       <div class="skill-group">
-        <div class="skill-group-label">⟡ Cloud, Web &amp; Domains</div>
+        <div class="skill-group-label"><svg class="fx-ico" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 1.6 14.4 8 8 14.4 1.6 8Z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg> Cloud, Web &amp; Domains</div>
         <div class="skill-badges">
           <span class="skill-pill">Vercel</span>
           <span class="skill-pill">Render</span>
           <span class="skill-pill">Cloudflare Pages</span>
           <span class="skill-pill">WordPress/Bluehost</span>
           <span class="skill-pill">Git &amp; GitHub</span>
-          <span class="skill-pill">DNS &amp; Domain Management</span>
+          <span class="skill-pill">Website &amp; Domain Creation and Management</span>
         </div>
       </div>
 
       <div class="skill-group">
-        <div class="skill-group-label">⟡ Enterprise IT</div>
+        <div class="skill-group-label"><svg class="fx-ico" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 1.6 14.4 8 8 14.4 1.6 8Z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg> Enterprise IT</div>
         <div class="skill-badges">
           <span class="skill-pill">Microsoft 365</span>
           <span class="skill-pill">SharePoint</span>
@@ -3560,12 +3889,11 @@
       </div>
 
       <div class="skill-group">
-        <div class="skill-group-label">⟡ CRM &amp; Business Systems</div>
+        <div class="skill-group-label"><svg class="fx-ico" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 1.6 14.4 8 8 14.4 1.6 8Z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg> CRM &amp; Business Systems</div>
         <div class="skill-badges">
           <span class="skill-pill">Brightly CRM Configuration</span>
           <span class="skill-pill">CRM Workflow Design</span>
           <span class="skill-pill">Web Forms &amp; SMS Opt-In</span>
-          <span class="skill-pill">NOAH ERP</span>
         </div>
       </div>
 
@@ -3573,39 +3901,43 @@
   </div>
 </section>
 
+<div class="fx-sweep" aria-hidden="true"></div>
+
 <!-- ── GOAL ── -->
 <section id="goal">
-  <div class="section-wrap reveal" style="padding-top:0;">
+  <div class="section-wrap reveal fx-reveal" style="padding-top:0;">
     <div class="section-label"><span class="section-slash">//</span>my goal</div>
     <div class="section-title">What I'm Building Toward</div>
     <div class="section-divider"></div>
     <div class="goal-card">
-      <div class="goal-title">Deepening AI-Assisted Development &amp; Business Systems Engineering</div>
-      <p class="goal-text">I'm deepening full-stack architecture, AI-assisted workflow design, secure data access, and system integration — aiming at reliable tools that cut manual work, improve visibility, and support real business processes.</p>
+      <div class="goal-title">Getting better at AI-assisted development and business systems</div>
+      <p class="goal-text">I'm going deeper on full-stack architecture, AI workflow design, secure data access and integrations. I want reliable tools. They should cut manual work and give teams a clear view of what is happening.</p>
       <ul class="goal-list">
-        <li>Strengthen full-stack architecture using Next.js, TypeScript, Supabase, and PostgreSQL</li>
-        <li>Improve authentication, role-based access control, Row Level Security, and auditability</li>
-        <li>Develop controlled AI-assisted workflows for IT support and operational systems</li>
-        <li>Expand API integration and workflow automation experience</li>
-        <li>Build reusable business modules with responsive and accessible interfaces</li>
+        <li>Sharpen full-stack architecture with Next.js, TypeScript, Supabase and PostgreSQL</li>
+        <li>Improve sign in, role-based access, Row Level Security and audit trails</li>
+        <li>Build controlled AI workflows for IT support and operations</li>
+        <li>Do more API integration and workflow automation</li>
+        <li>Build reusable business modules with responsive, accessible interfaces</li>
       </ul>
     </div>
   </div>
 </section>
 
+<div class="fx-sweep" aria-hidden="true"></div>
+
 <!-- ── CONTACT ── -->
 <section id="contact">
-  <div class="contact-wrap reveal">
+  <div class="contact-wrap reveal fx-reveal">
     <div class="section-label"><span class="section-slash">//</span>contact</div>
     <div class="section-title">Let's Connect</div>
-    <p class="contact-desc"><strong class="contact-hook">Have something worth building? Let's turn a useful idea into working software.</strong> I'm open to AI-assisted development, full-stack web development, IT systems, and workflow automation work — remote contract, project-based, or long-term.</p>
+    <p class="contact-desc"><strong class="contact-hook">Have something worth building? Let's turn a useful idea into working software.</strong> I'm open to AI assisted development, full-stack web work, IT systems and workflow automation. I can work remote, on a contract, a project, or a longer engagement.</p>
     <div class="contact-actions">
-      <a href="mailto:jelonelvitao@gmail.com?subject=R%C3%A9sum%C3%A9%20Request%20%E2%80%93%20Jeo%20Vitao&amp;body=Hi%20Jeo%2C%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20request%20a%20copy%20of%20your%20r%C3%A9sum%C3%A9.%0D%0A%0D%0AName%3A%0D%0ACompany%3A%0D%0ARole%3A%0D%0A%0D%0AThank%20you%21" class="btn-resume">⬡ Request Résumé</a>
+      <a href="mailto:jelonelvitao@gmail.com?subject=R%C3%A9sum%C3%A9%20Request%20for%20Jeo%20Vitao&amp;body=Hi%20Jeo%2C%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20request%20a%20copy%20of%20your%20r%C3%A9sum%C3%A9.%0D%0A%0D%0AName%3A%0D%0ACompany%3A%0D%0ARole%3A%0D%0A%0D%0AThank%20you%21" class="btn-resume"><svg class="fx-ico" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M8 1.8 13.2 4.8v6.4L8 14.2 2.8 11.2V4.8Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg> Request Résumé</a>
       <a href="mailto:jelonelvitao@gmail.com" class="btn-primary" style="display:inline-block">Send Me a Message</a>
     </div>
     <div class="email-row">
       <a href="mailto:jelonelvitao@gmail.com" class="email-link">jelonelvitao@gmail.com</a>
-      <button type="button" class="copy-email-btn" id="copyEmailBtn" aria-label="Copy email address to clipboard">⧉ copy</button>
+      <button type="button" class="copy-email-btn" id="copyEmailBtn" aria-label="Copy email address to clipboard"><svg class="fx-ico" viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><rect x="4" y="3.2" width="8" height="10.4" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M6.2 3.2V2.2h3.6v1" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><span class="fx-copy-label">copy</span></button>
     </div>
   </div>
 </section>
@@ -3640,9 +3972,20 @@ window.addEventListener('load', () => { window.scrollTo(0, 0); });
 
 // ── Sidebar active link (click + scroll spy) ──
 const navLinks = document.querySelectorAll('.side-link');
+let navSoundHash = '';
 let setActiveLink = function (hash) {
   navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === hash));
+  const glide = document.querySelector('.fx-nav-glide');
+  const active = document.querySelector('.side-nav .side-link.active');
+  if (glide && active) {
+    glide.style.transform = 'translateY(' + (active.offsetTop + (active.offsetHeight - 22) / 2) + 'px)';
+  }
+  if (hash && hash !== navSoundHash) {
+    if (navSoundHash) document.dispatchEvent(new CustomEvent('fx-nav'));
+    navSoundHash = hash;
+  }
 }
+setActiveLink('#about');
 navLinks.forEach(link => link.addEventListener('click', () => setActiveLink(link.getAttribute('href'))));
 
 const spySections = ['about','experience','projects','skills','goal','contact']
@@ -3657,7 +4000,7 @@ spySections.forEach(s => spyObs.observe(s));
 
 // ── Copy email to clipboard ──
 const CONTACT_EMAIL = 'jelonelvitao@gmail.com';
-const RESUME_MAILTO = 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent('Résumé Request – Jeo Vitao') + '&body=' + encodeURIComponent('Hi Jeo,\n\nI came across your portfolio and would like to request a copy of your résumé.\n\nName:\nCompany:\nRole:\n\nThank you!');
+const RESUME_MAILTO = 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent('Résumé Request for Jeo Vitao') + '&body=' + encodeURIComponent('Hi Jeo,\n\nI came across your portfolio and would like to request a copy of your résumé.\n\nName:\nCompany:\nRole:\n\nThank you!');
 document.querySelectorAll('.btn-resume').forEach(a => a.setAttribute('href', RESUME_MAILTO));
 
 async function copyEmailToClipboard() {
@@ -3682,12 +4025,28 @@ if (copyEmailBtn) {
   copyEmailBtn.addEventListener('click', async () => {
     await copyEmailToClipboard();
     copyEmailBtn.classList.add('copied');
-    copyEmailBtn.textContent = '✓ copied';
+    const copyLabel = copyEmailBtn.querySelector('.fx-copy-label');
+    if (copyLabel) copyLabel.textContent = 'copied';
+    const row = copyEmailBtn.parentElement;
+    if (row) {
+      for (let i = 0; i < 8; i++) {
+        const bit = document.createElement('span');
+        bit.className = 'fx-sparkbit';
+        bit.style.left = (copyEmailBtn.offsetLeft + copyEmailBtn.offsetWidth / 2) + 'px';
+        bit.style.top = (copyEmailBtn.offsetTop + copyEmailBtn.offsetHeight / 2) + 'px';
+        const ang = (Math.PI * 2 * i) / 8;
+        bit.style.setProperty('--x', Math.cos(ang) * 28 + 'px');
+        bit.style.setProperty('--y', Math.sin(ang) * 22 + 'px');
+        row.appendChild(bit);
+        setTimeout(() => bit.remove(), 650);
+      }
+    }
     clearTimeout(copyResetTimer);
     copyResetTimer = setTimeout(() => {
       copyEmailBtn.classList.remove('copied');
-      copyEmailBtn.textContent = '⧉ copy';
-    }, 1800);
+      if (copyLabel) copyLabel.textContent = 'copy';
+    }, 1500);
+    document.dispatchEvent(new CustomEvent('fx-chime'));
   });
 }
 
@@ -3707,16 +4066,31 @@ if (copyEmailBtn) {
   const resumeLink = document.querySelector('.btn-resume');
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 
+  const ICONS = {
+    home: '<svg viewBox="0 0 16 16" width="16" height="16"><path d="M2.6 7.2 8 2.7l5.4 4.5V13.4H10V9.5H6v3.9H2.6Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>',
+    about: '<svg viewBox="0 0 16 16" width="16" height="16"><path d="M6 3.2H4.4A1.6 1.6 0 1 1 6 4.8V6m0 0h4m-4 0v4m4-4V4.8a1.6 1.6 0 1 1 1.6-1.6H10M6 10h4m0 0v1.2A1.6 1.6 0 1 1 11.6 12.8H10M6 10v1.2A1.6 1.6 0 1 1 4.4 12.8H6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>',
+    work: '<svg viewBox="0 0 16 16" width="16" height="16"><path d="M8 1.8 14 8 8 14.2 2 8Z" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>',
+    files: '<svg viewBox="0 0 16 16" width="16" height="16"><rect x="2.2" y="2.2" width="4.6" height="4.6" rx=".6" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="9.2" y="2.2" width="4.6" height="4.6" rx=".6" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="2.2" y="9.2" width="4.6" height="4.6" rx=".6" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="9.2" y="9.2" width="4.6" height="4.6" rx=".6" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>',
+    skills: '<svg viewBox="0 0 16 16" width="16" height="16"><path d="M8 1.6 9.2 6.2 13.8 8 9.2 9.8 8 14.4 6.8 9.8 2.2 8 6.8 6.2Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>',
+    goal: '<svg viewBox="0 0 16 16" width="16" height="16"><circle cx="8" cy="8" r="5.2" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="1.4" fill="currentColor"/></svg>',
+    contact: '<svg viewBox="0 0 16 16" width="16" height="16"><rect x="2" y="3.4" width="12" height="9.2" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M2.6 4.2 8 8.4l5.4-4.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>',
+    resume: '<svg viewBox="0 0 16 16" width="16" height="16"><path d="M8 1.8 13.2 4.8v6.4L8 14.2 2.8 11.2V4.8Z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>',
+    copy: '<svg viewBox="0 0 16 16" width="16" height="16"><rect x="4" y="3.2" width="8" height="10.4" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M6.2 3.2V2.2h3.6v1" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>',
+    replay: '<svg viewBox="0 0 16 16" width="16" height="16"><path d="M13.2 8A5.2 5.2 0 1 1 8 2.8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M8 1.2v2.4H5.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    sound: '<svg viewBox="0 0 16 16" width="16" height="16"><path d="M3 6.2h2.2L8.2 3.6v8.8L5.2 9.8H3Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M10.2 6.2a2.4 2.4 0 0 1 0 3.6M11.8 4.6a4.4 4.4 0 0 1 0 6.8" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>'
+  };
   const COMMANDS = [
-    { icon: '⌂', label: 'Home',                tag: 'section', hash: '#top',        keywords: 'home top hero start' },
-    { icon: '⌘', label: 'About',               tag: 'section', hash: '#about',      keywords: 'about who bio' },
-    { icon: '◈', label: 'Experience',          tag: 'section', hash: '#experience', keywords: 'experience work roles jobs' },
-    { icon: '▣', label: 'Case Files',          tag: 'section', hash: '#projects',   keywords: 'projects case files built work' },
-    { icon: '✦', label: 'Skills',              tag: 'section', hash: '#skills',     keywords: 'skills stack tech' },
-    { icon: '◎', label: 'Goal',                tag: 'section', hash: '#goal',       keywords: 'goal building toward' },
-    { icon: '✉', label: 'Contact',             tag: 'section', hash: '#contact',    keywords: 'contact connect reach' },
-    { icon: '⬡', label: 'Request Résumé',      tag: 'action',  action: 'resume',    keywords: 'resume cv request email hire' },
-    { icon: '⧉', label: 'Copy email address',  tag: 'action',  action: 'copy',      keywords: 'copy email clipboard address' }
+    { icon: 'home', label: 'Home',                tag: 'section', hash: '#top',        keywords: 'home top hero start' },
+    { icon: 'about', label: 'About',              tag: 'section', hash: '#about',      keywords: 'about who bio' },
+    { icon: 'work', label: 'Experience',          tag: 'section', hash: '#experience', keywords: 'experience work roles jobs' },
+    { icon: 'files', label: 'Case Files',         tag: 'section', hash: '#projects',   keywords: 'projects case files built work' },
+    { icon: 'skills', label: 'Skills',            tag: 'section', hash: '#skills',     keywords: 'skills stack tech' },
+    { icon: 'goal', label: 'Goal',                tag: 'section', hash: '#goal',       keywords: 'goal building toward' },
+    { icon: 'contact', label: 'Contact',          tag: 'section', hash: '#contact',    keywords: 'contact connect reach' },
+    { icon: 'resume', label: 'Request Résumé',    tag: 'action',  action: 'resume',    keywords: 'resume cv request email hire' },
+    { icon: 'copy', label: 'Copy email address',  tag: 'action',  action: 'copy',      keywords: 'copy email clipboard address' },
+    { icon: 'replay', label: 'Replay agent run',  tag: 'action',  action: 'replay',    keywords: 'replay agent run console sample' },
+    { icon: 'sound', label: 'Toggle sound',       tag: 'action',  action: 'sound',     keywords: 'sound audio volume mute speaker' }
   ];
 
   let visible = [];
@@ -3769,7 +4143,7 @@ if (copyEmailBtn) {
     if (!visible.length) {
       const li = document.createElement('li');
       li.className = 'cmdk-empty';
-      li.textContent = 'no matches — try "skills" or "résumé"';
+      li.textContent = 'no matches. Try "skills" or "résumé"';
       list.appendChild(li);
       input.setAttribute('aria-activedescendant', '');
       return;
@@ -3781,7 +4155,7 @@ if (copyEmailBtn) {
       li.id = 'cmdk-item-' + i;
       li.setAttribute('role', 'option');
       li.setAttribute('aria-selected', String(i === selected));
-      li.innerHTML = '<span class="cmdk-icon" aria-hidden="true">' + escapeHtml(c.icon) + '</span><span class="cmdk-label">' + highlight(c.label, row.idxs) + '</span><span class="cmdk-tag">' + escapeHtml(c.tag) + '</span>';
+      li.innerHTML = '<span class="cmdk-icon" aria-hidden="true">' + (ICONS[c.icon] || escapeHtml(c.icon)) + '</span><span class="cmdk-label">' + highlight(c.label, row.idxs) + '</span><span class="cmdk-tag">' + escapeHtml(c.tag) + '</span>';
       li.addEventListener('mouseenter', () => select(i));
       li.addEventListener('click', () => run(i));
       list.appendChild(li);
@@ -3832,7 +4206,17 @@ if (copyEmailBtn) {
       }
     } else if (cmd.action === 'resume') {
       closePalette();
-      window.location.href = RESUME_MAILTO;
+      document.dispatchEvent(new CustomEvent('fx-ripple'));
+      setTimeout(() => { window.location.href = RESUME_MAILTO; }, 120);
+    } else if (cmd.action === 'replay') {
+      closePalette();
+      const replayBtn = document.getElementById('fxReplay');
+      if (replayBtn) replayBtn.click();
+      window.scrollTo({ top: 0, behavior: prefersReduced.matches ? 'auto' : 'smooth' });
+    } else if (cmd.action === 'sound') {
+      closePalette();
+      const soundBtn = document.getElementById('fxSoundBtn');
+      if (soundBtn) soundBtn.click();
     } else if (cmd.action === 'copy') {
       copyEmailToClipboard().then(() => {
         const li = list.children[i];
@@ -3886,11 +4270,11 @@ if (copyEmailBtn) {
   if (!stepBtns.length || !stepDesc) return;
 
   const STEP_COPY = [
-    'Requirements first. I map the problem to data, workflows, and access rules, and use AI to pressure-test the architecture before writing code.',
-    'AI-assisted implementation in Cursor and Claude Code — the tools accelerate, I stay at the wheel.',
-    'Human review on everything AI touches: logic, data paths, and access control get read before they\u2019re trusted.',
-    'Behavior, edge cases, and permissions are tested against the requirements before release.',
-    'Controlled deployment to Render or Vercel, with documentation so the next change is easier than this one.'
+    'I start with the requirements. I map the data, the workflow and who can access what. Then I use AI to pressure test the plan before I write code.',
+    'I build in Cursor and Claude Code. The tools speed me up. I make the calls.',
+    'I read everything AI touches. That means the logic, the data paths and the access control. I do this before I trust it.',
+    'I test behavior, edge cases and permissions. I check them against the requirements before release.',
+    'I deploy in a controlled way to Render or Vercel. I leave docs so the next change is easier.'
   ];
 
   function selectStep(i, focus) {
@@ -4062,51 +4446,202 @@ revealEls.forEach(el => revealObs.observe(el));
   const touch = window.matchMedia('(pointer: coarse)').matches;
   const decodeEl = document.getElementById('heroDecode');
   const caret = document.querySelector('.lede-caret');
-  const PHRASE = 'Building practical software with AI-powered workflows.';
-  if (reduce) {
-    if (decodeEl) decodeEl.textContent = PHRASE;
-    return;
-  }
-
-  const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&';
-  const pointer = { x: window.innerWidth * 0.7, y: window.innerHeight * 0.35, on: false };
+  const PHRASE = 'I build software and AI workflows that do real work.';
   const canvas = document.getElementById('bg-canvas');
   const ctx = canvas ? canvas.getContext('2d') : null;
+  const pointerCanvas = document.getElementById('fx-pointer');
+  const pctx = pointerCanvas ? pointerCanvas.getContext('2d') : null;
+  const pointer = { x: window.innerWidth * 0.7, y: window.innerHeight * 0.35, on: false };
   let nodes = [];
+  let ripples = [];
   let W = 0;
   let H = 0;
+  let canvasDpr = 0;
+  const LINK = 120;
+  const POINTER_R = 200;
+
+  function fieldColors() {
+    const light = document.body.classList.contains('light-mode');
+    if (light) {
+      return {
+        dots: [[30, 64, 175], [3, 105, 161], [29, 78, 216]],
+        line: '30,64,175',
+        link: '2,132,199',
+        gain: 0.52
+      };
+    }
+    return {
+      dots: [[96, 165, 250], [56, 189, 248], [14, 165, 233]],
+      line: '125,211,252',
+      link: '56,189,248',
+      gain: 1
+    };
+  }
 
   function seedNodes() {
-    const count = touch ? Math.round(42 * 0.4) : (W < 900 ? 28 : 42);
-    const drift = touch ? 0.08 : 0.22;
+    const smallScreen = Math.min(W, H) < 760;
+    const count = touch
+      ? (smallScreen ? 16 : 25)
+      : Math.max(1, Math.min(smallScreen ? 36 : 90, Math.round(60 * (W * H) / (1440 * 900))));
+    const drift = touch ? 0.05 : 0.14;
     nodes = Array.from({ length: count }, () => ({
       x: Math.random() * W,
       y: Math.random() * H,
-      vx: (Math.random() - 0.5) * drift,
-      vy: (Math.random() - 0.5) * drift
+      vx: reduce ? 0 : (Math.random() - 0.5) * drift,
+      vy: reduce ? 0 : (Math.random() - 0.5) * drift,
+      r: 0.75 + Math.random() * 0.5,
+      a: 0.35 + Math.random() * 0.25,
+      tone: Math.floor(Math.random() * 3),
+      tw: Math.random() * Math.PI * 2,
+      mx: 0,
+      my: 0
     }));
   }
 
   function fitCanvas() {
-    if (!canvas) return;
+    if (!canvas || !ctx) return;
     const nw = window.innerWidth;
     const nh = window.innerHeight;
-    if (nw === W && nh === H && nodes.length) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    if (nw === W && nh === H && dpr === canvasDpr && nodes.length) {
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      fitPointer(dpr);
+      return;
+    }
     W = nw;
     H = nh;
-    canvas.width = W;
-    canvas.height = H;
+    canvasDpr = dpr;
+    canvas.width = Math.round(W * dpr);
+    canvas.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    fitPointer(dpr);
     seedNodes();
   }
 
-  let spot = null;
-  if (!touch) {
-    spot = document.createElement('div');
-    spot.className = 'grid-spot';
-    spot.setAttribute('aria-hidden', 'true');
-    const grid = document.querySelector('.grid-bg');
-    if (grid && grid.parentNode) grid.parentNode.insertBefore(spot, grid.nextSibling);
+  function fitPointer(dpr) {
+    if (!pointerCanvas || !pctx) return;
+    const bw = Math.round(W * dpr);
+    const bh = Math.round(H * dpr);
+    if (pointerCanvas.width !== bw) pointerCanvas.width = bw;
+    if (pointerCanvas.height !== bh) pointerCanvas.height = bh;
+    pctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    pctx.clearRect(0, 0, W, H);
   }
+
+  function drawField(ts, animate) {
+    if (!ctx) return;
+    fitCanvas();
+    const pal = fieldColors();
+    ctx.clearRect(0, 0, W, H);
+    let nearSet = null;
+    if (animate && !touch && pointer.on && nodes.length) {
+      nearSet = new Set(nodes
+        .map((n, i) => ({ i: i, d: Math.hypot(pointer.x - n.x, pointer.y - n.y) }))
+        .sort((a, b) => a.d - b.d)
+        .slice(0, 3)
+        .map(item => item.i));
+    }
+    const pts = [];
+    for (let i = 0; i < nodes.length; i++) {
+      const n = nodes[i];
+      if (animate) {
+        n.x += n.vx;
+        n.y += n.vy;
+        if (n.x < 0 || n.x > W) n.vx *= -1;
+        if (n.y < 0 || n.y > H) n.vy *= -1;
+        let pullX = 0;
+        let pullY = 0;
+        if (nearSet) {
+          const dx = pointer.x - n.x;
+          const dy = pointer.y - n.y;
+          const dist = Math.hypot(dx, dy);
+          if (dist > 0.01 && (dist < POINTER_R || nearSet.has(i))) {
+            const span = dist < POINTER_R ? (1 - dist / POINTER_R) : 0.35;
+            const reach = span * 22;
+            pullX = (dx / dist) * reach;
+            pullY = (dy / dist) * reach;
+          }
+        }
+        n.mx += (pullX - n.mx) * 0.06;
+        n.my += (pullY - n.my) * 0.06;
+      }
+      pts.push({ n: n, x: n.x + n.mx, y: n.y + n.my });
+    }
+    ctx.lineWidth = 1;
+    for (let i = 0; i < pts.length; i++) {
+      for (let j = i + 1; j < pts.length; j++) {
+        const dx = pts[i].x - pts[j].x;
+        const dy = pts[i].y - pts[j].y;
+        const dist = Math.hypot(dx, dy);
+        if (dist > LINK) continue;
+        let alpha = (1 - dist / LINK) * (pal.gain === 1 ? 0.4 : 0.22);
+        if (animate && ripples.length) {
+          const mx = (pts[i].x + pts[j].x) / 2;
+          const my = (pts[i].y + pts[j].y) / 2;
+          for (let r = 0; r < ripples.length; r++) {
+            const rip = ripples[r];
+            const age = (ts - rip.t) / 600;
+            if (age < 0 || age >= 1) continue;
+            const band = Math.abs(Math.hypot(mx - rip.x, my - rip.y) - age * 260);
+            if (band < 80) alpha += (1 - band / 80) * (1 - age) * 0.55;
+          }
+        }
+        ctx.strokeStyle = 'rgba(' + pal.line + ',' + Math.min(alpha, 0.9).toFixed(3) + ')';
+        ctx.beginPath();
+        ctx.moveTo(pts[i].x, pts[i].y);
+        ctx.lineTo(pts[j].x, pts[j].y);
+        ctx.stroke();
+      }
+    }
+    if (pctx && animate && !touch && pointer.on) {
+      const linkAlpha = pal.gain === 1 ? 0.45 : 0.35;
+      pctx.lineWidth = 1;
+      for (let i = 0; i < pts.length; i++) {
+        const dx = pts[i].x - pointer.x;
+        const dy = pts[i].y - pointer.y;
+        const dist = Math.hypot(dx, dy);
+        if (dist > POINTER_R && !(nearSet && nearSet.has(i))) continue;
+        pctx.strokeStyle = 'rgba(' + pal.link + ',' + linkAlpha + ')';
+        pctx.beginPath();
+        pctx.moveTo(pts[i].x, pts[i].y);
+        pctx.lineTo(pointer.x, pointer.y);
+        pctx.stroke();
+      }
+      pctx.fillStyle = pal.gain === 1 ? 'rgba(96,165,250,0.2)' : 'rgba(37,99,235,0.16)';
+      pctx.beginPath();
+      pctx.arc(pointer.x, pointer.y, 8, 0, Math.PI * 2);
+      pctx.fill();
+      pctx.fillStyle = pal.gain === 1 ? 'rgba(96,165,250,' + linkAlpha + ')' : 'rgba(29,78,216,' + linkAlpha + ')';
+      pctx.beginPath();
+      pctx.arc(pointer.x, pointer.y, 2, 0, Math.PI * 2);
+      pctx.fill();
+    }
+    for (let i = 0; i < pts.length; i++) {
+      const n = pts[i].n;
+      let alpha = n.a * pal.gain;
+      if (animate && !touch) alpha += Math.sin(ts * 0.0022 + n.tw) * 0.04 * pal.gain;
+      if (pal.gain === 1) alpha = Math.min(0.6, Math.max(0.35, alpha));
+      const c = pal.dots[n.tone];
+      ctx.fillStyle = 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + alpha.toFixed(3) + ')';
+      ctx.beginPath();
+      ctx.arc(pts[i].x, pts[i].y, n.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  if (reduce) {
+    if (decodeEl) decodeEl.textContent = PHRASE;
+    drawField(0, false);
+    window.addEventListener('resize', () => drawField(0, false));
+    const themeToggle = document.getElementById('dayNightToggle');
+    if (themeToggle) themeToggle.addEventListener('change', () => drawField(0, false));
+    return;
+  }
+
+  const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&';
+  window.addEventListener('click', (e) => {
+    ripples.push({ x: e.clientX, y: e.clientY, t: performance.now() });
+  });
 
   const cards = [...document.querySelectorAll('.case-card')].map(card => {
     const ring = document.createElement('span');
@@ -4197,8 +4732,14 @@ revealEls.forEach(el => revealObs.observe(el));
     const state = { el, tx: 0, ty: 0, x: 0, y: 0, hot: false };
     el.addEventListener('pointermove', (e) => {
       const r = el.getBoundingClientRect();
-      state.tx = (e.clientX - (r.left + r.width / 2)) * 0.22;
-      state.ty = (e.clientY - (r.top + r.height / 2)) * 0.28;
+      let pullX = (e.clientX - (r.left + r.width / 2)) * 0.22;
+      let pullY = (e.clientY - (r.top + r.height / 2)) * 0.28;
+      if (el.closest('.contact-actions')) {
+        pullX = Math.max(-8, Math.min(8, pullX));
+        pullY = Math.max(-8, Math.min(8, pullY));
+      }
+      state.tx = pullX;
+      state.ty = pullY;
       state.hot = true;
     });
     el.addEventListener('pointerleave', () => {
@@ -4262,7 +4803,7 @@ revealEls.forEach(el => revealObs.observe(el));
 
   let heroOn = true;
   let processOn = !touch;
-  if (touch && 'IntersectionObserver' in window) {
+  if ('IntersectionObserver' in window) {
     const hero = document.querySelector('.hero');
     if (hero) {
       const heroIo = new IntersectionObserver((entries) => {
@@ -4270,12 +4811,14 @@ revealEls.forEach(el => revealObs.observe(el));
       }, { threshold: 0 });
       heroIo.observe(hero);
     }
-    const process = document.querySelector('.ai-process');
-    if (process) {
-      const processIo = new IntersectionObserver((entries) => {
-        processOn = entries.some(entry => entry.isIntersecting);
-      }, { threshold: 0.2 });
-      processIo.observe(process);
+    if (touch) {
+      const process = document.querySelector('.ai-process');
+      if (process) {
+        const processIo = new IntersectionObserver((entries) => {
+          processOn = entries.some(entry => entry.isIntersecting);
+        }, { threshold: 0.2 });
+        processIo.observe(process);
+      }
     }
   }
 
@@ -4286,83 +4829,25 @@ revealEls.forEach(el => revealObs.observe(el));
       pointer.on = true;
     }, { passive: true });
     window.addEventListener('pointerleave', () => { pointer.on = false; });
+    document.documentElement.addEventListener('mouseleave', () => { pointer.on = false; });
+    window.addEventListener('blur', () => { pointer.on = false; });
   }
 
   let raf = 0;
   let running = true;
-  let lastPlexus = 0;
-  let plexusLive = false;
 
   function drawPlexus(ts) {
-    if (touch) {
-      if (!heroOn || document.hidden) {
-        if (plexusLive && ctx) {
-          ctx.clearRect(0, 0, W, H);
-          plexusLive = false;
-        }
-        return;
-      }
-      if (ts - lastPlexus < 1000 / 30) return;
-      lastPlexus = ts;
+    if (document.hidden) return;
+    if (touch && !heroOn) return;
+    if (ripples.length) {
+      ripples = ripples.filter(rip => ts - rip.t < 600);
     }
-    if (!ctx) return;
-    fitCanvas();
-    ctx.clearRect(0, 0, W, H);
-    for (const n of nodes) {
-      n.x += n.vx;
-      n.y += n.vy;
-      if (n.x < 0 || n.x > W) n.vx *= -1;
-      if (n.y < 0 || n.y > H) n.vy *= -1;
-    }
-    for (let i = 0; i < nodes.length; i++) {
-      for (let j = i + 1; j < nodes.length; j++) {
-        const a = nodes[i];
-        const b = nodes[j];
-        const dx = a.x - b.x;
-        const dy = a.y - b.y;
-        const dist = Math.hypot(dx, dy);
-        if (dist > 140) continue;
-        const alpha = (1 - dist / 140) * 0.28;
-        ctx.strokeStyle = 'rgba(37,99,235,' + alpha.toFixed(3) + ')';
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.moveTo(a.x, a.y);
-        ctx.lineTo(b.x, b.y);
-        ctx.stroke();
-      }
-    }
-    if (!touch && pointer.on) {
-      for (const n of nodes) {
-        const dx = n.x - pointer.x;
-        const dy = n.y - pointer.y;
-        const dist = Math.hypot(dx, dy);
-        if (dist > 220) continue;
-        const alpha = (1 - dist / 220) * 0.85;
-        ctx.strokeStyle = 'rgba(34,211,238,' + alpha.toFixed(3) + ')';
-        ctx.lineWidth = 1.25;
-        ctx.beginPath();
-        ctx.moveTo(n.x, n.y);
-        ctx.lineTo(pointer.x, pointer.y);
-        ctx.stroke();
-      }
-    }
-    for (const n of nodes) {
-      ctx.fillStyle = 'rgba(147,197,253,0.85)';
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, 1.4, 0, Math.PI * 2);
-      ctx.fill();
-    }
-    if (touch) plexusLive = true;
+    drawField(ts, true);
   }
 
   function frame(ts) {
     if (!running) return;
     drawPlexus(ts);
-
-    if (!touch && spot) {
-      spot.style.transform = 'translate3d(' + pointer.x + 'px,' + pointer.y + 'px,0)';
-      spot.style.opacity = pointer.on ? '1' : '0';
-    }
 
     if (touch) {
       cards.forEach(state => {
@@ -4500,6 +4985,1037 @@ revealEls.forEach(el => revealObs.observe(el));
 
   fitCanvas();
   raf = requestAnimationFrame(frame);
+})();
+
+(function fxCinematic(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine = matchMedia('(pointer: fine)').matches;
+  const root = document.documentElement;
+
+  /* 1. Letterbox intro: remove the overlay from the DOM when it is done */
+  const lbEls = document.querySelectorAll('.fx-lb, .fx-lb-card');
+  function endIntro(){ lbEls.forEach(el => el.remove()); root.classList.remove('fx-intro'); }
+  if (root.classList.contains('fx-intro')) setTimeout(endIntro, 2800);
+  else lbEls.forEach(el => el.remove());
+
+  /* 2. Reveal on scroll: sections, workflow maps, light sweeps */
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: .18, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.fx-reveal, .fx-flow, .fx-sweep').forEach(el => io.observe(el));
+
+  /* 3. Portrait scanline: once on load, again on console replay */
+  const portrait = document.getElementById('fxPortrait');
+  const scan = portrait && portrait.querySelector('.fx-scan');
+  function runScan(){ if (!scan || reduce) return; scan.classList.remove('run'); void scan.offsetWidth; scan.classList.add('run'); }
+  runScan();
+
+  /* 4. Portrait tilt: mouse on desktop, finger on touch. Tiny angles only. */
+  if (portrait && !reduce){
+    const maxTilt = fine ? 6 : 4;
+    function tilt(cx, cy){
+      const r = portrait.getBoundingClientRect();
+      const nx = Math.max(-1, Math.min(1, (cx - (r.left + r.width/2)) / (window.innerWidth/2)));
+      const ny = Math.max(-1, Math.min(1, (cy - (r.top + r.height/2)) / (window.innerHeight/2)));
+      portrait.style.setProperty('--ry', (nx * maxTilt).toFixed(2) + 'deg');
+      portrait.style.setProperty('--rx', (-ny * maxTilt).toFixed(2) + 'deg');
+    }
+    let raf = 0;
+    function queue(x, y){ if (raf) return; raf = requestAnimationFrame(() => { raf = 0; tilt(x, y); }); }
+    if (fine) window.addEventListener('pointermove', e => queue(e.clientX, e.clientY), { passive: true });
+    else {
+      window.addEventListener('touchmove', e => { const t = e.touches[0]; if (t) queue(t.clientX, t.clientY); }, { passive: true });
+      window.addEventListener('touchend', () => { portrait.style.setProperty('--rx','0deg'); portrait.style.setProperty('--ry','0deg'); }, { passive: true });
+    }
+  }
+
+  /* 5. Cursor-follow particle edge (desktop, motion allowed) */
+  (function particles(){
+    const cv = portrait && portrait.querySelector('.fx-particles');
+    if (!cv || reduce || !fine) return;
+    const ctx = cv.getContext('2d');
+    const N = window.innerWidth < 800 ? 22 : 54, PAD = 70;
+    let W = 0, R = 0, dpr = 1, pts = [], mx = null, my = null, running = false, last = 0, visible = true;
+    function size(){
+      const s = portrait.offsetWidth; W = s + PAD*2; R = s/2 + 4;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      cv.width = W*dpr; cv.height = W*dpr; cv.style.width = W+'px'; cv.style.height = W+'px';
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      pts = Array.from({length:N}, (_,i) => {
+        const a = (i/N)*Math.PI*2 + Math.random()*.2, r = R + Math.random()*14;
+        return { a, r, sp:(Math.random()*.25+.08)*(Math.random()<.5?-1:1), x:W/2+Math.cos(a)*r, y:W/2+Math.sin(a)*r, vx:0, vy:0, s:Math.random()*1.4+.6, tw:Math.random()*6 };
+      });
+    }
+    function frame(ts){
+      if (!running) return;
+      requestAnimationFrame(frame);
+      if (ts - last < 22) return;                     /* about 45 fps cap */
+      const dt = Math.min((ts - last)/16.7, 3); last = ts;
+      ctx.clearRect(0,0,W,W);
+      for (const p of pts){
+        p.a += p.sp*.004*dt; p.tw += .03*dt;
+        const hx = W/2 + Math.cos(p.a)*p.r, hy = W/2 + Math.sin(p.a)*p.r;
+        p.vx += (hx - p.x)*.03*dt; p.vy += (hy - p.y)*.03*dt;
+        let near = 0;
+        if (mx !== null){
+          const dx = mx - p.x, dy = my - p.y, d = Math.hypot(dx,dy);
+          if (d < 170){ const f = (1 - d/170); p.vx += dx/d*f*1.3*dt; p.vy += dy/d*f*1.3*dt; near = f; }
+        }
+        p.vx *= .86; p.vy *= .86; p.x += p.vx; p.y += p.vy;
+        const a = .35 + .3*Math.sin(p.tw) + near*.5;
+        ctx.beginPath(); ctx.arc(p.x,p.y,p.s + near*1.2,0,6.283);
+        ctx.fillStyle = 'rgba(' + (near>.2?'125,211,252':'96,165,250') + ',' + Math.min(a,1).toFixed(2) + ')'; ctx.fill();
+        if (near > .35){ ctx.strokeStyle = 'rgba(125,211,252,' + (near*.35).toFixed(2) + ')'; ctx.lineWidth = .6;
+          ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(mx,my); ctx.stroke(); }
+      }
+    }
+    function start(){ if (running || !visible || document.hidden) return; running = true; last = 0; requestAnimationFrame(frame); }
+    function stop(){ running = false; }
+    window.addEventListener('pointermove', e => {
+      const r = cv.getBoundingClientRect(); const x = e.clientX - r.left, y = e.clientY - r.top;
+      mx = (x > -120 && y > -120 && x < W+120 && y < W+120) ? x : null; my = mx === null ? null : y;
+    }, { passive: true });
+    new IntersectionObserver(es => { visible = es[0].isIntersecting; visible ? start() : stop(); }).observe(portrait);
+    document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+    window.addEventListener('resize', size); size(); start();
+  })();
+
+  /* 6. Agent console: types a sample run, resolves to the name. Replays on hover, tap or button. */
+  (function agentConsole(){
+    const touch = matchMedia('(pointer: coarse)').matches;
+    const body = document.getElementById('fxConsoleBody');
+    const box = document.getElementById('fxConsole');
+    const btn = document.getElementById('fxReplay');
+    if (!body) return;
+    const SCRIPT = [
+      { t:'cmd',    text:'$ agent run "daily team report"' },
+      { t:'plan',   k:'plan',   text:'1 read the work logs   2 check who can see what   3 draft the report' },
+      { t:'tool',   k:'tool',   text:'supabase.select("work_logs")', ok:true },
+      { t:'tool',   k:'tool',   text:'access.check("role: manager")', ok:true },
+      { t:'tool',   k:'tool',   text:'report.draft()', ok:true },
+      { t:'review', k:'review', text:'Jeo reads it before it ships' },
+      { t:'done',   k:'done',   text:'shipped' },
+      { t:'name' }
+    ];
+    const sleep = ms => new Promise(r => setTimeout(r, ms));
+    let token = 0;
+    function line(){ const el = document.createElement('span'); el.className = 'fx-line'; body.appendChild(el); requestAnimationFrame(() => el.classList.add('show')); return el; }
+    function esc(s){ return s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+    function render(item, el, text){
+      if (item.t === 'cmd') el.innerHTML = '<span class="fx-dim">' + esc(text) + '</span>';
+      else el.innerHTML = '<span class="fx-k ' + item.k + '">' + item.k + '</span>' + esc(text) + (item.ok && text.length === item.text.length ? '  <span class="fx-ok">ok</span>' : '');
+    }
+    function finalName(el){
+      el.innerHTML = '<span class="fx-name">Jeo Vitao<small>AI &amp; PROGRAMMING SPECIALIST · FULL-STACK DEVELOPER</small></span>';
+    }
+    const quickName = !fine || matchMedia('(max-width: 700px)').matches;
+    async function type(item, el, my){
+      const speed = touch ? (item.t === 'cmd' ? 4 : 2) : quickName ? (item.t === 'cmd' ? 10 : 6) : (item.t === 'cmd' ? 24 : 14);
+      for (let i = 1; i <= item.text.length; i++){
+        if (my !== token) return false;
+        render(item, el, item.text.slice(0, i)); await sleep(speed);
+      }
+      return true;
+    }
+    async function scramble(el, my){
+      const target = 'Jeo Vitao', chars = 'abcdefghijklmnopqrstuvwxyz01<>/_';
+      el.innerHTML = '<span class="fx-name"><span id="fxNameText"></span><small>AI &amp; PROGRAMMING SPECIALIST · FULL-STACK DEVELOPER</small></span>';
+      const out = el.querySelector('#fxNameText');
+      const frames = touch ? 6 : quickName ? 8 : 14;
+      const step = touch ? 14 : quickName ? 22 : 40;
+      for (let f = 0; f <= frames; f++){
+        if (my !== token) return;
+        const keep = Math.floor(target.length * f/frames);
+        out.textContent = target.slice(0, keep) + Array.from({length: target.length-keep}, () => chars[Math.random()*chars.length|0]).join('');
+        await sleep(step);
+      }
+      out.textContent = target;
+      document.dispatchEvent(new CustomEvent('fx-name-done'));
+    }
+    async function run(){
+      const my = ++token;
+      body.innerHTML = '';
+      if (reduce){ SCRIPT.forEach(it => { const el = line(); if (it.t === 'name') finalName(el); else render(it, el, it.text); }); return; }
+      for (const item of SCRIPT){
+        if (my !== token) return;
+        const el = line();
+        if (item.t === 'name'){ await sleep(touch ? 0 : quickName ? 40 : 250); await scramble(el, my); const c = document.createElement('i'); c.className = 'fx-caret'; el.firstChild.appendChild(c); break; }
+        const ok = await type(item, el, my); if (!ok) return;
+        await sleep(touch ? (item.t === 'tool' ? 16 : 10) : quickName ? (item.t === 'tool' ? 55 : 40) : (item.t === 'tool' ? 260 : 180));
+      }
+    }
+    let started = false, playing = false;
+    function replay(){ runScan(); run(); }
+    function begin(){ if (started) return; started = true; const wait = touch ? 0 : (root.classList.contains('fx-intro') ? 1900 : 300); setTimeout(run, wait); }
+    if (box) {
+      const io2 = new IntersectionObserver(es => { if (es[0].isIntersecting){ begin(); } }, { threshold: .25 });
+      io2.observe(box);
+      if (!fine && !reduce){ box.addEventListener('pointerup', e => { if (btn && e.target !== btn && !btn.contains(e.target)) replay(); }); }
+    }
+    if (btn) btn.addEventListener('click', replay);
+  })();
+})();
+
+(function fxShells(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const coarse = matchMedia('(pointer: coarse)').matches;
+  document.querySelectorAll('#experience .project-card').forEach(card => {
+    [card.querySelector('.project-tag'), card.querySelector('.project-title'), card.querySelector('.project-desc'), ...card.querySelectorAll('li')].filter(Boolean).forEach((el, i) => {
+      el.classList.add('fx-bit');
+      el.style.setProperty('--d', String(i));
+    });
+  });
+  const sel = '.about-card, .case-card, .ai-process, .skill-group, .goal-card';
+  const shells = [...document.querySelectorAll(sel)];
+  shells.forEach(el => el.classList.add('fx-shell'));
+  if (!reduce && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('fx-shell-on');
+      io.unobserve(e.target);
+    }), { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
+    shells.forEach(el => {
+      if (el.classList.contains('reveal') || el.classList.contains('fx-reveal')) return;
+      el.classList.add('fx-shell-reveal');
+      io.observe(el);
+    });
+  } else if (!reduce) {
+    shells.forEach(el => el.classList.add('fx-shell-on'));
+  }
+  if (fine && !reduce) {
+    let hot = null;
+    window.addEventListener('pointermove', e => {
+      const el = e.target.closest ? e.target.closest(sel) : null;
+      if (hot && hot !== el) {
+        hot.style.setProperty('--rx', '0deg');
+        hot.style.setProperty('--ry', '0deg');
+      }
+      hot = el || null;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      if (el.classList.contains('case-card') || el.classList.contains('fx-reveal') || el.classList.contains('reveal')) return;
+      const px = (e.clientX - r.left) / r.width - 0.5;
+      const py = (e.clientY - r.top) / r.height - 0.5;
+      el.style.setProperty('--ry', Math.max(-3, Math.min(3, px * 6)).toFixed(2) + 'deg');
+      el.style.setProperty('--rx', Math.max(-3, Math.min(3, -py * 6)).toFixed(2) + 'deg');
+    }, { passive: true });
+  }
+
+  const flows = [...document.querySelectorAll('.case-card .fx-flow')];
+  flows.forEach(flow => {
+    const cv = document.createElement('canvas');
+    cv.className = 'fx-current';
+    cv.setAttribute('aria-hidden', 'true');
+    flow.prepend(cv);
+    flow._cv = cv;
+    flow._ctx = cv.getContext('2d');
+    flow._seen = false;
+    flow._burst = 0;
+    flow._fired = '';
+  });
+  const flowIo = new IntersectionObserver(es => es.forEach(e => {
+    e.target._seen = e.isIntersecting;
+    if (e.isIntersecting) kick();
+  }), { threshold: 0.2 });
+  flows.forEach(flow => flowIo.observe(flow));
+  if (coarse) {
+    flows.forEach(flow => flow.addEventListener('pointerdown', () => {
+      flow._burst = performance.now() + 2600;
+      flow._burstId = (flow._burstId || 0) + 1;
+      kick();
+    }));
+  }
+  let zapAt = 0;
+  function flash(node) {
+    if (!node) return;
+    node.classList.remove('fx-spark');
+    void node.offsetWidth;
+    node.classList.add('fx-spark');
+    setTimeout(() => node.classList.remove('fx-spark'), 320);
+    const now = performance.now();
+    if (now - zapAt > 140) {
+      zapAt = now;
+      document.dispatchEvent(new CustomEvent('fx-zap'));
+    }
+  }
+  function segLine(flow, a, b) {
+    const root = flow.getBoundingClientRect();
+    const ar = a.getBoundingClientRect();
+    const br = b.getBoundingClientRect();
+    const vertical = br.top > ar.bottom - 4;
+    if (vertical) {
+      const x = br.left - root.left + 22;
+      return [x, ar.bottom - root.top, x, br.top - root.top];
+    }
+    const y = (ar.top + ar.bottom) / 2 - root.top;
+    return [ar.right - root.left, y, br.left - root.left, y];
+  }
+  function bolt(x0, y0, x1, y1, parts, amp) {
+    const pts = [[x0, y0]];
+    const dx = x1 - x0, dy = y1 - y0;
+    const len = Math.hypot(dx, dy) || 1;
+    const px = -dy / len, py = dx / len;
+    const n = Math.max(3, parts);
+    for (let i = 1; i < n; i++) {
+      const t = i / n;
+      const fall = Math.sin(Math.PI * t);
+      const off = (Math.random() - 0.5) * 2 * amp * fall;
+      pts.push([x0 + dx * t + px * off, y0 + dy * t + py * off]);
+    }
+    pts.push([x1, y1]);
+    return pts;
+  }
+  function clipBolt(pts, t) {
+    if (t >= 1) return pts;
+    if (t <= 0) return [pts[0]];
+    let total = 0;
+    const lens = [];
+    for (let i = 1; i < pts.length; i++) {
+      const d = Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]);
+      lens.push(d);
+      total += d;
+    }
+    let left = total * t;
+    const out = [pts[0]];
+    for (let i = 1; i < pts.length; i++) {
+      const d = lens[i - 1];
+      if (left <= d) {
+        const k = d ? left / d : 0;
+        out.push([pts[i - 1][0] + (pts[i][0] - pts[i - 1][0]) * k, pts[i - 1][1] + (pts[i][1] - pts[i - 1][1]) * k]);
+        return out;
+      }
+      left -= d;
+      out.push(pts[i]);
+    }
+    return out;
+  }
+  function strokeBolt(c, pts, width, color, blur) {
+    if (!pts || pts.length < 2) return;
+    c.save();
+    c.lineWidth = width;
+    c.strokeStyle = color;
+    c.lineJoin = 'round';
+    c.lineCap = 'round';
+    if (blur) { c.shadowColor = 'rgba(56,189,248,.9)'; c.shadowBlur = blur; }
+    c.beginPath();
+    c.moveTo(pts[0][0], pts[0][1]);
+    for (let i = 1; i < pts.length; i++) c.lineTo(pts[i][0], pts[i][1]);
+    c.stroke();
+    c.restore();
+  }
+  function paintFlow(flow, ts) {
+    const cv = flow._cv;
+    const c = flow._ctx;
+    if (!cv || !c) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const w = flow.clientWidth;
+    const h = flow.clientHeight;
+    const bw = Math.round(w * dpr);
+    const bh = Math.round(h * dpr);
+    if (cv.width !== bw) cv.width = bw;
+    if (cv.height !== bh) cv.height = bh;
+    c.setTransform(dpr, 0, 0, dpr, 0, 0);
+    c.clearRect(0, 0, w, h);
+    const nodes = [...flow.querySelectorAll('.fx-node')];
+    if (nodes.length < 2) return;
+    const lines = [];
+    for (let i = 0; i < nodes.length - 1; i++) lines.push(segLine(flow, nodes[i], nodes[i + 1]));
+    let u = -1;
+    let bright = false;
+    let charging = true;
+    if (coarse) {
+      charging = ts < flow._burst;
+      if (charging) {
+        u = 1 - (flow._burst - ts) / 2600;
+        bright = true;
+      }
+    } else {
+      bright = !!(flow.closest('.case-card') && flow.closest('.case-card').matches(':hover'));
+      const cycle = bright ? 2000 : 3500;
+      u = (ts % cycle) / cycle;
+    }
+    if (flow._prevU !== undefined && u < flow._prevU) {
+      flow._loop = (flow._loop || 0) + 1;
+      flow._hits = {};
+    }
+    flow._prevU = u;
+    const loopId = coarse ? flow._burstId : (flow._loop || 0);
+    if (!flow._bolts || ts - (flow._boltAt || 0) > 40) {
+      flow._boltAt = ts;
+      const amp = bright ? 18 : 14;
+      const parts = 5 + Math.floor(Math.random() * 3);
+      flow._bolts = lines.map(ln => bolt(ln[0], ln[1], ln[2], ln[3], parts, amp));
+      flow._idle = lines.map(ln => bolt(ln[0], ln[1], ln[2], ln[3], 5, 3));
+      flow._branches = [];
+    }
+    const windows = [[0, 0.2], [0.22, 0.42], [0.44, 0.64]];
+    const hum = 0.07 + 0.04 * Math.abs(Math.sin(ts / 90));
+    lines.forEach((ln, i) => {
+      strokeBolt(c, flow._idle[i], 1, 'rgba(56,189,248,' + hum.toFixed(3) + ')', 0);
+    });
+    let active = -1;
+    windows.forEach((win, i) => {
+      if (i >= lines.length) return;
+      if (u >= win[0] && u <= win[1]) active = i;
+    });
+    if (charging && active >= 0) {
+      const win = windows[active];
+      const p = (u - win[0]) / (win[1] - win[0]);
+      const grown = clipBolt(flow._bolts[active], p);
+      strokeBolt(c, grown, bright ? 14 : 11, 'rgba(37,99,235,.55)', bright ? 26 : 20);
+      strokeBolt(c, grown, 2.4, 'rgba(240,253,255,.98)', 0);
+      const count = bright ? 3 : 1;
+      if (!flow._branchKey || flow._branchKey !== flow._boltAt) {
+        flow._branchKey = flow._boltAt;
+        flow._branches = [];
+        const src = grown.length > 2 ? grown[1 + (Math.random() * (grown.length - 2) | 0)] : grown[grown.length - 1];
+        for (let b = 0; b < count; b++) {
+          const ang = Math.random() * Math.PI * 2;
+          const len = 8 + Math.random() * (bright ? 22 : 12);
+          flow._branches.push(bolt(src[0], src[1], src[0] + Math.cos(ang) * len, src[1] + Math.sin(ang) * len, 3, 6));
+        }
+      }
+      flow._branches.forEach(br => strokeBolt(c, br, 1, 'rgba(186,230,253,' + (0.35 + Math.random() * 0.4).toFixed(2) + ')', 4));
+      if (!flow._crackle || ts - flow._crackle > 160) {
+        flow._crackle = ts;
+        document.dispatchEvent(new CustomEvent('fx-crackle'));
+      }
+    }
+    if (charging) windows.forEach((win, i) => {
+      if (i >= lines.length || u <= win[1] || i + 1 >= nodes.length) return;
+      const key = loopId + ':' + i;
+      if (flow._hit === key) return;
+      if (!flow._hits) flow._hits = {};
+      if (flow._hits[key]) return;
+      flow._hits[key] = 1;
+      flow._hit = key;
+      const end = lines[i];
+      flash(nodes[i + 1]);
+      flow._sparks = flow._sparks || [];
+      flow._rings = flow._rings || [];
+      flow._rings.push({ x: end[2], y: end[3], age: 0 });
+      const n = 6 + Math.floor(Math.random() * 5);
+      for (let s = 0; s < n; s++) {
+        const ang = Math.random() * Math.PI * 2;
+        const sp = 0.7 + Math.random() * 1.6;
+        flow._sparks.push({ x: end[2], y: end[3], vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp - 1.1, life: 1 });
+      }
+    });
+    if (charging && u > 0.66 && u < 0.88 && lines.length) {
+      const end = lines[lines.length - 1];
+      const fade = 1 - (u - 0.66) / 0.22;
+      const grd = c.createRadialGradient(end[2], end[3], 2, end[2], end[3], 36);
+      grd.addColorStop(0, 'rgba(224,242,254,' + (0.45 * fade).toFixed(3) + ')');
+      grd.addColorStop(1, 'rgba(56,189,248,0)');
+      c.fillStyle = grd;
+      c.beginPath();
+      c.arc(end[2], end[3], 36, 0, Math.PI * 2);
+      c.fill();
+    }
+    flow._rings = (flow._rings || []).filter(r => r.age < 1);
+    flow._rings.forEach(r => {
+      r.age += 0.045;
+      c.strokeStyle = 'rgba(125,211,252,' + (1 - r.age).toFixed(3) + ')';
+      c.lineWidth = 1.5;
+      c.beginPath();
+      c.arc(r.x, r.y, 6 + r.age * 26, 0, Math.PI * 2);
+      c.stroke();
+    });
+    flow._sparks = (flow._sparks || []).filter(s => s.life > 0);
+    flow._sparks.forEach(s => {
+      s.vy += 0.045;
+      s.x += s.vx;
+      s.y += s.vy;
+      s.life -= 0.028;
+      c.fillStyle = 'rgba(224,242,254,' + Math.max(0, s.life).toFixed(3) + ')';
+      c.beginPath();
+      c.arc(s.x, s.y, 1.4, 0, Math.PI * 2);
+      c.fill();
+    });
+  }
+  let pulseRaf = 0;
+  function pulse(ts) {
+    pulseRaf = 0;
+    if (document.hidden) return;
+    let live = false;
+    flows.forEach(flow => {
+      if (!flow._seen) return;
+      live = true;
+      paintFlow(flow, ts);
+    });
+    if (live) pulseRaf = requestAnimationFrame(pulse);
+  }
+  function kick() {
+    if (reduce || pulseRaf || document.hidden) return;
+    pulseRaf = requestAnimationFrame(pulse);
+  }
+  if (reduce) {
+    flows.forEach(flow => {
+      const nodes = [...flow.querySelectorAll('.fx-node')];
+      const c = flow._ctx;
+      if (!c) return;
+      const dpr = Math.min(devicePixelRatio || 1, 2);
+      const w = flow.clientWidth || 1;
+      const h = flow.clientHeight || 1;
+      flow._cv.width = Math.round(w * dpr);
+      flow._cv.height = Math.round(h * dpr);
+      c.setTransform(dpr, 0, 0, dpr, 0, 0);
+      for (let i = 0; i < nodes.length - 1; i++) {
+        const ln = segLine(flow, nodes[i], nodes[i + 1]);
+        const path = bolt(ln[0], ln[1], ln[2], ln[3], 6, 5);
+        strokeBolt(c, path, 6, 'rgba(37,99,235,.4)', 10);
+        strokeBolt(c, path, 1.5, 'rgba(224,242,254,.8)', 0);
+      }
+    });
+    return;
+  }
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) kick(); });
+  kick();
+})();
+
+(function fxSound(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const btn = document.getElementById('fxSoundBtn');
+  const pop = document.getElementById('fxSoundPop');
+  const slider = document.getElementById('fxVolume');
+  if (!btn || !slider) return;
+  let ctx = null;
+  let muted = !!reduce;
+  let volume = 0.8;
+  try {
+    const savedV = localStorage.getItem('siteVolume');
+    if (savedV !== null) volume = Math.max(0, Math.min(1, parseFloat(savedV)));
+    if (Number.isNaN(volume)) volume = 0.8;
+    const savedS = localStorage.getItem('siteSound');
+    if (savedS === 'on') muted = false;
+    else if (savedS === 'off') muted = true;
+  } catch (e) {}
+  slider.value = String(Math.round(volume * 100));
+  function paint() {
+    btn.setAttribute('aria-pressed', muted ? 'false' : 'true');
+  }
+  function save() {
+    try {
+      localStorage.setItem('siteSound', muted ? 'off' : 'on');
+      localStorage.setItem('siteVolume', String(volume));
+    } catch (e) {}
+  }
+  function arm() {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return null;
+    if (!ctx) ctx = new AC();
+    const mark = () => { btn.dataset.audio = ctx.state; };
+    if (ctx.state === 'suspended') ctx.resume().then(mark);
+    mark();
+    return ctx;
+  }
+  function blip(freq, dur, type, peak, sweep) {
+    if (muted || !ctx) return;
+    const c = ctx;
+    const osc = c.createOscillator();
+    const g = c.createGain();
+    const now = c.currentTime;
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, now);
+    if (sweep) osc.frequency.exponentialRampToValueAtTime(sweep, now + dur);
+    g.gain.setValueAtTime(Math.max(0.0001, peak * volume), now);
+    g.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+    osc.connect(g);
+    g.connect(c.destination);
+    osc.start(now);
+    osc.stop(now + dur + 0.02);
+  }
+  function whoosh() {
+    if (muted || !ctx) return;
+    const c = ctx;
+    const now = c.currentTime;
+    const len = Math.floor(c.sampleRate * 0.18);
+    const buf = c.createBuffer(1, len, c.sampleRate);
+    const data = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / len);
+    const src = c.createBufferSource();
+    src.buffer = buf;
+    const filter = c.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(1600, now);
+    filter.frequency.exponentialRampToValueAtTime(220, now + 0.18);
+    const g = c.createGain();
+    g.gain.setValueAtTime(0.028 * volume, now);
+    g.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
+    src.connect(filter);
+    filter.connect(g);
+    g.connect(c.destination);
+    src.start(now);
+  }
+  function setMuted(next) {
+    muted = next;
+    if (!muted) arm();
+    paint();
+    save();
+  }
+  paint();
+  function gestureArm() { arm(); }
+  ['pointerdown', 'touchend', 'keydown', 'touchstart'].forEach(type => {
+    document.addEventListener(type, gestureArm, { once: true, passive: true });
+  });
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && ctx && ctx.state === 'suspended') ctx.resume().then(() => { btn.dataset.audio = ctx.state; });
+  });
+  const soundBox = btn.closest('.fx-sound');
+  function openPop() {
+    if (!pop) return;
+    pop.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+  }
+  function closePop() {
+    if (!pop) return;
+    pop.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+  }
+  btn.addEventListener('click', () => {
+    const turningOff = !muted;
+    if (turningOff) blip(520, 0.045, 'sine', 0.03, 180);
+    setMuted(!muted);
+    if (!turningOff) blip(180, 0.045, 'sine', 0.028, 520);
+    if (!fine && pop) {
+      const open = pop.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+  });
+  slider.addEventListener('input', () => {
+    volume = Math.max(0, Math.min(1, Number(slider.value) / 100));
+    if (volume > 0 && muted) setMuted(false);
+    else save();
+  });
+  if (fine && soundBox) {
+    soundBox.addEventListener('pointerenter', openPop);
+    soundBox.addEventListener('pointerleave', () => {
+      closePop();
+      if (soundBox.contains(document.activeElement) && document.activeElement.blur) document.activeElement.blur();
+    });
+    soundBox.addEventListener('focusin', openPop);
+    soundBox.addEventListener('focusout', e => {
+      if (!soundBox.contains(e.relatedTarget)) closePop();
+    });
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closePop(); });
+  document.addEventListener('pointerdown', e => {
+    if (!pop || !pop.classList.contains('open')) return;
+    if (e.target.closest && e.target.closest('.fx-sound')) return;
+    closePop();
+  });
+  const CARD = '.fx-console, .fx-badge, .fx-portrait, .about-card, .stat-item, .project-card, .skill-group, .case-card, .ai-process, .goal-card';
+  const BTN = 'a, button, summary, .cmdk-item, label.day-toggle';
+  let lastTick = 0;
+  let lastHover = null;
+  function hoverTick(el, peak) {
+    if (!fine || !el || el === lastHover) return;
+    lastHover = el;
+    const now = performance.now();
+    if (now - lastTick < 90) return;
+    lastTick = now;
+    blip(880, 0.028, 'sine', peak);
+  }
+  function kept(el) { return !!(el && el.closest && el.closest('#top, #contact, #projects')); }
+  function confirmClick() {
+    blip(660, 0.06, 'square', 0.045);
+    setTimeout(() => blip(990, 0.045, 'square', 0.035), 32);
+  }
+  function sendTone() { blip(420, 0.11, 'sine', 0.04, 980); }
+  function airyTick() { blip(2480, 0.03, 'sine', 0.011); }
+  function thock() { blip(128, 0.045, 'triangle', 0.028); }
+  function uiBlip() { blip(540, 0.04, 'sine', 0.02); }
+  document.addEventListener('pointerover', e => {
+    if (!fine || !e.target.closest) return;
+    const hit = e.target.closest(BTN) || e.target.closest(CARD);
+    if (!hit || hit === lastHover) return;
+    lastHover = hit;
+    const now = performance.now();
+    if (now - lastTick < 90) return;
+    lastTick = now;
+    const isBtn = hit.matches(BTN);
+    if (kept(hit)) blip(880, 0.028, 'sine', isBtn ? 0.032 : 0.026);
+    else if (isBtn && hit.closest('.side-nav, .mobile-side-nav, nav')) uiBlip();
+    else if (!isBtn) airyTick();
+  });
+  document.addEventListener('pointerout', e => {
+    if (!lastHover) return;
+    const next = e.relatedTarget && e.relatedTarget.closest ? (e.relatedTarget.closest(BTN) || e.relatedTarget.closest(CARD)) : null;
+    if (next !== lastHover) lastHover = null;
+  });
+  document.addEventListener('pointerdown', e => {
+    if (!e.target.closest) return;
+    const hitBtn = e.target.closest(BTN);
+    if (hitBtn) {
+      if (hitBtn.id === 'fxSoundBtn' || hitBtn.closest('label.day-toggle') || hitBtn.classList.contains('day-toggle')) return;
+      const label = (hitBtn.textContent || '').toLowerCase();
+      const sendCta = hitBtn.classList.contains('btn-resume') || label.indexOf('send me a message') !== -1;
+      if (sendCta) { confirmClick(); sendTone(); return; }
+      if (kept(hitBtn)) {
+        blip(240, 0.05, 'triangle', 0.06);
+        document.dispatchEvent(new CustomEvent('fx-ripple'));
+        return;
+      }
+      if (hitBtn.closest('.side-nav, .mobile-side-nav, nav')) return;
+      confirmClick();
+      return;
+    }
+    const card = e.target.closest(CARD);
+    if (!card) return;
+    if (kept(card)) blip(210, 0.04, 'triangle', 0.045);
+    else thock();
+  });
+  const theme = document.getElementById('dayNightToggle');
+  if (theme) theme.addEventListener('change', () => {
+    if (theme.checked) { blip(280, 0.05, 'square', 0.035); setTimeout(() => blip(620, 0.045, 'square', 0.03), 42); }
+    else { blip(620, 0.05, 'square', 0.035); setTimeout(() => blip(240, 0.045, 'square', 0.028), 42); }
+  });
+  document.addEventListener('click', e => {
+    const link = e.target.closest && e.target.closest('a[href^="mailto:"]');
+    if (!link || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button) return;
+    e.preventDefault();
+    const href = link.href;
+    setTimeout(() => { window.location.href = href; }, 120);
+  });
+  document.addEventListener('fx-crackle', () => blip(180, 0.04, 'sawtooth', 0.02, 90));
+  document.addEventListener('fx-zap', () => blip(640, 0.05, 'square', 0.045, 1800));
+  document.addEventListener('fx-nav', () => uiBlip());
+  document.addEventListener('fx-ripple', () => blip(300, 0.07, 'triangle', 0.055));
+  document.addEventListener('fx-decode', () => {
+    blip(480, 0.045, 'square', 0.03, 920);
+    setTimeout(() => blip(740, 0.04, 'square', 0.022, 1280), 46);
+  });
+  document.addEventListener('fx-name-done', () => blip(988, 0.08, 'sine', 0.05));
+  document.addEventListener('fx-chime', () => {
+    blip(880, 0.09, 'sine', 0.09);
+    setTimeout(() => blip(1320, 0.12, 'sine', 0.07), 70);
+  });
+  if ('IntersectionObserver' in window) {
+    const seen = new WeakSet();
+    let lastWhoosh = 0;
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting || seen.has(e.target)) return;
+      seen.add(e.target);
+      const now = performance.now();
+      if (now - lastWhoosh < 480) return;
+      lastWhoosh = now;
+      whoosh();
+    }), { threshold: 0.28 });
+    document.querySelectorAll('.reveal, .fx-shell-reveal, .fx-console, .fx-badge, .fx-portrait, .case-card, .about-card, .ai-process, .goal-card, .skill-group').forEach(el => io.observe(el));
+  }
+  const body = document.getElementById('fxConsoleBody');
+  if (body && 'MutationObserver' in window) {
+    let typed = 0;
+    new MutationObserver(() => {
+      if (muted) return;
+      typed += 1;
+      if (typed % 3 !== 0) return;
+      blip(1320, 0.012, 'square', 0.01);
+    }).observe(body, { childList: true, subtree: true, characterData: true });
+  }
+})();
+
+(function fxLive(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const coarse = matchMedia('(pointer: coarse)').matches;
+  const sections = ['top','about','experience','projects','skills','goal','contact']
+    .map(id => document.getElementById(id)).filter(Boolean);
+  sections.forEach(sec => sec.setAttribute('tabindex', '-1'));
+
+  const bar = document.querySelector('.fx-scroll');
+  function paintProgress() {
+    if (!bar) return;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const p = max > 0 ? Math.max(0, Math.min(1, window.scrollY / max)) : 0;
+    bar.style.transform = 'scaleX(' + p + ')';
+  }
+  paintProgress();
+  window.addEventListener('scroll', paintProgress, { passive: true });
+  window.addEventListener('resize', paintProgress);
+
+  document.addEventListener('keydown', e => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    const tag = e.target && e.target.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || (e.target && e.target.isContentEditable)) return;
+    const palette = document.getElementById('cmdk');
+    if (palette && !palette.hidden) return;
+    const down = e.key === 'ArrowDown' || e.key === 'j' || e.key === 'J';
+    const up = e.key === 'ArrowUp' || e.key === 'k' || e.key === 'K';
+    if (!down && !up) return;
+    if (reduce) return;
+    e.preventDefault();
+    let idx = 0;
+    sections.forEach((sec, i) => { if (sec.getBoundingClientRect().top <= 96) idx = i; });
+    const next = sections[Math.max(0, Math.min(sections.length - 1, idx + (down ? 1 : -1)))];
+    if (!next) return;
+    next.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    next.focus({ preventScroll: true });
+  });
+
+  function scramble(node, finalText, dur) {
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789';
+    const start = performance.now();
+    function step(now) {
+      const p = Math.min(1, (now - start) / dur);
+      const keep = Math.floor(finalText.length * p);
+      let out = finalText.slice(0, keep);
+      for (let i = keep; i < finalText.length; i++) {
+        const ch = finalText.charAt(i);
+        out += ch === ' ' ? ' ' : chars[(Math.random() * chars.length) | 0];
+      }
+      node.textContent = out;
+      if (p < 1) requestAnimationFrame(step);
+      else node.textContent = finalText;
+    }
+    requestAnimationFrame(step);
+  }
+  if (!reduce && 'IntersectionObserver' in window) {
+    const seen = new WeakSet();
+    const io = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (!entry.isIntersecting || seen.has(entry.target)) return;
+      seen.add(entry.target);
+      io.unobserve(entry.target);
+      const label = entry.target.querySelector('.section-label');
+      if (label) {
+        const node = [...label.childNodes].find(n => n.nodeType === 3 && n.textContent.trim());
+        if (node) scramble(node, node.textContent, coarse ? 240 : 520);
+      }
+      if (entry.target.id === 'contact') return;
+      const title = entry.target.querySelector('.section-title');
+      if (!title) return;
+      const node = [...title.childNodes].find(n => n.nodeType === 3 && n.textContent.trim());
+      if (node) scramble(node, node.textContent, coarse ? 280 : 640);
+    }), { threshold: 0.35 });
+    sections.forEach(sec => io.observe(sec));
+  }
+
+  const title = document.querySelector('#contact .section-title');
+  if (title) {
+    const phrase = "Let's Connect";
+    const glyphs = '0123456789ABCDEF#*+/<>';
+    title.setAttribute('aria-label', phrase);
+    title.textContent = '';
+    const text = document.createElement('span');
+    text.className = 'fx-title-text';
+    text.textContent = reduce ? phrase : phrase.replace(/[^ ]/g, () => glyphs[(Math.random() * glyphs.length) | 0]);
+    const scan = document.createElement('span');
+    scan.className = 'fx-scanline';
+    scan.setAttribute('aria-hidden', 'true');
+    const wave = document.createElement('canvas');
+    wave.className = 'fx-wave';
+    wave.setAttribute('aria-hidden', 'true');
+    title.append(text, scan, wave);
+    const wctx = wave.getContext('2d');
+    let spin = 0;
+    let spike = 0;
+    let waveOn = false;
+    function drawWave() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = wave.clientWidth || title.clientWidth || 1;
+      const h = 16;
+      const bw = Math.round(w * dpr);
+      const bh = Math.round(h * dpr);
+      if (wave.width !== bw) wave.width = bw;
+      if (wave.height !== bh) wave.height = bh;
+      wctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      wctx.clearRect(0, 0, w, h);
+      const amp = reduce ? 2.2 : 2 + Math.sin(spin) * 0.8 + spike * 4.5;
+      wctx.beginPath();
+      for (let x = 0; x <= w; x += 2) {
+        const y = h / 2 + Math.sin(x * 0.09 + spin) * amp * Math.sin(x / w * Math.PI);
+        if (x === 0) wctx.moveTo(x, y);
+        else wctx.lineTo(x, y);
+      }
+      wctx.strokeStyle = 'rgba(56,189,248,.85)';
+      wctx.lineWidth = 2;
+      wctx.stroke();
+    }
+    function glitch() {
+      title.classList.remove('fx-glitch', 'fx-scanning');
+      void title.offsetWidth;
+      title.classList.add('fx-glitch');
+      setTimeout(() => {
+        title.classList.remove('fx-glitch');
+        title.classList.add('fx-scanning');
+      }, 200);
+    }
+    let decodeToken = 0;
+    function decode(fast) {
+      const token = ++decodeToken;
+      const dur = fast ? 260 : 680;
+      const start = performance.now();
+      function step(now) {
+        if (token !== decodeToken) return;
+        const p = Math.min(1, (now - start) / dur);
+        const keep = Math.floor(phrase.length * p);
+        let out = phrase.slice(0, keep);
+        for (let i = keep; i < phrase.length; i++) {
+          const ch = phrase.charAt(i);
+          out += ch === ' ' ? ' ' : glyphs[(Math.random() * glyphs.length) | 0];
+        }
+        text.textContent = out;
+        if (p < 1) requestAnimationFrame(step);
+        else {
+          text.textContent = phrase;
+          if (!reduce) glitch();
+        }
+      }
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(drawWave);
+    if (reduce) {
+      text.textContent = phrase;
+    } else if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(entries => entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        document.dispatchEvent(new CustomEvent('fx-decode'));
+        decode(false);
+        io.disconnect();
+      }), { threshold: 0.5 });
+      io.observe(title);
+      let raf = 0;
+      function loop() {
+        raf = 0;
+        if (document.hidden || !waveOn) return;
+        spin += 0.045;
+        if (spike > 0) spike = Math.max(0, spike - 0.02);
+        drawWave();
+        raf = requestAnimationFrame(loop);
+      }
+      const wake = () => { if (waveOn && !document.hidden && !raf) raf = requestAnimationFrame(loop); };
+      const waveIo = new IntersectionObserver(entries => {
+        waveOn = entries.some(entry => entry.isIntersecting);
+        if (waveOn) wake();
+      }, { threshold: 0.2 });
+      waveIo.observe(title);
+      document.addEventListener('visibilitychange', () => { if (!document.hidden) wake(); });
+      if (fine) {
+        title.addEventListener('pointerenter', () => {
+          document.dispatchEvent(new CustomEvent('fx-decode'));
+          decode(true);
+          spike = 1;
+        });
+      } else {
+        let tapped = false;
+        title.addEventListener('pointerdown', () => {
+          if (tapped) return;
+          tapped = true;
+          document.dispatchEvent(new CustomEvent('fx-decode'));
+          decode(true);
+          spike = 1;
+        });
+      }
+    }
+  }
+
+  const mail = document.querySelector('#contact .email-link');
+  if (mail) {
+    const full = mail.textContent;
+    if (!reduce) {
+      mail.textContent = '';
+      let started = false;
+      const typeMail = () => {
+        if (started) return;
+        started = true;
+        let i = 0;
+        const speed = coarse ? 18 : 42;
+        const tick = () => {
+          i += 1;
+          mail.textContent = full.slice(0, i);
+          if (i < full.length) setTimeout(tick, speed);
+        };
+        tick();
+      };
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(entries => entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          typeMail();
+          io.disconnect();
+        }), { threshold: 0.4 });
+        io.observe(document.getElementById('contact'));
+      } else typeMail();
+    }
+  }
+
+  document.querySelectorAll('.contact-actions a').forEach(link => {
+    link.addEventListener('pointerdown', e => {
+      if (reduce) return;
+      const r = link.getBoundingClientRect();
+      const bit = document.createElement('span');
+      bit.className = 'fx-ripple';
+      bit.style.left = (e.clientX - r.left) + 'px';
+      bit.style.top = (e.clientY - r.top) + 'px';
+      link.appendChild(bit);
+      setTimeout(() => bit.remove(), 650);
+    });
+  });
+
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const lite = matchMedia('(pointer: coarse)').matches;
+  if (!reduceMotion) {
+    document.documentElement.classList.add(lite ? 'fx-lite' : 'fx-motion');
+    const secs = [...document.querySelectorAll('section')];
+    secs.forEach(sec => {
+      if (sec.id === 'top') return;
+      const bits = [...sec.querySelectorAll('.section-label, .section-title, .section-divider, p, li, .project-card, .skill-group, .about-card, .goal-card, .ai-process')].slice(0, 14);
+      bits.forEach((el, i) => {
+        if (el.closest('#top')) return;
+        el.classList.add('fx-boot-item');
+        el.style.setProperty('--i', String(i));
+      });
+      sec.classList.add('fx-boot');
+      const line = document.createElement('span');
+      line.className = 'fx-boot-line';
+      line.setAttribute('aria-hidden', 'true');
+      sec.appendChild(line);
+    });
+    document.querySelectorAll('.skill-pill, .stack-pill').forEach((pill, i) => {
+      const group = pill.parentElement;
+      const index = group ? [...group.children].indexOf(pill) : i;
+      pill.style.setProperty('--i', String(Math.max(0, index)));
+    });
+    if ('IntersectionObserver' in window) {
+      const arm = new WeakMap();
+      const sectionOf = el => (el.matches && el.matches('section') ? el : el.closest && el.closest('section'));
+      const reveal = sec => {
+        if (!sec) return;
+        sec.classList.add('fx-seen');
+        sec.classList.remove('fx-away');
+        if (sec.classList.contains('fx-booted') || arm.has(sec)) return;
+        arm.set(sec, setTimeout(() => {
+          arm.delete(sec);
+          sec.classList.add('fx-booted');
+          sec.classList.remove('fx-away');
+        }, 1000));
+      };
+      const io = new IntersectionObserver(entries => entries.forEach(entry => {
+        const sec = sectionOf(entry.target);
+        if (!sec) return;
+        const isSection = entry.target === sec;
+        if (entry.isIntersecting) reveal(sec);
+        else if (isSection && sec.classList.contains('fx-booted')) sec.classList.add('fx-away');
+        else if (isSection && arm.has(sec)) {
+          clearTimeout(arm.get(sec));
+          arm.delete(sec);
+        }
+      }), { threshold: 0, rootMargin: '0px 0px -12% 0px' });
+      secs.forEach(sec => { if (sec.id !== 'top') io.observe(sec); });
+      document.querySelectorAll('.fx-boot-item').forEach(item => io.observe(item));
+      const cards = new IntersectionObserver(entries => entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('fx-appeared');
+        cards.unobserve(entry.target);
+      }), { threshold: 0.35 });
+      document.querySelectorAll('.fx-shell').forEach(card => {
+        if (!card.closest('#top')) cards.observe(card);
+      });
+    } else secs.forEach(sec => sec.classList.add('fx-booted'));
+  }
 })();
 </script>
 </body>
