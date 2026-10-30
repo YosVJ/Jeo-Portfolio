@@ -4,6 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>Jelonel (Jeo) Vitao | AI &amp; Programming Specialist · Full-Stack Developer</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32"/>
 <meta name="description" content="Jelonel (Jeo) Vitao, AI &amp; Programming Specialist and Full-Stack Developer in General Trias, Cavite / Quezon City, PH. I build software and AI workflows that do real business work."/>
 <link rel="canonical" href="https://jeo-portfolio-08.vercel.app/"/>
 <meta name="robots" content="index, follow"/>
@@ -1553,7 +1555,7 @@
 
   .about-text strong {
     color: var(--blue-glow);
-    font-weight:500;
+    font-weight:700;
   }
 
   .about-card,
@@ -3174,7 +3176,11 @@ body.light-mode .fx-shell{background-color:rgba(255,255,255,.78);border-color:rg
 }
 .fx-flow.in .fx-node:not(:first-child)::after{animation:none;opacity:0}
 .fx-current{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
-.fx-node{z-index:1}
+.fx-current ~ .fx-node::before{visibility:hidden}
+.fx-node{z-index:1;background-color:rgba(8,14,28,.94)}
+.fx-node[data-kind=agent]{background-color:rgba(16,12,32,.94)}
+.fx-node[data-kind=result]{background-color:rgba(8,22,20,.94)}
+body.light-mode .fx-node,body.light-mode .fx-node[data-kind=agent],body.light-mode .fx-node[data-kind=result]{background-color:rgba(255,255,255,.94)}
 .fx-node.fx-spark{box-shadow:0 0 0 1px rgba(125,211,252,.95),0 0 18px rgba(56,189,248,.75)}
 .fx-sound{position:relative;flex:none}
 .fx-sound-btn{width:44px;height:44px;display:grid;place-items:center;border-radius:14px;border:1px solid rgba(125,180,255,.28);background:rgba(11,15,28,.55);color:#9ec5ff;cursor:pointer}
@@ -3187,15 +3193,50 @@ body.light-mode .fx-sound-btn,body.light-mode .fx-sound-pop{background:rgba(255,
 .fx-sound-label{display:block;font:.66rem 'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem}
 .fx-sound-pop input{width:100%;accent-color:#2563eb}
 .fx-sound-pop.open{display:block}
-@media (hover:hover) and (pointer:fine){
-  .fx-sound:hover .fx-sound-pop,.fx-sound:focus-within .fx-sound-pop{display:block}
-}
 @media (max-width:390px){
   .fx-sound-btn{width:36px;height:36px;border-radius:12px}
+}
+.fx-scroll{position:fixed;left:0;right:0;top:0;height:2px;z-index:400;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,#2563eb,#38bdf8);pointer-events:none}
+.side-nav{position:relative}
+.fx-nav-glide{position:absolute;left:4px;top:0;width:3px;height:22px;border-radius:3px;background:#38bdf8;box-shadow:0 0 10px rgba(56,189,248,.8);transform:translateY(12px);transition:transform .35s ease;pointer-events:none;z-index:2}
+#experience .fx-bit{opacity:0;translate:0 10px}
+#experience .fx-shell-on .fx-bit{opacity:1;translate:0 0;transition:opacity .5s ease,translate .5s ease;transition-delay:calc(var(--d) * 55ms)}
+#experience .project-card.fx-shell:hover{transform:none}
+.contact-wrap{background:none;border:none;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+#contact .section-title{position:relative;display:inline-block}
+.fx-orbit{position:absolute;left:50%;top:50%;width:min(320px,80vw);height:150px;transform:translate(-50%,-50%);pointer-events:none;z-index:0}
+.fx-letter{display:inline-block;opacity:0;transform:translateY(8px);position:relative;z-index:1}
+#contact .section-title.fx-on .fx-letter{animation:fxLetter .42s ease forwards;animation-delay:calc(var(--i) * 42ms)}
+.fx-title-sweep{position:absolute;inset:-20% -8%;z-index:2;pointer-events:none;background:linear-gradient(105deg,transparent 36%,rgba(186,230,253,.5),transparent 64%);transform:translateX(-120%)}
+#contact .section-title.fx-on .fx-title-sweep{animation:fxTitleSweep .85s ease .75s 1 both}
+@keyframes fxLetter{to{opacity:1;transform:none}}
+@keyframes fxTitleSweep{to{transform:translateX(170%);opacity:0}}
+.email-row{position:relative}
+.contact-actions a{position:relative;overflow:hidden}
+.fx-ripple{position:absolute;width:14px;height:14px;margin:0;border-radius:50%;border:1px solid rgba(186,230,253,.85);pointer-events:none;transform:translate(-50%,-50%);animation:fxEnergy .6s ease-out forwards}
+@keyframes fxEnergy{to{transform:translate(-50%,-50%) scale(16);opacity:0}}
+.fx-sparkbit{position:absolute;width:4px;height:4px;border-radius:50%;background:#7dd3fc;pointer-events:none;animation:fxSparkbit .6s ease-out forwards}
+@keyframes fxSparkbit{to{transform:translate(var(--x),var(--y));opacity:0}}
+section:focus-visible{outline:2px solid #38bdf8;outline-offset:6px}
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .fx-shell{animation:fxBreatheEdge 5.5s ease-in-out infinite}
+  .fx-shell:hover,.fx-shell:focus-within{animation:none}
+}
+@keyframes fxBreatheEdge{
+  0%,100%{box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 0 0 1px rgba(56,189,248,.05),0 16px 40px rgba(0,0,0,.22)}
+  50%{box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 0 0 1px rgba(56,189,248,.28),0 0 16px rgba(56,189,248,.14),0 16px 40px rgba(0,0,0,.22)}
+}
+@media (prefers-reduced-motion:reduce){
+  .fx-nav-glide{transition:none}
+  .fx-letter{opacity:1;transform:none;animation:none}
+  .fx-title-sweep{display:none}
+  #experience .fx-bit{opacity:1;translate:none;transition:none}
+  .fx-shell{animation:none!important}
 }
 </style>
 </head>
 <body>
+<div class="fx-scroll" aria-hidden="true"></div>
 <div id="bg-gradient"></div>
 <canvas id="bg-canvas"></canvas>
 <canvas id="fx-pointer" aria-hidden="true"></canvas>
@@ -3221,6 +3262,7 @@ body.light-mode .fx-sound-btn,body.light-mode .fx-sound-pop{background:rgba(255,
       <a href="#top" class="brand-text">jeo.dev</a>
     </div>
     <ul class="side-nav">
+      <span class="fx-nav-glide" aria-hidden="true"></span>
       <li><a href="#about"      class="side-link active"><div class="side-icon">⌘</div><span class="nav-label">About</span></a></li>
       <li><a href="#experience" class="side-link"><div class="side-icon">◈</div><span class="nav-label">Experience</span></a></li>
       <li><a href="#projects"   class="side-link"><div class="side-icon">▣</div><span class="nav-label">Projects</span></a></li>
@@ -3257,12 +3299,12 @@ body.light-mode .fx-sound-btn,body.light-mode .fx-sound-pop{background:rgba(255,
   <div class="nav-tools">
     <div class="utility-cluster">
   <div class="fx-sound">
-    <button type="button" class="fx-sound-btn" id="fxSoundBtn" aria-label="Sound on/off" aria-pressed="false" aria-expanded="false" aria-controls="fxSoundPop">
+    <button type="button" class="fx-sound-btn" id="fxSoundBtn" aria-label="Sound on/off" aria-pressed="true" aria-expanded="false" aria-controls="fxSoundPop">
       <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 9h3l4-3v12l-4-3H4z" fill="currentColor"/><path class="fx-sound-wave" d="M15 9.5a3.5 3.5 0 0 1 0 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path class="fx-sound-x" d="M16 10l4 4m0-4l-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
     </button>
     <div class="fx-sound-pop" id="fxSoundPop">
       <label class="fx-sound-label" for="fxVolume">Volume</label>
-      <input id="fxVolume" type="range" min="0" max="60" value="25" aria-label="Volume"/>
+      <input id="fxVolume" type="range" min="0" max="100" value="80" aria-label="Volume"/>
     </div>
   </div>
   <label class="day-toggle glass" title="Day / Night mode">
@@ -3441,7 +3483,7 @@ body.light-mode .fx-sound-btn,body.light-mode .fx-sound-pop{background:rgba(255,
     <div class="projects-list">
 
       <!-- Role 1: Spark Logistics -->
-      <div class="project-card">
+      <div class="project-card skill-group">
         <div class="project-tag">
           <span style="width:6px;height:6px;border-radius:50%;background:#0ea5e9;display:inline-block;animation:tagPulse 2s ease infinite"></span>
           June 2026 to Present · Current Role
@@ -3460,7 +3502,7 @@ body.light-mode .fx-sound-btn,body.light-mode .fx-sound-pop{background:rgba(255,
       </div>
 
       <!-- Role 2: SY3 Energy -->
-      <div class="project-card">
+      <div class="project-card skill-group">
         <div class="project-tag">
           July 2024 to July 2026
         </div>
@@ -3475,7 +3517,7 @@ body.light-mode .fx-sound-btn,body.light-mode .fx-sound-pop{background:rgba(255,
       </div>
 
       <!-- Role 3: Synergies Empowerment -->
-      <div class="project-card">
+      <div class="project-card skill-group">
         <div class="project-tag">
           <span style="width:6px;height:6px;border-radius:50%;background:#a78bfa;display:inline-block"></span>
           December 2022 to March 2024
@@ -3789,7 +3831,6 @@ body.light-mode .fx-sound-btn,body.light-mode .fx-sound-pop{background:rgba(255,
           <span class="skill-pill">Brightly CRM Configuration</span>
           <span class="skill-pill">CRM Workflow Design</span>
           <span class="skill-pill">Web Forms &amp; SMS Opt-In</span>
-          <span class="skill-pill">NOAH ERP</span>
         </div>
       </div>
 
@@ -3825,7 +3866,7 @@ body.light-mode .fx-sound-btn,body.light-mode .fx-sound-pop{background:rgba(255,
 <section id="contact">
   <div class="contact-wrap reveal fx-reveal">
     <div class="section-label"><span class="section-slash">//</span>contact</div>
-    <div class="section-title">Let's Connect</div>
+    <div class="section-title">Let's Connect<canvas class="fx-orbit" id="fxOrbit" aria-hidden="true"></canvas></div>
     <p class="contact-desc"><strong class="contact-hook">Have something worth building? Let's turn a useful idea into working software.</strong> I'm open to AI-assisted development, full-stack web work, IT systems and workflow automation. Remote contract, project-based or long-term.</p>
     <div class="contact-actions">
       <a href="mailto:jelonelvitao@gmail.com?subject=R%C3%A9sum%C3%A9%20Request%20for%20Jeo%20Vitao&amp;body=Hi%20Jeo%2C%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20request%20a%20copy%20of%20your%20r%C3%A9sum%C3%A9.%0D%0A%0D%0AName%3A%0D%0ACompany%3A%0D%0ARole%3A%0D%0A%0D%0AThank%20you%21" class="btn-resume">⬡ Request Résumé</a>
@@ -3868,9 +3909,20 @@ window.addEventListener('load', () => { window.scrollTo(0, 0); });
 
 // ── Sidebar active link (click + scroll spy) ──
 const navLinks = document.querySelectorAll('.side-link');
+let navSoundHash = '';
 let setActiveLink = function (hash) {
   navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === hash));
+  const glide = document.querySelector('.fx-nav-glide');
+  const active = document.querySelector('.side-nav .side-link.active');
+  if (glide && active) {
+    glide.style.transform = 'translateY(' + (active.offsetTop + (active.offsetHeight - 22) / 2) + 'px)';
+  }
+  if (hash && hash !== navSoundHash) {
+    if (navSoundHash) document.dispatchEvent(new CustomEvent('fx-nav'));
+    navSoundHash = hash;
+  }
 }
+setActiveLink('#about');
 navLinks.forEach(link => link.addEventListener('click', () => setActiveLink(link.getAttribute('href'))));
 
 const spySections = ['about','experience','projects','skills','goal','contact']
@@ -3910,12 +3962,27 @@ if (copyEmailBtn) {
   copyEmailBtn.addEventListener('click', async () => {
     await copyEmailToClipboard();
     copyEmailBtn.classList.add('copied');
-    copyEmailBtn.textContent = '✓ copied';
+    copyEmailBtn.textContent = 'copied';
+    const row = copyEmailBtn.parentElement;
+    if (row) {
+      for (let i = 0; i < 8; i++) {
+        const bit = document.createElement('span');
+        bit.className = 'fx-sparkbit';
+        bit.style.left = (copyEmailBtn.offsetLeft + copyEmailBtn.offsetWidth / 2) + 'px';
+        bit.style.top = (copyEmailBtn.offsetTop + copyEmailBtn.offsetHeight / 2) + 'px';
+        const ang = (Math.PI * 2 * i) / 8;
+        bit.style.setProperty('--x', Math.cos(ang) * 28 + 'px');
+        bit.style.setProperty('--y', Math.sin(ang) * 22 + 'px');
+        row.appendChild(bit);
+        setTimeout(() => bit.remove(), 650);
+      }
+    }
     clearTimeout(copyResetTimer);
     copyResetTimer = setTimeout(() => {
       copyEmailBtn.classList.remove('copied');
       copyEmailBtn.textContent = '⧉ copy';
-    }, 1800);
+    }, 1500);
+    document.dispatchEvent(new CustomEvent('fx-chime'));
   });
 }
 
@@ -4586,8 +4653,14 @@ revealEls.forEach(el => revealObs.observe(el));
     const state = { el, tx: 0, ty: 0, x: 0, y: 0, hot: false };
     el.addEventListener('pointermove', (e) => {
       const r = el.getBoundingClientRect();
-      state.tx = (e.clientX - (r.left + r.width / 2)) * 0.22;
-      state.ty = (e.clientY - (r.top + r.height / 2)) * 0.28;
+      let pullX = (e.clientX - (r.left + r.width / 2)) * 0.22;
+      let pullY = (e.clientY - (r.top + r.height / 2)) * 0.28;
+      if (el.closest('.contact-actions')) {
+        pullX = Math.max(-8, Math.min(8, pullX));
+        pullY = Math.max(-8, Math.min(8, pullY));
+      }
+      state.tx = pullX;
+      state.ty = pullY;
       state.hot = true;
     });
     el.addEventListener('pointerleave', () => {
@@ -4955,8 +5028,9 @@ revealEls.forEach(el => revealObs.observe(el));
     function finalName(el){
       el.innerHTML = '<span class="fx-name">Jeo Vitao<small>AI &amp; PROGRAMMING SPECIALIST · FULL-STACK DEVELOPER</small></span>';
     }
+    const quickName = !fine || matchMedia('(max-width: 700px)').matches;
     async function type(item, el, my){
-      const speed = item.t === 'cmd' ? 24 : 14;
+      const speed = quickName ? (item.t === 'cmd' ? 10 : 6) : (item.t === 'cmd' ? 24 : 14);
       for (let i = 1; i <= item.text.length; i++){
         if (my !== token) return false;
         render(item, el, item.text.slice(0, i)); await sleep(speed);
@@ -4967,11 +5041,13 @@ revealEls.forEach(el => revealObs.observe(el));
       const target = 'Jeo Vitao', chars = 'abcdefghijklmnopqrstuvwxyz01<>/_';
       el.innerHTML = '<span class="fx-name"><span id="fxNameText"></span><small>AI &amp; PROGRAMMING SPECIALIST · FULL-STACK DEVELOPER</small></span>';
       const out = el.querySelector('#fxNameText');
-      for (let f = 0; f <= 14; f++){
+      const frames = quickName ? 8 : 14;
+      const step = quickName ? 22 : 40;
+      for (let f = 0; f <= frames; f++){
         if (my !== token) return;
-        const keep = Math.floor(target.length * f/14);
+        const keep = Math.floor(target.length * f/frames);
         out.textContent = target.slice(0, keep) + Array.from({length: target.length-keep}, () => chars[Math.random()*chars.length|0]).join('');
-        await sleep(40);
+        await sleep(step);
       }
       out.textContent = target;
     }
@@ -4982,9 +5058,9 @@ revealEls.forEach(el => revealObs.observe(el));
       for (const item of SCRIPT){
         if (my !== token) return;
         const el = line();
-        if (item.t === 'name'){ await sleep(250); await scramble(el, my); const c = document.createElement('i'); c.className = 'fx-caret'; el.firstChild.appendChild(c); break; }
+        if (item.t === 'name'){ await sleep(quickName ? 40 : 250); await scramble(el, my); const c = document.createElement('i'); c.className = 'fx-caret'; el.firstChild.appendChild(c); break; }
         const ok = await type(item, el, my); if (!ok) return;
-        await sleep(item.t === 'tool' ? 260 : 180);
+        await sleep(quickName ? (item.t === 'tool' ? 55 : 40) : (item.t === 'tool' ? 260 : 180));
       }
     }
     let started = false, playing = false;
@@ -5004,7 +5080,13 @@ revealEls.forEach(el => revealObs.observe(el));
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
   const coarse = matchMedia('(pointer: coarse)').matches;
-  const sel = '.about-card, .case-card, .ai-process, .skill-group, .goal-card, .contact-wrap';
+  document.querySelectorAll('#experience .project-card').forEach(card => {
+    [card.querySelector('.project-tag'), card.querySelector('.project-title'), card.querySelector('.project-desc'), ...card.querySelectorAll('li')].filter(Boolean).forEach((el, i) => {
+      el.classList.add('fx-bit');
+      el.style.setProperty('--d', String(i));
+    });
+  });
+  const sel = '.about-card, .case-card, .ai-process, .skill-group, .goal-card';
   const shells = [...document.querySelectorAll(sel)];
   shells.forEach(el => el.classList.add('fx-shell'));
   if (!reduce && 'IntersectionObserver' in window) {
@@ -5018,6 +5100,8 @@ revealEls.forEach(el => revealObs.observe(el));
       el.classList.add('fx-shell-reveal');
       io.observe(el);
     });
+  } else if (!reduce) {
+    shells.forEach(el => el.classList.add('fx-shell-on'));
   }
   if (fine && !reduce) {
     let hot = null;
@@ -5040,7 +5124,6 @@ revealEls.forEach(el => revealObs.observe(el));
     }, { passive: true });
   }
 
-  if (reduce) return;
   const flows = [...document.querySelectorAll('.case-card .fx-flow')];
   flows.forEach(flow => {
     const cv = document.createElement('canvas');
@@ -5060,7 +5143,7 @@ revealEls.forEach(el => revealObs.observe(el));
   flows.forEach(flow => flowIo.observe(flow));
   if (coarse) {
     flows.forEach(flow => flow.addEventListener('pointerdown', () => {
-      flow._burst = performance.now() + 980;
+      flow._burst = performance.now() + 2600;
       flow._burstId = (flow._burstId || 0) + 1;
       kick();
     }));
@@ -5090,6 +5173,59 @@ revealEls.forEach(el => revealObs.observe(el));
     const y = (ar.top + ar.bottom) / 2 - root.top;
     return [ar.right - root.left, y, br.left - root.left, y];
   }
+  function bolt(x0, y0, x1, y1, parts, amp) {
+    const pts = [[x0, y0]];
+    const dx = x1 - x0, dy = y1 - y0;
+    const len = Math.hypot(dx, dy) || 1;
+    const px = -dy / len, py = dx / len;
+    const n = Math.max(3, parts);
+    for (let i = 1; i < n; i++) {
+      const t = i / n;
+      const fall = Math.sin(Math.PI * t);
+      const off = (Math.random() - 0.5) * 2 * amp * fall;
+      pts.push([x0 + dx * t + px * off, y0 + dy * t + py * off]);
+    }
+    pts.push([x1, y1]);
+    return pts;
+  }
+  function clipBolt(pts, t) {
+    if (t >= 1) return pts;
+    if (t <= 0) return [pts[0]];
+    let total = 0;
+    const lens = [];
+    for (let i = 1; i < pts.length; i++) {
+      const d = Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]);
+      lens.push(d);
+      total += d;
+    }
+    let left = total * t;
+    const out = [pts[0]];
+    for (let i = 1; i < pts.length; i++) {
+      const d = lens[i - 1];
+      if (left <= d) {
+        const k = d ? left / d : 0;
+        out.push([pts[i - 1][0] + (pts[i][0] - pts[i - 1][0]) * k, pts[i - 1][1] + (pts[i][1] - pts[i - 1][1]) * k]);
+        return out;
+      }
+      left -= d;
+      out.push(pts[i]);
+    }
+    return out;
+  }
+  function strokeBolt(c, pts, width, color, blur) {
+    if (!pts || pts.length < 2) return;
+    c.save();
+    c.lineWidth = width;
+    c.strokeStyle = color;
+    c.lineJoin = 'round';
+    c.lineCap = 'round';
+    if (blur) { c.shadowColor = 'rgba(56,189,248,.9)'; c.shadowBlur = blur; }
+    c.beginPath();
+    c.moveTo(pts[0][0], pts[0][1]);
+    for (let i = 1; i < pts.length; i++) c.lineTo(pts[i][0], pts[i][1]);
+    c.stroke();
+    c.restore();
+  }
   function paintFlow(flow, ts) {
     const cv = flow._cv;
     const c = flow._ctx;
@@ -5105,64 +5241,120 @@ revealEls.forEach(el => revealObs.observe(el));
     c.clearRect(0, 0, w, h);
     const nodes = [...flow.querySelectorAll('.fx-node')];
     if (nodes.length < 2) return;
-    let u = 0;
+    const lines = [];
+    for (let i = 0; i < nodes.length - 1; i++) lines.push(segLine(flow, nodes[i], nodes[i + 1]));
+    let u = -1;
     let bright = false;
+    let charging = true;
     if (coarse) {
-      if (ts >= flow._burst) return;
-      u = 1 - (flow._burst - ts) / 980;
-      bright = true;
+      charging = ts < flow._burst;
+      if (charging) {
+        u = 1 - (flow._burst - ts) / 2600;
+        bright = true;
+      }
     } else {
-      const hover = flow.closest('.case-card') && flow.closest('.case-card').matches(':hover');
-      bright = !!hover;
-      const cycle = hover ? 1600 : 3000;
+      bright = !!(flow.closest('.case-card') && flow.closest('.case-card').matches(':hover'));
+      const cycle = bright ? 2000 : 3500;
       u = (ts % cycle) / cycle;
     }
-    const travel = u / 0.78;
-    const seg = Math.floor(travel);
-    const local = travel - seg;
-    if (seg < 0 || seg > nodes.length - 2) return;
-    const line = segLine(flow, nodes[seg], nodes[seg + 1]);
-    const x0 = line[0], y0 = line[1], x1 = line[2], y1 = line[3];
-    const dx = x1 - x0, dy = y1 - y0;
-    const len = Math.hypot(dx, dy) || 1;
-    const head = Math.max(0, Math.min(1, local));
-    const tail = Math.max(0, head - 0.38);
-    const j = Math.sin(ts / 38 + seg) * (bright ? 1.6 : 1.1);
-    const px = -dy / len, py = dx / len;
-    const flicker = 0.72 + 0.28 * Math.abs(Math.sin(ts / 28 + seg * 2));
-    const hx = x0 + dx * head + px * j;
-    const hy = y0 + dy * head + py * j;
-    const tx = x0 + dx * tail;
-    const ty = y0 + dy * tail;
-    const g = c.createLinearGradient(tx, ty, hx, hy);
-    g.addColorStop(0, 'rgba(14,165,233,0)');
-    g.addColorStop(1, 'rgba(125,211,252,' + (flicker * (bright ? 1 : 0.8)).toFixed(3) + ')');
-    c.strokeStyle = g;
-    c.lineWidth = bright ? 2.6 : 1.8;
-    c.lineCap = 'round';
-    c.beginPath();
-    c.moveTo(tx, ty);
-    c.lineTo(hx, hy);
-    c.stroke();
-    c.fillStyle = 'rgba(224,242,254,' + flicker.toFixed(3) + ')';
-    c.beginPath();
-    c.arc(hx, hy, bright ? 3.1 : 2.3, 0, Math.PI * 2);
-    c.fill();
-    if (local > 0.9) {
-      const key = (coarse ? 'b' + flow._burstId : Math.floor(ts / (bright ? 1600 : 3000))) + ':' + seg;
-      if (flow._fired !== key) {
-        flow._fired = key;
-        flash(nodes[seg + 1]);
-        const sx = x1, sy = y1;
-        for (let i = 0; i < 5; i++) {
-          const ang = (Math.PI * 2 * i) / 5 + ts / 200;
-          c.fillStyle = 'rgba(186,230,253,' + (0.35 + i * 0.08).toFixed(2) + ')';
-          c.beginPath();
-          c.arc(sx + Math.cos(ang) * (4 + i), sy + Math.sin(ang) * (4 + i), 1.2, 0, Math.PI * 2);
-          c.fill();
+    if (flow._prevU !== undefined && u < flow._prevU) {
+      flow._loop = (flow._loop || 0) + 1;
+      flow._hits = {};
+    }
+    flow._prevU = u;
+    const loopId = coarse ? flow._burstId : (flow._loop || 0);
+    if (!flow._bolts || ts - (flow._boltAt || 0) > 40) {
+      flow._boltAt = ts;
+      const amp = bright ? 16 : 11;
+      const parts = 5 + Math.floor(Math.random() * 3);
+      flow._bolts = lines.map(ln => bolt(ln[0], ln[1], ln[2], ln[3], parts, amp));
+      flow._idle = lines.map(ln => bolt(ln[0], ln[1], ln[2], ln[3], 5 + (Math.random() * 2 | 0), bright ? 7 : 4));
+      flow._branches = [];
+    }
+    const windows = [[0, 0.2], [0.22, 0.42], [0.44, 0.64]];
+    const hum = 0.34 + 0.14 * Math.abs(Math.sin(ts / 90));
+    lines.forEach((ln, i) => {
+      strokeBolt(c, flow._idle[i], 1.2, 'rgba(56,189,248,' + hum.toFixed(3) + ')', 0);
+    });
+    let active = -1;
+    windows.forEach((win, i) => {
+      if (i >= lines.length) return;
+      if (u >= win[0] && u <= win[1]) active = i;
+    });
+    if (charging && active >= 0) {
+      const win = windows[active];
+      const p = (u - win[0]) / (win[1] - win[0]);
+      const grown = clipBolt(flow._bolts[active], p);
+      strokeBolt(c, grown, bright ? 8 : 6, 'rgba(37,99,235,.45)', bright ? 16 : 12);
+      strokeBolt(c, grown, 1.5, 'rgba(240,253,255,.95)', 0);
+      const count = bright ? 3 : 1;
+      if (!flow._branchKey || flow._branchKey !== flow._boltAt) {
+        flow._branchKey = flow._boltAt;
+        flow._branches = [];
+        const src = grown.length > 2 ? grown[1 + (Math.random() * (grown.length - 2) | 0)] : grown[grown.length - 1];
+        for (let b = 0; b < count; b++) {
+          const ang = Math.random() * Math.PI * 2;
+          const len = 8 + Math.random() * (bright ? 22 : 12);
+          flow._branches.push(bolt(src[0], src[1], src[0] + Math.cos(ang) * len, src[1] + Math.sin(ang) * len, 3, 6));
         }
       }
+      flow._branches.forEach(br => strokeBolt(c, br, 1, 'rgba(186,230,253,' + (0.35 + Math.random() * 0.4).toFixed(2) + ')', 4));
+      if (!flow._crackle || ts - flow._crackle > 160) {
+        flow._crackle = ts;
+        document.dispatchEvent(new CustomEvent('fx-crackle'));
+      }
     }
+    if (charging) windows.forEach((win, i) => {
+      if (i >= lines.length || u <= win[1] || i + 1 >= nodes.length) return;
+      const key = loopId + ':' + i;
+      if (flow._hit === key) return;
+      if (!flow._hits) flow._hits = {};
+      if (flow._hits[key]) return;
+      flow._hits[key] = 1;
+      flow._hit = key;
+      const end = lines[i];
+      flash(nodes[i + 1]);
+      flow._sparks = flow._sparks || [];
+      flow._rings = flow._rings || [];
+      flow._rings.push({ x: end[2], y: end[3], age: 0 });
+      const n = 6 + Math.floor(Math.random() * 5);
+      for (let s = 0; s < n; s++) {
+        const ang = Math.random() * Math.PI * 2;
+        const sp = 0.7 + Math.random() * 1.6;
+        flow._sparks.push({ x: end[2], y: end[3], vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp - 1.1, life: 1 });
+      }
+    });
+    if (charging && u > 0.66 && u < 0.88 && lines.length) {
+      const end = lines[lines.length - 1];
+      const fade = 1 - (u - 0.66) / 0.22;
+      const grd = c.createRadialGradient(end[2], end[3], 2, end[2], end[3], 36);
+      grd.addColorStop(0, 'rgba(224,242,254,' + (0.45 * fade).toFixed(3) + ')');
+      grd.addColorStop(1, 'rgba(56,189,248,0)');
+      c.fillStyle = grd;
+      c.beginPath();
+      c.arc(end[2], end[3], 36, 0, Math.PI * 2);
+      c.fill();
+    }
+    flow._rings = (flow._rings || []).filter(r => r.age < 1);
+    flow._rings.forEach(r => {
+      r.age += 0.045;
+      c.strokeStyle = 'rgba(125,211,252,' + (1 - r.age).toFixed(3) + ')';
+      c.lineWidth = 1.5;
+      c.beginPath();
+      c.arc(r.x, r.y, 6 + r.age * 26, 0, Math.PI * 2);
+      c.stroke();
+    });
+    flow._sparks = (flow._sparks || []).filter(s => s.life > 0);
+    flow._sparks.forEach(s => {
+      s.vy += 0.045;
+      s.x += s.vx;
+      s.y += s.vy;
+      s.life -= 0.028;
+      c.fillStyle = 'rgba(224,242,254,' + Math.max(0, s.life).toFixed(3) + ')';
+      c.beginPath();
+      c.arc(s.x, s.y, 1.4, 0, Math.PI * 2);
+      c.fill();
+    });
   }
   let pulseRaf = 0;
   function pulse(ts) {
@@ -5171,18 +5363,34 @@ revealEls.forEach(el => revealObs.observe(el));
     let live = false;
     flows.forEach(flow => {
       if (!flow._seen) return;
-      if (coarse && ts >= flow._burst) {
-        const c = flow._ctx;
-        if (c) c.clearRect(0, 0, flow.clientWidth, flow.clientHeight);
-        return;
-      }
       live = true;
       paintFlow(flow, ts);
     });
     if (live) pulseRaf = requestAnimationFrame(pulse);
   }
   function kick() {
-    if (!pulseRaf && !document.hidden) pulseRaf = requestAnimationFrame(pulse);
+    if (reduce || pulseRaf || document.hidden) return;
+    pulseRaf = requestAnimationFrame(pulse);
+  }
+  if (reduce) {
+    flows.forEach(flow => {
+      const nodes = [...flow.querySelectorAll('.fx-node')];
+      const c = flow._ctx;
+      if (!c) return;
+      const dpr = Math.min(devicePixelRatio || 1, 2);
+      const w = flow.clientWidth || 1;
+      const h = flow.clientHeight || 1;
+      flow._cv.width = Math.round(w * dpr);
+      flow._cv.height = Math.round(h * dpr);
+      c.setTransform(dpr, 0, 0, dpr, 0, 0);
+      for (let i = 0; i < nodes.length - 1; i++) {
+        const ln = segLine(flow, nodes[i], nodes[i + 1]);
+        const path = bolt(ln[0], ln[1], ln[2], ln[3], 6, 5);
+        strokeBolt(c, path, 6, 'rgba(37,99,235,.4)', 10);
+        strokeBolt(c, path, 1.5, 'rgba(224,242,254,.8)', 0);
+      }
+    });
+    return;
   }
   document.addEventListener('visibilitychange', () => { if (!document.hidden) kick(); });
   kick();
@@ -5196,12 +5404,15 @@ revealEls.forEach(el => revealObs.observe(el));
   const slider = document.getElementById('fxVolume');
   if (!btn || !slider) return;
   let ctx = null;
-  let muted = true;
-  let volume = 0.25;
+  let muted = !!reduce;
+  let volume = 0.8;
   try {
     const savedV = localStorage.getItem('siteVolume');
-    if (savedV !== null) volume = Math.max(0, Math.min(0.6, parseFloat(savedV) || 0.25));
-    if (!reduce && localStorage.getItem('siteSound') === 'on') muted = false;
+    if (savedV !== null) volume = Math.max(0, Math.min(1, parseFloat(savedV)));
+    if (Number.isNaN(volume)) volume = 0.8;
+    const savedS = localStorage.getItem('siteSound');
+    if (savedS === 'on') muted = false;
+    else if (savedS === 'off') muted = true;
   } catch (e) {}
   slider.value = String(Math.round(volume * 100));
   function paint() {
@@ -5217,7 +5428,9 @@ revealEls.forEach(el => revealObs.observe(el));
     const AC = window.AudioContext || window.webkitAudioContext;
     if (!AC) return null;
     if (!ctx) ctx = new AC();
-    if (ctx.state === 'suspended') ctx.resume();
+    const mark = () => { btn.dataset.audio = ctx.state; };
+    if (ctx.state === 'suspended') ctx.resume().then(mark);
+    mark();
     return ctx;
   }
   function blip(freq, dur, type, peak, sweep) {
@@ -5251,7 +5464,7 @@ revealEls.forEach(el => revealObs.observe(el));
     filter.frequency.setValueAtTime(1600, now);
     filter.frequency.exponentialRampToValueAtTime(220, now + 0.18);
     const g = c.createGain();
-    g.gain.setValueAtTime(0.05 * volume, now);
+    g.gain.setValueAtTime(0.028 * volume, now);
     g.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
     src.connect(filter);
     filter.connect(g);
@@ -5265,47 +5478,73 @@ revealEls.forEach(el => revealObs.observe(el));
     save();
   }
   paint();
-  document.addEventListener('pointerdown', () => { if (!muted) arm(); }, { once: true });
+  function gestureArm() { arm(); }
+  ['pointerdown', 'keydown', 'touchstart'].forEach(type => {
+    document.addEventListener(type, gestureArm, { once: true, passive: true });
+  });
+  const soundBox = btn.closest('.fx-sound');
+  function openPop() {
+    if (!pop) return;
+    pop.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+  }
+  function closePop() {
+    if (!pop) return;
+    pop.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+  }
   btn.addEventListener('click', () => {
     setMuted(!muted);
-    if (matchMedia('(pointer: coarse)').matches && pop) {
+    if (!fine && pop) {
       const open = pop.classList.toggle('open');
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     }
   });
   slider.addEventListener('input', () => {
-    volume = Math.max(0, Math.min(0.6, Number(slider.value) / 100));
+    volume = Math.max(0, Math.min(1, Number(slider.value) / 100));
     if (volume > 0 && muted) setMuted(false);
     else save();
   });
-  if (fine && pop) {
-    const sync = () => btn.setAttribute('aria-expanded', 'true');
-    const shut = () => { if (!pop.classList.contains('open')) btn.setAttribute('aria-expanded', 'false'); };
-    btn.addEventListener('focus', sync);
-    btn.addEventListener('blur', shut);
+  if (fine && soundBox) {
+    soundBox.addEventListener('pointerenter', openPop);
+    soundBox.addEventListener('pointerleave', () => {
+      closePop();
+      if (soundBox.contains(document.activeElement) && document.activeElement.blur) document.activeElement.blur();
+    });
+    soundBox.addEventListener('focusin', openPop);
+    soundBox.addEventListener('focusout', e => {
+      if (!soundBox.contains(e.relatedTarget)) closePop();
+    });
   }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closePop(); });
   document.addEventListener('pointerdown', e => {
     if (!pop || !pop.classList.contains('open')) return;
     if (e.target.closest && e.target.closest('.fx-sound')) return;
-    pop.classList.remove('open');
-    btn.setAttribute('aria-expanded', 'false');
+    closePop();
   });
   let lastTick = 0;
   if (fine) {
     document.addEventListener('pointerover', e => {
-      const el = e.target.closest ? e.target.closest('a, button') : null;
+      const el = e.target.closest ? e.target.closest('.skill-group') : null;
       if (!el || muted) return;
       const now = performance.now();
       if (now - lastTick < 90) return;
       lastTick = now;
-      blip(880, 0.03, 'sine', 0.12);
+      blip(880, 0.028, 'sine', 0.035);
+    });
+    document.addEventListener('pointerdown', e => {
+      if (!e.target.closest || !e.target.closest('.skill-group')) return;
+      blip(240, 0.05, 'triangle', 0.07);
     });
   }
-  document.addEventListener('pointerdown', e => {
-    if (!e.target.closest || !e.target.closest('a, button')) return;
-    blip(240, 0.045, 'triangle', 0.16);
+  document.addEventListener('fx-crackle', () => blip(180, 0.04, 'sawtooth', 0.02, 90));
+  document.addEventListener('fx-zap', () => blip(640, 0.05, 'square', 0.045, 1800));
+  document.addEventListener('fx-nav', () => blip(520, 0.06, 'sine', 0.05));
+  document.addEventListener('fx-ripple', () => blip(300, 0.08, 'triangle', 0.08));
+  document.addEventListener('fx-chime', () => {
+    blip(880, 0.09, 'sine', 0.09);
+    setTimeout(() => blip(1320, 0.12, 'sine', 0.07), 70);
   });
-  document.addEventListener('fx-zap', () => blip(520, 0.07, 'sawtooth', 0.1, 1500));
   if ('IntersectionObserver' in window) {
     const seen = new WeakSet();
     const io = new IntersectionObserver(es => es.forEach(e => {
@@ -5323,8 +5562,241 @@ revealEls.forEach(el => revealObs.observe(el));
       const now = performance.now();
       if (now - lastKey < 42) return;
       lastKey = now;
-      blip(1480, 0.02, 'square', 0.05);
+      blip(1480, 0.018, 'square', 0.018);
     }).observe(body, { childList: true, subtree: true, characterData: true });
+  }
+})();
+
+(function fxLive(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const coarse = matchMedia('(pointer: coarse)').matches;
+  const sections = ['top','about','experience','projects','skills','goal','contact']
+    .map(id => document.getElementById(id)).filter(Boolean);
+  sections.forEach(sec => sec.setAttribute('tabindex', '-1'));
+
+  const bar = document.querySelector('.fx-scroll');
+  function paintProgress() {
+    if (!bar) return;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const p = max > 0 ? Math.max(0, Math.min(1, window.scrollY / max)) : 0;
+    bar.style.transform = 'scaleX(' + p + ')';
+  }
+  paintProgress();
+  window.addEventListener('scroll', paintProgress, { passive: true });
+  window.addEventListener('resize', paintProgress);
+
+  document.addEventListener('keydown', e => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    const tag = e.target && e.target.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || (e.target && e.target.isContentEditable)) return;
+    const palette = document.getElementById('cmdk');
+    if (palette && !palette.hidden) return;
+    const down = e.key === 'ArrowDown' || e.key === 'j' || e.key === 'J';
+    const up = e.key === 'ArrowUp' || e.key === 'k' || e.key === 'K';
+    if (!down && !up) return;
+    if (reduce) return;
+    e.preventDefault();
+    let idx = 0;
+    sections.forEach((sec, i) => { if (sec.getBoundingClientRect().top <= 96) idx = i; });
+    const next = sections[Math.max(0, Math.min(sections.length - 1, idx + (down ? 1 : -1)))];
+    if (!next) return;
+    next.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    next.focus({ preventScroll: true });
+  });
+
+  function scramble(node, finalText, dur) {
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789';
+    const start = performance.now();
+    function step(now) {
+      const p = Math.min(1, (now - start) / dur);
+      const keep = Math.floor(finalText.length * p);
+      let out = finalText.slice(0, keep);
+      for (let i = keep; i < finalText.length; i++) {
+        const ch = finalText.charAt(i);
+        out += ch === ' ' ? ' ' : chars[(Math.random() * chars.length) | 0];
+      }
+      node.textContent = out;
+      if (p < 1) requestAnimationFrame(step);
+      else node.textContent = finalText;
+    }
+    requestAnimationFrame(step);
+  }
+  if (!reduce && 'IntersectionObserver' in window) {
+    const seen = new WeakSet();
+    const io = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (!entry.isIntersecting || seen.has(entry.target)) return;
+      seen.add(entry.target);
+      io.unobserve(entry.target);
+      const label = entry.target.querySelector('.section-label');
+      if (label) {
+        const node = [...label.childNodes].find(n => n.nodeType === 3 && n.textContent.trim());
+        if (node) scramble(node, node.textContent, coarse ? 240 : 520);
+      }
+      if (entry.target.id === 'contact') return;
+      const title = entry.target.querySelector('.section-title');
+      if (!title) return;
+      const node = [...title.childNodes].find(n => n.nodeType === 3 && n.textContent.trim());
+      if (node) scramble(node, node.textContent, coarse ? 280 : 640);
+    }), { threshold: 0.35 });
+    sections.forEach(sec => io.observe(sec));
+  }
+
+  const title = document.querySelector('#contact .section-title');
+  const orbit = document.getElementById('fxOrbit');
+  if (title) {
+    const phrase = "Let's Connect";
+    title.setAttribute('aria-label', phrase);
+    title.textContent = '';
+    [...phrase].forEach((ch, i) => {
+      const span = document.createElement('span');
+      span.className = 'fx-letter';
+      span.style.setProperty('--i', String(i));
+      span.textContent = ch === ' ' ? '\u00a0' : ch;
+      title.appendChild(span);
+    });
+    const sweep = document.createElement('span');
+    sweep.className = 'fx-title-sweep';
+    sweep.setAttribute('aria-hidden', 'true');
+    title.appendChild(sweep);
+    if (orbit) title.appendChild(orbit);
+    if (reduce) title.classList.add('fx-on');
+    else if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(entries => entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        title.classList.add('fx-on');
+        io.disconnect();
+      }), { threshold: 0.5 });
+      io.observe(title);
+    } else title.classList.add('fx-on');
+  }
+
+  const mail = document.querySelector('#contact .email-link');
+  if (mail) {
+    const full = mail.textContent;
+    if (!reduce) {
+      mail.textContent = '';
+      let started = false;
+      const typeMail = () => {
+        if (started) return;
+        started = true;
+        let i = 0;
+        const speed = coarse ? 18 : 42;
+        const tick = () => {
+          i += 1;
+          mail.textContent = full.slice(0, i);
+          if (i < full.length) setTimeout(tick, speed);
+        };
+        tick();
+      };
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(entries => entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          typeMail();
+          io.disconnect();
+        }), { threshold: 0.4 });
+        io.observe(document.getElementById('contact'));
+      } else typeMail();
+    }
+  }
+
+  document.querySelectorAll('.contact-actions a').forEach(link => {
+    link.addEventListener('pointerdown', e => {
+      document.dispatchEvent(new CustomEvent('fx-ripple'));
+      if (reduce) return;
+      const r = link.getBoundingClientRect();
+      const bit = document.createElement('span');
+      bit.className = 'fx-ripple';
+      bit.style.left = (e.clientX - r.left) + 'px';
+      bit.style.top = (e.clientY - r.top) + 'px';
+      link.appendChild(bit);
+      setTimeout(() => bit.remove(), 650);
+    });
+  });
+
+  if (orbit) {
+    const dots = Array.from({ length: 14 }, (_, i) => ({
+      a: (Math.PI * 2 * i) / 14,
+      j: 0.82 + (i % 3) * 0.08
+    }));
+    let spin = 0.4;
+    let on = false;
+    let px = -999;
+    let py = -999;
+    const ctx = orbit.getContext('2d');
+    function drawOrbit() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = orbit.clientWidth || 1;
+      const h = orbit.clientHeight || 1;
+      const bw = Math.round(w * dpr);
+      const bh = Math.round(h * dpr);
+      if (orbit.width !== bw) orbit.width = bw;
+      if (orbit.height !== bh) orbit.height = bh;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, w, h);
+      const cx = w / 2;
+      const cy = h / 2;
+      const pts = dots.map(d => [
+        cx + Math.cos(d.a + spin) * w * 0.42 * d.j,
+        cy + Math.sin(d.a + spin) * h * 0.36
+      ]);
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(56,189,248,.2)';
+      pts.forEach((p, i) => {
+        const q = pts[(i + 1) % pts.length];
+        ctx.beginPath();
+        ctx.moveTo(p[0], p[1]);
+        ctx.lineTo(q[0], q[1]);
+        ctx.stroke();
+      });
+      if (fine && px > -100) {
+        pts.forEach(p => {
+          if (Math.hypot(px - p[0], py - p[1]) < 78) {
+            ctx.strokeStyle = 'rgba(125,211,252,.55)';
+            ctx.beginPath();
+            ctx.moveTo(p[0], p[1]);
+            ctx.lineTo(px, py);
+            ctx.stroke();
+          }
+        });
+      }
+      pts.forEach(p => {
+        ctx.fillStyle = 'rgba(186,230,253,.75)';
+        ctx.beginPath();
+        ctx.arc(p[0], p[1], 1.5, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    }
+    requestAnimationFrame(drawOrbit);
+    if (!reduce) {
+      let raf = 0;
+      function loop() {
+        raf = 0;
+        if (document.hidden || !on) return;
+        spin += coarse ? 0.0016 : 0.0032;
+        drawOrbit();
+        raf = requestAnimationFrame(loop);
+      }
+      function wake() {
+        if (!on || document.hidden || raf) return;
+        raf = requestAnimationFrame(loop);
+      }
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(entries => {
+          on = entries.some(entry => entry.isIntersecting);
+          if (on) wake();
+        }, { threshold: 0.2 });
+        io.observe(document.getElementById('contact'));
+      }
+      document.addEventListener('visibilitychange', () => { if (!document.hidden) wake(); });
+      if (fine) {
+        window.addEventListener('pointermove', e => {
+          const r = orbit.getBoundingClientRect();
+          px = e.clientX - r.left;
+          py = e.clientY - r.top;
+        }, { passive: true });
+      }
+    }
   }
 })();
 </script>
