@@ -154,27 +154,7 @@
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    opacity: .6;
-  }
-
-  .grid-bg {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background-image:
-      linear-gradient(rgba(37,99,235,.085) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(37,99,235,.085) 1px, transparent 1px);
-    background-size: 50px 50px;
-    mask-image:
-      radial-gradient(ellipse 90% 70% at 50% 0%, black 24%, transparent 78%),
-      radial-gradient(ellipse 60% 40% at 50% 100%, black 0%, transparent 60%);
-    animation: gridPulse 9s ease-in-out infinite;
-  }
-
-  @keyframes gridPulse {
-    0%,100% { opacity: .7; }
-    50%     { opacity: 1; }
+    opacity: 1;
   }
 
   .aurora, .aurora-2, .glow-orb, .scan-line, .rhythm-pulse {
@@ -2417,7 +2397,7 @@
 
     .aurora, .aurora-2, .orb-3, .orb-4 { display: none; }
     .scan-line { display: block; opacity: .6; }
-    #bg-canvas { opacity: .32; }
+    #bg-canvas { opacity: 1; }
 
     .utility-cluster {
       position: fixed;
@@ -2532,25 +2512,6 @@
   .cmdk-hit {
     color: var(--accent);
     background: transparent;
-  }
-
-  .grid-spot {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 520px;
-    height: 520px;
-    margin: -260px 0 0 -260px;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0;
-    background-image:
-      linear-gradient(rgba(125,211,252,.55) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(125,211,252,.55) 1px, transparent 1px);
-    background-size: 50px 50px;
-    -webkit-mask-image: radial-gradient(circle, #000 0%, transparent 70%);
-    mask-image: radial-gradient(circle, #000 0%, transparent 70%);
   }
 
   .case-card { transform-style: preserve-3d; }
@@ -2674,7 +2635,7 @@
 
   @media (pointer: coarse) {
     .touch-progress { display: block; }
-    #bg-canvas { opacity: .24; }
+    #bg-canvas { opacity: 1; }
   }
 
   @media (max-width: 768px) {
@@ -2696,8 +2657,7 @@
   }
 
   @media (prefers-reduced-motion: reduce), (pointer: coarse) {
-    .scroll-rail,
-    .grid-spot { display: none !important; }
+    .scroll-rail { display: none !important; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -3168,7 +3128,6 @@ body.fx-static .fx-reveal,body.fx-static .fx-node{opacity:1;transform:none}
 <body>
 <div id="bg-gradient"></div>
 <canvas id="bg-canvas"></canvas>
-<div class="grid-bg"></div>
 <div class="aurora"></div>
 <div class="aurora-2"></div>
 <div class="glow-orb orb-1"></div>
@@ -4253,50 +4212,167 @@ revealEls.forEach(el => revealObs.observe(el));
   const decodeEl = document.getElementById('heroDecode');
   const caret = document.querySelector('.lede-caret');
   const PHRASE = 'I build software and AI workflows that do real work.';
-  if (reduce) {
-    if (decodeEl) decodeEl.textContent = PHRASE;
-    return;
-  }
-
-  const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&';
-  const pointer = { x: window.innerWidth * 0.7, y: window.innerHeight * 0.35, on: false };
   const canvas = document.getElementById('bg-canvas');
   const ctx = canvas ? canvas.getContext('2d') : null;
+  const pointer = { x: window.innerWidth * 0.7, y: window.innerHeight * 0.35, on: false };
   let nodes = [];
+  let ripples = [];
   let W = 0;
   let H = 0;
+  let canvasDpr = 0;
+  const LINK = 120;
+  const POINTER_R = 180;
+
+  function fieldColors() {
+    const light = document.body.classList.contains('light-mode');
+    if (light) {
+      return {
+        dots: [[30, 64, 175], [3, 105, 161], [29, 78, 216]],
+        line: '30,64,175',
+        link: '2,132,199',
+        gain: 0.52
+      };
+    }
+    return {
+      dots: [[96, 165, 250], [56, 189, 248], [14, 165, 233]],
+      line: '125,211,252',
+      link: '56,189,248',
+      gain: 1
+    };
+  }
 
   function seedNodes() {
-    const count = touch ? Math.round(42 * 0.4) : (W < 900 ? 28 : 42);
-    const drift = touch ? 0.08 : 0.22;
+    const count = touch
+      ? 25
+      : Math.max(1, Math.min(90, Math.round(60 * (W * H) / (1440 * 900))));
+    const drift = touch ? 0.05 : 0.14;
     nodes = Array.from({ length: count }, () => ({
       x: Math.random() * W,
       y: Math.random() * H,
-      vx: (Math.random() - 0.5) * drift,
-      vy: (Math.random() - 0.5) * drift
+      vx: reduce ? 0 : (Math.random() - 0.5) * drift,
+      vy: reduce ? 0 : (Math.random() - 0.5) * drift,
+      r: 0.75 + Math.random() * 0.5,
+      a: 0.35 + Math.random() * 0.25,
+      tone: Math.floor(Math.random() * 3),
+      tw: Math.random() * Math.PI * 2,
+      mx: 0,
+      my: 0
     }));
   }
 
   function fitCanvas() {
-    if (!canvas) return;
+    if (!canvas || !ctx) return;
     const nw = window.innerWidth;
     const nh = window.innerHeight;
-    if (nw === W && nh === H && nodes.length) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    if (nw === W && nh === H && dpr === canvasDpr && nodes.length) {
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      return;
+    }
     W = nw;
     H = nh;
-    canvas.width = W;
-    canvas.height = H;
+    canvasDpr = dpr;
+    canvas.width = Math.round(W * dpr);
+    canvas.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     seedNodes();
   }
 
-  let spot = null;
-  if (!touch) {
-    spot = document.createElement('div');
-    spot.className = 'grid-spot';
-    spot.setAttribute('aria-hidden', 'true');
-    const grid = document.querySelector('.grid-bg');
-    if (grid && grid.parentNode) grid.parentNode.insertBefore(spot, grid.nextSibling);
+  function drawField(ts, animate) {
+    if (!ctx) return;
+    fitCanvas();
+    const pal = fieldColors();
+    ctx.clearRect(0, 0, W, H);
+    const pts = [];
+    for (const n of nodes) {
+      if (animate) {
+        n.x += n.vx;
+        n.y += n.vy;
+        if (n.x < 0 || n.x > W) n.vx *= -1;
+        if (n.y < 0 || n.y > H) n.vy *= -1;
+        let pullX = 0;
+        let pullY = 0;
+        if (!touch && pointer.on) {
+          const dx = pointer.x - n.x;
+          const dy = pointer.y - n.y;
+          const dist = Math.hypot(dx, dy);
+          if (dist < POINTER_R && dist > 0.01) {
+            const reach = (1 - dist / POINTER_R) * 14;
+            pullX = (dx / dist) * reach;
+            pullY = (dy / dist) * reach;
+          }
+        }
+        n.mx += (pullX - n.mx) * 0.06;
+        n.my += (pullY - n.my) * 0.06;
+      }
+      pts.push({ n: n, x: n.x + n.mx, y: n.y + n.my });
+    }
+    ctx.lineWidth = 1;
+    for (let i = 0; i < pts.length; i++) {
+      for (let j = i + 1; j < pts.length; j++) {
+        const dx = pts[i].x - pts[j].x;
+        const dy = pts[i].y - pts[j].y;
+        const dist = Math.hypot(dx, dy);
+        if (dist > LINK) continue;
+        let alpha = (1 - dist / LINK) * (pal.gain === 1 ? 0.4 : 0.22);
+        if (animate && ripples.length) {
+          const mx = (pts[i].x + pts[j].x) / 2;
+          const my = (pts[i].y + pts[j].y) / 2;
+          for (let r = 0; r < ripples.length; r++) {
+            const rip = ripples[r];
+            const age = (ts - rip.t) / 600;
+            if (age < 0 || age >= 1) continue;
+            const band = Math.abs(Math.hypot(mx - rip.x, my - rip.y) - age * 260);
+            if (band < 80) alpha += (1 - band / 80) * (1 - age) * 0.55;
+          }
+        }
+        ctx.strokeStyle = 'rgba(' + pal.line + ',' + Math.min(alpha, 0.9).toFixed(3) + ')';
+        ctx.beginPath();
+        ctx.moveTo(pts[i].x, pts[i].y);
+        ctx.lineTo(pts[j].x, pts[j].y);
+        ctx.stroke();
+      }
+    }
+    if (animate && !touch && pointer.on) {
+      for (let i = 0; i < pts.length; i++) {
+        const dx = pts[i].x - pointer.x;
+        const dy = pts[i].y - pointer.y;
+        const dist = Math.hypot(dx, dy);
+        if (dist > POINTER_R) continue;
+        const alpha = (1 - dist / POINTER_R) * (pal.gain === 1 ? 0.72 : 0.4);
+        ctx.strokeStyle = 'rgba(' + pal.link + ',' + alpha.toFixed(3) + ')';
+        ctx.beginPath();
+        ctx.moveTo(pts[i].x, pts[i].y);
+        ctx.lineTo(pointer.x, pointer.y);
+        ctx.stroke();
+      }
+    }
+    for (let i = 0; i < pts.length; i++) {
+      const n = pts[i].n;
+      let alpha = n.a * pal.gain;
+      if (animate && !touch) alpha += Math.sin(ts * 0.0022 + n.tw) * 0.04 * pal.gain;
+      if (pal.gain === 1) alpha = Math.min(0.6, Math.max(0.35, alpha));
+      const c = pal.dots[n.tone];
+      ctx.fillStyle = 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + alpha.toFixed(3) + ')';
+      ctx.beginPath();
+      ctx.arc(pts[i].x, pts[i].y, n.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
   }
+
+  if (reduce) {
+    if (decodeEl) decodeEl.textContent = PHRASE;
+    drawField(0, false);
+    window.addEventListener('resize', () => drawField(0, false));
+    const themeToggle = document.getElementById('dayNightToggle');
+    if (themeToggle) themeToggle.addEventListener('change', () => drawField(0, false));
+    return;
+  }
+
+  const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&';
+  window.addEventListener('click', (e) => {
+    ripples.push({ x: e.clientX, y: e.clientY, t: performance.now() });
+  });
 
   const cards = [...document.querySelectorAll('.case-card')].map(card => {
     const ring = document.createElement('span');
@@ -4452,7 +4528,7 @@ revealEls.forEach(el => revealObs.observe(el));
 
   let heroOn = true;
   let processOn = !touch;
-  if (touch && 'IntersectionObserver' in window) {
+  if ('IntersectionObserver' in window) {
     const hero = document.querySelector('.hero');
     if (hero) {
       const heroIo = new IntersectionObserver((entries) => {
@@ -4460,12 +4536,14 @@ revealEls.forEach(el => revealObs.observe(el));
       }, { threshold: 0 });
       heroIo.observe(hero);
     }
-    const process = document.querySelector('.ai-process');
-    if (process) {
-      const processIo = new IntersectionObserver((entries) => {
-        processOn = entries.some(entry => entry.isIntersecting);
-      }, { threshold: 0.2 });
-      processIo.observe(process);
+    if (touch) {
+      const process = document.querySelector('.ai-process');
+      if (process) {
+        const processIo = new IntersectionObserver((entries) => {
+          processOn = entries.some(entry => entry.isIntersecting);
+        }, { threshold: 0.2 });
+        processIo.observe(process);
+      }
     }
   }
 
@@ -4480,79 +4558,18 @@ revealEls.forEach(el => revealObs.observe(el));
 
   let raf = 0;
   let running = true;
-  let lastPlexus = 0;
-  let plexusLive = false;
 
   function drawPlexus(ts) {
-    if (touch) {
-      if (!heroOn || document.hidden) {
-        if (plexusLive && ctx) {
-          ctx.clearRect(0, 0, W, H);
-          plexusLive = false;
-        }
-        return;
-      }
-      if (ts - lastPlexus < 1000 / 30) return;
-      lastPlexus = ts;
+    if (document.hidden || !heroOn) return;
+    if (ripples.length) {
+      ripples = ripples.filter(rip => ts - rip.t < 600);
     }
-    if (!ctx) return;
-    fitCanvas();
-    ctx.clearRect(0, 0, W, H);
-    for (const n of nodes) {
-      n.x += n.vx;
-      n.y += n.vy;
-      if (n.x < 0 || n.x > W) n.vx *= -1;
-      if (n.y < 0 || n.y > H) n.vy *= -1;
-    }
-    for (let i = 0; i < nodes.length; i++) {
-      for (let j = i + 1; j < nodes.length; j++) {
-        const a = nodes[i];
-        const b = nodes[j];
-        const dx = a.x - b.x;
-        const dy = a.y - b.y;
-        const dist = Math.hypot(dx, dy);
-        if (dist > 140) continue;
-        const alpha = (1 - dist / 140) * 0.28;
-        ctx.strokeStyle = 'rgba(37,99,235,' + alpha.toFixed(3) + ')';
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.moveTo(a.x, a.y);
-        ctx.lineTo(b.x, b.y);
-        ctx.stroke();
-      }
-    }
-    if (!touch && pointer.on) {
-      for (const n of nodes) {
-        const dx = n.x - pointer.x;
-        const dy = n.y - pointer.y;
-        const dist = Math.hypot(dx, dy);
-        if (dist > 220) continue;
-        const alpha = (1 - dist / 220) * 0.85;
-        ctx.strokeStyle = 'rgba(34,211,238,' + alpha.toFixed(3) + ')';
-        ctx.lineWidth = 1.25;
-        ctx.beginPath();
-        ctx.moveTo(n.x, n.y);
-        ctx.lineTo(pointer.x, pointer.y);
-        ctx.stroke();
-      }
-    }
-    for (const n of nodes) {
-      ctx.fillStyle = 'rgba(147,197,253,0.85)';
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, 1.4, 0, Math.PI * 2);
-      ctx.fill();
-    }
-    if (touch) plexusLive = true;
+    drawField(ts, true);
   }
 
   function frame(ts) {
     if (!running) return;
     drawPlexus(ts);
-
-    if (!touch && spot) {
-      spot.style.transform = 'translate3d(' + pointer.x + 'px,' + pointer.y + 'px,0)';
-      spot.style.opacity = pointer.on ? '1' : '0';
-    }
 
     if (touch) {
       cards.forEach(state => {
